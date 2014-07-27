@@ -21,6 +21,7 @@
 		0D52C4BC197E284A00E5E5B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D52C49E197E284A00E5E5B9 /* UIKit.framework */; };
 		0D52C4C4197E284A00E5E5B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D52C4C2197E284A00E5E5B9 /* InfoPlist.strings */; };
 		0D52C4C6197E284A00E5E5B9 /* AssassinsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D52C4C5197E284A00E5E5B9 /* AssassinsTests.m */; };
+		0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		0D52C4C1197E284A00E5E5B9 /* AssassinsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AssassinsTests-Info.plist"; sourceTree = "<group>"; };
 		0D52C4C3197E284A00E5E5B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0D52C4C5197E284A00E5E5B9 /* AssassinsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssassinsTests.m; sourceTree = "<group>"; };
+		0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnipeSubmitView.h; sourceTree = "<group>"; };
+		0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnipeSubmitView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				0D52C4AC197E284A00E5E5B9 /* Main.storyboard */,
 				0D52C4AF197E284A00E5E5B9 /* ViewController.h */,
 				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
+				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
+				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
 				0D52C4B2197E284A00E5E5B9 /* Images.xcassets */,
 				0D52C4A1197E284A00E5E5B9 /* Supporting Files */,
 			);
@@ -251,6 +256,7 @@
 			files = (
 				0D52C4B1197E284A00E5E5B9 /* ViewController.m in Sources */,
 				0D52C4AB197E284A00E5E5B9 /* AppDelegate.m in Sources */,
+				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +462,7 @@
 				0D52C4CB197E284A00E5E5B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0D52C4CC197E284A00E5E5B9 /* Build configuration list for PBXNativeTarget "AssassinsTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +471,7 @@
 				0D52C4CE197E284A00E5E5B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
