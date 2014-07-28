@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPb-yx-dXl">
-                                <rect key="frame" x="118" y="370" width="85" height="30"/>
+                                <rect key="frame" x="123" y="269" width="85" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Boom, Baby">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,18 +48,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You SNiPeD!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkV-iF-bet">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mVZ-Ld-7MD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You SNiPeD!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkV-iF-bet">
                                 <rect key="frame" x="111" y="46" width="98" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVZ-Ld-7MD">
-                                <rect key="frame" x="20" y="83" width="280" height="465"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mVZ-Ld-7MD" firstAttribute="leading" secondItem="des-dZ-hki" secondAttribute="leading" id="Byo-Tj-Oje"/>
+                            <constraint firstItem="mVZ-Ld-7MD" firstAttribute="centerX" secondItem="FkV-iF-bet" secondAttribute="centerX" id="Qmy-hl-5k7"/>
+                            <constraint firstAttribute="centerX" secondItem="mVZ-Ld-7MD" secondAttribute="centerX" id="R8l-DB-EGX"/>
+                            <constraint firstItem="mVZ-Ld-7MD" firstAttribute="top" secondItem="Lsx-ae-lX4" secondAttribute="bottom" constant="-20" id="ahr-0f-G6V"/>
+                            <constraint firstItem="ea6-Ko-us0" firstAttribute="top" secondItem="mVZ-Ld-7MD" secondAttribute="bottom" id="hLv-xd-TMj"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="snipeImageView" destination="mVZ-Ld-7MD" id="K7e-VK-hQ9"/>

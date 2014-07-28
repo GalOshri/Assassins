@@ -11,6 +11,7 @@
 
 @interface ViewController ()
 
+@property (strong, nonatomic) IBOutlet UIImageView *firstImage;
 
 @end
 
@@ -24,7 +25,7 @@ UIImagePickerController *picker;
         if ([segue.destinationViewController isKindOfClass:[SnipeSubmitView class]])
         {
             SnipeSubmitView *ssv = (SnipeSubmitView *)segue.destinationViewController;
-            ssv.snipeImageView.image = (UIImage *)sender;
+            ssv.snipeImage = (UIImage *)sender;
         }
     }
 }
@@ -43,8 +44,9 @@ UIImagePickerController *picker;
     [picker setNavigationBarHidden:YES];
     [picker setToolbarHidden:YES];
     [picker setAllowsEditing:NO];
-    picker.view.frame = CGRectMake(0, 0, picker.view.frame.size.width, picker.view.frame.size.height * 0.4);
+    picker.view.frame = CGRectMake(0, 0, picker.view.frame.size.width, picker.view.frame.size.height);
     [self.view addSubview:picker.view];
+    [self.view sendSubviewToBack:picker.view];
  //   self.imageView.frame = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, picker.view.frame.size.width, picker.view.frame.size.height);
     
     
@@ -68,8 +70,9 @@ UIImagePickerController *picker;
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
   //  self.imageView.image = chosenImage;
     
-    [self performSegueWithIdentifier:@"SnipeSegue" sender:chosenImage];
     
+    [self performSegueWithIdentifier:@"SnipeSegue" sender:chosenImage];
+ //   self.firstImage.image = chosenImage;
     
     //  [picker dismissViewControllerAnimated:YES completion:NULL];
     
