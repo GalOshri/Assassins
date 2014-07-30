@@ -29,6 +29,7 @@
     // Do any additional setup after loading the view.
     
     self.snipeImageView.image = self.snipeImage;
+    NSLog(@"WE AREHERE");
 }
 
 - (void)didReceiveMemoryWarning

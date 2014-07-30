@@ -44,6 +44,8 @@ UIImagePickerController *picker;
     [picker setNavigationBarHidden:YES];
     [picker setToolbarHidden:YES];
     [picker setAllowsEditing:NO];
+    picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+  
     picker.view.frame = CGRectMake(0, 0, picker.view.frame.size.width, picker.view.frame.size.height);
     [self.view addSubview:picker.view];
     [self.view sendSubviewToBack:picker.view];
@@ -62,6 +64,7 @@ UIImagePickerController *picker;
 
 - (IBAction)takePicture:(UIButton *)sender {
     
+    NSLog(@"WEH");
     [picker takePicture];
 }
 
@@ -70,7 +73,7 @@ UIImagePickerController *picker;
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
   //  self.imageView.image = chosenImage;
     
-    
+    NSLog(@"HI");
     [self performSegueWithIdentifier:@"SnipeSegue" sender:chosenImage];
  //   self.firstImage.image = chosenImage;
     
