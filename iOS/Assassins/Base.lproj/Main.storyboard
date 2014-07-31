@@ -41,6 +41,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="edg-uN-ooc">
+                                <rect key="frame" x="69" y="55" width="182" height="182"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -67,17 +71,46 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You SNiPeD!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkV-iF-bet">
-                                <rect key="frame" x="111" y="46" width="98" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHl-jZ-P39">
+                                <rect key="frame" x="20" y="513" width="33" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Button" image="backArrow.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unwindToCamera:" destination="ZMC-9K-W8e" eventType="touchUpInside" id="BJZ-gi-GGZ"/>
+                                    <segue destination="1zH-iF-qft" kind="unwind" unwindAction="unwindToCamera:" id="90q-tv-eDY"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type to comment" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="00Q-O2-Xrt">
+                                <rect key="frame" x="20" y="433" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="0.51000000000000001" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-xB-0Vl">
+                                <rect key="frame" x="246" y="519" width="54" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="95t-Av-2iq">
+                                <rect key="frame" x="96" y="520" width="129" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Snipe"/>
+                                    <segment title="Defence"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mVZ-Ld-7MD" firstAttribute="leading" secondItem="des-dZ-hki" secondAttribute="leading" id="Byo-Tj-Oje"/>
-                            <constraint firstItem="mVZ-Ld-7MD" firstAttribute="centerX" secondItem="FkV-iF-bet" secondAttribute="centerX" id="Qmy-hl-5k7"/>
                             <constraint firstAttribute="centerX" secondItem="mVZ-Ld-7MD" secondAttribute="centerX" id="R8l-DB-EGX"/>
                             <constraint firstItem="mVZ-Ld-7MD" firstAttribute="top" secondItem="Lsx-ae-lX4" secondAttribute="bottom" constant="-20" id="ahr-0f-G6V"/>
                             <constraint firstItem="ea6-Ko-us0" firstAttribute="top" secondItem="mVZ-Ld-7MD" secondAttribute="bottom" id="hLv-xd-TMj"/>
@@ -88,14 +121,17 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMC-9K-W8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1zH-iF-qft" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="703" y="-2"/>
         </scene>
     </scenes>
     <resources>
+        <image name="backArrow.png" width="500" height="500"/>
         <image name="cameraButton.png" width="120" height="120"/>
         <image name="menu.png" width="28" height="20"/>
         <image name="noFlash.png" width="300" height="300"/>
+        <image name="snipeCircle.png" width="500" height="500"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -25,6 +25,8 @@
 		DAD0DD331988DC840075E69D /* cameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD321988DC840075E69D /* cameraButton.png */; };
 		DAD0DD351988DF0C0075E69D /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD341988DF0C0075E69D /* menu.png */; };
 		DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD361988E0BF0075E69D /* noFlash.png */; };
+		DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD38198A041A0075E69D /* snipeCircle.png */; };
+		DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD3A198A1F7C0075E69D /* backArrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		DAD0DD321988DC840075E69D /* cameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraButton.png; sourceTree = "<group>"; };
 		DAD0DD341988DF0C0075E69D /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		DAD0DD361988E0BF0075E69D /* noFlash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noFlash.png; sourceTree = "<group>"; };
+		DAD0DD38198A041A0075E69D /* snipeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snipeCircle.png; sourceTree = "<group>"; };
+		DAD0DD3A198A1F7C0075E69D /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +134,9 @@
 				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
 				DAD0DD321988DC840075E69D /* cameraButton.png */,
 				DAD0DD361988E0BF0075E69D /* noFlash.png */,
+				DAD0DD38198A041A0075E69D /* snipeCircle.png */,
 				DAD0DD341988DF0C0075E69D /* menu.png */,
+				DAD0DD3A198A1F7C0075E69D /* backArrow.png */,
 				0D52C4B2197E284A00E5E5B9 /* Images.xcassets */,
 				0D52C4A1197E284A00E5E5B9 /* Supporting Files */,
 			);
@@ -246,6 +252,8 @@
 				DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */,
 				DAD0DD351988DF0C0075E69D /* menu.png in Resources */,
 				0D52C4B3197E284A00E5E5B9 /* Images.xcassets in Resources */,
+				DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */,
+				DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */,
 				0D52C4A5197E284A00E5E5B9 /* InfoPlist.strings in Resources */,
 				0D52C4AE197E284A00E5E5B9 /* Main.storyboard in Resources */,
 			);

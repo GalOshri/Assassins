@@ -29,7 +29,15 @@
     // Do any additional setup after loading the view.
     
     self.snipeImageView.image = self.snipeImage;
-    NSLog(@"WE AREHERE");
+    CGSize screenBounds = [UIScreen mainScreen].bounds.size;
+    CGFloat cameraAspectRatio = 4.0f/3.0f;
+    CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
+    CGFloat scale = screenBounds.height / camViewHeight;
+    
+    
+   // self.snipeImageView = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
+    //picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
+
 }
 
 - (void)didReceiveMemoryWarning
