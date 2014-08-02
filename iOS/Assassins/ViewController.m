@@ -33,7 +33,7 @@ UIImagePickerController *picker;
         if ([segue.destinationViewController isKindOfClass:[SnipeSubmitView class]])
         {
             SnipeSubmitView *ssv = (SnipeSubmitView *)segue.destinationViewController;
-            UIImage *chosenImage
+            UIImage *chosenImage;
             ssv.snipeImage = (UIImage *)sender;
         }
     }
