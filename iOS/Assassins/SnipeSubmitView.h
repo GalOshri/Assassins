@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SnipeSubmitView : UIViewController
+@interface SnipeSubmitView : UIViewController <UIGestureRecognizerDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImageView;
 @property (strong, nonatomic) UIImage *snipeImage;

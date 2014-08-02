@@ -11,8 +11,11 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *flashImage;
 @property (strong, nonatomic) IBOutlet UIImageView *firstImage;
 @property UIImagePickerController *picker;
+@property BOOL flashOn;
+
 @end
 
 @implementation ViewController
@@ -30,6 +33,7 @@ UIImagePickerController *picker;
         if ([segue.destinationViewController isKindOfClass:[SnipeSubmitView class]])
         {
             SnipeSubmitView *ssv = (SnipeSubmitView *)segue.destinationViewController;
+            UIImage *chosenImage
             ssv.snipeImage = (UIImage *)sender;
         }
     }
@@ -48,6 +52,7 @@ UIImagePickerController *picker;
     [picker setToolbarHidden:YES];
     [picker setAllowsEditing:NO];
     picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+    self.flashOn = NO;
     
     //math to resize to size of phone
     CGSize screenBounds = [UIScreen mainScreen].bounds.size;
@@ -77,8 +82,6 @@ UIImagePickerController *picker;
 }
 
 - (IBAction)takePicture:(UIButton *)sender {
-    
-    NSLog(@"WEH");
     [picker takePicture];
 }
 
@@ -86,8 +89,6 @@ UIImagePickerController *picker;
     
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
   //  self.imageView.image = chosenImage;
-    
-    NSLog(@"HI");
     [self performSegueWithIdentifier:@"SnipeSegue" sender:chosenImage];
  //   self.firstImage.image = chosenImage;
     
@@ -96,9 +97,29 @@ UIImagePickerController *picker;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+- (IBAction)toggleFlash:(UIButton *)sender {
     
+    if (self.flashOn == YES) {
+        NSLog(@"on-->off");
+        picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        [sender setImage:[UIImage imageNamed:  @"noFlash.png"] forState:UIControlStateNormal];
+        self.flashOn = NO;
+    }
+    
+    else {
+        NSLog(@"off-->on");
+        picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+        [sender setImage:[UIImage imageNamed: @"flash.png"] forState:UIControlStateNormal];
+        self.flashOn = YES;
+    }
+
 }
 
 @end
