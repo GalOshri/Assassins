@@ -10,6 +10,7 @@
 #import "SnipeSubmitView.h"
 #import "AssassinsLogInView.h"
 #import "AssassinsSignUpView.h"
+#import "UIImage+Resize.h"
 
 @interface ViewController ()
 
@@ -23,6 +24,9 @@
 @implementation ViewController
 
 UIImagePickerController *picker;
+UIImagePickerController *picker;
+CGFloat cameraAspectRatio = 4.0f/3.0f;
+CGFloat scale;
 
 - (IBAction)unwindToCamera:(UIStoryboardSegue *)segue {
     
@@ -35,8 +39,22 @@ UIImagePickerController *picker;
         if ([segue.destinationViewController isKindOfClass:[SnipeSubmitView class]])
         {
             SnipeSubmitView *ssv = (SnipeSubmitView *)segue.destinationViewController;
-            UIImage *chosenImage;
-            ssv.snipeImage = (UIImage *)sender;
+            UIImage *chosenImage = (UIImage *)sender;
+            
+            
+            //###### apply cropping to image ##### //
+            
+            // scale image to be correct size
+            CGSize size = CGSizeMake(self.view.frame.size.height * 1/cameraAspectRatio, self.view.frame.size.height);
+            UIImage *resizedImage = [chosenImage resizedImage:size interpolationQuality:kCGInterpolationDefault];
+            
+            // crop image correctly
+            CGRect clippedRect = CGRectMake(resizedImage.size.width/2 - self.view.frame.size.width/2, 0, self.view.frame.size.width, self.view.frame.size.height);
+            CGImageRef imageRef = CGImageCreateWithImageInRect([resizedImage CGImage], clippedRect);
+            UIImage *croppedImage = [UIImage imageWithCGImage:imageRef];
+            CGImageRelease(imageRef);
+            
+            ssv.snipeImage = (UIImage *) croppedImage;
         }
     }
 }
@@ -44,12 +62,7 @@ UIImagePickerController *picker;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSLog(@"HI");
 
-
-    
-    /*
     picker  = [[UIImagePickerController alloc] init];
     [picker setDelegate:self];
     [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
@@ -63,9 +76,9 @@ UIImagePickerController *picker;
     
     //math to resize to size of phone
     CGSize screenBounds = [UIScreen mainScreen].bounds.size;
-    CGFloat cameraAspectRatio = 4.0f/3.0f;
+    cameraAspectRatio = 4.0f/3.0f;
     CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
-    CGFloat scale = screenBounds.height / camViewHeight;
+    scale = screenBounds.height / camViewHeight;
     
     
     picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
@@ -74,8 +87,6 @@ UIImagePickerController *picker;
     
     [self.view addSubview:picker.view];
     [self.view sendSubviewToBack:picker.view];
- //   self.imageView.frame = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, picker.view.frame.size.width, picker.view.frame.size.height);
-     */
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -44,6 +44,9 @@
 		DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD38198A041A0075E69D /* snipeCircle.png */; };
 		DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD3A198A1F7C0075E69D /* backArrow.png */; };
 		DAD0DD3D198B74BF0075E69D /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD3C198B74BF0075E69D /* flash.png */; };
+		DAD0DD5D198EFB6E0075E69D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD58198EFB6E0075E69D /* UIImage+Alpha.m */; };
+		DAD0DD5E198EFB6E0075E69D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD5A198EFB6E0075E69D /* UIImage+Resize.m */; };
+		DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +106,12 @@
 		DAD0DD38198A041A0075E69D /* snipeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snipeCircle.png; sourceTree = "<group>"; };
 		DAD0DD3A198A1F7C0075E69D /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		DAD0DD3C198B74BF0075E69D /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
+		DAD0DD57198EFB6E0075E69D /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		DAD0DD58198EFB6E0075E69D /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		DAD0DD59198EFB6E0075E69D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		DAD0DD5A198EFB6E0075E69D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		DAD0DD5B198EFB6E0075E69D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +228,12 @@
 				0D277D14198EEBC6002362C6 /* AssassinsSignUpView.m */,
 				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
 				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
+				DAD0DD57198EFB6E0075E69D /* UIImage+Alpha.h */,
+				DAD0DD58198EFB6E0075E69D /* UIImage+Alpha.m */,
+				DAD0DD59198EFB6E0075E69D /* UIImage+Resize.h */,
+				DAD0DD5A198EFB6E0075E69D /* UIImage+Resize.m */,
+				DAD0DD5B198EFB6E0075E69D /* UIImage+RoundedCorner.h */,
+				DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */,
 				0D277D0C198EE32E002362C6 /* Service */,
 				0D277D0B198EE318002362C6 /* Images */,
 				0D52C4B2197E284A00E5E5B9 /* Images.xcassets */,
@@ -365,6 +380,9 @@
 				0D277D12198EEBB0002362C6 /* AssassinsLogInView.m in Sources */,
 				0D52C4B1197E284A00E5E5B9 /* ViewController.m in Sources */,
 				0D52C4AB197E284A00E5E5B9 /* AppDelegate.m in Sources */,
+				DAD0DD5D198EFB6E0075E69D /* UIImage+Alpha.m in Sources */,
+				DAD0DD5E198EFB6E0075E69D /* UIImage+Resize.m in Sources */,
+				DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */,
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
 				0D277D15198EEBC6002362C6 /* AssassinsSignUpView.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
