@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SnipeSubmitView.h"
+#import "UIImage+Resize.h"
 
 @interface ViewController ()
 
@@ -21,6 +22,9 @@
 @implementation ViewController
 
 UIImagePickerController *picker;
+CGFloat cameraAspectRatio = 4.0f/3.0f;
+CGFloat scale;
+
 
 - (IBAction)unwindToCamera:(UIStoryboardSegue *)segue {
     
@@ -33,8 +37,23 @@ UIImagePickerController *picker;
         if ([segue.destinationViewController isKindOfClass:[SnipeSubmitView class]])
         {
             SnipeSubmitView *ssv = (SnipeSubmitView *)segue.destinationViewController;
-            UIImage *chosenImage
-            ssv.snipeImage = (UIImage *)sender;
+            UIImage *chosenImage = (UIImage *)sender;
+            
+            
+            
+            //###### apply cropping to image ##### //
+            
+            // scale image to be correct size
+            CGSize size = CGSizeMake(self.view.frame.size.height * 1/cameraAspectRatio, self.view.frame.size.height);
+            UIImage *resizedImage = [chosenImage resizedImage:size interpolationQuality:kCGInterpolationDefault];
+            
+            // crop image correctly
+            CGRect clippedRect = CGRectMake(resizedImage.size.width/2 - self.view.frame.size.width/2, 0, self.view.frame.size.width, self.view.frame.size.height);
+            CGImageRef imageRef = CGImageCreateWithImageInRect([resizedImage CGImage], clippedRect);
+            UIImage *croppedImage = [UIImage imageWithCGImage:imageRef];
+            CGImageRelease(imageRef);
+            
+            ssv.snipeImage = (UIImage *) croppedImage;
         }
     }
 }
@@ -56,12 +75,12 @@ UIImagePickerController *picker;
     
     //math to resize to size of phone
     CGSize screenBounds = [UIScreen mainScreen].bounds.size;
-    CGFloat cameraAspectRatio = 4.0f/3.0f;
     CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
-    CGFloat scale = screenBounds.height / camViewHeight;
+    scale = screenBounds.height / camViewHeight;
     
     
     picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
+    NSLog(@"screenheight: %f, camHeight:%f, diff: %f", screenBounds.height, camViewHeight, screenBounds.height - camViewHeight );
     picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
 
     
@@ -86,12 +105,10 @@ UIImagePickerController *picker;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-  //  self.imageView.image = chosenImage;
+    NSLog(@"%@", info);
+
     [self performSegueWithIdentifier:@"SnipeSegue" sender:chosenImage];
- //   self.firstImage.image = chosenImage;
-    
     //  [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
@@ -107,14 +124,12 @@ UIImagePickerController *picker;
 - (IBAction)toggleFlash:(UIButton *)sender {
     
     if (self.flashOn == YES) {
-        NSLog(@"on-->off");
         picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         [sender setImage:[UIImage imageNamed:  @"noFlash.png"] forState:UIControlStateNormal];
         self.flashOn = NO;
     }
     
     else {
-        NSLog(@"off-->on");
         picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
         [sender setImage:[UIImage imageNamed: @"flash.png"] forState:UIControlStateNormal];
         self.flashOn = YES;

@@ -28,6 +28,9 @@
 		DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD38198A041A0075E69D /* snipeCircle.png */; };
 		DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD3A198A1F7C0075E69D /* backArrow.png */; };
 		DAD0DD3D198B74BF0075E69D /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD3C198B74BF0075E69D /* flash.png */; };
+		DAD0DD4C198EE59E0075E69D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD4B198EE59E0075E69D /* UIImage+Resize.m */; };
+		DAD0DD54198EE66E0075E69D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD51198EE66E0075E69D /* UIImage+Alpha.m */; };
+		DAD0DD55198EE66E0075E69D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD53198EE66E0075E69D /* UIImage+RoundedCorner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,12 @@
 		DAD0DD38198A041A0075E69D /* snipeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snipeCircle.png; sourceTree = "<group>"; };
 		DAD0DD3A198A1F7C0075E69D /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		DAD0DD3C198B74BF0075E69D /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
+		DAD0DD4A198EE59E0075E69D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		DAD0DD4B198EE59E0075E69D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		DAD0DD50198EE66E0075E69D /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		DAD0DD51198EE66E0075E69D /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		DAD0DD52198EE66E0075E69D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		DAD0DD53198EE66E0075E69D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,19 +136,12 @@
 		0D52C4A0197E284A00E5E5B9 /* Assassins */ = {
 			isa = PBXGroup;
 			children = (
+				0D52C4AC197E284A00E5E5B9 /* Main.storyboard */,
+				DAD0DD4E198EE5D70075E69D /* snipe view */,
+				DAD0DD4D198EE5AC0075E69D /* snipe submit view */,
+				DAD0DD4F198EE5F00075E69D /* images */,
 				0D52C4A9197E284A00E5E5B9 /* AppDelegate.h */,
 				0D52C4AA197E284A00E5E5B9 /* AppDelegate.m */,
-				0D52C4AC197E284A00E5E5B9 /* Main.storyboard */,
-				0D52C4AF197E284A00E5E5B9 /* ViewController.h */,
-				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
-				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
-				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
-				DAD0DD321988DC840075E69D /* cameraButton.png */,
-				DAD0DD361988E0BF0075E69D /* noFlash.png */,
-				DAD0DD3C198B74BF0075E69D /* flash.png */,
-				DAD0DD38198A041A0075E69D /* snipeCircle.png */,
-				DAD0DD341988DF0C0075E69D /* menu.png */,
-				DAD0DD3A198A1F7C0075E69D /* backArrow.png */,
 				0D52C4B2197E284A00E5E5B9 /* Images.xcassets */,
 				0D52C4A1197E284A00E5E5B9 /* Supporting Files */,
 			);
@@ -173,6 +175,51 @@
 				0D52C4C2197E284A00E5E5B9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DAD0DD4D198EE5AC0075E69D /* snipe submit view */ = {
+			isa = PBXGroup;
+			children = (
+				DAD0DD56198EE6730075E69D /* UIImage Categories */,
+				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
+				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
+			);
+			name = "snipe submit view";
+			sourceTree = "<group>";
+		};
+		DAD0DD4E198EE5D70075E69D /* snipe view */ = {
+			isa = PBXGroup;
+			children = (
+				0D52C4AF197E284A00E5E5B9 /* ViewController.h */,
+				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
+			);
+			name = "snipe view";
+			sourceTree = "<group>";
+		};
+		DAD0DD4F198EE5F00075E69D /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DAD0DD321988DC840075E69D /* cameraButton.png */,
+				DAD0DD361988E0BF0075E69D /* noFlash.png */,
+				DAD0DD3C198B74BF0075E69D /* flash.png */,
+				DAD0DD38198A041A0075E69D /* snipeCircle.png */,
+				DAD0DD341988DF0C0075E69D /* menu.png */,
+				DAD0DD3A198A1F7C0075E69D /* backArrow.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		DAD0DD56198EE6730075E69D /* UIImage Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DAD0DD4A198EE59E0075E69D /* UIImage+Resize.h */,
+				DAD0DD4B198EE59E0075E69D /* UIImage+Resize.m */,
+				DAD0DD50198EE66E0075E69D /* UIImage+Alpha.h */,
+				DAD0DD51198EE66E0075E69D /* UIImage+Alpha.m */,
+				DAD0DD52198EE66E0075E69D /* UIImage+RoundedCorner.h */,
+				DAD0DD53198EE66E0075E69D /* UIImage+RoundedCorner.m */,
+			);
+			name = "UIImage Categories";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,8 +327,11 @@
 			files = (
 				0D52C4B1197E284A00E5E5B9 /* ViewController.m in Sources */,
 				0D52C4AB197E284A00E5E5B9 /* AppDelegate.m in Sources */,
+				DAD0DD55198EE66E0075E69D /* UIImage+RoundedCorner.m in Sources */,
+				DAD0DD54198EE66E0075E69D /* UIImage+Alpha.m in Sources */,
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
+				DAD0DD4C198EE59E0075E69D /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
