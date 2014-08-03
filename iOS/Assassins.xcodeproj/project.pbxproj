@@ -222,19 +222,11 @@
 				0D52C4AC197E284A00E5E5B9 /* Main.storyboard */,
 				0D52C4AF197E284A00E5E5B9 /* ViewController.h */,
 				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
-				0D277D10198EEBB0002362C6 /* AssassinsLogInView.h */,
-				0D277D11198EEBB0002362C6 /* AssassinsLogInView.m */,
-				0D277D13198EEBC6002362C6 /* AssassinsSignUpView.h */,
-				0D277D14198EEBC6002362C6 /* AssassinsSignUpView.m */,
 				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
 				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
-				DAD0DD57198EFB6E0075E69D /* UIImage+Alpha.h */,
-				DAD0DD58198EFB6E0075E69D /* UIImage+Alpha.m */,
-				DAD0DD59198EFB6E0075E69D /* UIImage+Resize.h */,
-				DAD0DD5A198EFB6E0075E69D /* UIImage+Resize.m */,
-				DAD0DD5B198EFB6E0075E69D /* UIImage+RoundedCorner.h */,
-				DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */,
 				0D277D0C198EE32E002362C6 /* Service */,
+				0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */,
+				0DBF670B198EFD5C00AFF5F8 /* Image Helpers */,
 				0D277D0B198EE318002362C6 /* Images */,
 				0D52C4B2197E284A00E5E5B9 /* Images.xcassets */,
 				0D52C4A1197E284A00E5E5B9 /* Supporting Files */,
@@ -271,6 +263,30 @@
 				0D52C4C2197E284A00E5E5B9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0DBF670B198EFD5C00AFF5F8 /* Image Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DAD0DD57198EFB6E0075E69D /* UIImage+Alpha.h */,
+				DAD0DD58198EFB6E0075E69D /* UIImage+Alpha.m */,
+				DAD0DD59198EFB6E0075E69D /* UIImage+Resize.h */,
+				DAD0DD5A198EFB6E0075E69D /* UIImage+Resize.m */,
+				DAD0DD5B198EFB6E0075E69D /* UIImage+RoundedCorner.h */,
+				DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */,
+			);
+			name = "Image Helpers";
+			sourceTree = "<group>";
+		};
+		0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				0D277D10198EEBB0002362C6 /* AssassinsLogInView.h */,
+				0D277D11198EEBB0002362C6 /* AssassinsLogInView.m */,
+				0D277D13198EEBC6002362C6 /* AssassinsSignUpView.h */,
+				0D277D14198EEBC6002362C6 /* AssassinsSignUpView.m */,
+			);
+			name = "Log In and Sign Up";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
