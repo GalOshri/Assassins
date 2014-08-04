@@ -50,6 +50,7 @@
 		DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */; };
 		DAD0DD61198F00270075E69D /* flipCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD60198F00270075E69D /* flipCamera.png */; };
 		DAD0DD63198F38710075E69D /* cameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD62198F38710075E69D /* cameraIcon.png */; };
+		DAD0DD65198F59730075E69D /* cameraIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD64198F59730075E69D /* cameraIconSmall.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		DAD0DD60198F00270075E69D /* flipCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flipCamera.png; sourceTree = "<group>"; };
 		DAD0DD62198F38710075E69D /* cameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIcon.png; sourceTree = "<group>"; };
+		DAD0DD64198F59730075E69D /* cameraIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIconSmall.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				DAD0DD321988DC840075E69D /* cameraButton.png */,
 				DAD0DD361988E0BF0075E69D /* noFlash.png */,
 				DAD0DD3C198B74BF0075E69D /* flash.png */,
+				DAD0DD64198F59730075E69D /* cameraIconSmall.png */,
 				DAD0DD38198A041A0075E69D /* snipeCircle.png */,
 				DAD0DD341988DF0C0075E69D /* menu.png */,
 				DAD0DD3A198A1F7C0075E69D /* backArrow.png */,
@@ -385,6 +388,7 @@
 				0D52C4B3197E284A00E5E5B9 /* Images.xcassets in Resources */,
 				DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */,
 				DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */,
+				DAD0DD65198F59730075E69D /* cameraIconSmall.png in Resources */,
 				0D52C4A5197E284A00E5E5B9 /* InfoPlist.strings in Resources */,
 				0D52C4AE197E284A00E5E5B9 /* Main.storyboard in Resources */,
 			);
