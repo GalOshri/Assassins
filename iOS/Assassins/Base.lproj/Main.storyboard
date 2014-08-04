@@ -56,6 +56,16 @@
                                 <rect key="frame" x="69" y="55" width="182" height="182"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b41-ba-wSA">
+                                <rect key="frame" x="260" y="22" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="flipCamera.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="flipCamera:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UiZ-yF-Uej"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -67,6 +77,7 @@
                     </view>
                     <connections>
                         <outlet property="flashImage" destination="Ud0-LW-3p8" id="g4u-hw-FgO"/>
+                        <outlet property="flipCamera" destination="b41-ba-wSA" id="A9F-lD-C2L"/>
                         <segue destination="LuB-hi-AS8" kind="modal" identifier="SnipeSegue" animates="NO" id="j3W-7c-P2Q"/>
                     </connections>
                 </viewController>
@@ -248,6 +259,7 @@
     <resources>
         <image name="backArrow.png" width="600" height="600"/>
         <image name="cameraButton.png" width="120" height="120"/>
+        <image name="flipCamera.png" width="300" height="300"/>
         <image name="menu.png" width="28" height="20"/>
         <image name="noFlash.png" width="300" height="300"/>
         <image name="snipeCircle.png" width="500" height="500"/>

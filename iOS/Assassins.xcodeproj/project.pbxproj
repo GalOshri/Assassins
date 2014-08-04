@@ -47,6 +47,7 @@
 		DAD0DD5D198EFB6E0075E69D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD58198EFB6E0075E69D /* UIImage+Alpha.m */; };
 		DAD0DD5E198EFB6E0075E69D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD5A198EFB6E0075E69D /* UIImage+Resize.m */; };
 		DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */; };
+		DAD0DD61198F00270075E69D /* flipCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD60198F00270075E69D /* flipCamera.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		DAD0DD5A198EFB6E0075E69D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		DAD0DD5B198EFB6E0075E69D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		DAD0DD60198F00270075E69D /* flipCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flipCamera.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		0D277D0B198EE318002362C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DAD0DD60198F00270075E69D /* flipCamera.png */,
 				DAD0DD321988DC840075E69D /* cameraButton.png */,
 				DAD0DD361988E0BF0075E69D /* noFlash.png */,
 				DAD0DD3C198B74BF0075E69D /* flash.png */,
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAD0DD331988DC840075E69D /* cameraButton.png in Resources */,
+				DAD0DD61198F00270075E69D /* flipCamera.png in Resources */,
 				DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */,
 				DAD0DD351988DF0C0075E69D /* menu.png in Resources */,
 				DAD0DD3D198B74BF0075E69D /* flash.png in Resources */,

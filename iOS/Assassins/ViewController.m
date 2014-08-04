@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *firstImage;
 @property UIImagePickerController *picker;
 @property BOOL flashOn;
+@property (weak, nonatomic) IBOutlet UIButton *flipCamera;
 
 @end
 
@@ -157,11 +158,8 @@ CGFloat scale;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-  //  self.imageView.image = chosenImage;
     [self performSegueWithIdentifier:@"SnipeSegue" sender:chosenImage];
- //   self.firstImage.image = chosenImage;
-    
-    //  [picker dismissViewControllerAnimated:YES completion:NULL];
+ 
     
 }
 
@@ -175,15 +173,15 @@ CGFloat scale;
 
 - (IBAction)toggleFlash:(UIButton *)sender {
     
-    if (self.flashOn == YES) {
-        NSLog(@"on-->off");
+    if (self.flashOn == YES)
+    {
         picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         [sender setImage:[UIImage imageNamed:  @"noFlash.png"] forState:UIControlStateNormal];
         self.flashOn = NO;
     }
     
-    else {
-        NSLog(@"off-->on");
+    else
+    {
         picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
         [sender setImage:[UIImage imageNamed: @"flash.png"] forState:UIControlStateNormal];
         self.flashOn = YES;
@@ -191,9 +189,14 @@ CGFloat scale;
 
 }
 
+- (IBAction)flipCamera:(id)sender {
+    if (picker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
+        [picker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+    else
+        [picker setCameraDevice:UIImagePickerControllerCameraDeviceFront];
+}
 
 #pragma mark - User Identity Views
-
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
     // Check if both fields are completed
