@@ -481,7 +481,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Paul Stavropoulos (LR4U8T577R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Paul Stavropoulos (LR4U8T577R)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -519,7 +520,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Paul Stavropoulos (LR4U8T577R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Paul Stavropoulos (LR4U8T577R)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -548,6 +550,7 @@
 				GCC_PREFIX_HEADER = "Assassins/Assassins-Prefix.pch";
 				INFOPLIST_FILE = "Assassins/Assassins-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D93BAE14-A644-4174-B216-C6A9E9F9A99F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -565,6 +568,7 @@
 				GCC_PREFIX_HEADER = "Assassins/Assassins-Prefix.pch";
 				INFOPLIST_FILE = "Assassins/Assassins-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D93BAE14-A644-4174-B216-C6A9E9F9A99F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
