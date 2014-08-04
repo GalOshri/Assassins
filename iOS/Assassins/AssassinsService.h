@@ -10,4 +10,6 @@
 
 @interface AssassinsService : NSObject
 
+- (void)submitAssassination;
+
 @end

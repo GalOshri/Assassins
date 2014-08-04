@@ -11,4 +11,9 @@
 
 @implementation AssassinsService
 
+- (void)submitAssassination
+{
+    
+}
+
 @end

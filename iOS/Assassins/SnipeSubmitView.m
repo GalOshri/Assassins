@@ -7,6 +7,7 @@
 //
 
 #import "SnipeSubmitView.h"
+#import "AssassinsService.h"
 
 @interface SnipeSubmitView ()
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
@@ -16,14 +17,7 @@
 
 @implementation SnipeSubmitView
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 /*
  #pragma mark - Navigation
@@ -58,11 +52,12 @@
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
+
+#pragma mark - Commenting on image
 
 
 - (void) clickEventOnImage:(UITapGestureRecognizer *)sender {
@@ -108,9 +103,9 @@
     textField.center = CGPointMake(textField.center.x, point.y);
 }
 
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+#pragma mark - Submit Assassination
+- (IBAction)submitAssassination:(UIButton *)sender {
+    [AssassinsService submitAssassination];
 }
 
 @end

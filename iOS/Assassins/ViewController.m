@@ -145,11 +145,11 @@ CGFloat scale;
     [self presentViewController:logInViewController animated:YES completion:NULL];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
+
+#pragma mark - Picture Methods
 
 - (IBAction)takePicture:(UIButton *)sender {
     [picker takePicture];
@@ -167,9 +167,7 @@ CGFloat scale;
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
+
 
 - (IBAction)toggleFlash:(UIButton *)sender {
     
