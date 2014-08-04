@@ -63,6 +63,7 @@ CGFloat scale;
 {
     [super viewDidLoad];
 
+    
     picker  = [[UIImagePickerController alloc] init];
     [picker setDelegate:self];
     [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
@@ -87,6 +88,30 @@ CGFloat scale;
     
     [self.view addSubview:picker.view];
     [self.view sendSubviewToBack:picker.view];
+     
+    
+    
+    // CODE TO START THE GAME. RUN ONLY ONCE.
+    
+    /*PFQuery *query = [PFUser query];
+    NSArray *users = [query findObjects];
+    PFObject *game = [PFObject objectWithClassName:@"Game"];
+    PFObject *contract1 = [PFObject objectWithClassName:@"Contract"];
+    contract1[@"assassin"] = users[0];
+    contract1[@"target"] = users[1];
+    contract1[@"state"] = @"Active";
+    
+    PFObject *contract2 = [PFObject objectWithClassName:@"Contract"];
+    contract2[@"assassin"] = users[1];
+    contract2[@"target"] = users[0];
+    contract2[@"state"] = @"Active";
+    
+    [contract1 save];
+    [contract2 save];
+    game[@"contracts"] = @[contract1, contract2];
+    game[@"players"] = users;
+    [game saveInBackground];*/
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
