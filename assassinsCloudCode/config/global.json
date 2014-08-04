@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "Assassins": {
+            "applicationId": "VFGeqNO5kWHeylYJa7veoVIiBr77ER337hnJdfdm", 
+            "masterKey": "RttM7NBU7Zfr5bjTStFvqcjo2xuFFKAToRQFqSuK"
+        }, 
+        "_default": {
+            "link": "Assassins"
+        }
+    }
+}
