@@ -8,6 +8,8 @@
 
 #import "AssassinsLogInView.h"
 #import <QuartzCore/QuartzCore.h>
+#import <FacebookSDK/FacebookSDK.h>
+
 
 @interface AssassinsLogInView ()
 
