@@ -51,6 +51,9 @@
 		DAD0DD61198F00270075E69D /* flipCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD60198F00270075E69D /* flipCamera.png */; };
 		DAD0DD63198F38710075E69D /* cameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD62198F38710075E69D /* cameraIcon.png */; };
 		DAD0DD65198F59730075E69D /* cameraIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD64198F59730075E69D /* cameraIconSmall.png */; };
+		DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD67198F75E30075E69D /* GameTableViewController.m */; };
+		DAD0DD6A198F77770075E69D /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD69198F77770075E69D /* line.png */; };
+		DAD0DD6D198F783A0075E69D /* GameEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +124,11 @@
 		DAD0DD60198F00270075E69D /* flipCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flipCamera.png; sourceTree = "<group>"; };
 		DAD0DD62198F38710075E69D /* cameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIcon.png; sourceTree = "<group>"; };
 		DAD0DD64198F59730075E69D /* cameraIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIconSmall.png; sourceTree = "<group>"; };
+		DAD0DD66198F75E30075E69D /* GameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTableViewController.h; sourceTree = "<group>"; };
+		DAD0DD67198F75E30075E69D /* GameTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTableViewController.m; sourceTree = "<group>"; };
+		DAD0DD69198F77770075E69D /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		DAD0DD6B198F783A0075E69D /* GameEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventTableViewCell.h; sourceTree = "<group>"; };
+		DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEventTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +171,7 @@
 		0D277D0B198EE318002362C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DAD0DD69198F77770075E69D /* line.png */,
 				DAD0DD62198F38710075E69D /* cameraIcon.png */,
 				DAD0DD60198F00270075E69D /* flipCamera.png */,
 				DAD0DD321988DC840075E69D /* cameraButton.png */,
@@ -236,6 +245,7 @@
 				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
 				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
 				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
+				DAD0DD6E198F78420075E69D /* Game Page */,
 				0DBF670D198F457500AFF5F8 /* MBProgressHUD.h */,
 				0DBF670E198F457500AFF5F8 /* MBProgressHUD.m */,
 				0D277D0C198EE32E002362C6 /* Service */,
@@ -301,6 +311,17 @@
 				0D277D14198EEBC6002362C6 /* AssassinsSignUpView.m */,
 			);
 			name = "Log In and Sign Up";
+			sourceTree = "<group>";
+		};
+		DAD0DD6E198F78420075E69D /* Game Page */ = {
+			isa = PBXGroup;
+			children = (
+				DAD0DD66198F75E30075E69D /* GameTableViewController.h */,
+				DAD0DD67198F75E30075E69D /* GameTableViewController.m */,
+				DAD0DD6B198F783A0075E69D /* GameEventTableViewCell.h */,
+				DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */,
+			);
+			name = "Game Page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +407,7 @@
 				DAD0DD61198F00270075E69D /* flipCamera.png in Resources */,
 				DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */,
 				DAD0DD351988DF0C0075E69D /* menu.png in Resources */,
+				DAD0DD6A198F77770075E69D /* line.png in Resources */,
 				DAD0DD3D198B74BF0075E69D /* flash.png in Resources */,
 				DAD0DD63198F38710075E69D /* cameraIcon.png in Resources */,
 				0D52C4B3197E284A00E5E5B9 /* Images.xcassets in Resources */,
@@ -414,6 +436,7 @@
 			files = (
 				0D277D0F198EE34B002362C6 /* AssassinsService.m in Sources */,
 				0D277D12198EEBB0002362C6 /* AssassinsLogInView.m in Sources */,
+				DAD0DD6D198F783A0075E69D /* GameEventTableViewCell.m in Sources */,
 				0D52C4B1197E284A00E5E5B9 /* ViewController.m in Sources */,
 				0D52C4AB197E284A00E5E5B9 /* AppDelegate.m in Sources */,
 				0DBF670F198F457500AFF5F8 /* MBProgressHUD.m in Sources */,
@@ -421,6 +444,7 @@
 				DAD0DD5E198EFB6E0075E69D /* UIImage+Resize.m in Sources */,
 				DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */,
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
+				DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */,
 				0D277D15198EEBC6002362C6 /* AssassinsSignUpView.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
 			);
