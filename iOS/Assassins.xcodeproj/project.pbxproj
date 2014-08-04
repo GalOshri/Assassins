@@ -48,6 +48,7 @@
 		DAD0DD5E198EFB6E0075E69D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD5A198EFB6E0075E69D /* UIImage+Resize.m */; };
 		DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */; };
 		DAD0DD61198F00270075E69D /* flipCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD60198F00270075E69D /* flipCamera.png */; };
+		DAD0DD63198F38710075E69D /* cameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD62198F38710075E69D /* cameraIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		DAD0DD5B198EFB6E0075E69D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		DAD0DD5C198EFB6E0075E69D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		DAD0DD60198F00270075E69D /* flipCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flipCamera.png; sourceTree = "<group>"; };
+		DAD0DD62198F38710075E69D /* cameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 		0D277D0B198EE318002362C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DAD0DD62198F38710075E69D /* cameraIcon.png */,
 				DAD0DD60198F00270075E69D /* flipCamera.png */,
 				DAD0DD321988DC840075E69D /* cameraButton.png */,
 				DAD0DD361988E0BF0075E69D /* noFlash.png */,
@@ -373,6 +376,7 @@
 				DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */,
 				DAD0DD351988DF0C0075E69D /* menu.png in Resources */,
 				DAD0DD3D198B74BF0075E69D /* flash.png in Resources */,
+				DAD0DD63198F38710075E69D /* cameraIcon.png in Resources */,
 				0D52C4B3197E284A00E5E5B9 /* Images.xcassets in Resources */,
 				DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */,
 				DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */,
