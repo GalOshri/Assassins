@@ -112,6 +112,11 @@ CGFloat scale;
     game[@"contracts"] = @[contract1, contract2];
     game[@"players"] = users;
     [game saveInBackground];*/
+    
+    // CODE TO HARDCODE THE GAMEID
+    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+    [userData setObject:@"Jr9NNIwOiO" forKey:@"gameId"];
+    [userData synchronize];
 
 }
 

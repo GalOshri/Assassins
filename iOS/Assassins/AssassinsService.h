@@ -10,6 +10,6 @@
 
 @interface AssassinsService : NSObject
 
-- (void)submitAssassination;
++ (void)submitAssassination:(UIImage *)snipeImage;
 
 @end

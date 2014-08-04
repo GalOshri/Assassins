@@ -11,9 +11,21 @@
 
 @implementation AssassinsService
 
-- (void)submitAssassination
++ (void)submitAssassination:(UIImage *)snipeImage
 {
+    NSData *snipeImageData = UIImageJPEGRepresentation(snipeImage, 1);
+    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"SnipeImage.jpg"] data:snipeImageData];
     
+    //HUD creation here (see example for code)
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    
+    // Retrieve the object by id
+    [query getObjectInBackgroundWithId:@"EJyZKoN3pT" block:^(PFObject *contract, NSError *error) {
+        
+        contract[@"image"] = imageFile;
+        [contract save];
+    }];
 }
 
 @end

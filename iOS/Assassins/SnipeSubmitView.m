@@ -19,6 +19,8 @@
 
 
 
+
+
 /*
  #pragma mark - Navigation
  
@@ -105,7 +107,14 @@
 
 #pragma mark - Submit Assassination
 - (IBAction)submitAssassination:(UIButton *)sender {
-    [AssassinsService submitAssassination];
+    [AssassinsService submitAssassination:self.snipeImage];
+}
+
+#pragma mark - HUD
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD hides
+    [self.HUD removeFromSuperview];
+    self.HUD = nil;
 }
 
 @end
