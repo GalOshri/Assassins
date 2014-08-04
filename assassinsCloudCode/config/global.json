@@ -7,5 +7,8 @@
         "_default": {
             "link": "Assassins"
         }
+    }, 
+    "global": {
+        "parseVersion": "1.2.19"
     }
 }

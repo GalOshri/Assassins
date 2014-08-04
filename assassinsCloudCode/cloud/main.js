@@ -18,15 +18,17 @@ Parse.Cloud.define("hello", function(request, response)
 */
 Parse.Cloud.afterSave("Contract", function(request, response) 
 {	
-	 query = new Parse.Query("Contract");
+	var Contract = Parse.Object.extend("Contract");
+	var query = new Parse.Query(Contract);
 
 	// change state from Active to Pending
-	query.get(request.object.get("state"), {
+	query.get(request.objectId, {
 		success: function(query)
 		{
 			query.set("state", "pending");
-		}
-
+			query.save();
+			console.log("saved it brah!");
+		},
 		error: function(error)
 		{
 			console.error("Got an error " + error.code + " : " + error.message);
