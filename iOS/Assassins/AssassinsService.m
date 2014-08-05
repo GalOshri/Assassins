@@ -24,6 +24,8 @@
     [query getObjectInBackgroundWithId:@"EJyZKoN3pT" block:^(PFObject *contract, NSError *error) {
         
         contract[@"image"] = imageFile;
+        contract[@"status"] = @"Pending";
+        
         [contract save];
     }];
 }

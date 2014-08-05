@@ -55,7 +55,8 @@
 }
 
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 
@@ -66,29 +67,33 @@
     //deal with showing/hiding textField
     
     
-    if (self.commentField.hidden == YES) {
+    if (self.commentField.hidden == YES)
+    {
         [self.commentField setHidden:NO];
         [self.commentField becomeFirstResponder];
     }
     
-    else if (self.commentField.hidden == NO && [self.commentField.text isEqualToString:@""]) {
+    else if (self.commentField.hidden == NO && [self.commentField.text isEqualToString:@""])
+    {
         [self.commentField setHidden:YES];
         [[self view] endEditing:YES];
     }
     
     else {
-        if ([self.commentField isFirstResponder]) {
+        if ([self.commentField isFirstResponder])
+        {
             [[self view] endEditing:YES];
             self.commentField.textAlignment = NSTextAlignmentCenter;
         }
         
-        else {
+        else
+        {
             [self.commentField becomeFirstResponder];
             self.commentField.textAlignment = NSTextAlignmentLeft;
         }
     }
-    
 }
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];

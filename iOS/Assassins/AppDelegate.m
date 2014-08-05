@@ -32,12 +32,10 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
     
-    
     // Deal with push notification
     if (launchOptions != nil) {
         // Launched from push notification
-       
-        
+
         // Extract the notification data
         NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
         
@@ -46,7 +44,6 @@
         
         PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
         [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
-            
             PFFile *imageFile = contract[@"image"];
             NSLog(@"%@", contract[@"state"]);
             UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -64,11 +61,12 @@
                 [self.navController pushViewController:viewController animated:YES];
             }
         }];
-    */
+         */
     }
-    
     return YES;
 }
+
+
 /*
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
@@ -78,6 +76,7 @@
                   sourceApplication:sourceApplication
                         withSession:[PFFacebookUtils session]];
 } */
+
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
