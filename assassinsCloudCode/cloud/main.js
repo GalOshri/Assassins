@@ -31,12 +31,13 @@ Parse.Cloud.afterSave("Contract", function(request, response)
 			console.log("saved it brah!");
 
 			var pushQuery = new Parse.Query(Parse.Installation);
-			  pushQuery.equalTo('objectId', 'Ufh6PSe7Mr');
+			  pushQuery.equalTo('objectId', 'IpbnC5txgv');
 			    
 			  Parse.Push.send({
 			    where: pushQuery, // Set our Installation query
 			    data: {
-			      alert: "You got sniped!"
+			      alert: "You got sniped!",
+			      contractId: request.object.id
 			    }
 			  }, {
 			    success: function() {

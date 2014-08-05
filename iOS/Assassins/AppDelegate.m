@@ -30,7 +30,41 @@
      UIRemoteNotificationTypeBadge |
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
-
+    
+    
+    // Deal with push notification
+    if (launchOptions != nil) {
+        // Launched from push notification
+       
+        
+        // Extract the notification data
+        NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+        
+        // Create a pointer to the Photo object
+        NSString *contractId = [notificationPayload objectForKey:@"contractId"];
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+        [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
+            
+            PFFile *imageFile = contract[@"image"];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    
+                }
+            }];
+        }];
+        
+        // Fetch photo object
+        /*[targetPhoto fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            // Show photo view controller
+            if (!error && [PFUser currentUser]) {
+                PhotoVC *viewController = [[PhotoVC alloc] initWithPhoto:object];
+                [self.navController pushViewController:viewController animated:YES];
+            }
+        }];
+    */
+    }
     
     return YES;
 }
@@ -56,6 +90,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
+    
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
