@@ -288,6 +288,12 @@
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="headlineLabel" destination="5aV-do-C2c" id="drA-WM-Rae"/>
+                                    <outlet property="snipeImagePreview" destination="M8n-ma-73s" id="v2Y-vV-opv"/>
+                                    <outlet property="timeLabel" destination="Ta9-Iu-dzp" id="psq-XD-Rad"/>
+                                    <outlet property="userImage" destination="Tko-ET-EH5" id="Xu5-u1-Flu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

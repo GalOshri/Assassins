@@ -12,4 +12,5 @@
 
 + (void)submitAssassination:(UIImage *)snipeImage;
 
+
 @end

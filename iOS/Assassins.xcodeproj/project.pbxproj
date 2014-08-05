@@ -54,6 +54,7 @@
 		DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD67198F75E30075E69D /* GameTableViewController.m */; };
 		DAD0DD6A198F77770075E69D /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD69198F77770075E69D /* line.png */; };
 		DAD0DD6D198F783A0075E69D /* GameEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */; };
+		DAD0DD71199069250075E69D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD70199069250075E69D /* SWRevealViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,8 @@
 		DAD0DD69198F77770075E69D /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
 		DAD0DD6B198F783A0075E69D /* GameEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventTableViewCell.h; sourceTree = "<group>"; };
 		DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEventTableViewCell.m; sourceTree = "<group>"; };
+		DAD0DD6F199069250075E69D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		DAD0DD70199069250075E69D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +248,7 @@
 				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
 				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
 				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
+				DAD0DD72199069DD0075E69D /* menu bar */,
 				DAD0DD6E198F78420075E69D /* Game Page */,
 				0DBF670D198F457500AFF5F8 /* MBProgressHUD.h */,
 				0DBF670E198F457500AFF5F8 /* MBProgressHUD.m */,
@@ -322,6 +326,15 @@
 				DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */,
 			);
 			name = "Game Page";
+			sourceTree = "<group>";
+		};
+		DAD0DD72199069DD0075E69D /* menu bar */ = {
+			isa = PBXGroup;
+			children = (
+				DAD0DD6F199069250075E69D /* SWRevealViewController.h */,
+				DAD0DD70199069250075E69D /* SWRevealViewController.m */,
+			);
+			name = "menu bar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,6 +454,7 @@
 				0D52C4AB197E284A00E5E5B9 /* AppDelegate.m in Sources */,
 				0DBF670F198F457500AFF5F8 /* MBProgressHUD.m in Sources */,
 				DAD0DD5D198EFB6E0075E69D /* UIImage+Alpha.m in Sources */,
+				DAD0DD71199069250075E69D /* SWRevealViewController.m in Sources */,
 				DAD0DD5E198EFB6E0075E69D /* UIImage+Resize.m in Sources */,
 				DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */,
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
