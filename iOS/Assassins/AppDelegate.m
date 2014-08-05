@@ -52,6 +52,7 @@
             UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
             vsvc.file = imageFile;
+            vsvc.contractId = [NSString stringWithString:contractId];
             [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
         }];
         
@@ -91,7 +92,20 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
     
+    // Create a pointer to the Photo object
+    NSString *contractId = [userInfo objectForKey:@"contractId"];
     
+    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
+        
+        PFFile *imageFile = contract[@"image"];
+        NSLog(@"%@", contract[@"state"]);
+        UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
+        vsvc.file = imageFile;
+        vsvc.contractId = [NSString stringWithString:contractId];
+        [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
+    }];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

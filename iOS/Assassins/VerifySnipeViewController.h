@@ -12,6 +12,7 @@
 @interface VerifySnipeViewController : UIViewController
 @property (strong, nonatomic) PFFile *file;
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImage;
+@property (strong, nonatomic) NSString *contractId;
 
 
 @end

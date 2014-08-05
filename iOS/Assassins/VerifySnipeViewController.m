@@ -61,8 +61,28 @@
 }
 */
 - (IBAction)ConfirmedSnipe:(id)sender {
+    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    
+    // Retrieve the object by id
+    [query getObjectInBackgroundWithId:self.contractId block:^(PFObject *contract, NSError *error) {
+        
+        // Now let's update it with some new data. In this case, only cheatMode and score
+        // will get sent to the cloud. playerName hasn't changed.
+        contract[@"state"] = @"Completed";
+        [contract saveInBackground];
+    }];
 }
 - (IBAction)DeclinedSnipe:(id)sender {
+    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    
+    // Retrieve the object by id
+    [query getObjectInBackgroundWithId:self.contractId block:^(PFObject *contract, NSError *error) {
+        
+        // Now let's update it with some new data. In this case, only cheatMode and score
+        // will get sent to the cloud. playerName hasn't changed.
+        contract[@"state"] = @"Active";
+        [contract saveInBackground];
+    }];
 }
 
 @end

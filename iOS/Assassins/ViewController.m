@@ -130,6 +130,16 @@ CGFloat scale;
     {
         [self showLogInAndSignUpView];
     }
+    else
+    {
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        if (currentInstallation[@"user"] == nil)
+        {
+            currentInstallation[@"user"] = [PFUser currentUser];
+            [currentInstallation saveInBackground];
+        }
+        
+    }
 }
 
 - (void)showLogInAndSignUpView

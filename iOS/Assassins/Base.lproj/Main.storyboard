@@ -198,6 +198,7 @@
                                         </state>
                                         <connections>
                                             <action selector="ConfirmedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="h9S-Fe-W6i"/>
+                                            <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToCamera:" id="YkP-4D-7zn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-8Q-I0f">
@@ -208,6 +209,7 @@
                                         </state>
                                         <connections>
                                             <action selector="DeclinedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="TYf-x3-WGe"/>
+                                            <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToCamera:" id="RuO-6a-u96"/>
                                         </connections>
                                     </button>
                                 </subviews>
