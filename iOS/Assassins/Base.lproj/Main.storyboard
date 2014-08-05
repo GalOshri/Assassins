@@ -163,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="1075" y="-681"/>
         </scene>
-        <!--View Controller-->
+        <!--Verify Snipe View Controller - h-->
         <scene sceneID="yJZ-4X-pgf">
             <objects>
-                <viewController id="rDc-Xy-AAS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="verifySnipeView" title="h" id="rDc-Xy-AAS" customClass="verifySnipeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RRM-3J-j5H"/>
                         <viewControllerLayoutGuide type="bottom" id="Fve-cv-Qj4"/>
@@ -196,6 +196,9 @@
                                         <state key="normal" title="Yes">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="ConfirmedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="h9S-Fe-W6i"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-8Q-I0f">
                                         <rect key="frame" x="244" y="25" width="30" height="30"/>
@@ -203,6 +206,9 @@
                                         <state key="normal" title="No">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="DeclinedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="TYf-x3-WGe"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
@@ -220,6 +226,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="snipeImage" destination="E2J-yp-kgS" id="jyI-1X-fWN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZe-YN-B2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="en8-k3-hke" userLabel="Exit" sceneMemberID="exit"/>

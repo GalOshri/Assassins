@@ -55,6 +55,7 @@
 		DAD0DD6A198F77770075E69D /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD69198F77770075E69D /* line.png */; };
 		DAD0DD6D198F783A0075E69D /* GameEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */; };
 		DAD0DD71199069250075E69D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD70199069250075E69D /* SWRevealViewController.m */; };
+		DAD0DD75199092800075E69D /* verifySnipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD74199092800075E69D /* verifySnipeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,8 @@
 		DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEventTableViewCell.m; sourceTree = "<group>"; };
 		DAD0DD6F199069250075E69D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		DAD0DD70199069250075E69D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		DAD0DD73199092800075E69D /* verifySnipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = verifySnipeViewController.h; sourceTree = "<group>"; };
+		DAD0DD74199092800075E69D /* verifySnipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = verifySnipeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,11 +251,12 @@
 				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
 				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
 				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
-				DAD0DD72199069DD0075E69D /* menu bar */,
+				DAD0DD76199094310075E69D /* Verify Snipe */,
 				DAD0DD6E198F78420075E69D /* Game Page */,
 				0DBF670D198F457500AFF5F8 /* MBProgressHUD.h */,
 				0DBF670E198F457500AFF5F8 /* MBProgressHUD.m */,
 				0D277D0C198EE32E002362C6 /* Service */,
+				DAD0DD72199069DD0075E69D /* menu bar */,
 				0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */,
 				0DBF670B198EFD5C00AFF5F8 /* Image Helpers */,
 				0D277D0B198EE318002362C6 /* Images */,
@@ -335,6 +339,15 @@
 				DAD0DD70199069250075E69D /* SWRevealViewController.m */,
 			);
 			name = "menu bar";
+			sourceTree = "<group>";
+		};
+		DAD0DD76199094310075E69D /* Verify Snipe */ = {
+			isa = PBXGroup;
+			children = (
+				DAD0DD73199092800075E69D /* verifySnipeViewController.h */,
+				DAD0DD74199092800075E69D /* verifySnipeViewController.m */,
+			);
+			name = "Verify Snipe";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +473,7 @@
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
 				DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */,
 				0D277D15198EEBC6002362C6 /* AssassinsSignUpView.m in Sources */,
+				DAD0DD75199092800075E69D /* verifySnipeViewController.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
