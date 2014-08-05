@@ -29,6 +29,23 @@ Parse.Cloud.afterSave("Contract", function(request, response)
 			query.set("state", "Pending");
 			query.save();
 			console.log("saved it brah!");
+
+			var pushQuery = new Parse.Query(Parse.Installation);
+			  pushQuery.equalTo('objectId', 'Ufh6PSe7Mr');
+			    
+			  Parse.Push.send({
+			    where: pushQuery, // Set our Installation query
+			    data: {
+			      alert: "You got sniped!"
+			    }
+			  }, {
+			    success: function() {
+			      // Push was successful
+			    },
+			    error: function(error) {
+			      throw "Got an error " + error.code + " : " + error.message;
+			    }
+			  });
 		},
 		error: function(error)
 		{
