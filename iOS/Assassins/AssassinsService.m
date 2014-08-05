@@ -23,10 +23,28 @@
     // Retrieve the object by id
     [query getObjectInBackgroundWithId:@"EJyZKoN3pT" block:^(PFObject *contract, NSError *error) {
         
+        // set image, status
         contract[@"image"] = imageFile;
-        contract[@"status"] = @"Pending";
-        
+        contract[@"state"] = @"Pending";
         [contract save];
+        
+        // send push notifiaction to target
+        //query to grab correct user
+        PFUser *target = contract[@"target"];
+        PFQuery *pushQuery = [PFInstallation query];
+        [pushQuery whereKey:@"user" equalTo:target];
+        
+        // Send push notification to query
+        NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                              @"You got sniped!", @"alert",
+                              contract.objectId, @"contractId",
+                              nil];
+        
+        PFPush *push = [[PFPush alloc] init];
+        [push setQuery:pushQuery];
+        [push setData:data];
+        [push sendPushInBackground];
+
     }];
 }
 
