@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "VerifySnipeViewController.h"
 
 @implementation AppDelegate
 
@@ -47,12 +48,11 @@
         [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
             
             PFFile *imageFile = contract[@"image"];
-            [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-                if (!error) {
-                    UIImage *image = [UIImage imageWithData:imageData];
-                    
-                }
-            }];
+            NSLog(@"%@", contract[@"state"]);
+            UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
+            vsvc.file = imageFile;
+            [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
         }];
         
         // Fetch photo object

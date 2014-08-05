@@ -11,6 +11,7 @@
 #import "AssassinsLogInView.h"
 #import "AssassinsSignUpView.h"
 #import "UIImage+Resize.h"
+#import "VerifySnipeViewController.h"
 
 @interface ViewController ()
 
@@ -158,6 +159,8 @@ CGFloat scale;
 
 - (IBAction)takePicture:(UIButton *)sender {
     [picker takePicture];
+    
+    
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {

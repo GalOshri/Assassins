@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Kefi. All rights reserved.
 //
 
-#import "verifySnipeViewController.h"
+#import "VerifySnipeViewController.h"
 
-@interface verifySnipeViewController ()
+@interface VerifySnipeViewController ()
 
 
 @end
 
-@implementation verifySnipeViewController
+@implementation VerifySnipeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +28,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[NSURL URLWithString:self.file.url]
+            completionHandler:^(NSData *data,
+                                NSURLResponse *response,
+                                NSError *error) {
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                    UIImage *img = [[UIImage alloc] initWithData:data];
+                    
+                    self.snipeImage.image = img;
+
+                }];
+            }] resume];
 }
 
 - (void)didReceiveMemoryWarning

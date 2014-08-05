@@ -55,7 +55,7 @@
 		DAD0DD6A198F77770075E69D /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD69198F77770075E69D /* line.png */; };
 		DAD0DD6D198F783A0075E69D /* GameEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */; };
 		DAD0DD71199069250075E69D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD70199069250075E69D /* SWRevealViewController.m */; };
-		DAD0DD75199092800075E69D /* verifySnipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD74199092800075E69D /* verifySnipeViewController.m */; };
+		DAD0DD75199092800075E69D /* VerifySnipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD74199092800075E69D /* VerifySnipeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,8 +133,8 @@
 		DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEventTableViewCell.m; sourceTree = "<group>"; };
 		DAD0DD6F199069250075E69D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		DAD0DD70199069250075E69D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		DAD0DD73199092800075E69D /* verifySnipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = verifySnipeViewController.h; sourceTree = "<group>"; };
-		DAD0DD74199092800075E69D /* verifySnipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = verifySnipeViewController.m; sourceTree = "<group>"; };
+		DAD0DD73199092800075E69D /* VerifySnipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifySnipeViewController.h; sourceTree = "<group>"; };
+		DAD0DD74199092800075E69D /* VerifySnipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifySnipeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,8 +344,8 @@
 		DAD0DD76199094310075E69D /* Verify Snipe */ = {
 			isa = PBXGroup;
 			children = (
-				DAD0DD73199092800075E69D /* verifySnipeViewController.h */,
-				DAD0DD74199092800075E69D /* verifySnipeViewController.m */,
+				DAD0DD73199092800075E69D /* VerifySnipeViewController.h */,
+				DAD0DD74199092800075E69D /* VerifySnipeViewController.m */,
 			);
 			name = "Verify Snipe";
 			sourceTree = "<group>";
@@ -473,7 +473,7 @@
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
 				DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */,
 				0D277D15198EEBC6002362C6 /* AssassinsSignUpView.m in Sources */,
-				DAD0DD75199092800075E69D /* verifySnipeViewController.m in Sources */,
+				DAD0DD75199092800075E69D /* VerifySnipeViewController.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

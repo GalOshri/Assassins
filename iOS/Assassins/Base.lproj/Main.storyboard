@@ -166,7 +166,7 @@
         <!--Verify Snipe View Controller - h-->
         <scene sceneID="yJZ-4X-pgf">
             <objects>
-                <viewController storyboardIdentifier="verifySnipeView" title="h" id="rDc-Xy-AAS" customClass="verifySnipeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="verifySnipeView" title="h" id="rDc-Xy-AAS" customClass="VerifySnipeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RRM-3J-j5H"/>
                         <viewControllerLayoutGuide type="bottom" id="Fve-cv-Qj4"/>
@@ -175,11 +175,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2J-yp-kgS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DIr-KF-nSc">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uII-Fl-Spg">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uII-Fl-Spg">
                                 <rect key="frame" x="0.0" y="505" width="320" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -225,9 +225,15 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uII-Fl-Spg" firstAttribute="leading" secondItem="wTw-FN-wx1" secondAttribute="leading" id="8Q8-Lu-6e2"/>
+                            <constraint firstAttribute="trailing" secondItem="uII-Fl-Spg" secondAttribute="trailing" id="UdF-15-JuY"/>
+                            <constraint firstItem="Fve-cv-Qj4" firstAttribute="top" secondItem="uII-Fl-Spg" secondAttribute="bottom" id="rBN-X4-e5n"/>
+                            <constraint firstAttribute="centerX" secondItem="uII-Fl-Spg" secondAttribute="centerX" id="xML-ap-jhm"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="snipeImage" destination="E2J-yp-kgS" id="jyI-1X-fWN"/>
+                        <outlet property="snipeImage" destination="DIr-KF-nSc" id="Fdz-R0-VZP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZe-YN-B2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
