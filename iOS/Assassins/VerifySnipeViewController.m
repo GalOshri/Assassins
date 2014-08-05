@@ -70,6 +70,18 @@
         // will get sent to the cloud. playerName hasn't changed.
         contract[@"state"] = @"Completed";
         [contract saveInBackground];
+        
+        PFUser *assassin = contract[@"assassin"];
+        
+        // Find devices associated with these users
+        PFQuery *pushQuery = [PFInstallation query];
+        [pushQuery whereKey:@"user" equalTo:assassin];
+        
+        // Send push notification to query
+        PFPush *push = [[PFPush alloc] init];
+        [push setQuery:pushQuery]; // Set our Installation query
+        [push setMessage:@"Your assassination was confirmed!"];
+        [push sendPushInBackground];
     }];
 }
 - (IBAction)DeclinedSnipe:(id)sender {
@@ -82,6 +94,18 @@
         // will get sent to the cloud. playerName hasn't changed.
         contract[@"state"] = @"Active";
         [contract saveInBackground];
+        
+        PFUser *assassin = contract[@"assassin"];
+        
+        // Find devices associated with these users
+        PFQuery *pushQuery = [PFInstallation query];
+        [pushQuery whereKey:@"user" equalTo:assassin];
+        
+        // Send push notification to query
+        PFPush *push = [[PFPush alloc] init];
+        [push setQuery:pushQuery]; // Set our Installation query
+        [push setMessage:@"Your assassination was denied."];
+        [push sendPushInBackground];
     }];
 }
 

@@ -16,6 +16,7 @@ Parse.Cloud.define("hello", function(request, response)
 /* after save cloud code
 // update contracts
 */
+/*
 Parse.Cloud.afterSave("Contract", function(request, response) 
 {	
 	var Contract = Parse.Object.extend("Contract");
@@ -54,4 +55,4 @@ Parse.Cloud.afterSave("Contract", function(request, response)
 		}
 	});
 });
-
+*/
