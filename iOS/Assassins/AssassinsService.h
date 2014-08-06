@@ -12,7 +12,7 @@
 
 + (void)submitAssassination:(UIImage *)snipeImage withMode: (BOOL)isSnipeMode withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord;
 
-+ (void)populateCompletedContracts:(NSMutableArray *)contractArray;
++ (void)populateCompletedContracts:(NSMutableArray *)contractArray withGameId:(NSString *)gameId;
 
 
 @end
