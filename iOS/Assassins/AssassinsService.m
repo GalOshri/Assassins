@@ -35,7 +35,7 @@
             
             // set comment fields
             if ([comment isEqualToString:@""]) {
-                contract[@"commentLocation"] = [NSNumber numberWithInt:-1];
+                contract[@"commentLocation"] = [NSNumber numberWithFloat:-1.0];
                 contract[@"comment"] = @"";
             }
             else {

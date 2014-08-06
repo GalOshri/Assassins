@@ -52,7 +52,7 @@
     if (![self.commentText isEqualToString:@""]) {
         [self.commentField setHidden:NO];
         [self.commentField setText:self.commentText];
-        self.commentField.frame = CGRectMake(0,[self.commentYCoord floatValue], self.commentField.frame.size.width, self.commentField.frame.size.height);
+        self.commentField.frame = CGRectMake(0,self.commentYCoord, self.commentField.frame.size.width, self.commentField.frame.size.height);
     }
 }
 

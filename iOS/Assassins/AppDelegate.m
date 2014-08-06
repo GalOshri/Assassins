@@ -45,11 +45,13 @@
         PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
         [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
             PFFile *imageFile = contract[@"image"];
+            NSNumber *commentLocation = contract[@"commentLocation"];
+            
             UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
             vsvc.file = imageFile;
             vsvc.commentText = contract[@"comment"];
-            vsvc.commentYCoord = contract[@"commentLocation"];
+            vsvc.commentYCoord = [commentLocation floatValue];
             vsvc.contractId = [NSString stringWithString:contractId];
             [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
         }];
@@ -99,10 +101,13 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
         
         PFFile *imageFile = contract[@"image"];
-        NSLog(@"%@", contract[@"state"]);
+        NSNumber *commentLocation = contract[@"commentLocation"];
+        
         UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
         vsvc.file = imageFile;
+        vsvc.commentText = contract[@"comment"];
+        vsvc.commentYCoord = [commentLocation floatValue];
         vsvc.contractId = [NSString stringWithString:contractId];
         [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
     }];
