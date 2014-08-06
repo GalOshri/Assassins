@@ -11,6 +11,9 @@
 
 @interface SnipeSubmitView ()
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *snipeToggle;
+@property BOOL isSnipeMode;
+
 
 
 @end
@@ -36,21 +39,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.snipeImageView.image = self.snipeImage;
-
-    
-    
-   // self.snipeImageView = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
-    //picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
+    [self.commentField setHidden:YES];
+    self.isSnipeMode = YES;
     
     //set touch events for snipeImageView
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickEventOnImage:)];
     [tapRecognizer setNumberOfTapsRequired:1];
     [tapRecognizer setDelegate:self];
-    
     [self.snipeImageView addGestureRecognizer:tapRecognizer];
-    [self.commentField setHidden:YES];
+
     
 }
 
@@ -67,27 +65,23 @@
     //deal with showing/hiding textField
     
     
-    if (self.commentField.hidden == YES)
-    {
+    if (self.commentField.hidden == YES) {
         [self.commentField setHidden:NO];
         [self.commentField becomeFirstResponder];
     }
     
-    else if (self.commentField.hidden == NO && [self.commentField.text isEqualToString:@""])
-    {
+    else if (self.commentField.hidden == NO && [self.commentField.text isEqualToString:@""]) {
         [self.commentField setHidden:YES];
         [[self view] endEditing:YES];
     }
     
     else {
-        if ([self.commentField isFirstResponder])
-        {
+        if ([self.commentField isFirstResponder]) {
             [[self view] endEditing:YES];
             self.commentField.textAlignment = NSTextAlignmentCenter;
         }
         
-        else
-        {
+        else {
             [self.commentField becomeFirstResponder];
             self.commentField.textAlignment = NSTextAlignmentLeft;
         }
@@ -96,8 +90,8 @@
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
     
+    [textField resignFirstResponder];
     return YES;
     
 }
@@ -110,9 +104,37 @@
     textField.center = CGPointMake(textField.center.x, point.y);
 }
 
+- (IBAction)snipeToggleValueChanged:(id)sender {
+    
+    //switch statement to change BOOL isSnipeMode
+    switch (self.snipeToggle.selectedSegmentIndex) {
+        // Nearby places
+        case 0:
+            self.isSnipeMode = YES;
+            break;
+        // Favorites
+        case 1:
+            self.isSnipeMode = NO;
+            break;
+        default:
+            break;
+    }
+    
+}
+
 #pragma mark - Submit Assassination
 - (IBAction)submitAssassination:(UIButton *)sender {
-    [AssassinsService submitAssassination:self.snipeImage];
+    if (self.isSnipeMode) {
+        [AssassinsService submitAssassination:self.snipeImage withMode:self.isSnipeMode];
+        [self performSegueWithIdentifier:@"SnipeSubmitViewToGameView" sender:self];
+    }
+    
+    else {
+        // show UI alert for now
+        UIAlertView *usernameAlert = [[UIAlertView alloc] initWithTitle:@"The Best Defense is a Strong Offense" message:@"This Feature is Coming Soon!" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
+        usernameAlert.alertViewStyle = UIAlertViewStyleDefault;
+        [usernameAlert show];
+    }
 }
 
 #pragma mark - HUD

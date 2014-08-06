@@ -60,6 +60,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 - (IBAction)ConfirmedSnipe:(id)sender {
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     
