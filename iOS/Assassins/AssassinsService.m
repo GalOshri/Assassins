@@ -67,7 +67,7 @@
     }
 }
 
-+ (void)populateCompletedContracts:(NSMutableArray *)contractArray withGameId:(NSString *)gameId
++ (void)populateCompletedContracts:(NSMutableArray *)contractArray withGameId:(NSString *)gameId forTable:(UITableView *)tableview
 {
     BOOL DEBUGAL = YES;
     
@@ -88,9 +88,8 @@
             contract.comment = @"Boom.";
             
             [contractArray addObject:contract];
-            
-            
         }
+        [tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         return;
     }
     

@@ -45,7 +45,14 @@
     NSString *gameId = [userData objectForKey:@"gameId"];
     
     // call AssassinsService to fill list with events
-    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", gameId]];
+    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", gameId] forTable:self.tableView];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,7 +70,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.completedContracts count];
+    return 4;
+    //return [self.completedContracts count];
 }
 
 
@@ -78,9 +86,10 @@
     // cell.userImage;
     cell.commentLabel.text = currentContract.comment;
     cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been removed", currentContract.targetName];
-    cell.timeLabel = currentContract.time;
+    cell.timeLabel.text = [NSString stringWithFormat:@"%@",currentContract.time];
     [cell.imageView setImage:currentContract.image];
-    
+ 
+    NSLog(@"current contract: %@", currentContract);
     return cell;
 }
 
