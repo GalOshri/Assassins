@@ -7,6 +7,9 @@
 //
 
 #import "GameTableViewController.h"
+#import "AssassinsService.h"
+#import "Contract.h"
+#import "GameEventTableViewCell.h"
 
 @interface GameTableViewController ()
 
@@ -14,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalAssassins;
 @property (weak, nonatomic) IBOutlet UILabel *activeAssassins;
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
+
+@property (strong, nonatomic) NSMutableArray *completedContracts;
 
 @end
 
@@ -34,9 +39,13 @@
 {
     [super viewDidLoad];
     
+    // HARDCODED GAME ID
+    // TODO: Create a separate method in AssassinsService to grab correct information
+    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+    NSString *gameId = [userData objectForKey:@"gameId"];
+    
     // call AssassinsService to fill list with events
-
-
+    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", gameId]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,58 +63,28 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // TODO: fix
-    return 10;
+    return [self.completedContracts count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
+    GameEventTableViewCell *cell = (GameEventTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    // set contract
+    Contract *currentContract = [self.completedContracts objectAtIndex:indexPath.row];
+    
+    // set items in cell
+    // cell.userImage;
+    cell.commentLabel.text = currentContract.comment;
+    cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been removed", currentContract.targetName];
+    cell.timeLabel = currentContract.time;
+    [cell.imageView setImage:currentContract.image];
     
     return cell;
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
