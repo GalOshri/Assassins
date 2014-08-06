@@ -42,29 +42,7 @@
         // Create a pointer to the Photo object
         NSString *contractId = [notificationPayload objectForKey:@"contractId"];
         
-        PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
-        [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
-            PFFile *imageFile = contract[@"image"];
-            NSNumber *commentLocation = contract[@"commentLocation"];
-            
-            UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
-            vsvc.file = imageFile;
-            vsvc.commentText = contract[@"comment"];
-            vsvc.commentYCoord = [commentLocation floatValue];
-            vsvc.contractId = [NSString stringWithString:contractId];
-            [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
-        }];
-        
-        // Fetch photo object
-        /*[targetPhoto fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            // Show photo view controller
-            if (!error && [PFUser currentUser]) {
-                PhotoVC *viewController = [[PhotoVC alloc] initWithPhoto:object];
-                [self.navController pushViewController:viewController animated:YES];
-            }
-        }];
-         */
+        [self presentSnipeVerificationView:contractId];
     }
     return YES;
 }
@@ -97,9 +75,13 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // Create a pointer to the Photo object
     NSString *contractId = [userInfo objectForKey:@"contractId"];
     
+    [self presentSnipeVerificationView:contractId];
+}
+
+- (void)presentSnipeVerificationView:(NSString *)contractId
+{
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
-        
         PFFile *imageFile = contract[@"image"];
         NSNumber *commentLocation = contract[@"commentLocation"];
         
