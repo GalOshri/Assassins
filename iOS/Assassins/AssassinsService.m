@@ -11,7 +11,7 @@
 
 @implementation AssassinsService
 
-+ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isSnipeMode
++ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isSnipeMode withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord
 {
     if (isSnipeMode)
     {
@@ -32,6 +32,17 @@
             // set image, status
             contract[@"image"] = imageFile;
             contract[@"state"] = @"Pending";
+            
+            // set comment fields
+            if ([comment isEqualToString:@""]) {
+                contract[@"commentLocation"] = [NSNumber numberWithInt:-1];
+                contract[@"comment"] = @"";
+            }
+            else {
+                contract[@"commentLocation"] = [NSNumber numberWithFloat:yCoord];
+                contract[@"comment"] = comment;
+            }
+            
             [contract save];
             
             // send push notifiaction to target

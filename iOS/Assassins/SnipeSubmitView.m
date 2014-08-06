@@ -125,7 +125,7 @@
 #pragma mark - Submit Assassination
 - (IBAction)submitAssassination:(UIButton *)sender {
     if (self.isSnipeMode) {
-        [AssassinsService submitAssassination:self.snipeImage withMode:self.isSnipeMode];
+        [AssassinsService submitAssassination:self.snipeImage withMode:self.isSnipeMode withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y];
         [self performSegueWithIdentifier:@"SnipeSubmitViewToGameView" sender:self];
     }
     

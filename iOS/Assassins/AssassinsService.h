@@ -10,7 +10,7 @@
 
 @interface AssassinsService : NSObject
 
-+ (void)submitAssassination:(UIImage *)snipeImage withMode: (BOOL)isSnipeMode;
++ (void)submitAssassination:(UIImage *)snipeImage withMode: (BOOL)isSnipeMode withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord;
 
 
 @end

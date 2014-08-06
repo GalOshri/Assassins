@@ -13,6 +13,9 @@
 @property (strong, nonatomic) PFFile *file;
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImage;
 @property (strong, nonatomic) NSString *contractId;
+@property (strong, nonatomic) NSString *commentText;
+@property (strong, nonatomic) NSNumber *commentYCoord;
+
 
 
 @end
