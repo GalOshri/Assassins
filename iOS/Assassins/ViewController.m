@@ -16,7 +16,6 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *flashImage;
-@property (strong, nonatomic) IBOutlet UIImageView *firstImage;
 @property UIImagePickerController *picker;
 @property BOOL flashOn;
 @property (weak, nonatomic) IBOutlet UIButton *flipCamera;
@@ -117,6 +116,10 @@ CGFloat scale;
     // CODE TO HARDCODE THE GAMEID
     NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
     [userData setObject:@"Jr9NNIwOiO" forKey:@"gameId"];
+    if ([[PFUser currentUser].objectId isEqualToString:@"vNBEO89EaJ"])
+        [userData setObject:@"EJyZKoN3pT" forKey:@"contractId"];
+    else if ([[PFUser currentUser].objectId isEqualToString:@"t7lyXvXLiK"])
+        [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
     [userData synchronize];
 
 }
@@ -168,14 +171,17 @@ CGFloat scale;
 #pragma mark - Picture Methods
 
 - (IBAction)takePicture:(UIButton *)sender {
-    [picker takePicture];
     
+    [picker takePicture];
     
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    if (picker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
+        chosenImage = [UIImage imageWithCGImage:chosenImage.CGImage scale:chosenImage.scale orientation:UIImageOrientationLeftMirrored];
+
     [self performSegueWithIdentifier:@"SnipeSegue" sender:chosenImage];
  
     

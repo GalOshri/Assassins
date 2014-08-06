@@ -16,12 +16,14 @@
     NSData *snipeImageData = UIImageJPEGRepresentation(snipeImage, 1);
     PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"SnipeImage.jpg"] data:snipeImageData];
     
-    //HUD creation here (see example for code)
+    // Get Contract
+    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+    NSString *contractId = [userData objectForKey:@"contractId"];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     
     // Retrieve the object by id
-    [query getObjectInBackgroundWithId:@"EJyZKoN3pT" block:^(PFObject *contract, NSError *error) {
+    [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
         
         // set image, status
         contract[@"image"] = imageFile;

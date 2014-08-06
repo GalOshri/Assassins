@@ -256,7 +256,7 @@
 				0DBF670D198F457500AFF5F8 /* MBProgressHUD.h */,
 				0DBF670E198F457500AFF5F8 /* MBProgressHUD.m */,
 				0D277D0C198EE32E002362C6 /* Service */,
-				DAD0DD72199069DD0075E69D /* menu bar */,
+				DAD0DD72199069DD0075E69D /* Menu bar */,
 				0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */,
 				0DBF670B198EFD5C00AFF5F8 /* Image Helpers */,
 				0D277D0B198EE318002362C6 /* Images */,
@@ -332,13 +332,13 @@
 			name = "Game Page";
 			sourceTree = "<group>";
 		};
-		DAD0DD72199069DD0075E69D /* menu bar */ = {
+		DAD0DD72199069DD0075E69D /* Menu bar */ = {
 			isa = PBXGroup;
 			children = (
 				DAD0DD6F199069250075E69D /* SWRevealViewController.h */,
 				DAD0DD70199069250075E69D /* SWRevealViewController.m */,
 			);
-			name = "menu bar";
+			name = "Menu bar";
 			sourceTree = "<group>";
 		};
 		DAD0DD76199094310075E69D /* Verify Snipe */ = {
