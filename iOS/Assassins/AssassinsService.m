@@ -152,8 +152,8 @@
         {
             Assassin *assassin = [[Assassin alloc] init];
             
-            assassin.firstName = @"Galileo";
-            assassin.lastName = @"Galilei";
+            assassin.username = @"Galileo";
+            assassin.userId = @"Galilei";
             assassin.assassinImage = [UIImage imageNamed:@"flipCamera.png"];
             assassin.isAlive = YES;
             assassin.numberOfSnipes = i;
