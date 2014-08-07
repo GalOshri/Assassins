@@ -82,7 +82,7 @@
             
             contract.contractId = [NSString stringWithFormat:@"Contract%d",i];
             contract.time = [NSDate date];
-            contract.image = [UIImage imageNamed:@"cameraIcon.png"];
+            contract.image = [UIImage imageNamed:@"snipeCircle.png"];
             contract.assassinName = @"Galileo";
             contract.targetName = @"Pauly";
             contract.comment = @"Boom.";
