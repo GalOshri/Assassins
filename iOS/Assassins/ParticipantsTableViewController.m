@@ -8,6 +8,7 @@
 
 #import "ParticipantsTableViewController.h"
 #import "ParticipantTableViewCell.h"
+#import "AssassinsService.h"
 
 @interface ParticipantsTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *gameName;
@@ -35,6 +36,7 @@
     
     // populate assasssins array
     self.assassins = [[NSMutableArray alloc] init];
+    [AssassinsService populateAssassinList:self.assassins withGameId:<#(NSString *)#>]
     
 }
 
