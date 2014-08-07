@@ -9,6 +9,9 @@
 #import "UserTableViewController.h"
 #import "GameEventTableViewCell.h"
 #import "Game.h"
+#import "AssassinsService.h"
+#import <Parse/Parse.h>
+
 
 @interface UserTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
@@ -36,11 +39,9 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [AssassinsService populateUserGames:self.games withUserId:[PFUser currentUser]];
+    [AssassinsService populateCompletedUserContracts:self.userCompletedContracts forUser:[PFUser currentUser]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +73,7 @@
     if (indexPath.section == 0)
     {
         Game *currentGame = [self.games objectAtIndex:indexPath.row];
-        //TODO: set currentGame to pull name and
+
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
         cell = [[UITableViewCell alloc] init];
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;

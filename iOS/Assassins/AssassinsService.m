@@ -68,6 +68,7 @@
     }
 }
 
+
 + (void)populateCompletedContracts:(NSMutableArray *)contractArray withGameId:(NSString *)gameId withTable:(UITableView *)tableview
 {
     BOOL DEBUGAL = YES;
@@ -137,6 +138,7 @@
     }];
     */
 }
+
 
 + (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId
 {
@@ -218,7 +220,8 @@
      */
 }
 
-+(void)populateCurrentContract:(Contract *)currentContract withGameId:(NSString *)gameId
+
++ (void)populateCurrentContract:(Contract *)currentContract withGameId:(NSString *)gameId
 {
     // Get Contract
     NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
@@ -229,10 +232,8 @@
     // Retrieve the object by id
     [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error)
     {
-        // PFUser *currentUser = [PFUser currentUser];
-        // currentContract.assassinName =
         PFUser *target = [contract objectForKey:@"target"];
-        
+
         // TODO: this is wrong
         [target fetchIfNeededInBackgroundWithBlock:^(PFObject *target, NSError *error) {
             currentContract.targetName = [target objectForKey:@"username"];
@@ -240,5 +241,22 @@
         
     }];
 }
+
+
+// TODO
++ (void) populateUserGames:(NSMutableArray *)gamesList withUserId:(PFUser *)user
+{
+    
+    
+}
+
+
+//TODO
++ (void)populateCompletedUserContracts:(NSMutableArray *)contractArray forUser:(PFUser *)user
+{
+    
+    
+}
+
 
 @end
