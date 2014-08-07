@@ -14,5 +14,7 @@
 
 + (void)populateCompletedContracts:(NSMutableArray *)contractArray withGameId:(NSString *)gameId withTable: (UITableView *)tableview;
 
++ (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId;
+
 
 @end
