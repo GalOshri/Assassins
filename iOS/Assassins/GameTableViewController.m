@@ -24,6 +24,16 @@
 
 @implementation GameTableViewController
 
+- (NSMutableArray *)completedContracts
+{
+    if (!_completedContracts)
+    {
+        _completedContracts = [[NSMutableArray alloc] init];
+    }
+    
+    return _completedContracts;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -45,7 +55,7 @@
     NSString *gameId = [userData objectForKey:@"gameId"];
     
     // call AssassinsService to fill list with events
-    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", gameId] forTable:self.tableView];
+    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", gameId] withTable:self.tableView];
     
 }
 
