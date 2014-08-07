@@ -39,7 +39,7 @@
     self = [super initWithStyle:style];
     if (self)
     {
-        // Custom initialization
+
     }
     
     return self;
@@ -55,7 +55,12 @@
     NSString *gameId = [userData objectForKey:@"gameId"];
     
     // call AssassinsService to fill list with events
+    self.completedContracts = [[NSMutableArray alloc] init];
     [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", gameId] withTable:self.tableView];
+
+    
+
+
     
 }
 
@@ -80,8 +85,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
-    //return [self.completedContracts count];
+    return [self.completedContracts count];
 }
 
 
