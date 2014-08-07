@@ -9,6 +9,7 @@
 #import "AssassinsService.h"
 #import <Parse/Parse.h>
 #import "Contract.h"
+#import "Assassin.h"
 
 @implementation AssassinsService
 
@@ -146,61 +147,72 @@
     {
         for (int i = 0; i < 4; i++)
         {
-            Contract *contract = [[Contract alloc] init];
+            Assassin *assassin = [[Assassin alloc] init];
             
-            contract.contractId = [NSString stringWithFormat:@"Contract%d",i];
-            contract.time = [NSDate date];
-            contract.image = [UIImage imageNamed:@"cameraIconSmall.png"];
-            contract.assassinName = @"Galileo";
-            contract.targetName = @"Pauly";
-            contract.comment = @"Boom.";
+            assassin.firstName = @"Galileo";
+            assassin.lastName = @"Galilei";
+            assassin.assassinImage = [UIImage imageNamed:@"flipCamera.png"];
+            assassin.isAlive = YES;
+            assassin.numberOfSnipes = i;
             
-            [contractArray addObject:contract];
+            [assassinArray addObject:assassin];
         }
         //[tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         return;
     }
     
     // Get all completed contracts for this game
+    /*
     PFQuery *queryContracts = [PFQuery queryWithClassName:@"Game"];
     [queryContracts whereKey:@"gameId" equalTo:gameId];
     [queryContracts whereKey:@"state" equalTo:@"Completed"];
+    
+    NSMutableArray *assassinUsers = [[NSMutableArray alloc] init];
+    NSMutableArray *deadAssassinUsers = [[NSMutableArray alloc] init];
     
     [queryContracts findObjectsInBackgroundWithBlock:^(NSArray *contracts, NSError *error)
      {
          if (!error)
          {
+             // Compile a list of all users
              for (PFObject *contractObject in contracts)
              {
-                 Contract *contract = [[Contract alloc] init];
+                 PFUser *assassinUser = contractObject[@"assassin"];
+                 assassinUser[@"alive"] = @"YES";
                  
-                 contract.contractId = contractObject.objectId;
-                 contract.time = [NSDate date];
-                 PFFile *imageFile = contractObject[@"image"];
+                 if (![assassinUsers containsObject:assassinUser])
+                     [assassinUsers addObject:assassinUser];
+             }
+             
+             // Remove dead users
+             for (PFObject *contractObject in contracts)
+             {
+                 if ([contractObject[@"state"] isEqualToString:@"Completed"])
+                 {
+                     [assassinUsers removeObject:contractObject[@"target"]];
+                     if (![deadAssassinUsers containsObject:contractObject[@"target"]])
+                         [deadAssassinUsers addObject:contractObject[@"target"]]
+             }
+             
+             // Create assassin objects
+             for (PFUser *assassinUser in assassinUsers)
+             {
+                 Assassin *assassin = [[Assassin alloc] init];
                  
-                 NSURLSession *session = [NSURLSession sharedSession];
-                 [[session dataTaskWithURL:[NSURL URLWithString:imageFile.url]
-                         completionHandler:^(NSData *data,
-                                             NSURLResponse *response,
-                                             NSError *error) {
-                             
-                             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                 
-                                 UIImage *img = [[UIImage alloc] initWithData:data];
-                                 
-                                 contract.image = img;
-                                 
-                             }];
-                         }] resume];
+                 assassin.firstName = assassinUser.username;
+                 assassin.lastName = assassinUser.username;
+                 assassin.assassinImage = [UIImage imageNamed:@"flipCamera.png"];
+                 assassin.isAlive = YES;
+                 assassin.numberOfSnipes = i;
                  
-                 PFUser *assassin = contractObject[@"assassin"];
-                 contract.assassinName = assassin.username;
-                 PFUser *target = contractObject[@"target"];
-                 contract.targetName = target.username;
-                 contract.comment = contractObject[@"comment"];
+                 [assassinArray addObject:assassin];
+             }
+             
+                 
+             
              }
          }
-     }];
+     }]; */
 }
 
 @end
