@@ -58,6 +58,8 @@
 		DAD0DD71199069250075E69D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD70199069250075E69D /* SWRevealViewController.m */; };
 		DAD0DD75199092800075E69D /* VerifySnipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD74199092800075E69D /* VerifySnipeViewController.m */; };
 		DAD0DD7919931C110075E69D /* Assassin.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD7819931C110075E69D /* Assassin.m */; };
+		DAD0DD7C199323C80075E69D /* ParticipantsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD7B199323C80075E69D /* ParticipantsTableViewController.m */; };
+		DAD0DD7F199324090075E69D /* ParticipantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD7E199324090075E69D /* ParticipantTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +143,10 @@
 		DAD0DD74199092800075E69D /* VerifySnipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifySnipeViewController.m; sourceTree = "<group>"; };
 		DAD0DD7719931C110075E69D /* Assassin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Assassin.h; path = Assassins/Assassin.h; sourceTree = "<group>"; };
 		DAD0DD7819931C110075E69D /* Assassin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Assassin.m; path = Assassins/Assassin.m; sourceTree = "<group>"; };
+		DAD0DD7A199323C80075E69D /* ParticipantsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsTableViewController.h; sourceTree = "<group>"; };
+		DAD0DD7B199323C80075E69D /* ParticipantsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsTableViewController.m; sourceTree = "<group>"; };
+		DAD0DD7D199324090075E69D /* ParticipantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantTableViewCell.h; sourceTree = "<group>"; };
+		DAD0DD7E199324090075E69D /* ParticipantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +265,7 @@
 				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
 				DAD0DD76199094310075E69D /* Verify Snipe */,
 				DAD0DD6E198F78420075E69D /* Game Page */,
+				DAD0DD80199324120075E69D /* Participant Page */,
 				0DBF670D198F457500AFF5F8 /* MBProgressHUD.h */,
 				0DBF670E198F457500AFF5F8 /* MBProgressHUD.m */,
 				0D277D0C198EE32E002362C6 /* Service */,
@@ -367,6 +374,17 @@
 				DAD0DD74199092800075E69D /* VerifySnipeViewController.m */,
 			);
 			name = "Verify Snipe";
+			sourceTree = "<group>";
+		};
+		DAD0DD80199324120075E69D /* Participant Page */ = {
+			isa = PBXGroup;
+			children = (
+				DAD0DD7A199323C80075E69D /* ParticipantsTableViewController.h */,
+				DAD0DD7B199323C80075E69D /* ParticipantsTableViewController.m */,
+				DAD0DD7D199324090075E69D /* ParticipantTableViewCell.h */,
+				DAD0DD7E199324090075E69D /* ParticipantTableViewCell.m */,
+			);
+			name = "Participant Page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,11 +509,13 @@
 				DAD0DD5E198EFB6E0075E69D /* UIImage+Resize.m in Sources */,
 				DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */,
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
+				DAD0DD7F199324090075E69D /* ParticipantTableViewCell.m in Sources */,
 				DAD0DD7919931C110075E69D /* Assassin.m in Sources */,
 				DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */,
 				0D277D15198EEBC6002362C6 /* AssassinsSignUpView.m in Sources */,
 				DAD0DD75199092800075E69D /* VerifySnipeViewController.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
+				DAD0DD7C199323C80075E69D /* ParticipantsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

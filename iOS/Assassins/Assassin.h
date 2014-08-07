@@ -10,8 +10,8 @@
 
 @interface Assassin : NSObject
 
-@property (strong, nonatomic) NSString *firstName;
-@property (strong, nonatomic) NSString *lastName;
+@property (strong, nonatomic) NSString *username;
+@property (strong, nonatomic) NSString *userId;
 @property (strong, nonatomic) UIImage *assassinImage;
 @property BOOL isAlive;
 @property int numberOfSnipes;
