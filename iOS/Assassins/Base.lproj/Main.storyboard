@@ -438,7 +438,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="P0D-EP-vca" kind="push" id="BW6-1b-fXa"/>
+                                                <segue destination="E9h-nv-kuU" kind="push" identifier="gameParticipants" id="H8R-iH-IGU"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnA-O8-Na5">
@@ -624,7 +624,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="alive" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1e-gK-hvz">
-                                            <rect key="frame" x="86" y="39" width="59" height="17"/>
+                                            <rect key="frame" x="86" y="39" width="228" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <color key="textColor" red="0.39775768039999998" green="0.053013789589999999" blue="0.4353475765" alpha="1" colorSpace="calibratedRGB"/>
@@ -633,9 +633,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="cellTitle" destination="AV3-5C-2cV" id="vRF-Pj-lda"/>
                                     <outlet property="isAliveLabel" destination="X1e-gK-hvz" id="Tc6-zn-bMg"/>
                                     <outlet property="userImage" destination="gbB-qP-rwx" id="YOd-OF-5MN"/>
+                                    <outlet property="username" destination="AV3-5C-2cV" id="Fvv-h0-iIj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -739,5 +739,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="NFY-Dm-bhv"/>
+        <segue reference="H8R-iH-IGU"/>
     </inferredMetricsTieBreakers>
 </document>

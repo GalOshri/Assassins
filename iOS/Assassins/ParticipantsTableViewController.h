@@ -10,4 +10,6 @@
 
 @interface ParticipantsTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSString *gameId;
+
 @end

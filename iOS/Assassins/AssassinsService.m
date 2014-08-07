@@ -72,7 +72,6 @@
 {
     BOOL DEBUGAL = YES;
     
-    
     [contractArray removeAllObjects];
     
     if (DEBUGAL)
@@ -83,7 +82,7 @@
             
             contract.contractId = [NSString stringWithFormat:@"Contract%d",i];
             contract.time = [NSDate date];
-            contract.image = [UIImage imageNamed:@"snipeCircle.png"];
+            contract.image = [UIImage imageNamed:@"flipCamera.png"];
             contract.assassinName = @"Galileo";
             contract.targetName = @"Pauly";
             contract.comment = @"Boom.";
@@ -143,7 +142,6 @@
 {
     BOOL DEBUGAL = YES;
     
-    
     [assassinArray removeAllObjects];
     
     if (DEBUGAL)
@@ -154,7 +152,7 @@
             
             assassin.username = @"Galileo";
             assassin.userId = @"Galilei";
-            assassin.assassinImage = [UIImage imageNamed:@"flipCamera.png"];
+            assassin.assassinImage = [UIImage imageNamed:@"snipeCircle.png"];
             assassin.isAlive = YES;
             assassin.numberOfSnipes = i;
             

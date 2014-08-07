@@ -9,6 +9,7 @@
 #import "ParticipantsTableViewController.h"
 #import "ParticipantTableViewCell.h"
 #import "AssassinsService.h"
+#import "Assassin.h"
 
 @interface ParticipantsTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *gameName;
@@ -36,7 +37,7 @@
     
     // populate assasssins array
     self.assassins = [[NSMutableArray alloc] init];
-    [AssassinsService populateAssassinList:self.assassins withGameId:<#(NSString *)#>]
+    [AssassinsService populateAssassinList:self.assassins withGameId:self.gameId];
     
 }
 
@@ -64,8 +65,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ParticipantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"assassinCell" forIndexPath:indexPath];
+    Assassin *currentAssassin = [self.assassins objectAtIndex: [indexPath row]];
     
-    // Configure the cell...
+    // FIRE ZEH MISSILES!
+    // I mean, assign cell items
+    cell.username.text = currentAssassin.username;
+    [cell.userImage setImage: currentAssassin.assassinImage];
+    
+    if (currentAssassin.isAlive)
+        cell.isAliveLabel.text = @"Alive";
+    else {
+        cell.isAliveLabel.text =@"Neutralized";
+        [cell.username setAlpha:0.5];
+        [cell.userImage setAlpha:0.5];
+        [cell.isAliveLabel setAlpha:0.5];
+    }
+    
     
     return cell;
 }

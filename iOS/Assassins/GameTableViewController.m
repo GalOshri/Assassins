@@ -10,6 +10,7 @@
 #import "AssassinsService.h"
 #import "Contract.h"
 #import "GameEventTableViewCell.h"
+#import "ParticipantsTableViewController.h"
 
 @interface GameTableViewController ()
 
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
+@property (strong, nonatomic) NSString *gameId;
+
 
 @end
 
@@ -45,6 +48,17 @@
     return self;
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"gameParticipants"]) {
+        if ([segue.destinationViewController isKindOfClass:[ParticipantsTableViewController class]])
+        {
+            ParticipantsTableViewController *ptvc = (ParticipantsTableViewController *)segue.destinationViewController;
+            ptvc.gameId = self.gameId;
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,11 +66,11 @@
     // HARDCODED GAME ID
     // TODO: Create a separate method in AssassinsService to grab correct information
     NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-    NSString *gameId = [userData objectForKey:@"gameId"];
+    self.gameId = [userData objectForKey:@"gameId"];
     
     // call AssassinsService to fill list with events
     self.completedContracts = [[NSMutableArray alloc] init];
-    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", gameId] withTable:self.tableView];
+    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", self.gameId] withTable:self.tableView];
 
     
 
