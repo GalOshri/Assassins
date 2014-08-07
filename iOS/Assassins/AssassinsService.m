@@ -95,6 +95,8 @@
     }
     
     // Get all completed contracts for this game
+    // TODO: MAKE THIS WORK
+    /*
     PFQuery *queryContracts = [PFQuery queryWithClassName:@"Game"];
     [queryContracts whereKey:@"gameId" equalTo:gameId];
     [queryContracts whereKey:@"state" equalTo:@"Completed"];
@@ -134,6 +136,7 @@
             }
         }
     }];
+    */
 }
 
 + (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId
@@ -162,9 +165,10 @@
     }
     
     // Get all completed contracts for this game
+    // TODO: MAKE THIS WORK
     /*
-    PFQuery *queryContracts = [PFQuery queryWithClassName:@"Game"];
-    [queryContracts whereKey:@"gameId" equalTo:gameId];
+    PFQuery *queryPlayers = [PFQuery queryWithClassName:@"Game"];
+    [queryPlayers whereKey:@"gameId" equalTo:gameId];
     [queryContracts whereKey:@"state" equalTo:@"Completed"];
     
     NSMutableArray *assassinUsers = [[NSMutableArray alloc] init];
@@ -212,7 +216,8 @@
              
              }
          }
-     }]; */
+     }];
+     */
 }
 
 @end
