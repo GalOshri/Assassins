@@ -82,7 +82,7 @@
             
             contract.contractId = [NSString stringWithFormat:@"Contract%d",i];
             contract.time = [NSDate date];
-            contract.image = [UIImage imageNamed:@"flipCamera.png"];
+            contract.image = [UIImage imageNamed:@"cameraIconSmaill.png"];
             contract.assassinName = @"Galileo";
             contract.targetName = @"Pauly";
             contract.comment = @"Boom.";
@@ -216,6 +216,29 @@
          }
      }];
      */
+}
+
++(void)populateCurrentContract:(Contract *)currentContract withGameId:(NSString *)gameId
+{
+    // Get Contract
+    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+    NSString *contractId = [userData objectForKey:@"contractId"];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    
+    // Retrieve the object by id
+    [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error)
+    {
+        // PFUser *currentUser = [PFUser currentUser];
+        // currentContract.assassinName =
+        PFUser *target = [contract objectForKey:@"target"];
+        
+        // TODO: this is wrong
+        [target fetchIfNeededInBackgroundWithBlock:^(PFObject *target, NSError *error) {
+            currentContract.targetName = [target objectForKey:@"username"];
+        }];
+        
+    }];
 }
 
 @end

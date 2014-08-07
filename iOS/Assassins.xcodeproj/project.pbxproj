@@ -55,11 +55,12 @@
 		DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD67198F75E30075E69D /* GameTableViewController.m */; };
 		DAD0DD6A198F77770075E69D /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD69198F77770075E69D /* line.png */; };
 		DAD0DD6D198F783A0075E69D /* GameEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */; };
-		DAD0DD71199069250075E69D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD70199069250075E69D /* SWRevealViewController.m */; };
 		DAD0DD75199092800075E69D /* VerifySnipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD74199092800075E69D /* VerifySnipeViewController.m */; };
 		DAD0DD7919931C110075E69D /* Assassin.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD7819931C110075E69D /* Assassin.m */; };
 		DAD0DD7C199323C80075E69D /* ParticipantsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD7B199323C80075E69D /* ParticipantsTableViewController.m */; };
 		DAD0DD7F199324090075E69D /* ParticipantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD7E199324090075E69D /* ParticipantTableViewCell.m */; };
+		DAD0DD83199359360075E69D /* UserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD82199359360075E69D /* UserTableViewController.m */; };
+		DAD0DD8719935D020075E69D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD8619935D020075E69D /* Game.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,8 +138,6 @@
 		DAD0DD69198F77770075E69D /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
 		DAD0DD6B198F783A0075E69D /* GameEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventTableViewCell.h; sourceTree = "<group>"; };
 		DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEventTableViewCell.m; sourceTree = "<group>"; };
-		DAD0DD6F199069250075E69D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		DAD0DD70199069250075E69D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		DAD0DD73199092800075E69D /* VerifySnipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifySnipeViewController.h; sourceTree = "<group>"; };
 		DAD0DD74199092800075E69D /* VerifySnipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifySnipeViewController.m; sourceTree = "<group>"; };
 		DAD0DD7719931C110075E69D /* Assassin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Assassin.h; path = Assassins/Assassin.h; sourceTree = "<group>"; };
@@ -147,6 +146,10 @@
 		DAD0DD7B199323C80075E69D /* ParticipantsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsTableViewController.m; sourceTree = "<group>"; };
 		DAD0DD7D199324090075E69D /* ParticipantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantTableViewCell.h; sourceTree = "<group>"; };
 		DAD0DD7E199324090075E69D /* ParticipantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantTableViewCell.m; sourceTree = "<group>"; };
+		DAD0DD81199359360075E69D /* UserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewController.h; sourceTree = "<group>"; };
+		DAD0DD82199359360075E69D /* UserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewController.m; sourceTree = "<group>"; };
+		DAD0DD8519935D020075E69D /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Assassins/Game.h; sourceTree = "<group>"; };
+		DAD0DD8619935D020075E69D /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Assassins/Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,10 +269,10 @@
 				DAD0DD76199094310075E69D /* Verify Snipe */,
 				DAD0DD6E198F78420075E69D /* Game Page */,
 				DAD0DD80199324120075E69D /* Participant Page */,
+				DAD0DD84199359450075E69D /* User Page */,
 				0DBF670D198F457500AFF5F8 /* MBProgressHUD.h */,
 				0DBF670E198F457500AFF5F8 /* MBProgressHUD.m */,
 				0D277D0C198EE32E002362C6 /* Service */,
-				DAD0DD72199069DD0075E69D /* Menu bar */,
 				0DBF67101992100200AFF5F8 /* Models */,
 				0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */,
 				0DBF670B198EFD5C00AFF5F8 /* Image Helpers */,
@@ -342,6 +345,8 @@
 				DAD0DD7819931C110075E69D /* Assassin.m */,
 				0DBF67111992101B00AFF5F8 /* Contract.h */,
 				0DBF67121992101B00AFF5F8 /* Contract.m */,
+				DAD0DD8519935D020075E69D /* Game.h */,
+				DAD0DD8619935D020075E69D /* Game.m */,
 			);
 			name = Models;
 			path = ..;
@@ -356,15 +361,6 @@
 				DAD0DD6C198F783A0075E69D /* GameEventTableViewCell.m */,
 			);
 			name = "Game Page";
-			sourceTree = "<group>";
-		};
-		DAD0DD72199069DD0075E69D /* Menu bar */ = {
-			isa = PBXGroup;
-			children = (
-				DAD0DD6F199069250075E69D /* SWRevealViewController.h */,
-				DAD0DD70199069250075E69D /* SWRevealViewController.m */,
-			);
-			name = "Menu bar";
 			sourceTree = "<group>";
 		};
 		DAD0DD76199094310075E69D /* Verify Snipe */ = {
@@ -385,6 +381,15 @@
 				DAD0DD7E199324090075E69D /* ParticipantTableViewCell.m */,
 			);
 			name = "Participant Page";
+			sourceTree = "<group>";
+		};
+		DAD0DD84199359450075E69D /* User Page */ = {
+			isa = PBXGroup;
+			children = (
+				DAD0DD81199359360075E69D /* UserTableViewController.h */,
+				DAD0DD82199359360075E69D /* UserTableViewController.m */,
+			);
+			name = "User Page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,11 +508,12 @@
 				0DBF67131992101B00AFF5F8 /* Contract.m in Sources */,
 				0D52C4B1197E284A00E5E5B9 /* ViewController.m in Sources */,
 				0D52C4AB197E284A00E5E5B9 /* AppDelegate.m in Sources */,
+				DAD0DD83199359360075E69D /* UserTableViewController.m in Sources */,
 				0DBF670F198F457500AFF5F8 /* MBProgressHUD.m in Sources */,
 				DAD0DD5D198EFB6E0075E69D /* UIImage+Alpha.m in Sources */,
-				DAD0DD71199069250075E69D /* SWRevealViewController.m in Sources */,
 				DAD0DD5E198EFB6E0075E69D /* UIImage+Resize.m in Sources */,
 				DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */,
+				DAD0DD8719935D020075E69D /* Game.m in Sources */,
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
 				DAD0DD7F199324090075E69D /* ParticipantTableViewCell.m in Sources */,
 				DAD0DD7919931C110075E69D /* Assassin.m in Sources */,

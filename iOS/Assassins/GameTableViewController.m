@@ -18,9 +18,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalAssassins;
 @property (weak, nonatomic) IBOutlet UILabel *activeAssassins;
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
+@property (weak, nonatomic) IBOutlet UIImageView *currentTargetImage;
+@property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
+@property (strong, nonatomic) Contract *currentContract;
 @property (strong, nonatomic) NSString *gameId;
+
 
 
 @end
@@ -71,10 +75,10 @@
     // call AssassinsService to fill list with events
     self.completedContracts = [[NSMutableArray alloc] init];
     [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", self.gameId] withTable:self.tableView];
-
     
-
-
+    // call to AssassinsService to fill current contract
+    self.currentContract = [[Contract alloc] init];
+    [AssassinsService populateCurrentContract:self.currentContract withGameId:self.gameId];
     
 }
 
@@ -82,6 +86,12 @@
 {
     [super viewDidAppear:YES];
     [self.tableView reloadData];
+    
+    
+    // set current contract values
+    [self.currentTargetImage setImage:[UIImage imageNamed:@"snipeCircle.png"]];
+    self.currentTargetUsername.text = self.currentContract.targetName;
+    
 }
 
 - (void)didReceiveMemoryWarning
