@@ -102,8 +102,7 @@
     cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been removed", currentContract.targetName];
     cell.timeLabel.text = [NSString stringWithFormat:@"%@",currentContract.time];
     [cell.imageView setImage:currentContract.image];
- 
-    NSLog(@"current contract: %@", currentContract);
+
     return cell;
 }
 
