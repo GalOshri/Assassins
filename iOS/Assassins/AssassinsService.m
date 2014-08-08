@@ -95,11 +95,11 @@
     }
     
     // Get all completed contracts for this game
-    // TODO: MAKE THIS WORK
-    /*
-    PFQuery *queryContracts = [PFQuery queryWithClassName:@"Game"];
+    PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contract"];
     [queryContracts whereKey:@"gameId" equalTo:gameId];
     [queryContracts whereKey:@"state" equalTo:@"Completed"];
+    
+    
     
     [queryContracts findObjectsInBackgroundWithBlock:^(NSArray *contracts, NSError *error)
     {
@@ -136,7 +136,7 @@
             }
         }
     }];
-    */
+    
 }
 
 
@@ -164,15 +164,13 @@
         return;
     }
     
-    // Get all completed contracts for this game
-    // TODO: MAKE THIS WORK
-    /*
-    PFQuery *queryPlayers = [PFQuery queryWithClassName:@"Game"];
-    [queryPlayers whereKey:@"gameId" equalTo:gameId];
-    [queryContracts whereKey:@"state" equalTo:@"Completed"];
+    // Get all contracts for this game
+    PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contracts"];
+    [queryContracts whereKey:@"gameId" equalTo:gameId];
     
-    NSMutableArray *assassinUsers = [[NSMutableArray alloc] init];
-    NSMutableArray *deadAssassinUsers = [[NSMutableArray alloc] init];
+    //NSMutableArray *assassinUsers = [[NSMutableArray alloc] init];
+    //NSMutableArray *deadAssassinUsers = [[NSMutableArray alloc] init];
+    NSMutableSet *existingUserIds = [[NSMutableSet alloc] init];
     
     [queryContracts findObjectsInBackgroundWithBlock:^(NSArray *contracts, NSError *error)
      {
@@ -182,42 +180,41 @@
              for (PFObject *contractObject in contracts)
              {
                  PFUser *assassinUser = contractObject[@"assassin"];
-                 assassinUser[@"alive"] = @"YES";
                  
-                 if (![assassinUsers containsObject:assassinUser])
-                     [assassinUsers addObject:assassinUser];
+                 if (![existingUserIds containsObject:assassinUser.objectId])
+                 {
+                     Assassin *assassin = [[Assassin alloc] init];
+                     
+                     assassin.username = assassinUser.username;
+                     assassin.userId = assassinUser.objectId;
+                     assassin.assassinImage = [UIImage imageNamed:@"flipCamera.png"];
+                     assassin.isAlive = YES;
+                     assassin.numberOfSnipes = 4;
+                     
+                     [assassinArray addObject:assassin];
+                     
+                     [existingUserIds addObject:assassinUser.objectId];
+                 }
              }
              
-             // Remove dead users
              for (PFObject *contractObject in contracts)
              {
                  if ([contractObject[@"state"] isEqualToString:@"Completed"])
                  {
-                     [assassinUsers removeObject:contractObject[@"target"]];
-                     if (![deadAssassinUsers containsObject:contractObject[@"target"]])
-                         [deadAssassinUsers addObject:contractObject[@"target"]]
-             }
-             
-             // Create assassin objects
-             for (PFUser *assassinUser in assassinUsers)
-             {
-                 Assassin *assassin = [[Assassin alloc] init];
-                 
-                 assassin.firstName = assassinUser.username;
-                 assassin.lastName = assassinUser.username;
-                 assassin.assassinImage = [UIImage imageNamed:@"flipCamera.png"];
-                 assassin.isAlive = YES;
-                 assassin.numberOfSnipes = i;
-                 
-                 [assassinArray addObject:assassin];
-             }
-             
-                 
-             
+                     PFUser *assassinUser = contractObject[@"target"];
+                     for (Assassin *assassin in assassinArray)
+                     {
+                         
+                         if ([assassin.userId isEqualToString:assassinUser.objectId])
+                         {
+                             assassin.isAlive = NO;
+                         }
+                     }
+                 }
              }
          }
      }];
-     */
+    
 }
 
 
@@ -244,10 +241,22 @@
 
 
 // TODO
-+ (void) populateUserGames:(NSMutableArray *)gamesList withUserId:(PFUser *)user
++ (void) populateUserGames:(NSMutableArray *)gamesList
 {
+    PFUser *currentUser = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:@"Game"];
     
+    [query whereKey:@"players" equalTo:currentUser];
     
+    [query findObjectsInBackgroundWithBlock:^(NSArray *games, NSError *error) {
+        if (!error)
+        {
+            for (PFObject *game in games)
+            {
+                
+            }
+        }
+    }];
 }
 
 

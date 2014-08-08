@@ -40,7 +40,7 @@
     [super viewDidLoad];
     
     
-    [AssassinsService populateUserGames:self.games withUserId:[PFUser currentUser]];
+    [AssassinsService populateUserGames:self.games];
     [AssassinsService populateCompletedUserContracts:self.userCompletedContracts forUser:[PFUser currentUser]];
 }
 

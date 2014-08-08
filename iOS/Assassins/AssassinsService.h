@@ -17,6 +17,7 @@
 
 // called in GameTableViewController
 + (void)populateCompletedContracts:(NSMutableArray *)contractArray withGameId:(NSString *)gameId withTable: (UITableView *)tableview;
+
 + (void)populateCurrentContract:(Contract *)currentContract withGameId:(NSString *)gameId;
 
 // called in ParticipantsTableViewController
@@ -24,7 +25,8 @@
 
 
 // called in UserTableViewController.
-+ (void)populateUserGames:(NSMutableArray *)gamesList withUserId:(PFUser *)user;
++ (void)populateUserGames:(NSMutableArray *)gamesList;
+
 + (void)populateCompletedUserContracts:(NSMutableArray *)contractArray forUser:(PFUser *)user;
 
 
