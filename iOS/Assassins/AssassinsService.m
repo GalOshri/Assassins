@@ -221,6 +221,7 @@
 + (void)populateCurrentContract:(Contract *)currentContract withGameId:(NSString *)gameId
 {
     // Get Contract
+    // TODO: Can have multiple contracts (one per game).
     NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
     NSString *contractId = [userData objectForKey:@"contractId"];
     
@@ -231,7 +232,7 @@
     {
         PFUser *target = [contract objectForKey:@"target"];
 
-        // TODO: this is wrong
+        // TODO: Grab user image.
         [target fetchIfNeededInBackgroundWithBlock:^(PFObject *target, NSError *error) {
             currentContract.targetName = [target objectForKey:@"username"];
         }];
@@ -259,13 +260,6 @@
     }];
 }
 
-
-//TODO
-+ (void)populateCompletedUserContracts:(NSMutableArray *)contractArray forUser:(PFUser *)user
-{
-    
-    
-}
 
 
 @end
