@@ -12,8 +12,5 @@
 
 @property (strong, nonatomic) NSString *gameId;
 @property (strong, nonatomic) NSString *gameName;
-@property (strong, nonatomic) NSMutableArray *contracts;
-@property (strong, nonatomic) NSMutableArray *assassins;
-
 
 @end
