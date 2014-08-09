@@ -19,28 +19,35 @@
 @property (weak, nonatomic) IBOutlet UILabel *isAliveLabel;
 
 @property (strong, nonatomic) NSMutableArray *games;
-@property (strong, nonatomic) NSMutableArray *userCompletedContracts;
+@property (strong, nonatomic) NSMutableArray *completedContracts;
 
 
 @end
 
 @implementation UserTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.games = [[NSMutableArray alloc] init];
+    self.completedContracts = [[NSMutableArray alloc] init];
     
-    [AssassinsService populateUserGames:self.games];
+    Game *game1 = [[Game alloc] init];
+    game1.name = @"Name 1";
+    game1.gameId = @"ID1";
+    Game *game2 = [[Game alloc] init];
+    game2.name = @"Name 2";
+    game2.gameId = @"ID2";
+    
+    [self.games addObject:game1];
+    [self.games addObject:game2];
+    
+    
+    //[AssassinsService populateUserGames:self.games];
+    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,7 +70,7 @@
     if (section == 0)
         return [self.games count];
     else
-        return [self.userCompletedContracts count];
+        return [self.completedContracts count];
 }
 
 
@@ -74,7 +81,6 @@
         Game *currentGame = [self.games objectAtIndex:indexPath.row];
 
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
-        cell = [[UITableViewCell alloc] init];
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         cell.textLabel.text = currentGame.name;
         return cell;
@@ -85,8 +91,9 @@
         // display completed contracts dealing with user (user is assassin, user is target and died)
         // call to AssassinsService
         GameEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userEvents" forIndexPath:indexPath];
-        [cell.userImage setImage:[UIImage imageNamed:@"snipeCircle.png"]];
-        cell.headlineLabel.text = @"placeholder for now; we'll fill";
+        //[cell.userImage setImage:[UIImage imageNamed:@"snipeCircle.png"]];
+        //cell.headlineLabel.text = @"placeholder for now; we'll fill";
+        cell.textLabel.text = @"hi";
         return cell;
     }
 }
@@ -98,6 +105,7 @@
     else
         return @"Your Events";
 }
+
 
 /*
 // Override to support conditional editing of the table view.
