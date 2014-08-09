@@ -11,6 +11,6 @@
 @interface Game : NSObject
 
 @property (strong, nonatomic) NSString *gameId;
-@property (strong, nonatomic) NSString *gameName;
+@property (strong, nonatomic) NSString *name;
 
 @end
