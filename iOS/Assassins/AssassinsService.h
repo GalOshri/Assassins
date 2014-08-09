@@ -26,7 +26,6 @@
 
 // called in UserTableViewController.
 + (void)populateUserGames:(NSMutableArray *)gamesList;
-
 + (void)populateCompletedUserContracts:(NSMutableArray *)contractArray forUser:(PFUser *)user;
 
 
