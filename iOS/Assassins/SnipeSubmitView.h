@@ -7,14 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MBProgressHUD.h"
+
 
 @interface SnipeSubmitView : UIViewController <UIGestureRecognizerDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImageView;
 @property (strong, nonatomic) UIImage *snipeImage;
-
-@property (strong, nonatomic) MBProgressHUD *HUD;
-@property (strong, nonatomic) MBProgressHUD *refreshHUD;
 
 @end

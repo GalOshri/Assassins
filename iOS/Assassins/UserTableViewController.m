@@ -76,7 +76,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
         cell = [[UITableViewCell alloc] init];
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        cell.textLabel.text = currentGame.gameName;
+        cell.textLabel.text = currentGame.name;
         return cell;
     }
     
