@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "Contract.h"
 #import "Assassin.h"
+#import "Game.h"
 
 @implementation AssassinsService
 
@@ -241,7 +242,6 @@
 }
 
 
-// TODO
 + (void) populateUserGames:(NSMutableArray *)gamesList
 {
     PFUser *currentUser = [PFUser currentUser];
@@ -252,9 +252,13 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *games, NSError *error) {
         if (!error)
         {
-            for (PFObject *game in games)
+            for (PFObject *gameObject in games)
             {
+                Game *game = [[Game alloc] init];
+                game.name = [NSString stringWithString:gameObject[@"name"]];
+                game.gameId = [NSString stringWithString:gameObject.objectId];
                 
+                [gamesList addObject:game];
             }
         }
     }];

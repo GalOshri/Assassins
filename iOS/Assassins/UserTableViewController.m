@@ -41,7 +41,6 @@
     
     
     [AssassinsService populateUserGames:self.games];
-    [AssassinsService populateCompletedUserContracts:self.userCompletedContracts forUser:[PFUser currentUser]];
 }
 
 - (void)didReceiveMemoryWarning
