@@ -257,6 +257,12 @@
                 Game *game = [[Game alloc] init];
                 game.name = [NSString stringWithString:gameObject[@"name"]];
                 game.gameId = [NSString stringWithString:gameObject.objectId];
+                NSArray *numPlayers = gameObject[@"players"];
+                game.numberOfAssassins = [NSNumber numberWithUnsignedInteger:[numPlayers count]];
+                NSArray *contractArray = gameObject[@"contracts"];
+                int numAliveAssassins = (int) (2 * [numPlayers count] - [contractArray count]);
+                game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
+                game.assassins = gameObject[@"players"];
                 
                 [gamesList addObject:game];
             }
@@ -264,6 +270,24 @@
     }];
 }
 
++ (Game *) getGameWithId:(NSString *)gameId
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Game"];
+    PFObject *gameObject = [query getObjectWithId:gameId];
+    
+    Game *game = [[Game alloc] init];
+    
+    game.name = [NSString stringWithString:gameObject[@"name"]];
+    game.gameId = [NSString stringWithString:gameObject.objectId];
+    NSArray *numPlayers = gameObject[@"players"];
+    game.numberOfAssassins = [NSNumber numberWithUnsignedInteger:[numPlayers count]];
+    NSArray *contractArray = gameObject[@"contracts"];
+    int numAliveAssassins = (int) (2 * [numPlayers count] - [contractArray count]);
+    game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
+    game.assassins = gameObject[@"players"];
+    
+    return game;
+}
 
 
 @end

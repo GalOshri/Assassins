@@ -11,19 +11,22 @@
 #import "Contract.h"
 #import "GameEventTableViewCell.h"
 #import "ParticipantsTableViewController.h"
+#import "Game.h"
 
 @interface GameTableViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *participantsButton;
-@property (weak, nonatomic) IBOutlet UILabel *totalAssassins;
-@property (weak, nonatomic) IBOutlet UILabel *activeAssassins;
+@property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
-@property (weak, nonatomic) IBOutlet UIImageView *currentTargetImage;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
+@property (weak, nonatomic) IBOutlet UIImageView *currentTargetImage;
+
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) Contract *currentContract;
-@property (strong, nonatomic) NSString *gameId;
+@property (strong, nonatomic) Game *game;
 
 
 
@@ -41,24 +44,13 @@
     return _completedContracts;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self)
-    {
-
-    }
-    
-    return self;
-}
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"gameParticipants"]) {
+    if ([segue.identifier isEqualToString:@"SegueToParticipants"]) {
         if ([segue.destinationViewController isKindOfClass:[ParticipantsTableViewController class]])
         {
             ParticipantsTableViewController *ptvc = (ParticipantsTableViewController *)segue.destinationViewController;
-            ptvc.gameId = self.gameId;
+            ptvc.game = self.game;
         }
     }
 }
@@ -67,10 +59,10 @@
 {
     [super viewDidLoad];
     
-    // HARDCODED GAME ID
-    // TODO: Create a separate method in AssassinsService to grab correct information
-    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-    self.gameId = [userData objectForKey:@"gameId"];
+    self.game = [AssassinsService getGameWithId:self.gameId];
+    
+    self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
+    self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
     
     // call AssassinsService to fill list with events
     self.completedContracts = [[NSMutableArray alloc] init];
@@ -113,7 +105,7 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (GameEventTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GameEventTableViewCell *cell = (GameEventTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
     

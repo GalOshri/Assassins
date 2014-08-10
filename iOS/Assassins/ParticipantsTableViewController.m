@@ -12,10 +12,10 @@
 #import "Assassin.h"
 
 @interface ParticipantsTableViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *gameName;
+@property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
-@property (weak, nonatomic) IBOutlet UILabel *totalAssassins;
-@property (weak, nonatomic) IBOutlet UILabel *aliveAssassins;
+@property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
 @property (strong, nonatomic) NSMutableArray *assassins;
 
 @end
@@ -35,9 +35,13 @@
 {
     [super viewDidLoad];
     
+    self.gameNameLabel.text = [NSString stringWithString:self.game.name];
+    self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
+    self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+    
     // populate assasssins array
     self.assassins = [[NSMutableArray alloc] init];
-    [AssassinsService populateAssassinList:self.assassins withGameId:self.gameId];
+    [AssassinsService populateAssassinList:self.assassins withGameId:self.game.gameId];
     
 }
 

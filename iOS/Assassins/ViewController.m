@@ -12,6 +12,7 @@
 #import "AssassinsSignUpView.h"
 #import "UIImage+Resize.h"
 #import "VerifySnipeViewController.h"
+#import "GameTableViewController.h"
 
 @interface ViewController ()
 
@@ -56,6 +57,15 @@ CGFloat scale;
             CGImageRelease(imageRef);
             
             ssv.snipeImage = (UIImage *) croppedImage;
+        }
+    }
+    
+    if ([segue.identifier isEqualToString:@"SegueToGameView"])
+    {
+        if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
+        {
+            GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
+            gtvc.gameId = @"Jr9NNIwOiO";
         }
     }
 }

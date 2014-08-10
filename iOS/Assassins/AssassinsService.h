@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import "Contract.h"
+#import "Game.h"
 
 @interface AssassinsService : NSObject
 
@@ -25,5 +26,7 @@
 
 // called in UserTableViewController.
 + (void)populateUserGames:(NSMutableArray *)gamesList;
+
++ (Game *) getGameWithId:(NSString *)gameId;
 
 @end

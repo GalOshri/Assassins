@@ -10,4 +10,6 @@
 
 @interface GameTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSString *gameId;
+
 @end

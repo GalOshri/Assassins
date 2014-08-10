@@ -42,7 +42,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="iyD-GC-GYa" kind="modal" id="NFY-Dm-bhv"/>
+                                    <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueToGameView" id="PA9-pZ-3Sy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud0-LW-3p8">
@@ -381,6 +381,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitAssassination:" destination="LuB-hi-AS8" eventType="touchUpInside" id="jd9-Wv-PiG"/>
+                                    <segue destination="oR9-sX-s2Z" kind="modal" id="6M9-kQ-b4n"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="95t-Av-2iq">
@@ -417,7 +418,6 @@
                         <outlet property="commentField" destination="00Q-O2-Xrt" id="pxo-jw-e0W"/>
                         <outlet property="snipeImageView" destination="mVZ-Ld-7MD" id="K7e-VK-hQ9"/>
                         <outlet property="snipeToggle" destination="95t-Av-2iq" id="FTJ-Bm-AUI"/>
-                        <segue destination="iyD-GC-GYa" kind="modal" identifier="SnipeSubmitViewToGameView" id="j7s-2Z-t3p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMC-9K-W8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -434,14 +434,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Hb5-mr-5ND">
-                            <rect key="frame" x="0.0" y="64" width="320" height="276"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="276"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="efP-EC-ApX">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="161"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 assasins" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D9-cC-GqV">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 assassins" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D9-cC-GqV">
                                             <rect key="frame" x="50" y="94" width="119" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -464,7 +464,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="E9h-nv-kuU" kind="push" identifier="gameParticipants" id="H8R-iH-IGU"/>
+                                                <segue destination="E9h-nv-kuU" kind="modal" identifier="SegueToParticipants" id="H8R-iH-IGU"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnA-O8-Na5">
@@ -477,7 +477,7 @@
                                             </state>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yb5-Od-urc">
-                                            <rect key="frame" x="115" y="4" width="90" height="90"/>
+                                            <rect key="frame" x="135" y="40" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line.png" translatesAutoresizingMaskIntoConstraints="NO" id="pJ7-Gs-Hrx">
@@ -523,7 +523,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContractCell" rowHeight="246" id="dKZ-u5-vfu" customClass="GameEventTableViewCell">
-                                <rect key="frame" x="0.0" y="362" width="320" height="246"/>
+                                <rect key="frame" x="0.0" y="298" width="320" height="246"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKZ-u5-vfu" id="ldS-nq-MCX">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
@@ -598,18 +598,17 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="activeAssassins" destination="tcZ-xM-MhR" id="JVh-jf-L2y"/>
                         <outlet property="currentTargetImage" destination="PCw-DB-mBp" id="biS-E4-Eyh"/>
                         <outlet property="currentTargetUsername" destination="SxF-Ye-Y58" id="bWd-Ba-n11"/>
                         <outlet property="gameImage" destination="Yb5-Od-urc" id="jLD-SH-Lm1"/>
-                        <outlet property="participantsButton" destination="471-Dy-G2U" id="m15-ki-PcW"/>
-                        <outlet property="totalAssassins" destination="8D9-cC-GqV" id="Kez-ig-c8S"/>
+                        <outlet property="numActiveAssassinsLabel" destination="tcZ-xM-MhR" id="P4X-se-weU"/>
+                        <outlet property="numAssassinsLabel" destination="8D9-cC-GqV" id="WTh-Io-IXR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daN-7H-irG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="stc-Fg-dtT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1516" y="-9"/>
+            <point key="canvasLocation" x="980" y="-9"/>
         </scene>
         <!--Participants Table View Controller - Participants-->
         <scene sceneID="Vsq-Jt-js4">
@@ -620,39 +619,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Qzu-sL-zih">
-                            <rect key="frame" x="0.0" y="64" width="320" height="122"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Assassins for" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clr-LT-Mhn">
-                                    <rect key="frame" x="91" y="14" width="102" height="21"/>
+                                    <rect key="frame" x="92" y="51" width="102" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Name Here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5l-6v-2PG">
-                                    <rect key="frame" x="91" y="39" width="202" height="21"/>
+                                    <rect key="frame" x="92" y="76" width="202" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30 Assassins " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ra-Zj-BWv">
-                                    <rect key="frame" x="29" y="89" width="106" height="21"/>
+                                    <rect key="frame" x="20" y="117" width="106" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15 Alive" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfP-2S-b8V">
-                                    <rect key="frame" x="142" y="89" width="61" height="21"/>
+                                    <rect key="frame" x="142" y="117" width="151" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="cd7-3H-BBL">
-                                    <rect key="frame" x="19" y="10" width="62" height="62"/>
+                                    <rect key="frame" x="20" y="47" width="62" height="62"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                             </subviews>
@@ -660,7 +659,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="assassinCell" rowHeight="77" id="Yoj-jo-AxF" customClass="ParticipantTableViewCell">
-                                <rect key="frame" x="0.0" y="208" width="320" height="77"/>
+                                <rect key="frame" x="0.0" y="180" width="320" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yoj-jo-AxF" id="FoI-ET-y4V">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
@@ -706,35 +705,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="aliveAssassins" destination="dfP-2S-b8V" id="cY6-0c-hzt"/>
                         <outlet property="gameImage" destination="cd7-3H-BBL" id="rxH-e2-VHt"/>
-                        <outlet property="gameName" destination="D5l-6v-2PG" id="IMK-xC-cxa"/>
-                        <outlet property="totalAssassins" destination="6Ra-Zj-BWv" id="i4I-At-HLN"/>
+                        <outlet property="gameNameLabel" destination="D5l-6v-2PG" id="pUF-11-gdd"/>
+                        <outlet property="numActiveAssassinsLabel" destination="dfP-2S-b8V" id="OQ0-6H-z8d"/>
+                        <outlet property="numAssassinsLabel" destination="6Ra-Zj-BWv" id="WlW-2e-O0B"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1PZ-dk-XGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ha3-9d-0bd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2492" y="-9"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Oj4-uU-l6N">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iyD-GC-GYa" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="4CA-EZ-DfH"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s5U-Tx-VWi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="oR9-sX-s2Z" kind="relationship" relationship="rootViewController" id="VfX-U1-QrO"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XlO-aP-wLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1053" y="-9"/>
+            <point key="canvasLocation" x="1516" y="-1"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bWo-HZ-h1r">
@@ -755,25 +735,6 @@
             </objects>
             <point key="canvasLocation" x="553" y="-709"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="3Cn-e1-tba">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P0D-EP-vca" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="pU6-yj-GCT"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gAp-hv-OjN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="E9h-nv-kuU" kind="relationship" relationship="rootViewController" id="f9c-Bm-NEo"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CuJ-TR-N7n" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1966" y="-9"/>
-        </scene>
     </scenes>
     <resources>
         <image name="backArrow.png" width="600" height="600"/>
@@ -791,7 +752,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="NFY-Dm-bhv"/>
-        <segue reference="H8R-iH-IGU"/>
+        <segue reference="6M9-kQ-b4n"/>
     </inferredMetricsTieBreakers>
 </document>

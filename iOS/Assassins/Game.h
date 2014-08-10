@@ -12,5 +12,8 @@
 
 @property (strong, nonatomic) NSString *gameId;
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSNumber *numberOfAssassins;
+@property (strong, nonatomic) NSNumber *numberOfAssassinsAlive;
+@property (strong, nonatomic) NSArray *assassins;
 
 @end
