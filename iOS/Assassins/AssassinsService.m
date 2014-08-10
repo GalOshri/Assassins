@@ -262,7 +262,7 @@
 }
 
 
-+ (void)populateCurrentContract:(Contract *)currentContract withGameId:(NSString *)gameId
++ (Contract *)getContractForGame:(NSString *)gameId
 {
     // Get Contract
     // TODO: Can have multiple contracts (one per game).
@@ -270,18 +270,24 @@
     NSString *contractId = [userData objectForKey:@"contractId"];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    [query whereKey:@"assassin" equalTo:[PFUser currentUser]];
+    [query whereKey:@"gameId" equalTo:gameId];
     
     // Retrieve the object by id
-    [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error)
-    {
-        PFUser *target = [contract objectForKey:@"target"];
-
-        // TODO: Grab user image.
-        [target fetchIfNeededInBackgroundWithBlock:^(PFObject *target, NSError *error) {
-            currentContract.targetName = [target objectForKey:@"username"];
-        }];
-        
-    }];
+    PFObject *contractObject = [query getFirstObject];
+    
+    Contract *contract = [[Contract alloc] init];
+    
+    contract.contractId = contractObject.objectId;
+    contract.time = contractObject[@"snipeTime"];
+    contract.image = nil;
+    contract.assassinName = [PFUser currentUser].username;
+    PFUser *target = contractObject[@"target"];
+    [target fetch];
+    contract.targetName = target.username;
+    contract.comment = nil;
+    
+    return contract;
 }
 
 

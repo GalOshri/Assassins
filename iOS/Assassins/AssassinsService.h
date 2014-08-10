@@ -19,7 +19,7 @@
 // called in GameTableViewController
 + (void)populateCompletedContracts:(NSMutableArray *)contractArray withGameId:(NSString *)gameId withTable: (UITableView *)tableview;
 
-+ (void)populateCurrentContract:(Contract *)currentContract withGameId:(NSString *)gameId;
++ (Contract *)getContractForGame:(NSString *)gameId;
 
 // called in ParticipantsTableViewController
 + (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId;

@@ -44,6 +44,11 @@
     return _completedContracts;
 }
 
+- (IBAction)unwindToGameView:(UIStoryboardSegue *)segue {
+    
+    
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"SegueToParticipants"]) {
@@ -64,26 +69,18 @@
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
     self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
     
+    // call to AssassinsService to fill current contract
+    self.currentContract = [[Contract alloc] init];
+    self.currentContract = [AssassinsService getContractForGame:self.gameId];
+    
+    [self.currentTargetImage setImage:[UIImage imageNamed:@"snipeCircle.png"]];
+    self.currentTargetUsername.text = self.currentContract.targetName;
+    
     // call AssassinsService to fill list with events
     self.completedContracts = [[NSMutableArray alloc] init];
     [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", self.gameId] withTable:self.tableView];
     
-    // call to AssassinsService to fill current contract
-    self.currentContract = [[Contract alloc] init];
-    [AssassinsService populateCurrentContract:self.currentContract withGameId:self.gameId];
-    
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-    [self.tableView reloadData];
-    
-    
-    // set current contract values
-    [self.currentTargetImage setImage:[UIImage imageNamed:@"snipeCircle.png"]];
-    self.currentTargetUsername.text = self.currentContract.targetName;
-    
 }
 
 - (void)didReceiveMemoryWarning
