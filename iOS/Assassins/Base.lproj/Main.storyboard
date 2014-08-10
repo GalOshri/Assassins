@@ -322,7 +322,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZe-YN-B2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="en8-k3-hke" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1516" y="-681"/>
+            <point key="canvasLocation" x="1472" y="-709"/>
         </scene>
         <!--Snipe Submit View-->
         <scene sceneID="jpJ-Dg-kLF">
@@ -432,7 +432,7 @@
         <scene sceneID="VxP-f9-5Cp">
             <objects>
                 <tableViewController id="oR9-sX-s2Z" customClass="GameTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="246" sectionHeaderHeight="22" sectionFooterHeight="22" id="8G1-t1-2Jj">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="265" sectionHeaderHeight="22" sectionFooterHeight="22" id="8G1-t1-2Jj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -558,15 +558,15 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContractCell" rowHeight="246" id="dKZ-u5-vfu" customClass="GameEventTableViewCell">
-                                <rect key="frame" x="0.0" y="318" width="320" height="246"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContractCell" rowHeight="265" id="dKZ-u5-vfu" customClass="GameEventTableViewCell">
+                                <rect key="frame" x="0.0" y="318" width="320" height="265"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKZ-u5-vfu" id="ldS-nq-MCX">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8n-ma-73s">
-                                            <rect key="frame" x="103" y="75" width="125" height="168"/>
+                                            <rect key="frame" x="94" y="68" width="132" height="176"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tko-ET-EH5">
@@ -580,20 +580,20 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3h ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ta9-Iu-dzp">
-                                            <rect key="frame" x="79" y="48" width="221" height="21"/>
+                                            <rect key="frame" x="79" y="27" width="221" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.49724968110000001" green="0.49724968110000001" blue="0.49724968110000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMu-oo-dba">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMu-oo-dba">
                                             <rect key="frame" x="28" y="182" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Like">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdp-kX-169">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdp-kX-169">
                                             <rect key="frame" x="254" y="182" width="57" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Extreme">
@@ -601,7 +601,7 @@
                                             </state>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The comment left is found here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MS2-wp-Khw">
-                                            <rect key="frame" x="79" y="30" width="239" height="21"/>
+                                            <rect key="frame" x="79" y="44" width="239" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.39775768039999998" green="0.053013789589999999" blue="0.4353475765" alpha="1" colorSpace="calibratedRGB"/>
@@ -645,7 +645,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daN-7H-irG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="stc-Fg-dtT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="980" y="-9"/>
+            <point key="canvasLocation" x="1053" y="-9"/>
         </scene>
         <!--Participants Table View Controller - Participants-->
         <scene sceneID="Vsq-Jt-js4">

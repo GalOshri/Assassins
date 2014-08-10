@@ -121,11 +121,18 @@
     Contract *currentContract = [self.completedContracts objectAtIndex:indexPath.row];
     
     // set items in cell
-    // cell.userImage;
     cell.commentLabel.text = currentContract.comment;
     cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been removed", currentContract.targetName];
-    cell.timeLabel.text = [NSString stringWithFormat:@"%@",currentContract.time];
-    [cell.imageView setImage:currentContract.image];
+    
+    // time altercation
+    NSArray *timeArray = [[NSString stringWithFormat:@"%@", currentContract.time] componentsSeparatedByString:@"+"];
+    NSString *time = [timeArray objectAtIndex:0];
+    cell.timeLabel.text = [NSString stringWithFormat:@"%@",time];
+    
+    // tweak aesthetics of image
+    [cell.snipeImagePreview setImage:currentContract.image];
+    [[cell.snipeImagePreview layer] setCornerRadius:5];
+    [[cell.snipeImagePreview layer] setMasksToBounds:YES];
 
     return cell;
 }
