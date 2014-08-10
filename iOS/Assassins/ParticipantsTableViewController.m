@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
 @property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
+@property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) NSArray *assassins;
 
 @end
@@ -41,6 +42,15 @@
     
     self.assassins = [AssassinsService getAssassinListFromGame:self.game];
     
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning

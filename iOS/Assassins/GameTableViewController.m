@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
 @property (weak, nonatomic) IBOutlet UIImageView *currentTargetImage;
+@property (weak, nonatomic) IBOutlet UIView *statusBarView;
 
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
@@ -88,6 +89,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Table view data source

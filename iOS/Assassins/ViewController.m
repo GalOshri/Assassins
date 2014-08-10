@@ -99,11 +99,9 @@ CGFloat scale;
     
     [self.view addSubview:picker.view];
     [self.view sendSubviewToBack:picker.view];
-     
     
     
     // CODE TO START THE GAME. RUN ONLY ONCE.
-    
     /*PFQuery *query = [PFUser query];
     NSArray *users = [query findObjects];
     PFObject *game = [PFObject objectWithClassName:@"Game"];
