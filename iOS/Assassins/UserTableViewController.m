@@ -15,12 +15,10 @@
 
 @interface UserTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
-@property (weak, nonatomic) IBOutlet UILabel *totalSnipes;
-@property (weak, nonatomic) IBOutlet UILabel *isAliveLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
 
 @property (strong, nonatomic) NSMutableArray *games;
 @property (strong, nonatomic) NSMutableArray *completedContracts;
-
 
 @end
 
@@ -45,15 +43,10 @@
     [self.games addObject:game1];
     [self.games addObject:game2];
     
+    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d lifetime assassinations", 78];
     
     //[AssassinsService populateUserGames:self.games];
     //[AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
