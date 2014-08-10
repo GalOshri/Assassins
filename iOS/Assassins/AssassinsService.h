@@ -24,6 +24,8 @@
 // called in ParticipantsTableViewController
 + (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId;
 
++ (NSArray *)getAssassinListFromGame:(Game *)game;
+
 // called in UserTableViewController.
 + (void)populateUserGames:(NSMutableArray *)gamesList;
 

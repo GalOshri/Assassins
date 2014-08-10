@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSNumber *numberOfAssassins;
 @property (strong, nonatomic) NSNumber *numberOfAssassinsAlive;
 @property (strong, nonatomic) NSArray *assassins;
+@property (strong, nonatomic) NSArray *contracts;
 
 @end

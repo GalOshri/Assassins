@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
 @property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
-@property (strong, nonatomic) NSMutableArray *assassins;
+@property (strong, nonatomic) NSArray *assassins;
 
 @end
 
@@ -39,9 +39,7 @@
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
     self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
     
-    // populate assasssins array
-    self.assassins = [[NSMutableArray alloc] init];
-    [AssassinsService populateAssassinList:self.assassins withGameId:self.game.gameId];
+    self.assassins = [AssassinsService getAssassinListFromGame:self.game];
     
 }
 

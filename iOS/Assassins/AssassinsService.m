@@ -218,6 +218,49 @@
     
 }
 
++ (NSArray *)getAssassinListFromGame:(Game *)game
+{
+    NSMutableArray *assassinArray = [[NSMutableArray alloc] init];
+    
+    NSArray *userArray = game.assassins;
+    NSArray *contractArray = game.contracts;
+    
+    [PFUser fetchAll:userArray];
+    
+    for (PFUser *user in userArray)
+    {
+        Assassin *assassin = [[Assassin alloc] init];
+        
+        assassin.username = user.username;
+        assassin.userId = user.objectId;
+        assassin.assassinImage = [UIImage imageNamed:@"snipeCircle.png"];
+        assassin.isAlive = YES;
+        assassin.numberOfSnipes = 4;
+        
+        [assassinArray addObject:assassin];
+    }
+    
+    [PFObject fetchAll:contractArray];
+    for (PFObject *contract in contractArray)
+    {
+        if ([contract[@"state"] isEqualToString:@"Completed"])
+        {
+            for (Assassin *assassin in assassinArray)
+            {
+                PFUser *target = contract[@"target"];
+                if ([assassin.userId isEqualToString:target.objectId])
+                {
+                    assassin.isAlive = NO;
+                }
+            }
+        }
+    }
+    
+
+    
+    return assassinArray;
+}
+
 
 + (void)populateCurrentContract:(Contract *)currentContract withGameId:(NSString *)gameId
 {
@@ -263,6 +306,7 @@
                 int numAliveAssassins = (int) (2 * [numPlayers count] - [contractArray count]);
                 game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
                 game.assassins = gameObject[@"players"];
+                game.contracts = gameObject[@"contracts"];
                 
                 [gamesList addObject:game];
             }
@@ -285,6 +329,7 @@
     int numAliveAssassins = (int) (2 * [numPlayers count] - [contractArray count]);
     game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
     game.assassins = gameObject[@"players"];
+    game.contracts = gameObject[@"contracts"];
     
     return game;
 }

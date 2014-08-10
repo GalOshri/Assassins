@@ -31,11 +31,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="art-u7-w5P">
-                                <rect key="frame" x="278" y="521" width="22" height="22"/>
+                                <rect key="frame" x="250" y="504" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="IHM-58-UrD"/>
-                                    <constraint firstAttribute="width" constant="22" id="kg0-WR-3fx"/>
+                                    <constraint firstAttribute="height" constant="50" id="IHM-58-UrD"/>
+                                    <constraint firstAttribute="width" constant="50" id="kg0-WR-3fx"/>
                                 </constraints>
                                 <state key="normal" image="menu.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,7 +86,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="art-u7-w5P" secondAttribute="bottom" constant="25" id="809-Oh-sro"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="art-u7-w5P" secondAttribute="bottom" constant="14" id="809-Oh-sro"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pPb-yx-dXl" secondAttribute="bottom" constant="11" id="Gs3-B9-hOh"/>
                             <constraint firstAttribute="centerX" secondItem="pPb-yx-dXl" secondAttribute="centerX" id="TY3-ge-Uek"/>
                             <constraint firstItem="BIK-59-BWW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="abu-QZ-e8y"/>
@@ -752,6 +752,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6M9-kQ-b4n"/>
+        <segue reference="PA9-pZ-3Sy"/>
     </inferredMetricsTieBreakers>
 </document>
