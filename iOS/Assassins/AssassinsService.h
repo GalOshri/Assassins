@@ -17,7 +17,7 @@
 + (void)submitAssassination:(UIImage *)snipeImage withMode: (BOOL)isSnipeMode withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord;
 
 // called in GameTableViewController
-+ (void)populateCompletedContracts:(NSMutableArray *)contractArray withGameId:(NSString *)gameId withTable: (UITableView *)tableview;
++ (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId;
 
 + (Contract *)getContractForGame:(NSString *)gameId;
 

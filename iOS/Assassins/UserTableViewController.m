@@ -47,7 +47,7 @@
     
     
     //[AssassinsService populateUserGames:self.games];
-    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
+    //[AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning

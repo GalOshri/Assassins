@@ -78,7 +78,8 @@
     
     // call AssassinsService to fill list with events
     self.completedContracts = [[NSMutableArray alloc] init];
-    [AssassinsService populateCompletedContracts:self.completedContracts withGameId:[NSString stringWithFormat:@"%@", self.gameId] withTable:self.tableView];
+    self.completedContracts = [AssassinsService getCompletedContractsForGame:self.gameId];
+
     
 
 }

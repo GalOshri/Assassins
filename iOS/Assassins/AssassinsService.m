@@ -70,11 +70,11 @@
 }
 
 
-+ (void)populateCompletedContracts:(NSMutableArray *)contractArray withGameId:(NSString *)gameId withTable:(UITableView *)tableview
++ (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId
 {
-    BOOL DEBUGAL = YES;
+    BOOL DEBUGAL = NO;
     
-    [contractArray removeAllObjects];
+    NSMutableArray *contractArray = [[NSMutableArray alloc] init];
     
     if (DEBUGAL)
     {
@@ -92,7 +92,7 @@
             [contractArray addObject:contract];
         }
         //[tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-        return;
+        return contractArray;
     }
     
     // Get all completed contracts for this game
@@ -100,44 +100,48 @@
     [queryContracts whereKey:@"gameId" equalTo:gameId];
     [queryContracts whereKey:@"state" equalTo:@"Completed"];
     
+    NSArray *contractObjects = [queryContracts findObjects];
     
-    
-    [queryContracts findObjectsInBackgroundWithBlock:^(NSArray *contracts, NSError *error)
+    for (PFObject *contractObject in contractObjects)
     {
-        if (!error)
-        {
-            for (PFObject *contractObject in contracts)
-            {
-                Contract *contract = [[Contract alloc] init];
-                
-                contract.contractId = contractObject.objectId;
-                contract.time = [NSDate date];
-                PFFile *imageFile = contractObject[@"image"];
-                
-                NSURLSession *session = [NSURLSession sharedSession];
-                [[session dataTaskWithURL:[NSURL URLWithString:imageFile.url]
-                        completionHandler:^(NSData *data,
-                                            NSURLResponse *response,
-                                            NSError *error) {
-                            
-                            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                
-                                UIImage *img = [[UIImage alloc] initWithData:data];
-                                
-                                contract.image = img;
-                                
-                            }];
-                        }] resume];
-                
-                PFUser *assassin = contractObject[@"assassin"];
-                contract.assassinName = assassin.username;
-                PFUser *target = contractObject[@"target"];
-                contract.targetName = target.username;
-                contract.comment = contractObject[@"comment"];
-            }
-        }
-    }];
-    
+        Contract *contract = [[Contract alloc] init];
+        
+        contract.contractId = contractObject.objectId;
+        contract.time = [NSDate date];
+        //contract.image = [UIImage imageNamed:@"cameraIconSmaill.png"];
+        
+        PFFile *imageFile = contractObject[@"image"];
+        
+        NSData *imageData = [imageFile getData];
+        contract.image = [UIImage imageWithData:imageData];
+        
+        /*NSURLSession *session = [NSURLSession sharedSession];
+        [[session dataTaskWithURL:[NSURL URLWithString:imageFile.url]
+                completionHandler:^(NSData *data,
+                                    NSURLResponse *response,
+                                    NSError *error) {
+                    
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        
+                        UIImage *img = [[UIImage alloc] initWithData:data];
+                        
+                        contract.image = img;
+                        
+                    }];
+                }] resume];
+        */
+        
+        PFUser *assassin = contractObject[@"assassin"];
+        [assassin fetch];
+        contract.assassinName = assassin.username;
+        PFUser *target = contractObject[@"target"];
+        [target fetch];
+        contract.targetName = target.username;
+        contract.comment = contractObject[@"comment"];
+        
+        [contractArray addObject:contract];
+    }
+    return contractArray;
 }
 
 
