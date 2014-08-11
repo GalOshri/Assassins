@@ -7,10 +7,12 @@
 //
 
 #import "UserTableViewController.h"
-#import "GameEventTableViewCell.h"
+#import "AssassinationEventCell.h"
 #import "Game.h"
 #import "AssassinsService.h"
 #import <Parse/Parse.h>
+#import "GameCell.h"
+#import "GameTableViewController.h"
 
 
 @interface UserTableViewController ()
@@ -24,7 +26,18 @@
 
 @implementation UserTableViewController
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"SegueToGameView"])
+    {
+        if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
+        {
+            GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
+            GameCell *cell = (GameCell *)sender;
+            gtvc.gameId = cell.gameId;
+        }
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -34,10 +47,10 @@
     self.completedContracts = [[NSMutableArray alloc] init];
     
     Game *game1 = [[Game alloc] init];
-    game1.name = @"Name 1";
-    game1.gameId = @"ID1";
+    game1.name = @"Awesome Game";
+    game1.gameId = @"Jr9NNIwOiO";
     Game *game2 = [[Game alloc] init];
-    game2.name = @"Name 2";
+    game2.name = @"Don't press this game!";
     game2.gameId = @"ID2";
     
     [self.games addObject:game1];
@@ -73,9 +86,10 @@
     {
         Game *currentGame = [self.games objectAtIndex:indexPath.row];
 
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
+        //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         cell.textLabel.text = currentGame.name;
+        cell.gameId = currentGame.gameId;
         return cell;
     }
     
@@ -83,7 +97,7 @@
     {
         // display completed contracts dealing with user (user is assassin, user is target and died)
         // call to AssassinsService
-        GameEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userEvents" forIndexPath:indexPath];
+        AssassinationEventCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userEvents" forIndexPath:indexPath];
         //[cell.userImage setImage:[UIImage imageNamed:@"snipeCircle.png"]];
         //cell.headlineLabel.text = @"placeholder for now; we'll fill";
         cell.textLabel.text = @"hi";

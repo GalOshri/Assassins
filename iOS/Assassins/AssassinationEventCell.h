@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameEventTableViewCell : UITableViewCell
+@interface AssassinationEventCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;

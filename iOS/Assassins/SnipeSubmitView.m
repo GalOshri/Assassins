@@ -8,11 +8,11 @@
 
 #import "SnipeSubmitView.h"
 #import "AssassinsService.h"
+#import "GameTableViewController.h"
 
 @interface SnipeSubmitView ()
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *snipeToggle;
-@property BOOL isSnipeMode;
 
 
 
@@ -21,10 +21,6 @@
 @implementation SnipeSubmitView
 
 
-
-
-
-/*
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -32,8 +28,16 @@
  {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
+     
+     if ([segue.identifier isEqualToString:@"SegueAfterSnipe"]) {
+         if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
+         {
+             GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
+             gtvc.gameId = @"Jr9NNIwOiO";
+         }
+     }
  }
- */
+
 
 - (void)viewDidLoad
 {
@@ -41,7 +45,6 @@
     // Do any additional setup after loading the view.
     self.snipeImageView.image = self.snipeImage;
     [self.commentField setHidden:YES];
-    self.isSnipeMode = YES;
     
     //set touch events for snipeImageView
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickEventOnImage:)];
@@ -60,10 +63,8 @@
 
 #pragma mark - Commenting on image
 
-
 - (void) clickEventOnImage:(UITapGestureRecognizer *)sender {
     //deal with showing/hiding textField
-    
     
     if (self.commentField.hidden == YES) {
         [self.commentField setHidden:NO];
@@ -99,41 +100,23 @@
 
 - (IBAction)dragCommentField:(UITextField *)textField forEvent: (UIEvent *)event {
     
-    
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.snipeImageView];
     textField.center = CGPointMake(textField.center.x, point.y);
 }
 
-- (IBAction)snipeToggleValueChanged:(id)sender {
-    
-    //switch statement to change BOOL isSnipeMode
-    switch (self.snipeToggle.selectedSegmentIndex) {
-        // Nearby places
-        case 0:
-            self.isSnipeMode = YES;
-            break;
-        // Favorites
-        case 1:
-            self.isSnipeMode = NO;
-            break;
-        default:
-            break;
-    }
-    
-}
-
 #pragma mark - Submit Assassination
 - (IBAction)submitAssassination:(UIButton *)sender {
-    if (self.isSnipeMode) {
-        [AssassinsService submitAssassination:self.snipeImage withMode:self.isSnipeMode withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y];
-        [self performSegueWithIdentifier:@"SnipeSubmitViewToGameView" sender:self];
+    if ([self.snipeToggle selectedSegmentIndex] == 0)
+    {
+        [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y];
     }
     
-    else {
+    else
+    {
         // show UI alert for now
-        UIAlertView *usernameAlert = [[UIAlertView alloc] initWithTitle:@"The Best Defense is a Strong Offense" message:@"This Feature is Coming Soon!" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
-        usernameAlert.alertViewStyle = UIAlertViewStyleDefault;
-        [usernameAlert show];
+        UIAlertView *defenseAlert = [[UIAlertView alloc] initWithTitle:@"The best defense is a strong offense" message:@"This feature is coming soon!" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
+        defenseAlert.alertViewStyle = UIAlertViewStyleDefault;
+        [defenseAlert show];
     }
 }
 

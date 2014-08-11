@@ -9,7 +9,7 @@
 #import "GameTableViewController.h"
 #import "AssassinsService.h"
 #import "Contract.h"
-#import "GameEventTableViewCell.h"
+#import "AssassinationEventCell.h"
 #import "ParticipantsTableViewController.h"
 #import "Game.h"
 
@@ -113,9 +113,9 @@
 }
 
 
-- (GameEventTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (AssassinationEventCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GameEventTableViewCell *cell = (GameEventTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
+    AssassinationEventCell *cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
     
     // set contract
     Contract *currentContract = [self.completedContracts objectAtIndex:indexPath.row];

@@ -14,12 +14,10 @@
 
 @implementation AssassinsService
 
-+ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isSnipeMode withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord
++ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord
 {
-    if (isSnipeMode)
+    if (isAttack)
     {
-
-    
         NSData *snipeImageData = UIImageJPEGRepresentation(snipeImage, 1);
         PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"SnipeImage.jpg"] data:snipeImageData];
         
@@ -144,7 +142,7 @@
     return contractArray;
 }
 
-
+/*
 + (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId
 {
     BOOL DEBUGAL = YES;
@@ -221,6 +219,7 @@
      }];
     
 }
+ */
 
 + (NSArray *)getAssassinListFromGame:(Game *)game
 {
