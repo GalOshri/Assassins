@@ -1,14 +1,14 @@
 //
-//  GameEventTableViewCell.m
+//  GameCell.m
 //  Assassins
 //
-//  Created by Paul Stavropoulos on 8/4/14.
+//  Created by Gal Oshri on 8/10/14.
 //  Copyright (c) 2014 Kefi. All rights reserved.
 //
 
-#import "GameEventTableViewCell.h"
+#import "GameCell.h"
 
-@implementation GameEventTableViewCell
+@implementation GameCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

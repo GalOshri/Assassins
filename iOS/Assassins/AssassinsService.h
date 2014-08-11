@@ -14,7 +14,7 @@
 @interface AssassinsService : NSObject
 
 // called in VerifySnipeViewController
-+ (void)submitAssassination:(UIImage *)snipeImage withMode: (BOOL)isSnipeMode withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord;
++ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord;
 
 // called in GameTableViewController
 + (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId;
@@ -22,7 +22,7 @@
 + (Contract *)getContractForGame:(NSString *)gameId;
 
 // called in ParticipantsTableViewController
-+ (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId;
+//+ (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId;
 
 + (NSArray *)getAssassinListFromGame:(Game *)game;
 
