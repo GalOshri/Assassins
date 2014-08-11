@@ -383,7 +383,11 @@
         contract.comment = contractObject[@"comment"];
         contract.state = contractObject[@"state"];
         
-        [pendingSnipes addObject:contract];
+       
+        if ([target.objectId isEqualToString:[PFUser currentUser].objectId])
+            [pendingSnipes insertObject:contract atIndex:0];
+        else
+            [pendingSnipes addObject:contract];
     }
     
     
