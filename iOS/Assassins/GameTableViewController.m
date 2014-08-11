@@ -68,7 +68,7 @@
     self.game = [AssassinsService getGameWithId:self.gameId];
     
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
-    self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ in play", self.game.numberOfAssassinsAlive];
+    self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
     
     // call to AssassinsService to fill current contract
     self.currentContract = [[Contract alloc] init];

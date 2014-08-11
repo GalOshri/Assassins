@@ -38,7 +38,7 @@
     
     self.gameNameLabel.text = [NSString stringWithString:self.game.name];
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
-    self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ in play", self.game.numberOfAssassinsAlive];
+    self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
     
     self.assassins = [AssassinsService getAssassinListFromGame:self.game];
     
