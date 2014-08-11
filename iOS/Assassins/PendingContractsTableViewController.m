@@ -7,8 +7,14 @@
 //
 
 #import "PendingContractsTableViewController.h"
+#import "Contract.h"
+#import "AssassinsService.h"
 
 @interface PendingContractsTableViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIView *statusBarView;
+
+@property (strong, nonatomic) NSArray *pendingContracts;
 
 @end
 
@@ -27,11 +33,18 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // get pending snipes for user!
+    [AssassinsService getPendingSnipes:self.pendingContracts];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,10 +56,9 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
-    return 0;
+    return [self.pen];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
