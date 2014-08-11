@@ -349,9 +349,11 @@
     
     PFQuery *targetQuery = [PFQuery queryWithClassName:@"Contract"];
     [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
+    [targetQuery whereKey:@"state" equalTo:@"Pending"];
     
     PFQuery *assassinQuery = [PFQuery queryWithClassName:@"Contract"];
     [assassinQuery whereKey:@"assassin" equalTo:[PFUser currentUser]];
+    [assassinQuery whereKey:@"state" equalTo:@"Pending"];
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:@[targetQuery, assassinQuery]];
     
