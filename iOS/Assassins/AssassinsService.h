@@ -31,6 +31,6 @@
 
 + (Game *) getGameWithId:(NSString *)gameId;
 
-
++ (NSArray *)getPendingSnipes;
 
 @end
