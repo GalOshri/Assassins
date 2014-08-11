@@ -343,5 +343,50 @@
     return game;
 }
 
++ (NSArray *)getPendingSnipes;
+{
+    NSMutableArray *pendingSnipes = [[NSMutableArray alloc] init];
+    
+    PFQuery *targetQuery = [PFQuery queryWithClassName:@"Contract"];
+    [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
+    
+    PFQuery *assassinQuery = [PFQuery queryWithClassName:@"Contract"];
+    [assassinQuery whereKey:@"assassin" equalTo:[PFUser currentUser]];
+    
+    PFQuery *query = [PFQuery orQueryWithSubqueries:@[targetQuery, assassinQuery]];
+    
+    NSArray *contractObjects = [query findObjects];
+    
+    for (PFObject *contractObject in contractObjects)
+    {
+        Contract *contract = [[Contract alloc] init];
+        
+        contract.contractId = contractObject.objectId;
+        contract.time = [NSDate date];
+        //contract.image = [UIImage imageNamed:@"cameraIconSmaill.png"];
+        
+        PFFile *imageFile = contractObject[@"image"];
+        
+
+        NSData *imageData = [imageFile getData];
+        contract.image = [UIImage imageWithData:imageData];
+    
+  
+        PFUser *assassin = contractObject[@"assassin"];
+        [assassin fetch];
+        contract.assassinName = assassin.username;
+        PFUser *target = contractObject[@"target"];
+        [target fetch];
+        contract.targetName = target.username;
+        contract.comment = contractObject[@"comment"];
+        contract.state = contractObject[@"state"];
+        
+        [pendingSnipes addObject:contract];
+    }
+    
+    
+    return pendingSnipes;
+}
+
 
 @end
