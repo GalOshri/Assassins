@@ -49,10 +49,10 @@
     [super viewDidLayoutSubviews];
     
     //set commentField
-    if (![self.commentText isEqualToString:@""]) {
+    if (![self.contract.comment isEqualToString:@""]) {
         [self.commentField setHidden:NO];
-        [self.commentField setText:self.commentText];
-        self.commentField.frame = CGRectMake(0,self.commentYCoord, self.commentField.frame.size.width, self.commentField.frame.size.height);
+        [self.commentField setText:self.contract.comment];
+        self.commentField.frame = CGRectMake(0,self.contract.commentYCoord, self.commentField.frame.size.width, self.commentField.frame.size.height);
     }
 }
 
@@ -77,7 +77,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     
     // Retrieve the object by id
-    [query getObjectInBackgroundWithId:self.contractId block:^(PFObject *contract, NSError *error) {
+    [query getObjectInBackgroundWithId:self.contract.contractId block:^(PFObject *contract, NSError *error) {
         
         // Now let's update it with some new data. In this case, only cheatMode and score
         // will get sent to the cloud. playerName hasn't changed.
@@ -101,7 +101,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     
     // Retrieve the object by id
-    [query getObjectInBackgroundWithId:self.contractId block:^(PFObject *contract, NSError *error) {
+    [query getObjectInBackgroundWithId:self.contract.contractId block:^(PFObject *contract, NSError *error) {
         
         // Now let's update it with some new data. In this case, only cheatMode and score
         // will get sent to the cloud. playerName hasn't changed.

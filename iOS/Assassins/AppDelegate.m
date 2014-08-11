@@ -88,9 +88,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
         vsvc.file = imageFile;
-        vsvc.commentText = contract[@"comment"];
-        vsvc.commentYCoord = [commentLocation floatValue];
-        vsvc.contractId = [NSString stringWithString:contractId];
+        vsvc.contract.comment = contract[@"comment"];
+        vsvc.contract.commentYCoord = [commentLocation floatValue];
+        vsvc.contract.contractId = [NSString stringWithString:contractId];
         [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
     }];
 }

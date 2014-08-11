@@ -7,6 +7,8 @@
 //
 
 #import "PendingContractsTableViewController.h"
+#import "PendingContractsTableViewCell.h"
+#import "VerifySnipeViewController.h"
 #import "Contract.h"
 #import "AssassinsService.h"
 
@@ -29,12 +31,29 @@
     return self;
 }
 
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"SegueToSnipeVerify"]) {
+        if ([segue.destinationViewController isKindOfClass:[VerifySnipeViewController class]])
+        {
+            VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
+            PendingContractsTableViewCell *cell = (PendingContractsTableViewCell *)sender;
+            vsvc.contract = cell.contract;
+            
+            
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     // get pending snipes for user!
-    [AssassinsService getPendingSnipes:self.pendingContracts];
+    self.pendingContracts = [AssassinsService getPendingSnipes];
     
 }
 
@@ -56,28 +75,42 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-
+{
     // Return the number of sections.
-    return [self.pen];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.pendingContracts count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+     PendingContractsTableViewCell *cell = (PendingContractsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"pendingSnipeCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    // grab correct contract
+    Contract *currentContract = [self.pendingContracts objectAtIndex:[indexPath row]];
+    
+    // time altercation
+    NSArray *timeArray = [[NSString stringWithFormat:@"%@", currentContract.time] componentsSeparatedByString:@"+"];
+    NSString *time = [timeArray objectAtIndex:0];
+    cell.pendingDateLabel.text = time;
+    
+    NSLog(@"%@, %@", [PFUser currentUser], currentContract.targetName);
+    
+    if ([[PFUser currentUser].username isEqualToString:[NSString stringWithFormat:@"%@", currentContract.targetName]])
+        cell.pendingLabel.text = [NSString stringWithFormat:@"Were you shot by %@?", currentContract.assassinName];
+    else
+        cell.pendingLabel.text = [NSString stringWithFormat:@"Did you shoot %@?", currentContract.targetName];
+    
+    // TODO: add correct image
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -117,15 +150,7 @@
 }
 */
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
 
 @end

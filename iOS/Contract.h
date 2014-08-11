@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *targetName;
 @property (strong, nonatomic) NSString *comment;
 @property (strong, nonatomic) NSString *state;
+@property float commentYCoord;
 
 
 @end

@@ -41,6 +41,7 @@
 		0DBF67131992101B00AFF5F8 /* Contract.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67121992101B00AFF5F8 /* Contract.m */; };
 		0DBF67161998542C00AFF5F8 /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67151998542C00AFF5F8 /* GameCell.m */; };
 		DAA7D033199892D600656414 /* PendingContractsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D032199892D600656414 /* PendingContractsTableViewController.m */; };
+		DAA7D0391998AA4C00656414 /* PendingContractsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */; };
 		DAD0DD331988DC840075E69D /* cameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD321988DC840075E69D /* cameraButton.png */; };
 		DAD0DD351988DF0C0075E69D /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD341988DF0C0075E69D /* menu.png */; };
 		DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD361988E0BF0075E69D /* noFlash.png */; };
@@ -121,6 +122,8 @@
 		0DBF67151998542C00AFF5F8 /* GameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCell.m; sourceTree = "<group>"; };
 		DAA7D031199892D600656414 /* PendingContractsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingContractsTableViewController.h; sourceTree = "<group>"; };
 		DAA7D032199892D600656414 /* PendingContractsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingContractsTableViewController.m; sourceTree = "<group>"; };
+		DAA7D0371998AA4C00656414 /* PendingContractsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PendingContractsTableViewCell.h; path = ../PendingContractsTableViewCell.h; sourceTree = "<group>"; };
+		DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PendingContractsTableViewCell.m; path = ../PendingContractsTableViewCell.m; sourceTree = "<group>"; };
 		DAD0DD321988DC840075E69D /* cameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraButton.png; sourceTree = "<group>"; };
 		DAD0DD341988DF0C0075E69D /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		DAD0DD361988E0BF0075E69D /* noFlash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noFlash.png; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 			children = (
 				DAA7D031199892D600656414 /* PendingContractsTableViewController.h */,
 				DAA7D032199892D600656414 /* PendingContractsTableViewController.m */,
+				DAA7D0371998AA4C00656414 /* PendingContractsTableViewCell.h */,
+				DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */,
 			);
 			name = "Pending Contracts";
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
 				DAD0DD7F199324090075E69D /* ParticipantTableViewCell.m in Sources */,
 				DAD0DD7919931C110075E69D /* Assassin.m in Sources */,
+				DAA7D0391998AA4C00656414 /* PendingContractsTableViewCell.m in Sources */,
 				DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */,
 				DAA7D033199892D600656414 /* PendingContractsTableViewController.m in Sources */,
 				0D277D15198EEBC6002362C6 /* AssassinsSignUpView.m in Sources */,

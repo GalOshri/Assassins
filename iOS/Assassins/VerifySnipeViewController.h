@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "Contract.h"
 
 @interface VerifySnipeViewController : UIViewController
+
 @property (strong, nonatomic) PFFile *file;
+@property (strong, nonatomic) Contract *contract;
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImage;
-@property (strong, nonatomic) NSString *contractId;
-@property (strong, nonatomic) NSString *commentText;
-@property float commentYCoord;
-
-
 
 @end
