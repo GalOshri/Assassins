@@ -475,7 +475,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitAssassination:" destination="LuB-hi-AS8" eventType="touchUpInside" id="jd9-Wv-PiG"/>
-                                    <segue destination="oR9-sX-s2Z" kind="modal" id="6M9-kQ-b4n"/>
+                                    <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueAfterSnipeSubmit" id="6M9-kQ-b4n"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="95t-Av-2iq">
@@ -854,6 +854,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PA9-pZ-3Sy"/>
+        <segue reference="6M9-kQ-b4n"/>
     </inferredMetricsTieBreakers>
 </document>

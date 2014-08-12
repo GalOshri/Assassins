@@ -28,7 +28,7 @@
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
      
-     if ([segue.identifier isEqualToString:@"SegueAfterSnipe"]) {
+     if ([segue.identifier isEqualToString:@"SegueAfterSnipeSubmit"]) {
          if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
          {
              GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
