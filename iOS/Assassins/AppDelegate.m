@@ -80,7 +80,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)presentSnipeVerificationView:(NSString *)contractId
 {
-    /*PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     PFObject *contractObject = [query getObjectWithId:contractId];
     
     Contract *contract = [[Contract alloc] init];
@@ -90,28 +90,20 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSData *imageData = [imageFile getData];
     contract.image = [UIImage imageWithData:imageData];
     
+    PFUser *assassin = contractObject[@"assassin"];
+    [assassin fetch];
+    contract.assassinName = assassin.username;
+    PFUser *target = contractObject[@"target"];
+    [target fetch];
+    contract.targetName = target.username;
+    contract.comment = contractObject[@"comment"];
+    contract.state = contractObject[@"state"];
+    contract.commentYCoord = [contractObject[@"commentLocation"] floatValue];
     
-    @property (strong, nonatomic) NSString *contractId;
-    @property (strong, nonatomic) NSDate *time;
-    @property (strong, nonatomic) UIImage *image;
-    @property (strong, nonatomic) NSString *assassinName;
-    @property (strong, nonatomic) NSString *targetName;
-    @property (strong, nonatomic) NSString *comment;
-    @property (strong, nonatomic) NSString *state;
-    @property float commentYCoord;
-    
-    [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
-        PFFile *imageFile = contract[@"image"];
-        NSNumber *commentLocation = contract[@"commentLocation"];
-        
-        UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
-        vsvc.file = imageFile;
-        vsvc.contract.comment = contract[@"comment"];
-        vsvc.contract.commentYCoord = [commentLocation floatValue];
-        vsvc.contract.contractId = [NSString stringWithString:contractId];
-        [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
-    }]; */
+    UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
+    vsvc.contract = contract;
+    [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
