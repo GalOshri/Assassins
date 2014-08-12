@@ -26,6 +26,10 @@
 
 @implementation UserTableViewController
 
+- (IBAction)unwindToUserPage:(UIStoryboardSegue *)segue {
+    
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"SegueToGameView"])
