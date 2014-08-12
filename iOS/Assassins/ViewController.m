@@ -32,7 +32,6 @@ CGFloat scale;
 
 - (IBAction)unwindToCamera:(UIStoryboardSegue *)segue {
     
-    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -74,7 +73,6 @@ CGFloat scale;
 {
     [super viewDidLoad];
 
-    
     picker  = [[UIImagePickerController alloc] init];
     [picker setDelegate:self];
     [picker setSourceType:UIImagePickerControllerSourceTypeCamera];

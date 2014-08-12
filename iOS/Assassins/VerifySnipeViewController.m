@@ -16,20 +16,13 @@
 
 @implementation VerifySnipeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSURLSession *session = [NSURLSession sharedSession];
+    /* NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:self.file.url]
             completionHandler:^(NSData *data,
                                 NSURLResponse *response,
@@ -43,6 +36,8 @@
 
                 }];
             }] resume];
+     */
+    self.snipeImage.image = self.contract.image;
 }
 
 -(void)viewDidLayoutSubviews {
@@ -54,12 +49,6 @@
         [self.commentField setText:self.contract.comment];
         self.commentField.frame = CGRectMake(0,self.contract.commentYCoord, self.commentField.frame.size.width, self.commentField.frame.size.height);
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

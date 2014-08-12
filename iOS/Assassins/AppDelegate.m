@@ -81,6 +81,10 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)presentSnipeVerificationView:(NSString *)contractId
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    PFObject *contractObject = [query getObjectWithId:contractId];
+    
+    
+    
     [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
         PFFile *imageFile = contract[@"image"];
         NSNumber *commentLocation = contract[@"commentLocation"];

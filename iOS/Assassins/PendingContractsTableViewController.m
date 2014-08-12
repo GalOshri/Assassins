@@ -22,15 +22,6 @@
 
 @implementation PendingContractsTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -42,6 +33,7 @@
             VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
             PendingContractsTableViewCell *cell = (PendingContractsTableViewCell *)sender;
             vsvc.contract = cell.contract;
+            
             
             
         }
@@ -64,12 +56,6 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -99,14 +85,16 @@
     NSString *time = [timeArray objectAtIndex:0];
     cell.pendingDateLabel.text = time;
     
-    NSLog(@"%@, %@", [PFUser currentUser], currentContract.targetName);
+    NSLog(@"%@, %@", [PFUser currentUser].username, currentContract.targetName);
     
-    if ([[PFUser currentUser].username isEqualToString:[NSString stringWithFormat:@"%@", currentContract.targetName]])
+    if ([[PFUser currentUser].username isEqualToString:currentContract.targetName])
         cell.pendingLabel.text = [NSString stringWithFormat:@"Were you shot by %@?", currentContract.assassinName];
     else
         cell.pendingLabel.text = [NSString stringWithFormat:@"Did you shoot %@?", currentContract.targetName];
     
-    // TODO: add correct image
+    cell.contract = currentContract;
+    
+  
     
     return cell;
 }
