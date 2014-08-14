@@ -18,6 +18,7 @@
 @interface UserTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 
 @property (strong, nonatomic) NSMutableArray *games;
 @property (strong, nonatomic) NSMutableArray *completedContracts;
@@ -50,6 +51,8 @@
     self.games = [[NSMutableArray alloc] init];
     self.completedContracts = [[NSMutableArray alloc] init];
     
+    // mock code for populating games
+    // TODO: Remove
     Game *game1 = [[Game alloc] init];
     game1.name = @"Awesome Game";
     game1.gameId = @"Jr9NNIwOiO";
@@ -61,9 +64,10 @@
     [self.games addObject:game2];
     
     self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d lifetime assassinations", 78];
+    self.usernameLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
     
-    //[AssassinsService populateUserGames:self.games];
-    //[AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
+    // [AssassinsService populateUserGames:self.games];
+    // [AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
 }
 
 #pragma mark - Table view data source
