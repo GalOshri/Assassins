@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
 @property (strong, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIView *statusBarView;
 
 
 @property (strong, nonatomic) NSArray *games;
@@ -54,11 +55,10 @@
         self.games = [AssassinsService getGameList];
     PFUser *currentUser = [PFUser currentUser];
     
-    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d lifetime assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
-    self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d lifetime games",[currentUser[@"lifetimeGames"] intValue]];
+    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total hits", [currentUser[@"lifetimeSnipes"] intValue]];
+    self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d total games",[currentUser[@"lifetimeGames"] intValue]];
     
     //[self.tableView reloadData];
-    
     //[AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
 
     self.usernameLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
@@ -67,8 +67,12 @@
     // [AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
 }
 
-#pragma mark - Table view data source
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
+}
 
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -77,7 +81,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     if (section == 0)
         return [self.games count];
     else

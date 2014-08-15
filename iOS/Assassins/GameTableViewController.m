@@ -11,7 +11,9 @@
 #import "Contract.h"
 #import "AssassinationEventCell.h"
 #import "ParticipantsTableViewController.h"
+#import "CompletedImageViewController.h"
 #import "Game.h"
+
 
 @interface GameTableViewController ()
 
@@ -47,8 +49,6 @@
 }
 
 - (IBAction)unwindToGameView:(UIStoryboardSegue *)segue {
-    
-    
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -58,6 +58,18 @@
         {
             ParticipantsTableViewController *ptvc = (ParticipantsTableViewController *)segue.destinationViewController;
             ptvc.game = self.game;
+        }
+    }
+    
+    if ([segue.identifier isEqualToString:@"CompletedImageViewSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[ParticipantsTableViewController class]])
+        {
+            NSLog(@"hi");
+            CompletedImageViewController *civc = (CompletedImageViewController *)segue.destinationViewController;
+            AssassinationEventCell *cell = (AssassinationEventCell *)sender;
+            civc.image = [cell.snipeImagePreview image];
+            civc.commentLabelYCoord = cell.commentLabelPosition;
+            civc.comment = cell.commentLabel.text;
         }
     }
 }
@@ -82,9 +94,6 @@
     // call AssassinsService to fill list with events
     self.completedContracts = [[NSMutableArray alloc] init];
     self.completedContracts = [AssassinsService getCompletedContractsForGame:self.gameId];
-
-    
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,7 +112,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -135,21 +143,10 @@
     [cell.snipeImagePreview setImage:currentContract.image];
     [[cell.snipeImagePreview layer] setCornerRadius:5];
     [[cell.snipeImagePreview layer] setMasksToBounds:YES];
+    cell.commentLabelPosition = currentContract.commentYCoord;
+    cell.userInteractionEnabled = YES;
 
     return cell;
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

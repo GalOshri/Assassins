@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *snipeImagePreview;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property float commentLabelPosition;
 
 @end
