@@ -18,8 +18,9 @@
 @interface UserTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
+@property (strong, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 
-@property (strong, nonatomic) NSMutableArray *games;
+@property (strong, nonatomic) NSArray *games;
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 
 @end
@@ -47,10 +48,9 @@
 {
     [super viewDidLoad];
     
-    self.games = [[NSMutableArray alloc] init];
     self.completedContracts = [[NSMutableArray alloc] init];
     
-    Game *game1 = [[Game alloc] init];
+    /* Game *game1 = [[Game alloc] init];
     game1.name = @"Awesome Game";
     game1.gameId = @"Jr9NNIwOiO";
     Game *game2 = [[Game alloc] init];
@@ -59,10 +59,16 @@
     
     [self.games addObject:game1];
     [self.games addObject:game2];
+     */
+    self.games = [AssassinsService getGameList];
+    PFUser *currentUser = [PFUser currentUser];
     
-    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d lifetime assassinations", 78];
+    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d lifetime assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
+    self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d lifetime games",[currentUser[@"lifetimeGames"] intValue]];
     
-    //[AssassinsService populateUserGames:self.games];
+    //[self.tableView reloadData];
+    
+    
     //[AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
 }
 

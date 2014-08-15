@@ -27,7 +27,7 @@
 + (NSArray *)getAssassinListFromGame:(Game *)game;
 
 // called in UserTableViewController.
-+ (void)populateUserGames:(NSMutableArray *)gamesList;
++ (NSArray *)getGameList;
 
 + (Game *) getGameWithId:(NSString *)gameId;
 

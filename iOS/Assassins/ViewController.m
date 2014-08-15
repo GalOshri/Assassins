@@ -127,6 +127,10 @@ CGFloat scale;
     else if ([[PFUser currentUser].objectId isEqualToString:@"t7lyXvXLiK"])
         [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
     [userData synchronize];
+    
+    
+    // REFRESH USER OBJECT TO GET LATEST STUFF??!?!
+    [[PFUser currentUser] refresh];
 
 }
 

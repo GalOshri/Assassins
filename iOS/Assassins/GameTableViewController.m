@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
+@property (strong, nonatomic) IBOutlet UILabel *gameNameLabel;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
@@ -69,6 +70,7 @@
     
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
     self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+    self.gameNameLabel.text = self.game.name;
     
     // call to AssassinsService to fill current contract
     self.currentContract = [[Contract alloc] init];

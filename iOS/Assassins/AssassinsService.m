@@ -294,33 +294,32 @@
 }
 
 
-+ (void) populateUserGames:(NSMutableArray *)gamesList
++ (NSArray *)getGameList
 {
+    NSMutableArray *gameList = [[NSMutableArray alloc] init];
     PFUser *currentUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Game"];
     
     [query whereKey:@"players" equalTo:currentUser];
+    NSArray *gameObjects = [query findObjects];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *games, NSError *error) {
-        if (!error)
-        {
-            for (PFObject *gameObject in games)
-            {
-                Game *game = [[Game alloc] init];
-                game.name = [NSString stringWithString:gameObject[@"name"]];
-                game.gameId = [NSString stringWithString:gameObject.objectId];
-                NSArray *numPlayers = gameObject[@"players"];
-                game.numberOfAssassins = [NSNumber numberWithUnsignedInteger:[numPlayers count]];
-                NSArray *contractArray = gameObject[@"contracts"];
-                int numAliveAssassins = (int) (2 * [numPlayers count] - [contractArray count]);
-                game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
-                game.assassins = gameObject[@"players"];
-                game.contracts = gameObject[@"contracts"];
-                
-                [gamesList addObject:game];
-            }
-        }
-    }];
+    for (PFObject *gameObject in gameObjects)
+    {
+        Game *game = [[Game alloc] init];
+        game.name = [NSString stringWithString:gameObject[@"name"]];
+        game.gameId = [NSString stringWithString:gameObject.objectId];
+        NSArray *numPlayers = gameObject[@"players"];
+        game.numberOfAssassins = [NSNumber numberWithUnsignedInteger:[numPlayers count]];
+        NSArray *contractArray = gameObject[@"contracts"];
+        int numAliveAssassins = (int) (2 * [numPlayers count] - [contractArray count]);
+        game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
+        game.assassins = gameObject[@"players"];
+        game.contracts = gameObject[@"contracts"];
+        
+        [gameList addObject:game];
+    }
+    
+    return gameList;
 }
 
 + (Game *) getGameWithId:(NSString *)gameId
