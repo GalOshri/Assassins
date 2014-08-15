@@ -231,6 +231,7 @@
                     <connections>
                         <outlet property="lifetimeGamesLabel" destination="sMM-vu-P7t" id="K5K-su-e0z"/>
                         <outlet property="lifetimeSnipesLabel" destination="uD9-GT-dP5" id="wGP-BY-Yof"/>
+                        <outlet property="userImage" destination="G9M-cn-jhx" id="gtP-xG-qLd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RM5-aN-xuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -870,6 +871,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PA9-pZ-3Sy"/>
+        <segue reference="FiI-vM-hIN"/>
     </inferredMetricsTieBreakers>
 </document>
