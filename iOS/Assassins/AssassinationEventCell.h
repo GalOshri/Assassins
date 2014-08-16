@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Contract.h"
 
 @interface AssassinationEventCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
@@ -15,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *snipeImagePreview;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property float commentLabelPosition;
+
+@property (strong, nonatomic) Contract *contract;
 
 @end

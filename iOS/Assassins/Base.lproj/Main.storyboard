@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -541,10 +541,10 @@
             </objects>
             <point key="canvasLocation" x="561" y="327"/>
         </scene>
-        <!--Completed Image View Controller-->
+        <!--Completed Contract View Controller-->
         <scene sceneID="T1j-OW-lbb">
             <objects>
-                <viewController id="Tsj-uF-E4u" customClass="CompletedImageViewController" sceneMemberID="viewController">
+                <viewController id="Tsj-uF-E4u" customClass="CompletedContractViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0jo-39-4NE"/>
                         <viewControllerLayoutGuide type="bottom" id="oWS-UN-mJD"/>
@@ -589,13 +589,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfQ-z4-bBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9xW-Vj-wXb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="327"/>
+            <point key="canvasLocation" x="1654" y="379"/>
         </scene>
         <!--Game Table View Controller - Super Long Name Title-->
         <scene sceneID="VxP-f9-5Cp">
             <objects>
                 <tableViewController id="oR9-sX-s2Z" customClass="GameTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="265" sectionHeaderHeight="22" sectionFooterHeight="22" id="8G1-t1-2Jj">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="265" sectionHeaderHeight="22" sectionFooterHeight="22" id="8G1-t1-2Jj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -754,7 +754,7 @@
                                     <outlet property="snipeImagePreview" destination="M8n-ma-73s" id="v2Y-vV-opv"/>
                                     <outlet property="timeLabel" destination="Ta9-Iu-dzp" id="psq-XD-Rad"/>
                                     <outlet property="userImage" destination="Tko-ET-EH5" id="Xu5-u1-Flu"/>
-                                    <segue destination="Tsj-uF-E4u" kind="modal" identifier="CompletedImageViewSegue" id="imf-hd-f3X"/>
+                                    <segue destination="Tsj-uF-E4u" kind="modal" identifier="CompletedImageViewSegue" id="gq2-u6-Cmb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -766,11 +766,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Super Long Name Title" id="olv-1K-2Oj">
                         <barButtonItem key="leftBarButtonItem" image="menu.png" id="8bi-zl-pBm"/>
-                        <barButtonItem key="rightBarButtonItem" image="cameraIconSmall.png" id="ZsU-jk-hF4">
-                            <connections>
-                                <segue destination="stc-Fg-dtT" kind="unwind" unwindAction="unwindToCamera:" id="j12-0V-fBN"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="cameraIconSmall.png" id="ZsU-jk-hF4"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -929,6 +925,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6M9-kQ-b4n"/>
+        <segue reference="FiI-vM-hIN"/>
     </inferredMetricsTieBreakers>
 </document>

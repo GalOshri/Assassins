@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Contract.h"
 
-@interface CompletedImageViewController : UIViewController
+@interface CompletedContractViewController : UIViewController
 
-@property (strong, nonatomic) UIImage *image;
-@property (strong, nonatomic) NSString *comment;
 
 @property (weak, nonatomic) IBOutlet UIImageView *contractImage;
 @property (weak, nonatomic) IBOutlet UITextField *contractComment;
-@property float commentLabelYCoord;
+
+@property (strong, nonatomic) Contract *contract;
 
 @end

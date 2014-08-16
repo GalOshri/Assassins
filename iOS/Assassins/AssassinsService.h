@@ -19,6 +19,8 @@
 // called in GameTableViewController
 + (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId;
 
++ (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray;
+
 + (Contract *)getContractForGame:(NSString *)gameId;
 
 // called in ParticipantsTableViewController

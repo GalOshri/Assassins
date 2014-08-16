@@ -142,13 +142,68 @@
     return contractArray;
 }
 
++ (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray
+{
+    
+    NSMutableArray *contractArray = [[NSMutableArray alloc] init];
+    
+    // Get all completed contracts for this game
+    PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contract"];
+    [queryContracts whereKey:@"gameId" containedIn:gameIdArray];
+    [queryContracts whereKey:@"state" equalTo:@"Completed"];
+    
+    NSArray *contractObjects = [queryContracts findObjects];
+    
+    for (PFObject *contractObject in contractObjects)
+    {
+        Contract *contract = [[Contract alloc] init];
+        
+        contract.contractId = contractObject.objectId;
+        contract.time = [NSDate date];
+        //contract.image = [UIImage imageNamed:@"cameraIconSmaill.png"];
+        
+        PFFile *imageFile = contractObject[@"image"];
+        
+        NSData *imageData = [imageFile getData];
+        contract.image = [UIImage imageWithData:imageData];
+        
+        /*NSURLSession *session = [NSURLSession sharedSession];
+         [[session dataTaskWithURL:[NSURL URLWithString:imageFile.url]
+         completionHandler:^(NSData *data,
+         NSURLResponse *response,
+         NSError *error) {
+         
+         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+         
+         UIImage *img = [[UIImage alloc] initWithData:data];
+         
+         contract.image = img;
+         
+         }];
+         }] resume];
+         */
+        
+        PFUser *assassin = contractObject[@"assassin"];
+        [assassin fetch];
+        contract.assassinName = assassin.username;
+        PFUser *target = contractObject[@"target"];
+        [target fetch];
+        contract.targetName = target.username;
+        contract.comment = contractObject[@"comment"];
+        
+        [contractArray addObject:contract];
+    }
+    return contractArray;
+    
+}
+
 /*
 + (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId
 {
     BOOL DEBUGAL = YES;
-    
+ 
     [assassinArray removeAllObjects];
-    
+ 
     if (DEBUGAL)
     {
         for (int i = 0; i < 4; i++)

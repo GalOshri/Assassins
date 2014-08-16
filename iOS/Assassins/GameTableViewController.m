@@ -11,7 +11,7 @@
 #import "Contract.h"
 #import "AssassinationEventCell.h"
 #import "ParticipantsTableViewController.h"
-#import "CompletedImageViewController.h"
+#import "CompletedContractViewController.h"
 #import "Game.h"
 
 
@@ -62,14 +62,11 @@
     }
     
     if ([segue.identifier isEqualToString:@"CompletedImageViewSegue"]) {
-        if ([segue.destinationViewController isKindOfClass:[ParticipantsTableViewController class]])
+        if ([segue.destinationViewController isKindOfClass:[CompletedContractViewController class]])
         {
-            NSLog(@"hi");
-            CompletedImageViewController *civc = (CompletedImageViewController *)segue.destinationViewController;
+            CompletedContractViewController *ccvc = (CompletedContractViewController *)segue.destinationViewController;
             AssassinationEventCell *cell = (AssassinationEventCell *)sender;
-            civc.image = [cell.snipeImagePreview image];
-            civc.commentLabelYCoord = cell.commentLabelPosition;
-            civc.comment = cell.commentLabel.text;
+            ccvc.contract = cell.contract;
         }
     }
 }
@@ -143,8 +140,10 @@
     [cell.snipeImagePreview setImage:currentContract.image];
     [[cell.snipeImagePreview layer] setCornerRadius:5];
     [[cell.snipeImagePreview layer] setMasksToBounds:YES];
-    cell.commentLabelPosition = currentContract.commentYCoord;
-    cell.userInteractionEnabled = YES;
+    //cell.commentLabelPosition = currentContract.commentYCoord;
+    //cell.userInteractionEnabled = YES;
+    
+    cell.contract = currentContract;
 
     return cell;
 }

@@ -42,7 +42,7 @@
 		0DBF67161998542C00AFF5F8 /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67151998542C00AFF5F8 /* GameCell.m */; };
 		DAA7D033199892D600656414 /* PendingContractsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D032199892D600656414 /* PendingContractsTableViewController.m */; };
 		DAA7D0391998AA4C00656414 /* PendingContractsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */; };
-		DAA7D03C199E546B00656414 /* CompletedImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D03B199E546B00656414 /* CompletedImageViewController.m */; };
+		DAA7D03C199E546B00656414 /* CompletedContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D03B199E546B00656414 /* CompletedContractViewController.m */; };
 		DAD0DD331988DC840075E69D /* cameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD321988DC840075E69D /* cameraButton.png */; };
 		DAD0DD351988DF0C0075E69D /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD341988DF0C0075E69D /* menu.png */; };
 		DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD361988E0BF0075E69D /* noFlash.png */; };
@@ -125,8 +125,8 @@
 		DAA7D032199892D600656414 /* PendingContractsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingContractsTableViewController.m; sourceTree = "<group>"; };
 		DAA7D0371998AA4C00656414 /* PendingContractsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PendingContractsTableViewCell.h; path = ../PendingContractsTableViewCell.h; sourceTree = "<group>"; };
 		DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PendingContractsTableViewCell.m; path = ../PendingContractsTableViewCell.m; sourceTree = "<group>"; };
-		DAA7D03A199E546B00656414 /* CompletedImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedImageViewController.h; sourceTree = "<group>"; };
-		DAA7D03B199E546B00656414 /* CompletedImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedImageViewController.m; sourceTree = "<group>"; };
+		DAA7D03A199E546B00656414 /* CompletedContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedContractViewController.h; sourceTree = "<group>"; };
+		DAA7D03B199E546B00656414 /* CompletedContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedContractViewController.m; sourceTree = "<group>"; };
 		DAD0DD321988DC840075E69D /* cameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraButton.png; sourceTree = "<group>"; };
 		DAD0DD341988DF0C0075E69D /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		DAD0DD361988E0BF0075E69D /* noFlash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noFlash.png; sourceTree = "<group>"; };
@@ -375,8 +375,8 @@
 		DAA7D03D199E548800656414 /* Completed Contract Image  */ = {
 			isa = PBXGroup;
 			children = (
-				DAA7D03A199E546B00656414 /* CompletedImageViewController.h */,
-				DAA7D03B199E546B00656414 /* CompletedImageViewController.m */,
+				DAA7D03A199E546B00656414 /* CompletedContractViewController.h */,
+				DAA7D03B199E546B00656414 /* CompletedContractViewController.m */,
 			);
 			name = "Completed Contract Image ";
 			sourceTree = "<group>";
@@ -534,7 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D277D0F198EE34B002362C6 /* AssassinsService.m in Sources */,
-				DAA7D03C199E546B00656414 /* CompletedImageViewController.m in Sources */,
+				DAA7D03C199E546B00656414 /* CompletedContractViewController.m in Sources */,
 				0D277D12198EEBB0002362C6 /* AssassinsLogInView.m in Sources */,
 				DAD0DD6D198F783A0075E69D /* AssassinationEventCell.m in Sources */,
 				0DBF67131992101B00AFF5F8 /* Contract.m in Sources */,
