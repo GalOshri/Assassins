@@ -35,4 +35,6 @@
 
 + (NSArray *)getPendingSnipes;
 
+//+ (FBProfilePictureView *)getUserProfilePic:(PFUser *)user;
+
 @end

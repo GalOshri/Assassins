@@ -16,11 +16,11 @@
 
 
 @interface UserTableViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
 @property (strong, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 
 
 @property (strong, nonatomic) NSArray *games;
@@ -65,6 +65,10 @@
     
     // [AssassinsService populateUserGames:self.games];
     // [AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
+    
+    self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
+    self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView

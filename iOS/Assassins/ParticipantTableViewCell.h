@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface ParticipantTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UILabel *isAliveLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+
 
 @end

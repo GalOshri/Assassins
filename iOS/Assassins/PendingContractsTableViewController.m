@@ -15,6 +15,7 @@
 @interface PendingContractsTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 
 @property (strong, nonatomic) NSArray *pendingContracts;
 
@@ -50,6 +51,11 @@
     
     // get pending snipes for user!
     self.pendingContracts = [AssassinsService getPendingSnipes];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    
+    self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
+    self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     
 }
 
@@ -92,9 +98,17 @@
     NSLog(@"%@, %@", [PFUser currentUser].username, currentContract.targetName);
     
     if ([[PFUser currentUser].username isEqualToString:currentContract.targetName])
+    {
         cell.pendingLabel.text = [NSString stringWithFormat:@"Were you shot by %@?", currentContract.assassinName];
+        cell.profilePicture.profileID = currentContract.assassinFbId;
+        cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+    }
     else
+    {
         cell.pendingLabel.text = [NSString stringWithFormat:@"Did you shoot %@?", currentContract.targetName];
+        cell.profilePicture.profileID = currentContract.targetFbId;
+        cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+    }
     
     cell.contract = currentContract;
     

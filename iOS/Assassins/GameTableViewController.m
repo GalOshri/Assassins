@@ -24,7 +24,8 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
-@property (weak, nonatomic) IBOutlet UIImageView *currentTargetImage;
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *currentTargetProfilePicture;
+
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 
 
@@ -85,8 +86,9 @@
     self.currentContract = [[Contract alloc] init];
     self.currentContract = [AssassinsService getContractForGame:self.gameId];
     
-    [self.currentTargetImage setImage:[UIImage imageNamed:@"snipeCircle.png"]];
     self.currentTargetUsername.text = self.currentContract.targetName;
+    self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
+    self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     
     // call AssassinsService to fill list with events
     self.completedContracts = [[NSMutableArray alloc] init];
@@ -142,6 +144,9 @@
     [[cell.snipeImagePreview layer] setMasksToBounds:YES];
     //cell.commentLabelPosition = currentContract.commentYCoord;
     //cell.userInteractionEnabled = YES;
+    
+    cell.profilePicture.profileID = currentContract.assassinFbId;
+    cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     
     cell.contract = currentContract;
 

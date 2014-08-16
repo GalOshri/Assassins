@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -119,10 +119,6 @@
                                                         <segue destination="1q2-cU-T8P" kind="modal" id="tUb-jh-Mz9"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="G9M-cn-jhx">
-                                                    <rect key="frame" x="124" y="67" width="73" height="73"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10 total htis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-GT-dP5">
                                                     <rect key="frame" x="20" y="138" width="156" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -152,6 +148,11 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFU-Bl-x3n" customClass="FBProfilePictureView">
+                                                    <rect key="frame" x="120" y="65" width="80" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -227,8 +228,8 @@
                     <connections>
                         <outlet property="lifetimeGamesLabel" destination="sMM-vu-P7t" id="K5K-su-e0z"/>
                         <outlet property="lifetimeSnipesLabel" destination="uD9-GT-dP5" id="wGP-BY-Yof"/>
+                        <outlet property="profilePicture" destination="kFU-Bl-x3n" id="PTK-tO-Q5Z"/>
                         <outlet property="statusBarView" destination="ftZ-Hx-uMj" id="aro-4c-Dya"/>
-                        <outlet property="userImage" destination="G9M-cn-jhx" id="gtP-xG-qLd"/>
                         <outlet property="usernameLabel" destination="8rl-2x-cwB" id="ph9-fj-nOr"/>
                     </connections>
                 </tableViewController>
@@ -268,10 +269,6 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="5CM-AF-ueI">
-                                    <rect key="frame" x="124" y="82" width="73" height="73"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-te-kwP">
                                     <rect key="frame" x="20" y="22" width="33" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -286,6 +283,11 @@
                                     <rect key="frame" x="0.0" y="186" width="320" height="34"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GT8-wt-QzA" customClass="FBProfilePictureView">
+                                    <rect key="frame" x="120" y="81" width="80" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -311,16 +313,17 @@
                                             <color key="textColor" red="0.49724968110000001" green="0.49724968110000001" blue="0.49724968110000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="vKG-Cm-DcA">
-                                            <rect key="frame" x="20" y="10" width="58" height="58"/>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="alq-RL-ETE" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="18" y="14" width="60" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
+                                            <color key="backgroundColor" red="0.036265060260000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="pendingDateLabel" destination="zGT-Ye-f4c" id="8WW-q1-TkJ"/>
                                     <outlet property="pendingLabel" destination="sXW-Kn-euE" id="VLw-bT-DiF"/>
-                                    <outlet property="userImage" destination="vKG-Cm-DcA" id="0no-49-GOE"/>
+                                    <outlet property="profilePicture" destination="alq-RL-ETE" id="elv-0N-5R5"/>
                                     <segue destination="rDc-Xy-AAS" kind="modal" identifier="SegueToSnipeVerify" id="wAT-bD-Jtr"/>
                                 </connections>
                             </tableViewCell>
@@ -332,6 +335,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="dPj-QA-XFP"/>
                     <connections>
+                        <outlet property="profilePicture" destination="GT8-wt-QzA" id="sl3-l1-yQl"/>
                         <outlet property="statusBarView" destination="Zka-tx-GqS" id="hAC-SG-zDA"/>
                         <outlet property="usernameLabel" destination="ud9-zY-2pB" id="JeI-hb-MSj"/>
                     </connections>
@@ -701,10 +705,11 @@
                                             <color key="textColor" red="0.1822864059" green="0.050917823039999997" blue="0.46047911349999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCw-DB-mBp">
-                                            <rect key="frame" x="33" y="19" width="45" height="45"/>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9vm-5a-w5m" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="31" y="21" width="45" height="45"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
@@ -728,10 +733,6 @@
                                             <rect key="frame" x="94" y="68" width="132" height="176"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tko-ET-EH5">
-                                            <rect key="frame" x="13" y="9" width="58" height="58"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="thePasta has been removed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aV-do-C2c">
                                             <rect key="frame" x="79" y="9" width="229" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -752,14 +753,19 @@
                                             <color key="textColor" red="0.39775768039999998" green="0.053013789589999999" blue="0.4353475765" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ke9-0L-xNe" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="11" y="9" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.036265060260000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentLabel" destination="MS2-wp-Khw" id="ytM-N1-4vY"/>
                                     <outlet property="headlineLabel" destination="5aV-do-C2c" id="drA-WM-Rae"/>
+                                    <outlet property="profilePicture" destination="ke9-0L-xNe" id="lQ5-tq-Z4M"/>
                                     <outlet property="snipeImagePreview" destination="M8n-ma-73s" id="v2Y-vV-opv"/>
                                     <outlet property="timeLabel" destination="Ta9-Iu-dzp" id="psq-XD-Rad"/>
-                                    <outlet property="userImage" destination="Tko-ET-EH5" id="Xu5-u1-Flu"/>
                                     <segue destination="Tsj-uF-E4u" kind="modal" identifier="CompletedImageViewSegue" id="gq2-u6-Cmb"/>
                                 </connections>
                             </tableViewCell>
@@ -776,7 +782,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="currentTargetImage" destination="PCw-DB-mBp" id="biS-E4-Eyh"/>
+                        <outlet property="currentTargetProfilePicture" destination="9vm-5a-w5m" id="bfJ-7V-kBD"/>
                         <outlet property="currentTargetUsername" destination="SxF-Ye-Y58" id="bWd-Ba-n11"/>
                         <outlet property="gameImage" destination="Yb5-Od-urc" id="jLD-SH-Lm1"/>
                         <outlet property="gameNameLabel" destination="cVv-gX-CGr" id="KyS-Xi-ss1"/>
@@ -861,10 +867,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="gbB-qP-rwx">
-                                            <rect key="frame" x="20" y="8" width="58" height="58"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name, or Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AV3-5C-2cV">
                                             <rect key="frame" x="86" y="15" width="228" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -878,11 +880,16 @@
                                             <color key="textColor" red="0.39775768039999998" green="0.053013789589999999" blue="0.4353475765" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ydh-6e-j4B" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="18" y="8" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.036265060260000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="isAliveLabel" destination="X1e-gK-hvz" id="Tc6-zn-bMg"/>
-                                    <outlet property="userImage" destination="gbB-qP-rwx" id="YOd-OF-5MN"/>
+                                    <outlet property="profilePicture" destination="Ydh-6e-j4B" id="Tn5-3O-CW5"/>
                                     <outlet property="username" destination="AV3-5C-2cV" id="Fvv-h0-iIj"/>
                                 </connections>
                             </tableViewCell>

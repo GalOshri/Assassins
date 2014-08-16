@@ -13,6 +13,7 @@
 #import "UIImage+Resize.h"
 #import "VerifySnipeViewController.h"
 #import "GameTableViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface ViewController ()
 
@@ -131,6 +132,32 @@ CGFloat scale;
     
     // REFRESH USER OBJECT TO GET LATEST STUFF??!?!
     [[PFUser currentUser] refresh];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    if ([PFFacebookUtils isLinkedWithUser:currentUser])
+    {
+        if (currentUser[@"facebookId"] == nil)
+        {
+                        // Create request for user's Facebook data
+            FBRequest *request = [FBRequest requestForMe];
+            
+            // Send request to Facebook
+            [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                if (!error) {
+                    // result is a dictionary with the user's Facebook data
+                    NSDictionary *userData = (NSDictionary *)result;
+                    
+                    currentUser[@"facebookId"] = userData[@"id"];
+                    currentUser[@"username"] = userData[@"name"];
+                    
+                    [currentUser save];
+                }
+            }];
+        }
+    }
+    
+    
+
 
 }
 

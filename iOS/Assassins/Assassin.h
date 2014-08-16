@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *userId;
+@property (strong, nonatomic) NSString *fbId;
 @property (strong, nonatomic) UIImage *assassinImage;
 @property BOOL isAlive;
 @property int numberOfSnipes;

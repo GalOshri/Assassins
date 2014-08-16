@@ -82,14 +82,15 @@
     // FIRE ZEH MISSILES!
     // I mean, assign cell items
     cell.username.text = currentAssassin.username;
-    [cell.userImage setImage: currentAssassin.assassinImage];
+    cell.profilePicture.profileID = currentAssassin.fbId;
+    cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     
     if (currentAssassin.isAlive)
         cell.isAliveLabel.text = @"Alive";
     else {
-        cell.isAliveLabel.text =@"Neutralized";
+        cell.isAliveLabel.text = @"Neutralized";
         [cell.username setAlpha:0.5];
-        [cell.userImage setAlpha:0.5];
+        [cell.profilePicture setAlpha:0.5];
         [cell.isAliveLabel setAlpha:0.5];
     }
     

@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Contract.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface AssassinationEventCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *snipeImagePreview;

@@ -14,7 +14,9 @@
 @property (strong, nonatomic) NSDate *time;
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSString *assassinName;
+@property (strong, nonatomic) NSString *assassinFbId;
 @property (strong, nonatomic) NSString *targetName;
+@property (strong, nonatomic) NSString *targetFbId;
 @property (strong, nonatomic) NSString *comment;
 @property (strong, nonatomic) NSString *state;
 @property float commentYCoord;

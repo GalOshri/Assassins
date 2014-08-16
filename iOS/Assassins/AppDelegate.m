@@ -25,6 +25,7 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [PFFacebookUtils initializeFacebook];
+    [FBProfilePictureView class];
     
     // Register for push notifications
     [application registerForRemoteNotificationTypes:
@@ -44,6 +45,7 @@
         
         [self presentSnipeVerificationView:contractId];
     }
+    
     return YES;
 }
 
@@ -107,7 +109,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-  //  [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Contract.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface PendingContractsTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) Contract *contract;
 @property (weak, nonatomic) IBOutlet UILabel *pendingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pendingDateLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+
 
 
 @end

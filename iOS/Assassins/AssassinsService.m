@@ -132,9 +132,11 @@
         PFUser *assassin = contractObject[@"assassin"];
         [assassin fetch];
         contract.assassinName = assassin.username;
+        contract.assassinFbId = assassin[@"facebookId"];
         PFUser *target = contractObject[@"target"];
         [target fetch];
         contract.targetName = target.username;
+        contract.targetFbId = target[@"facebookId"];
         contract.comment = contractObject[@"comment"];
         
         [contractArray addObject:contract];
@@ -186,9 +188,11 @@
         PFUser *assassin = contractObject[@"assassin"];
         [assassin fetch];
         contract.assassinName = assassin.username;
+        contract.assassinFbId = assassin[@"facebookId"];
         PFUser *target = contractObject[@"target"];
         [target fetch];
         contract.targetName = target.username;
+        contract.targetFbId = target[@"facebookId"];
         contract.comment = contractObject[@"comment"];
         
         [contractArray addObject:contract];
@@ -291,6 +295,7 @@
         
         assassin.username = user.username;
         assassin.userId = user.objectId;
+        assassin.fbId = user[@"facebookId"];
         assassin.assassinImage = [UIImage imageNamed:@"snipeCircle.png"];
         assassin.isAlive = YES;
         assassin.numberOfSnipes = 4;
@@ -339,10 +344,13 @@
     contract.contractId = contractObject.objectId;
     contract.time = contractObject[@"snipeTime"];
     contract.image = nil;
-    contract.assassinName = [PFUser currentUser].username;
+    PFUser *currentUser = [PFUser currentUser];
+    contract.assassinName = currentUser.username;
+    contract.assassinFbId = currentUser[@"facebookId"];
     PFUser *target = contractObject[@"target"];
     [target fetch];
     contract.targetName = target.username;
+    contract.targetFbId = target[@"facebookId"];
     contract.comment = nil;
     
     return contract;
@@ -431,9 +439,11 @@
         PFUser *assassin = contractObject[@"assassin"];
         [assassin fetch];
         contract.assassinName = assassin.username;
+        contract.assassinFbId = assassin[@"facebookId"];
         PFUser *target = contractObject[@"target"];
         [target fetch];
         contract.targetName = target.username;
+        contract.targetFbId = target[@"facebookId"];
         contract.comment = contractObject[@"comment"];
         contract.state = contractObject[@"state"];
         
@@ -448,5 +458,39 @@
     return pendingSnipes;
 }
 
+/*
++ (UIImage *)getUserProfilePic:(PFUser *)user
+{
+    if (user[@"facebookId"] == nil)
+        return [[UIImage alloc] initWithContentsOfFile:@"snipeCircle.png"];
+    
+    NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", user[@"facebookId"]]];
+    
+    
+    // Asynchornous image loading
+    NSURLSession *session = [NSURLSession sharedSession];
+    //UIActivityIndicatorView *spotlightSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    //spotlightSpinner.center = CGPointMake(frame.origin.x + (frame.size.width / 2.0), frame.origin.y + (frame.size.height / 2.0));
+    //[self.spotlightView addSubview:spotlightSpinner];
+    //[spotlightSpinner startAnimating];
+    [[session dataTaskWithURL:[NSURL URLWithString: pictureURL]
+            completionHandler:^(NSData *data,
+                                NSURLResponse *response,
+                                NSError *error) {
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                    UIImage *img = [[UIImage alloc] initWithData:data];
+                    
+                    return img;
+                }];
+            }] resume];
+ 
+    
+    UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:pictureURL]];
+    return image;
+
+}
+*/
 
 @end
