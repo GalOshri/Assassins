@@ -85,6 +85,8 @@
         contract[@"state"] = @"Completed";
         [contract saveInBackground];
         
+        
+        
         PFUser *assassin = contract[@"assassin"];
         
         // Find devices associated with these users
