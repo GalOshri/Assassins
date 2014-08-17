@@ -155,10 +155,6 @@ CGFloat scale;
             }];
         }
     }
-    
-    
-
-
 }
 
 - (void)viewDidAppear:(BOOL)animated

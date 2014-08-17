@@ -14,52 +14,115 @@ Parse.Cloud.define("hello", function(request, response)
 Parse.Cloud.define("completedContract", function(request, response) {
 	var contractId = request.params.contractId;
 
-	var contractQuery = new Parse.Query("Contract");
+	var Contract = Parse.Object.extend("Contract");
+	var contractQuery = new Parse.Query(Contract);
 
 	contractQuery.get(contractId, {
 
 		success:function(oldContract) {
 			var assassin = oldContract.get("assassin");
 			var target = oldContract.get("target");
-			var gameId = oldContract.get("gameId");
+			var game = oldContract.get("game");
 
-			var targetContractQuery = new Parse.Query("Contract");
-			targetContractQuery.equalTo("gameId", gameId);
+			var targetContractQuery = new Parse.Query(Contract);
+			targetContractQuery.equalTo("game", game);
 			targetContractQuery.equalTo("assassin", target);
 			targetContractQuery.equalTo("state", "Active");
 
 			targetContractQuery.first({
 				success: function(targetContract) {
+
+					targetContract.set("state", "Failed");
+					targetContract.save();
 			      
-			    var Contract = Parse.Object.extend("Contract");
-			    var contract = new Contract();
+			    	// If the game is over
+			    	if (targetContract.get("target").id == assassin.id)
+			    	{
+			    		alert("HI WE ARE MATCH with game: " + game.id);
+			    		// Complete the game
+			    		var GameObject = Parse.Object.extend("Game");
+			    		var gameQuery = new Parse.Query(GameObject);
 
-			    contract.set("assassin", assassin);
-			    contract.set("target", targetContract.get("target"));
-			    contract.set("state", "Active");
-			    contract.set("commentLocation", -1);
-			    contract.set("gameId", gameId);
+						gameQuery.get(game.id, {
+							success: function(game) {
+						    
+						    // Game state is over
+						    game.set("state", "Completed");
+						    game.set("winner", assassin);
+							game.save();
 
-			    contract.save(null, {
-			    	success: function(contract) {
-			    		alert('New contract created');
-			    		response.success("Success!");
-			    	},
-			    	error: function(contract, error) {
-			    		alert('error: ' + error.message);
+							// Push notification to all players to announce the winner
+							var User = Parse.Object.extend("User");
+								var winnerQuery = new Parse.Query(User);
+								winnerQuery.get(assassin.id, {
+									success: function(winner) {
+										console.log('hi: ' + winner.get("username"));
+
+										var playersArray = game.get("players");
+
+										var pushQuery = new Parse.Query(Parse.Installation);
+										pushQuery.containedIn('user', playersArray);
+										 
+										Parse.Push.send({
+										  where: pushQuery, // Set our Installation query
+										  data: {
+										  	alert: winner.get("username") + " just won the game!"
+										  }
+										}, {
+										  success: function() {
+										    response.success("Game is over");
+										  },
+										  error: function(error) {
+										    response.error("push error: " + error.message);
+										  }
+										});
+									},
+									error: function(error) {
+										response.error("winner error: " + error.message);
+									}
+								}); 
+						    
+						  },
+
+							error: function(game, error) {
+						    	alert("Couldn't find game");
+						    	response.error("Couldn't find game with error: " + error.message);
+						  }
+						});
 			    	}
-			    });
+
+			    	// Create new contract
+			    	else
+			    	{
+					    var contract = new Contract();
+
+					    contract.set("assassin", assassin);
+					    contract.set("target", targetContract.get("target"));
+					    contract.set("state", "Active");
+					    contract.set("commentLocation", -1);
+					    contract.set("game", game);
+
+					    contract.save(null, {
+					    	success: function(contract) {
+					    		alert('New contract created');
+					    		response.success("New contract created!");
+					    	},
+					    	error: function(contract, error) {
+					    		response.error('contract creation failed with error: ' + error.message);
+					    	}
+					    });
+					}
 
 			    },
-			    error: function() {
-			      response.error("Contract creation failed");
+			    error: function(error) {
+			    	response.error("Couldn't find target contract: " + error.message);
 			    }
 			});
 
 
 		},
-		error: function(){
-			response.error("couldn't find contract");
+		error: function(error){
+			response.error("couldn't find contract: " + error.message);
 		}
 	});
 });
