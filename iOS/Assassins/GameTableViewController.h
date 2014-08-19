@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Game.h"
 
 @interface GameTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSString *gameId;
+@property (strong, nonatomic) Game *game;
 
 @end

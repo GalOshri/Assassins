@@ -95,7 +95,7 @@
     
     // Get all completed contracts for this game
     PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contract"];
-    [queryContracts whereKey:@"gameId" equalTo:gameId];
+    [queryContracts whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
     [queryContracts whereKey:@"state" equalTo:@"Completed"];
     
     NSArray *contractObjects = [queryContracts findObjects];
@@ -144,6 +144,7 @@
     return contractArray;
 }
 
+// TODO: DON"T USE THIS WITHOUT FIXING THE GAMEID STUFF
 + (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray
 {
     
@@ -151,7 +152,9 @@
     
     // Get all completed contracts for this game
     PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contract"];
-    [queryContracts whereKey:@"gameId" containedIn:gameIdArray];
+    NSMutableArray *gameArray = [[NSMutableArray alloc] init];
+   // [PFObject objectWithoutDataWithClassName:@"Game" objectId:@"1zEcyElZ80"]
+    [queryContracts whereKey:@"game" containedIn:gameIdArray];
     [queryContracts whereKey:@"state" equalTo:@"Completed"];
     
     NSArray *contractObjects = [queryContracts findObjects];
@@ -334,7 +337,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     [query whereKey:@"assassin" equalTo:[PFUser currentUser]];
-    [query whereKey:@"gameId" equalTo:gameId];
+    [query whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
     
     // Retrieve the object by id
     PFObject *contractObject = [query getFirstObject];

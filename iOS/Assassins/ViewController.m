@@ -60,14 +60,14 @@ CGFloat scale;
         }
     }
     
-    if ([segue.identifier isEqualToString:@"SegueToGameView"])
+    /* if ([segue.identifier isEqualToString:@"SegueToGameView"])
     {
         if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
         {
             GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
             gtvc.gameId = @"Jr9NNIwOiO";
         }
-    }
+    } */
 }
 
 - (void)viewDidLoad
@@ -123,15 +123,13 @@ CGFloat scale;
     // CODE TO HARDCODE THE GAMEID
     NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
     [userData setObject:@"Jr9NNIwOiO" forKey:@"gameId"];
-    if ([[PFUser currentUser].objectId isEqualToString:@"vNBEO89EaJ"])
+    if ([[PFUser currentUser].objectId isEqualToString:@"GUFHki0asM"])
         [userData setObject:@"EJyZKoN3pT" forKey:@"contractId"];
-    else if ([[PFUser currentUser].objectId isEqualToString:@"t7lyXvXLiK"])
+    else if ([[PFUser currentUser].objectId isEqualToString:@"wahMYDPk15"])
         [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
     [userData synchronize];
     
-    
-    // REFRESH USER OBJECT TO GET LATEST STUFF??!?!
-    [[PFUser currentUser] refresh];
+ 
     
     PFUser *currentUser = [PFUser currentUser];
     if ([PFFacebookUtils isLinkedWithUser:currentUser])
@@ -184,7 +182,8 @@ CGFloat scale;
     AssassinsLogInView *logInViewController = [[AssassinsLogInView alloc] init];
     [logInViewController setDelegate:self]; // Set ourselves as the delegate
     [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", @"publish_actions", nil]];
-    [logInViewController setFields: PFLogInFieldsDefault | PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsDismissButton];
+    //[logInViewController setFields: PFLogInFieldsDefault | PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsDismissButton];
+    [logInViewController setFields: PFLogInFieldsFacebook];
     
     // Create the sign up view controller
     AssassinsSignUpView *signUpViewController = [[AssassinsSignUpView alloc] init];

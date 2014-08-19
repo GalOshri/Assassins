@@ -32,7 +32,8 @@
          if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
          {
              GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
-             gtvc.gameId = @"Jr9NNIwOiO";
+             Game *game = [AssassinsService getGameWithId:@"Jr9NNIwOiO"];
+             gtvc.game = game;
          }
      }
  }

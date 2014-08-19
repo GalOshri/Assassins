@@ -42,7 +42,7 @@
         {
             GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
             GameCell *cell = (GameCell *)sender;
-            gtvc.gameId = cell.gameId;
+            gtvc.game = cell.game;
         }
     }
 }
@@ -51,8 +51,8 @@
 {
     [super viewDidLoad];
     
-    self.completedContracts = [[NSMutableArray alloc] init];
-        self.games = [AssassinsService getGameList];
+    //self.completedContracts = [[NSMutableArray alloc] init];
+    self.games = [AssassinsService getGameList];
     PFUser *currentUser = [PFUser currentUser];
     
     self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total hits", [currentUser[@"lifetimeSnipes"] intValue]];
@@ -102,7 +102,7 @@
         GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
         //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         cell.textLabel.text = currentGame.name;
-        cell.gameId = currentGame.gameId;
+        cell.game = currentGame;
         return cell;
     }
     

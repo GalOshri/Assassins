@@ -31,7 +31,6 @@
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) Contract *currentContract;
-@property (strong, nonatomic) Game *game;
 
 
 
@@ -76,15 +75,14 @@
 {
     [super viewDidLoad];
     
-    self.game = [AssassinsService getGameWithId:self.gameId];
+    
     
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
     self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
     self.gameNameLabel.text = self.game.name;
     
     // call to AssassinsService to fill current contract
-    self.currentContract = [[Contract alloc] init];
-    self.currentContract = [AssassinsService getContractForGame:self.gameId];
+    self.currentContract = [AssassinsService getContractForGame:self.game.gameId];
     
     self.currentTargetUsername.text = self.currentContract.targetName;
     self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
@@ -92,7 +90,7 @@
     
     // call AssassinsService to fill list with events
     self.completedContracts = [[NSMutableArray alloc] init];
-    self.completedContracts = [AssassinsService getCompletedContractsForGame:self.gameId];
+    self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
 }
 
 - (void)didReceiveMemoryWarning
