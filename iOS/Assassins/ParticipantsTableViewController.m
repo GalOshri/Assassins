@@ -84,6 +84,8 @@
     cell.username.text = currentAssassin.username;
     cell.profilePicture.profileID = currentAssassin.fbId;
     cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+    [[cell.profilePicture layer] setCornerRadius:5];
+    [[cell.profilePicture layer] setMasksToBounds:YES];
     
     if (currentAssassin.isAlive)
         cell.isAliveLabel.text = @"Alive";

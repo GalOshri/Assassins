@@ -75,8 +75,6 @@
 {
     [super viewDidLoad];
     
-    
-    
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
     self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
     self.gameNameLabel.text = self.game.name;
@@ -87,11 +85,14 @@
     self.currentTargetUsername.text = self.currentContract.targetName;
     self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
     self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+    [[self.currentTargetProfilePicture layer] setCornerRadius:5];
+    [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
     
     // call AssassinsService to fill list with events
     self.completedContracts = [[NSMutableArray alloc] init];
     self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -99,20 +100,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
 }
 
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -136,15 +141,15 @@
     NSString *time = [timeArray objectAtIndex:0];
     cell.timeLabel.text = [NSString stringWithFormat:@"%@",time];
     
-    // tweak aesthetics of image
+    // tweak aesthetics of images
     [cell.snipeImagePreview setImage:currentContract.image];
     [[cell.snipeImagePreview layer] setCornerRadius:5];
     [[cell.snipeImagePreview layer] setMasksToBounds:YES];
-    //cell.commentLabelPosition = currentContract.commentYCoord;
-    //cell.userInteractionEnabled = YES;
     
     cell.profilePicture.profileID = currentContract.assassinFbId;
     cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+    [[cell.profilePicture layer] setCornerRadius:5];
+    [[cell.profilePicture layer] setMasksToBounds:YES];
     
     cell.contract = currentContract;
 

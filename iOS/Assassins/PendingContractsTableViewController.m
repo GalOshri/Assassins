@@ -13,6 +13,7 @@
 #import "AssassinsService.h"
 
 @interface PendingContractsTableViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
@@ -23,11 +24,13 @@
 
 @implementation PendingContractsTableViewController
 
-#pragma mark - Navigation
 
-- (IBAction)unwindToPendingSnipesPage:(UIStoryboardSegue *)segue {
+#pragma mark - Navigation
+- (IBAction)unwindToPendingSnipesPage:(UIStoryboardSegue *)segue
+{
     
 }
+
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -38,9 +41,6 @@
             VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
             PendingContractsTableViewCell *cell = (PendingContractsTableViewCell *)sender;
             vsvc.contract = cell.contract;
-            
-            
-            
         }
     }
 }
@@ -53,9 +53,12 @@
     self.pendingContracts = [AssassinsService getPendingSnipes];
     
     PFUser *currentUser = [PFUser currentUser];
+    self.usernameLabel.text = currentUser.username;
     
     self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
     self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+    [[self.profilePicture layer] setCornerRadius:5];
+    [[self.profilePicture layer] setMasksToBounds:YES];
     
 }
 
@@ -68,13 +71,14 @@
     return UIStatusBarStyleLightContent;
 }
 
-#pragma mark - Table view data source
 
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
     return 1;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -102,12 +106,17 @@
         cell.pendingLabel.text = [NSString stringWithFormat:@"Were you shot by %@?", currentContract.assassinName];
         cell.profilePicture.profileID = currentContract.assassinFbId;
         cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+        [[cell.profilePicture layer] setCornerRadius:5];
+        [[cell.profilePicture layer] setMasksToBounds:YES];
     }
+    
     else
     {
         cell.pendingLabel.text = [NSString stringWithFormat:@"Did you shoot %@?", currentContract.targetName];
         cell.profilePicture.profileID = currentContract.targetFbId;
         cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+        [[cell.profilePicture layer] setCornerRadius:5];
+        [[cell.profilePicture layer] setMasksToBounds:YES];
     }
     
     cell.contract = currentContract;
@@ -116,47 +125,5 @@
     
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
-
 
 @end

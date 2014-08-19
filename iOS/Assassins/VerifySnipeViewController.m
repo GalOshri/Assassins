@@ -42,6 +42,7 @@
     self.snipeImage.image = self.contract.image;
 }
 
+
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
@@ -51,6 +52,7 @@
         [self.commentField setHidden:NO];
         [self.commentField setText:self.contract.comment];
         self.commentField.frame = CGRectMake(0,self.contract.commentYCoord, self.commentField.frame.size.width, self.commentField.frame.size.height);
+        NSLog(@"%f", self.contract.commentYCoord);
     }
     
     // set the verify snipe section
@@ -58,7 +60,7 @@
         // user is not the victim, and cannot take action
         [self.VerifySnipeButton setHidden:YES];
         [self.declineSnipeButton setHidden:YES];
-        [self.verifyLabel setText:[NSString stringWithFormat: @"Your snipe of %@ is pending", self.contract.targetName]];
+        [self.verifyLabel setText: @"This snipe is pending"];
         self.verifyLabel.center = CGPointMake(self.verifyLabel.center.x, (2* self.verifyBackground.frame.origin.x + self.verifyBackground.frame.size.height)/2);
     }
 }
@@ -85,8 +87,6 @@
         contract[@"state"] = @"Completed";
         [contract saveInBackground];
         
-        
-        
         PFUser *assassin = contract[@"assassin"];
         
         // Find devices associated with these users
@@ -100,6 +100,8 @@
         [push sendPushInBackground];
     }];
 }
+
+
 - (IBAction)DeclinedSnipe:(id)sender {
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     

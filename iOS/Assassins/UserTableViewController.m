@@ -30,7 +30,8 @@
 
 @implementation UserTableViewController
 
-- (IBAction)unwindToUserPage:(UIStoryboardSegue *)segue {
+- (IBAction)unwindToUserPage:(UIStoryboardSegue *)segue
+{
     
 }
 
@@ -66,8 +67,11 @@
     // [AssassinsService populateUserGames:self.games];
     // [AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
     
+    // set picture ovah he-ah
     self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
     self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+    [[self.profilePicture layer] setCornerRadius:5];
+    [[self.profilePicture layer] setMasksToBounds:YES];
 
 }
 

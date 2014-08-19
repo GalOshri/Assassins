@@ -276,7 +276,7 @@
                          }
                      }
                  }
-             }
+      f       }
          }
      }];
     
@@ -448,6 +448,7 @@
         contract.targetName = target.username;
         contract.targetFbId = target[@"facebookId"];
         contract.comment = contractObject[@"comment"];
+        contract.commentYCoord = [contractObject[@"commentLocation"] floatValue];
         contract.state = contractObject[@"state"];
         
        
