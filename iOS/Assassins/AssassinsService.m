@@ -457,8 +457,6 @@
         else
             [pendingSnipes addObject:contract];
     }
-    
-    
     return pendingSnipes;
 }
 

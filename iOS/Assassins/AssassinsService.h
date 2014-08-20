@@ -13,13 +13,15 @@
 
 @interface AssassinsService : NSObject
 
+@property BOOL hasPendingSnipe;
+
 // called in VerifySnipeViewController
 + (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord;
 
 // called in GameTableViewController
 + (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId;
 
-// TODO: DON"T USE THIS WITHOUT FIXING GAME ID STUFF
+// TODO: DON'T USE THIS WITHOUT FIXING GAME ID STUFF
 + (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray;
 
 + (Contract *)getContractForGame:(NSString *)gameId;
@@ -36,6 +38,6 @@
 
 + (NSArray *)getPendingSnipes;
 
-//+ (FBProfilePictureView *)getUserProfilePic:(PFUser *)user;
+// + (FBProfilePictureView *)getUserProfilePic:(PFUser *)user;
 
 @end

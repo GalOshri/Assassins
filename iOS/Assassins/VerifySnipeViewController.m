@@ -7,6 +7,7 @@
 //
 
 #import "VerifySnipeViewController.h"
+#import "AppDelegate.h"
 
 @interface VerifySnipeViewController ()
 
@@ -99,6 +100,8 @@
         [push setMessage:@"Your assassination was confirmed!"];
         [push sendPushInBackground];
     }];
+    
+    [self removePendingSnipe];
 }
 
 
@@ -125,6 +128,14 @@
         [push setMessage:@"Your assassination was denied."];
         [push sendPushInBackground];
     }];
+    
+    [self removePendingSnipe];
+}
+
+- (void)removePendingSnipe
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.hasPendingSnipe = NO;
 }
 
 @end

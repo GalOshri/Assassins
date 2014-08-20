@@ -14,6 +14,7 @@
 #import "VerifySnipeViewController.h"
 #import "GameTableViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -21,6 +22,7 @@
 @property UIImagePickerController *picker;
 @property BOOL flashOn;
 @property (weak, nonatomic) IBOutlet UIButton *flipCamera;
+@property (weak, nonatomic) IBOutlet UIButton *snipeNotificationButton;
 
 @end
 
@@ -99,6 +101,20 @@ CGFloat scale;
     [self.view addSubview:picker.view];
     [self.view sendSubviewToBack:picker.view];
     
+    
+    // snipe NotificationButton set
+    [[self.snipeNotificationButton layer] setCornerRadius:5];
+    [[self.snipeNotificationButton layer] setMasksToBounds:YES];
+    
+    // check to see if have snipe pending
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (appDelegate.hasPendingSnipe)
+    {
+        NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
+    }
+    else
+        [self.snipeNotificationButton setHidden:YES];
     
     // CODE TO START THE GAME. RUN ONLY ONCE.
     /*PFQuery *query = [PFUser query];
@@ -243,12 +259,33 @@ CGFloat scale;
 
 }
 
+
 - (IBAction)flipCamera:(id)sender {
     if (picker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
         [picker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
     else
         [picker setCameraDevice:UIImagePickerControllerCameraDeviceFront];
 }
+
+
+
+- (void)pendingNotificationAnimation
+{
+    // animate
+    if (self.snipeNotificationButton.alpha == 1.0)
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.snipeNotificationButton.alpha = 0.5;
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.snipeNotificationButton.alpha = 1.0;
+        }];
+    }
+}
+
 
 #pragma mark - User Identity Views
 // Sent to the delegate to determine whether the log in request should be submitted to the server.

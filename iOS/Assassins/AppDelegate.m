@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "VerifySnipeViewController.h"
+#import "AssassinsService.h"
 
 @implementation AppDelegate
 
@@ -32,6 +33,8 @@
      UIRemoteNotificationTypeBadge |
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
+    
+    self.hasPendingSnipe = [self checkPendingSnipe];
     
     // Deal with push notification
     if (launchOptions != nil) {
@@ -108,15 +111,32 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
+- (BOOL)checkPendingSnipe
+{
+    PFQuery *targetQuery = [PFQuery queryWithClassName:@"Contract"];
+    [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
+    [targetQuery whereKey:@"state" equalTo:@"Pending"];
+    
+    NSInteger pendingCount = [targetQuery countObjects];
+    
+    if (pendingCount != 0)
+        return YES;
+    else
+        return NO;
+}
+
+-(void)applicationDidBecomeActive:(UIApplication *)application
+{
     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
-							
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
+
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -124,15 +144,18 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
+
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
+
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
