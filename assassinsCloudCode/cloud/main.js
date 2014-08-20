@@ -52,6 +52,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 							game.save();
 
 							// Push notification to all players to announce the winner
+							// TODO: INCREMENT EVERYONE'S GAME COUNT BY 1
 							var User = Parse.Object.extend("User");
 								var winnerQuery = new Parse.Query(User);
 								winnerQuery.get(assassin.id, {
@@ -126,6 +127,63 @@ Parse.Cloud.define("completedContract", function(request, response) {
 		}
 	});
 });
+
+// Create game. Parameters are: game Name, list of users
+Parse.Cloud.define("createGame", function(request, response) {
+	var gameName = request.params.gameName;
+
+	// Create game object
+	var Game = Parse.Object.extend("Game");
+	var game = new Game();
+
+	game.set("name", gameName);
+	game.set("state", "Active");
+
+
+	// TODO: Parse list of users (not sure if we can pass up user objects or just a list of IDs)
+	var userList = request.params.userList;
+
+	// TODO: Populate game with user POINTERS
+	var userObjectList;
+	game.set("players", userObjectList);
+
+	// Create contracts
+	var contractList = [];
+	var Contract = Parse.Object.extend("Contract");
+	for (var i = 0; i < request.params.userList; i++) // this is the number of contracts we need
+	{
+		var assassin; // TODO: PICK USERS SOMEHOW REAL
+		var target; // TODO: PICK USERS SOMEHOW REAL
+
+		var contract = new Contract();
+
+		contract.set("assassin", assassin);
+	    contract.set("target", target);
+	    contract.set("state", "Active");
+	    contract.set("commentLocation", -1);
+	    contract.set("game", game);
+
+	    contract.save();
+
+	    contractList.push(contract); // TODO: PUSH A POINTER, NOT THE FULL OBJECT
+	}
+
+
+	// Populate game object with the contracts
+	game.set("contracts", contractList);
+
+	// Save game
+	game.save();
+	/*game.save(null, {
+    	success: function(contract) {
+    		alert('New contract created');
+    		response.success("New contract created!");
+    	},
+    	error: function(contract, error) {
+    		response.error('contract creation failed with error: ' + error.message);
+    	}
+    });*/
+}
 
 
 
