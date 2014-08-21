@@ -51,37 +51,44 @@ Parse.Cloud.define("completedContract", function(request, response) {
 						    game.set("winner", assassin);
 							game.save();
 
+							// Not needed: var User = Parse.Object.extend("User");
+							var userQuery = new Parse.Query(Parse.User);
+							userQuery.each(function(user) {
+
+								var numGames = user.get("lifetimeGames");
+								user.set("lifetimeGames", numGames + 1);
+								user.save();
+							});
+
 							// Push notification to all players to announce the winner
-							// TODO: INCREMENT EVERYONE'S GAME COUNT BY 1
-							var User = Parse.Object.extend("User");
-								var winnerQuery = new Parse.Query(User);
-								winnerQuery.get(assassin.id, {
-									success: function(winner) {
-										console.log('hi: ' + winner.get("username"));
+							var winnerQuery = new Parse.Query(Parse.User);
+							winnerQuery.get(assassin.id, {
+								success: function(winner) {
+									console.log('hi: ' + winner.get("username"));
 
-										var playersArray = game.get("players");
+									var playersArray = game.get("players");
 
-										var pushQuery = new Parse.Query(Parse.Installation);
-										pushQuery.containedIn('user', playersArray);
-										 
-										Parse.Push.send({
-										  where: pushQuery, // Set our Installation query
-										  data: {
-										  	alert: winner.get("username") + " just won the game!"
-										  }
-										}, {
-										  success: function() {
-										    response.success("Game is over");
-										  },
-										  error: function(error) {
-										    response.error("push error: " + error.message);
-										  }
-										});
-									},
-									error: function(error) {
-										response.error("winner error: " + error.message);
-									}
-								}); 
+									var pushQuery = new Parse.Query(Parse.Installation);
+									pushQuery.containedIn('user', playersArray);
+									 
+									Parse.Push.send({
+									  where: pushQuery, // Set our Installation query
+									  data: {
+									  	alert: winner.get("username") + " just won the game!"
+									  }
+									}, {
+									  success: function() {
+									    response.success("Game is over");
+									  },
+									  error: function(error) {
+									    response.error("push error: " + error.message);
+									  }
+									});
+								},
+								error: function(error) {
+									response.error("winner error: " + error.message);
+								}
+							}); 
 						    
 						  },
 
@@ -143,17 +150,39 @@ Parse.Cloud.define("createGame", function(request, response) {
 	// TODO: Parse list of users (not sure if we can pass up user objects or just a list of IDs)
 	var userList = request.params.userList;
 
+
+
 	// TODO: Populate game with user POINTERS
 	var userObjectList;
 	game.set("players", userObjectList);
 
+	// Shuffle list of users. Important to do this AFTER you save it as the game object so that
+	// the order of the contracts can't be seen by the players
+	var currentIndex = userObjectList.length, temporaryValue, randomIndex;
+
+	// While there remain elements to shuffle...
+	while (0 !== currentIndex) 
+	{
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		// And swap it with the current element.
+		temporaryValue = userObjectList[currentIndex];
+		userObjectList[currentIndex] = userObjectList[randomIndex];
+		userObjectList[randomIndex] = temporaryValue;
+	}
+
 	// Create contracts
 	var contractList = [];
 	var Contract = Parse.Object.extend("Contract");
-	for (var i = 0; i < request.params.userList; i++) // this is the number of contracts we need
+	for (var i = 0; i < userObjectList.length; i++) // this is the number of contracts we need
 	{
-		var assassin; // TODO: PICK USERS SOMEHOW REAL
-		var target; // TODO: PICK USERS SOMEHOW REAL
+		var assassin = userObjectList[i]; 
+		if (i == userObjectList.length - 1) // This is the last user, his target is first user
+			var target = userObjectList[0]; 
+		else
+			var target = userObjectList[i + 1];
 
 		var contract = new Contract();
 
