@@ -40,6 +40,7 @@
 		0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */; };
 		0DBF67131992101B00AFF5F8 /* Contract.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67121992101B00AFF5F8 /* Contract.m */; };
 		0DBF67161998542C00AFF5F8 /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67151998542C00AFF5F8 /* GameCell.m */; };
+		DA42AB6D19A605F100356E7A /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42AB6C19A605F100356E7A /* CreateGameViewController.m */; };
 		DAA7D033199892D600656414 /* PendingContractsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D032199892D600656414 /* PendingContractsTableViewController.m */; };
 		DAA7D0391998AA4C00656414 /* PendingContractsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */; };
 		DAA7D03C199E546B00656414 /* CompletedContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D03B199E546B00656414 /* CompletedContractViewController.m */; };
@@ -126,6 +127,8 @@
 		0DBF67121992101B00AFF5F8 /* Contract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contract.m; sourceTree = "<group>"; };
 		0DBF67141998542C00AFF5F8 /* GameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCell.h; sourceTree = "<group>"; };
 		0DBF67151998542C00AFF5F8 /* GameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCell.m; sourceTree = "<group>"; };
+		DA42AB6B19A605F100356E7A /* CreateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
+		DA42AB6C19A605F100356E7A /* CreateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
 		DAA7D031199892D600656414 /* PendingContractsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingContractsTableViewController.h; sourceTree = "<group>"; };
 		DAA7D032199892D600656414 /* PendingContractsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingContractsTableViewController.m; sourceTree = "<group>"; };
 		DAA7D0371998AA4C00656414 /* PendingContractsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PendingContractsTableViewCell.h; path = ../PendingContractsTableViewCell.h; sourceTree = "<group>"; };
@@ -296,6 +299,7 @@
 				DAA7D03D199E548800656414 /* Completed Contract Image  */,
 				DAD0DD80199324120075E69D /* Participant Page */,
 				DAD0DD84199359450075E69D /* User Page */,
+				DA42AB6E19A6060E00356E7A /* Create Game */,
 				0D277D0C198EE32E002362C6 /* Service */,
 				0DBF67101992100200AFF5F8 /* Models */,
 				0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */,
@@ -374,6 +378,15 @@
 			);
 			name = Models;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		DA42AB6E19A6060E00356E7A /* Create Game */ = {
+			isa = PBXGroup;
+			children = (
+				DA42AB6B19A605F100356E7A /* CreateGameViewController.h */,
+				DA42AB6C19A605F100356E7A /* CreateGameViewController.m */,
+			);
+			name = "Create Game";
 			sourceTree = "<group>";
 		};
 		DAA7D030199892C400656414 /* Pending Contracts */ = {
@@ -571,6 +584,7 @@
 				DAD0DD7919931C110075E69D /* Assassin.m in Sources */,
 				DAA7D0391998AA4C00656414 /* PendingContractsTableViewCell.m in Sources */,
 				DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */,
+				DA42AB6D19A605F100356E7A /* CreateGameViewController.m in Sources */,
 				DAA7D033199892D600656414 /* PendingContractsTableViewController.m in Sources */,
 				0D277D15198EEBC6002362C6 /* AssassinsSignUpView.m in Sources */,
 				DAD0DD75199092800075E69D /* VerifySnipeViewController.m in Sources */,

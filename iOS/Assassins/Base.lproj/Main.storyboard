@@ -99,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="15" y="-353"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Game View Controller-->
         <scene sceneID="g85-Rp-4Ad">
             <objects>
-                <viewController id="TbO-PD-dIe" sceneMemberID="viewController">
+                <viewController id="TbO-PD-dIe" customClass="CreateGameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s1k-lF-yc0"/>
                         <viewControllerLayoutGuide type="bottom" id="DK9-0T-6K8"/>
@@ -135,7 +135,7 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gameImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="WQp-17-t3T">
-                                        <rect key="frame" x="127" y="69" width="66" height="52"/>
+                                        <rect key="frame" x="127" y="64" width="66" height="52"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o19-MX-w76">
@@ -173,7 +173,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="noe-EO-TzO">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendCell" id="noe-EO-TzO">
                                         <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="noe-EO-TzO" id="7Jh-R8-EGG">
@@ -194,6 +194,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="friendSearchBar" destination="XVf-gY-pCV" id="1Qk-u5-ys2"/>
+                        <outlet property="friendTableView" destination="e5V-JF-cSb" id="xdS-AC-7Xf"/>
+                        <outlet property="gameNameField" destination="ScG-S2-B4V" id="ru8-6q-6e1"/>
                         <outlet property="searchDisplayController" destination="8v8-cf-T25" id="KLV-av-98H"/>
                     </connections>
                 </viewController>
@@ -202,7 +205,6 @@
                 <searchDisplayController id="8v8-cf-T25">
                     <connections>
                         <outlet property="delegate" destination="TbO-PD-dIe" id="5No-ua-QBv"/>
-                        <outlet property="searchBar" destination="XVf-gY-pCV" id="OpU-re-VTM"/>
                         <outlet property="searchContentsController" destination="TbO-PD-dIe" id="3gz-Fh-CAN"/>
                         <outlet property="searchResultsDataSource" destination="TbO-PD-dIe" id="Uuz-GJ-Zlc"/>
                         <outlet property="searchResultsDelegate" destination="TbO-PD-dIe" id="XlA-1S-B3B"/>
