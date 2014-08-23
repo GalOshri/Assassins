@@ -5,11 +5,6 @@
 // 
 */
 
-// Grab image file submitted 
-Parse.Cloud.define("hello", function(request, response) 
-{
-  response.success("Hello world!");
-});
 
 Parse.Cloud.define("completedContract", function(request, response) {
 	var contractId = request.params.contractId;
@@ -135,6 +130,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 	});
 });
 
+
 // Create game. Parameters are: game Name, list of users
 Parse.Cloud.define("createGame", function(request, response) {
 	var gameName = request.params.gameName;
@@ -147,13 +143,18 @@ Parse.Cloud.define("createGame", function(request, response) {
 	game.set("state", "Active");
 
 
-	// TODO: Parse list of users (not sure if we can pass up user objects or just a list of IDs)
+	// Parse list of users (not sure if we can pass up user objects or just a list of IDs)
 	var userList = request.params.userList;
+	var userObjectList = [];
 
+	for (var i = 0; i < userList.length; i++)
+	{
+		var userObject = new Parse.User();
+		userObject.id = userList[i];
+		userObjectList.push(userObject);
+	}
 
-
-	// TODO: Populate game with user POINTERS
-	var userObjectList;
+	// Populate game with user POINTERS
 	game.set("players", userObjectList);
 
 	// Shuffle list of users. Important to do this AFTER you save it as the game object so that
@@ -173,46 +174,65 @@ Parse.Cloud.define("createGame", function(request, response) {
 		userObjectList[randomIndex] = temporaryValue;
 	}
 
-	// Create contracts
-	var contractList = [];
-	var Contract = Parse.Object.extend("Contract");
-	for (var i = 0; i < userObjectList.length; i++) // this is the number of contracts we need
-	{
-		var assassin = userObjectList[i]; 
-		if (i == userObjectList.length - 1) // This is the last user, his target is first user
-			var target = userObjectList[0]; 
-		else
-			var target = userObjectList[i + 1];
+	game.save(null, {
+	  success: function(game) {
+	    // Execute any logic that should take place after the object is saved.
+	    // Create contracts
+		var contractList = [];
+		var Contract = Parse.Object.extend("Contract");
+		for (var i = 0; i < userObjectList.length; i++) // this is the number of contracts we need
+		{
+			var assassin = userObjectList[i]; 
+			if (i == userObjectList.length - 1) // This is the last user, his target is first user
+				var target = userObjectList[0]; 
+			else
+				var target = userObjectList[i + 1];
 
-		var contract = new Contract();
+			var contract = new Contract();
 
-		contract.set("assassin", assassin);
-	    contract.set("target", target);
-	    contract.set("state", "Active");
-	    contract.set("commentLocation", -1);
-	    contract.set("game", game);
+			contract.set("assassin", assassin);
+		    contract.set("target", target);
+		    contract.set("state", "Active");
+		    contract.set("commentLocation", -1);
+		    var gamePointer = {__type: "Pointer", className: "Game", objectId: game.id};
+		    contract.set("game",gamePointer);
 
-	    contract.save();
+		    contract.save(null, {
+		    	success: function(contract) {
+		    		var contractPointer = {__type: "Pointer", className: "Contract", objectId: contract.id};
+		    		contractList.push(contractPointer);
+		    		if (contractList.length == userObjectList.length)
+		    		{
+		    			game.set("contracts", contractList);
+		    			game.save(null, {
+		    				success: function(game) {
+		    					response.success("New game created");
+		    				},
+		    				error: function(game, error) {
+		    					response.error("game update failed");
+		    				}
+		    			});
+		    			
+		    		}
+		    	},
+		    	error: function(contract, error) {
+		    		response.error("contract creation failed");
+		    	}
+		    });
+		}
+	  },
+	  error: function(game, error) {
+	    // Execute any logic that should take place if the save fails.
+	    // error is a Parse.Error with an error code and description.
+	    alert('Failed to create new object, with error code: ' + error.message);
+	    response.error("game creation failed");
+	  }
+	});
 
-	    contractList.push(contract); // TODO: PUSH A POINTER, NOT THE FULL OBJECT
-	}
 
 
-	// Populate game object with the contracts
-	game.set("contracts", contractList);
-
-	// Save game
-	game.save();
-	/*game.save(null, {
-    	success: function(contract) {
-    		alert('New contract created');
-    		response.success("New contract created!");
-    	},
-    	error: function(contract, error) {
-    		response.error('contract creation failed with error: ' + error.message);
-    	}
-    });*/
-}
+	
+});
 
 
 
