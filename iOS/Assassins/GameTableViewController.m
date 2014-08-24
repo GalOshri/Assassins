@@ -22,12 +22,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
 @property (strong, nonatomic) IBOutlet UILabel *gameNameLabel;
 
-
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *currentTargetProfilePicture;
 
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
-
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) Contract *currentContract;
@@ -38,7 +36,7 @@
 
 @implementation GameTableViewController
 
-- (NSMutableArray *)completedContracts
+/* - (NSMutableArray *)completedContracts
 {
     if (!_completedContracts)
     {
@@ -46,7 +44,7 @@
     }
     
     return _completedContracts;
-}
+} */
 
 - (IBAction)unwindToGameView:(UIStoryboardSegue *)segue {
 }
@@ -89,23 +87,13 @@
     [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
     
     // call AssassinsService to fill list with events
-    self.completedContracts = [[NSMutableArray alloc] init];
     self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
 }
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
 }
-
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

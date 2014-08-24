@@ -26,6 +26,7 @@
 
 
 #pragma mark - Navigation
+
 - (IBAction)unwindToPendingSnipesPage:(UIStoryboardSegue *)segue
 {
     
@@ -105,23 +106,19 @@
     {
         cell.pendingLabel.text = [NSString stringWithFormat:@"Were you shot by %@?", currentContract.assassinName];
         cell.profilePicture.profileID = currentContract.assassinFbId;
-        cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-        [[cell.profilePicture layer] setCornerRadius:5];
-        [[cell.profilePicture layer] setMasksToBounds:YES];
     }
     
     else
     {
         cell.pendingLabel.text = [NSString stringWithFormat:@"Did you shoot %@?", currentContract.targetName];
         cell.profilePicture.profileID = currentContract.targetFbId;
-        cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-        [[cell.profilePicture layer] setCornerRadius:5];
-        [[cell.profilePicture layer] setMasksToBounds:YES];
     }
     
-    cell.contract = currentContract;
+    cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+    [[cell.profilePicture layer] setCornerRadius:5];
+    [[cell.profilePicture layer] setMasksToBounds:YES];
     
-  
+    cell.contract = currentContract;
     
     return cell;
 }

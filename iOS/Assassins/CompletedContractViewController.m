@@ -14,13 +14,11 @@
 
 @implementation CompletedContractViewController
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.contractImage setImage: self.contract.image];
+    [self.contractImage setImage:self.contract.image];
 }
 
 -(void)viewDidLayoutSubviews {

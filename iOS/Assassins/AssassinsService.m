@@ -149,7 +149,6 @@
             
             assassin.username = @"Galileo";
             assassin.userId = @"Galilei";
-            assassin.assassinImage = [UIImage imageNamed:@"snipeCircle.png"];
             assassin.isAlive = YES;
             assassin.numberOfSnipes = i;
             
@@ -182,7 +181,6 @@
                      
                      assassin.username = assassinUser.username;
                      assassin.userId = assassinUser.objectId;
-                     assassin.assassinImage = [UIImage imageNamed:@"flipCamera.png"];
                      assassin.isAlive = YES;
                      assassin.numberOfSnipes = 4;
                      
@@ -229,7 +227,6 @@
         assassin.username = user.username;
         assassin.userId = user.objectId;
         assassin.fbId = user[@"facebookId"];
-        assassin.assassinImage = [UIImage imageNamed:@"snipeCircle.png"];
         assassin.isAlive = YES;
         assassin.numberOfSnipes = 4;
         
@@ -260,11 +257,6 @@
 
 + (Contract *)getContractForGame:(NSString *)gameId
 {
-    // Get Contract
-    // TODO: Can have multiple contracts (one per game).
-    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-    NSString *contractId = [userData objectForKey:@"contractId"];
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     [query whereKey:@"assassin" equalTo:[PFUser currentUser]];
     [query whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
