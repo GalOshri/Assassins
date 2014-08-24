@@ -104,13 +104,13 @@
     
     if ([[PFUser currentUser].username isEqualToString:currentContract.targetName])
     {
-        cell.pendingLabel.text = [NSString stringWithFormat:@"Were you shot by %@?", currentContract.assassinName];
+        cell.pendingLabel.text = [NSString stringWithFormat:@"Did %@ tag you?", currentContract.assassinName];
         cell.profilePicture.profileID = currentContract.assassinFbId;
     }
     
     else
     {
-        cell.pendingLabel.text = [NSString stringWithFormat:@"Did you shoot %@?", currentContract.targetName];
+        cell.pendingLabel.text = [NSString stringWithFormat:@"Did you tag %@?", currentContract.targetName];
         cell.profilePicture.profileID = currentContract.targetFbId;
     }
     
