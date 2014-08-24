@@ -11,10 +11,9 @@
 #import "GameTableViewController.h"
 
 @interface SnipeSubmitView ()
+
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *snipeToggle;
-
-
 
 @end
 
@@ -25,9 +24,6 @@
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     
      if ([segue.identifier isEqualToString:@"SegueAfterSnipeSubmit"]) {
          if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
          {
@@ -38,7 +34,6 @@
      }
  }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,7 +41,7 @@
     self.snipeImageView.image = self.snipeImage;
     [self.commentField setHidden:YES];
     
-    //set touch events for snipeImageView
+    // set touch events for snipeImageView
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickEventOnImage:)];
     [tapRecognizer setNumberOfTapsRequired:1];
     [tapRecognizer setDelegate:self];
@@ -54,7 +49,6 @@
 
     
 }
-
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -89,7 +83,6 @@
     }
 }
 
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [textField resignFirstResponder];
@@ -98,13 +91,14 @@
 }
 
 
-- (IBAction)dragCommentField:(UITextField *)textField forEvent: (UIEvent *)event {
+- (IBAction)dragCommentField:(UITextField *)textField forEvent:(UIEvent *)event {
     
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.snipeImageView];
     textField.center = CGPointMake(textField.center.x, point.y);
 }
 
 #pragma mark - Submit Assassination
+
 - (IBAction)submitAssassination:(UIButton *)sender {
     if ([self.snipeToggle selectedSegmentIndex] == 0)
     {
@@ -119,6 +113,5 @@
         [defenseAlert show];
     }
 }
-
 
 @end

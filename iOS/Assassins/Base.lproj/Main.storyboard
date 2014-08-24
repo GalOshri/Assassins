@@ -529,7 +529,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="ConfirmedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="h9S-Fe-W6i"/>
+                                            <action selector="confirmedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="6mM-MR-WvK"/>
                                             <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToPendingSnipesPage:" id="N8g-gt-xqu"/>
                                         </connections>
                                     </button>
@@ -541,7 +541,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="DeclinedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="TYf-x3-WGe"/>
+                                            <action selector="declinedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="r6Z-Sb-DUV"/>
                                             <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToPendingSnipesPage:" id="IIQ-j0-oxV"/>
                                         </connections>
                                     </button>
@@ -572,8 +572,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="VerifySnipeButton" destination="ex5-tB-3pA" id="9Sg-y5-Qbg"/>
                         <outlet property="commentField" destination="OwV-Jl-oph" id="eAY-Os-OhO"/>
+                        <outlet property="confirmSnipeButton" destination="ex5-tB-3pA" id="nwL-EA-DSA"/>
                         <outlet property="declineSnipeButton" destination="Cdg-8Q-I0f" id="siy-Ja-SDp"/>
                         <outlet property="snipeImage" destination="DIr-KF-nSc" id="Fdz-R0-VZP"/>
                         <outlet property="verifyBackground" destination="uII-Fl-Spg" id="KXU-Gb-hlE"/>

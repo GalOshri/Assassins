@@ -20,7 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *flashImage;
 @property UIImagePickerController *picker;
-@property BOOL flashOn;
 @property (weak, nonatomic) IBOutlet UIButton *flipCamera;
 @property (weak, nonatomic) IBOutlet UIButton *snipeNotificationButton;
 
@@ -61,21 +60,13 @@ CGFloat scale;
             ssv.snipeImage = (UIImage *) croppedImage;
         }
     }
-    
-    /* if ([segue.identifier isEqualToString:@"SegueToGameView"])
-    {
-        if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
-        {
-            GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
-            gtvc.gameId = @"Jr9NNIwOiO";
-        }
-    } */
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    // Set up the camera
     picker  = [[UIImagePickerController alloc] init];
     [picker setDelegate:self];
     [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
@@ -85,7 +76,6 @@ CGFloat scale;
     [picker setToolbarHidden:YES];
     [picker setAllowsEditing:NO];
     picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-    self.flashOn = NO;
     
     //math to resize to size of phone
     CGSize screenBounds = [UIScreen mainScreen].bounds.size;
@@ -93,11 +83,9 @@ CGFloat scale;
     CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
     scale = screenBounds.height / camViewHeight;
     
-    
     picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
     picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
 
-    
     [self.view addSubview:picker.view];
     [self.view sendSubviewToBack:picker.view];
     
@@ -105,6 +93,12 @@ CGFloat scale;
     // snipe NotificationButton set
     [[self.snipeNotificationButton layer] setCornerRadius:5];
     [[self.snipeNotificationButton layer] setMasksToBounds:YES];
+    
+    // Log in / sign up if no user signed in
+    if (![PFUser currentUser])
+    {
+        [self showLogInAndSignUpView];
+    }
     
     // CODE TO START THE GAME. RUN ONLY ONCE.
     /*PFQuery *query = [PFUser query];
@@ -134,52 +128,12 @@ CGFloat scale;
     else if ([[PFUser currentUser].objectId isEqualToString:@"wahMYDPk15"])
         [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
     [userData synchronize];
-    
- 
-    
-    PFUser *currentUser = [PFUser currentUser];
-    if ([PFFacebookUtils isLinkedWithUser:currentUser])
-    {
-        if (currentUser[@"facebookId"] == nil)
-        {
-                        // Create request for user's Facebook data
-            FBRequest *request = [FBRequest requestForMe];
-            
-            // Send request to Facebook
-            [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                if (!error) {
-                    // result is a dictionary with the user's Facebook data
-                    NSDictionary *userData = (NSDictionary *)result;
-                    
-                    currentUser[@"facebookId"] = userData[@"id"];
-                    currentUser[@"username"] = userData[@"name"];
-                    
-                    [currentUser save];
-                }
-            }];
-        }
-    }
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    // Log in / sign up if no user signed in
-    if (![PFUser currentUser])
-    {
-        [self showLogInAndSignUpView];
-    }
-    else
-    {
-        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-        if (currentInstallation[@"user"] == nil)
-        {
-            currentInstallation[@"user"] = [PFUser currentUser];
-            [currentInstallation saveInBackground];
-        }
-        
-    }
     
     // check to see if have snipe pending
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -219,9 +173,7 @@ CGFloat scale;
 #pragma mark - Picture Methods
 
 - (IBAction)takePicture:(UIButton *)sender {
-    
     [picker takePicture];
-    
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -231,34 +183,25 @@ CGFloat scale;
         chosenImage = [UIImage imageWithCGImage:chosenImage.CGImage scale:chosenImage.scale orientation:UIImageOrientationLeftMirrored];
 
     [self performSegueWithIdentifier:@"SnipeSegue" sender:chosenImage];
- 
-    
 }
-
+/*
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
-
-
-
+*/
 - (IBAction)toggleFlash:(UIButton *)sender {
     
-    if (self.flashOn == YES)
+    if (picker.cameraFlashMode == UIImagePickerControllerCameraFlashModeOn)
     {
         picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         [sender setImage:[UIImage imageNamed:  @"noFlash.png"] forState:UIControlStateNormal];
-        self.flashOn = NO;
     }
-    
     else
     {
         picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
         [sender setImage:[UIImage imageNamed: @"flash.png"] forState:UIControlStateNormal];
-        self.flashOn = YES;
     }
-
 }
-
 
 - (IBAction)flipCamera:(id)sender {
     if (picker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
@@ -266,8 +209,6 @@ CGFloat scale;
     else
         [picker setCameraDevice:UIImagePickerControllerCameraDeviceFront];
 }
-
-
 
 - (void)pendingNotificationAnimation
 {
@@ -305,6 +246,35 @@ CGFloat scale;
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation[@"user"] == nil)
+    {
+        currentInstallation[@"user"] = [PFUser currentUser];
+        [currentInstallation saveInBackground];
+    }
+    PFUser *currentUser = [PFUser currentUser];
+    if ([PFFacebookUtils isLinkedWithUser:currentUser])
+    {
+        if (currentUser[@"facebookId"] == nil)
+        {
+            // Create request for user's Facebook data
+            FBRequest *request = [FBRequest requestForMe];
+            
+            // Send request to Facebook
+            [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                if (!error) {
+                    // result is a dictionary with the user's Facebook data
+                    NSDictionary *userData = (NSDictionary *)result;
+                    
+                    currentUser[@"facebookId"] = userData[@"id"];
+                    currentUser[@"username"] = userData[@"name"];
+                    
+                    [currentUser save];
+                }
+            }];
+        }
+    }
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
