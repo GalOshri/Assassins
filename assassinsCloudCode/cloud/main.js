@@ -206,7 +206,7 @@ Parse.Cloud.define("createGame", function(request, response) {
 		    			game.set("contracts", contractList);
 		    			game.save(null, {
 		    				success: function(game) {
-		    					response.success("New game created");
+		    					response.success(game);
 		    				},
 		    				error: function(game, error) {
 		    					response.error("game update failed");

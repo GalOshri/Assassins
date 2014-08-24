@@ -70,28 +70,8 @@
 
 + (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId
 {
-    BOOL DEBUGAL = NO;
     
     NSMutableArray *contractArray = [[NSMutableArray alloc] init];
-    
-    if (DEBUGAL)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            Contract *contract = [[Contract alloc] init];
-            
-            contract.contractId = [NSString stringWithFormat:@"Contract%d",i];
-            contract.time = [NSDate date];
-            contract.image = [UIImage imageNamed:@"cameraIconSmaill.png"];
-            contract.assassinName = @"Galileo";
-            contract.targetName = @"Pauly";
-            contract.comment = @"Boom.";
-            
-            [contractArray addObject:contract];
-        }
-        //[tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-        return contractArray;
-    }
     
     // Get all completed contracts for this game
     PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contract"];
@@ -102,42 +82,7 @@
     
     for (PFObject *contractObject in contractObjects)
     {
-        Contract *contract = [[Contract alloc] init];
-        
-        contract.contractId = contractObject.objectId;
-        contract.time = [NSDate date];
-        //contract.image = [UIImage imageNamed:@"cameraIconSmaill.png"];
-        
-        PFFile *imageFile = contractObject[@"image"];
-        
-        NSData *imageData = [imageFile getData];
-        contract.image = [UIImage imageWithData:imageData];
-        
-        /*NSURLSession *session = [NSURLSession sharedSession];
-        [[session dataTaskWithURL:[NSURL URLWithString:imageFile.url]
-                completionHandler:^(NSData *data,
-                                    NSURLResponse *response,
-                                    NSError *error) {
-                    
-                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        
-                        UIImage *img = [[UIImage alloc] initWithData:data];
-                        
-                        contract.image = img;
-                        
-                    }];
-                }] resume];
-        */
-        
-        PFUser *assassin = contractObject[@"assassin"];
-        [assassin fetch];
-        contract.assassinName = assassin.username;
-        contract.assassinFbId = assassin[@"facebookId"];
-        PFUser *target = contractObject[@"target"];
-        [target fetch];
-        contract.targetName = target.username;
-        contract.targetFbId = target[@"facebookId"];
-        contract.comment = contractObject[@"comment"];
+        Contract *contract = [self getContractFromContractObject:contractObject];
         
         [contractArray addObject:contract];
     }
@@ -145,7 +90,7 @@
 }
 
 // TODO: DON"T USE THIS WITHOUT FIXING THE GAMEID STUFF
-+ (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray
+/*+ (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray
 {
     
     NSMutableArray *contractArray = [[NSMutableArray alloc] init];
@@ -172,22 +117,6 @@
         NSData *imageData = [imageFile getData];
         contract.image = [UIImage imageWithData:imageData];
         
-        /*NSURLSession *session = [NSURLSession sharedSession];
-         [[session dataTaskWithURL:[NSURL URLWithString:imageFile.url]
-         completionHandler:^(NSData *data,
-         NSURLResponse *response,
-         NSError *error) {
-         
-         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-         
-         UIImage *img = [[UIImage alloc] initWithData:data];
-         
-         contract.image = img;
-         
-         }];
-         }] resume];
-         */
-        
         PFUser *assassin = contractObject[@"assassin"];
         [assassin fetch];
         contract.assassinName = assassin.username;
@@ -203,6 +132,7 @@
     return contractArray;
     
 }
+ */
 
 /*
 + (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId
@@ -342,19 +272,7 @@
     // Retrieve the object by id
     PFObject *contractObject = [query getFirstObject];
     
-    Contract *contract = [[Contract alloc] init];
-    
-    contract.contractId = contractObject.objectId;
-    contract.time = contractObject[@"snipeTime"];
-    contract.image = nil;
-    PFUser *currentUser = [PFUser currentUser];
-    contract.assassinName = currentUser.username;
-    contract.assassinFbId = currentUser[@"facebookId"];
-    PFUser *target = contractObject[@"target"];
-    [target fetch];
-    contract.targetName = target.username;
-    contract.targetFbId = target[@"facebookId"];
-    contract.comment = nil;
+    Contract *contract = [self getContractFromContractObject:contractObject];
     
     return contract;
 }
@@ -371,16 +289,7 @@
     
     for (PFObject *gameObject in gameObjects)
     {
-        Game *game = [[Game alloc] init];
-        game.name = [NSString stringWithString:gameObject[@"name"]];
-        game.gameId = [NSString stringWithString:gameObject.objectId];
-        NSArray *numPlayers = gameObject[@"players"];
-        game.numberOfAssassins = [NSNumber numberWithUnsignedInteger:[numPlayers count]];
-        NSArray *contractArray = gameObject[@"contracts"];
-        int numAliveAssassins = (int) (2 * [numPlayers count] - [contractArray count]);
-        game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
-        game.assassins = gameObject[@"players"];
-        game.contracts = gameObject[@"contracts"];
+        Game *game = [self getGameFromGameObject:gameObject];
         
         [gameList addObject:game];
     }
@@ -393,17 +302,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Game"];
     PFObject *gameObject = [query getObjectWithId:gameId];
     
-    Game *game = [[Game alloc] init];
-    
-    game.name = [NSString stringWithString:gameObject[@"name"]];
-    game.gameId = [NSString stringWithString:gameObject.objectId];
-    NSArray *numPlayers = gameObject[@"players"];
-    game.numberOfAssassins = [NSNumber numberWithUnsignedInteger:[numPlayers count]];
-    NSArray *contractArray = gameObject[@"contracts"];
-    int numAliveAssassins = (int) (2 * [numPlayers count] - [contractArray count]);
-    game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
-    game.assassins = gameObject[@"players"];
-    game.contracts = gameObject[@"contracts"];
+    Game *game = [self getGameFromGameObject:gameObject];
     
     return game;
 }
@@ -421,38 +320,15 @@
     [assassinQuery whereKey:@"state" equalTo:@"Pending"];
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:@[targetQuery, assassinQuery]];
+    PFUser *currentUser = [PFUser currentUser];
     
     NSArray *contractObjects = [query findObjects];
     
     for (PFObject *contractObject in contractObjects)
     {
-        Contract *contract = [[Contract alloc] init];
+        Contract *contract = [self getContractFromContractObject:contractObject];
         
-        contract.contractId = contractObject.objectId;
-        contract.time = [NSDate date];
-        //contract.image = [UIImage imageNamed:@"cameraIconSmaill.png"];
-        
-        PFFile *imageFile = contractObject[@"image"];
-        
-
-        NSData *imageData = [imageFile getData];
-        contract.image = [UIImage imageWithData:imageData];
-    
-  
-        PFUser *assassin = contractObject[@"assassin"];
-        [assassin fetch];
-        contract.assassinName = assassin.username;
-        contract.assassinFbId = assassin[@"facebookId"];
-        PFUser *target = contractObject[@"target"];
-        [target fetch];
-        contract.targetName = target.username;
-        contract.targetFbId = target[@"facebookId"];
-        contract.comment = contractObject[@"comment"];
-        contract.commentYCoord = [contractObject[@"commentLocation"] floatValue];
-        contract.state = contractObject[@"state"];
-        
-       
-        if ([target.objectId isEqualToString:[PFUser currentUser].objectId])
+        if ([contract.targetFbId isEqualToString:currentUser[@"facebookId"]])
             [pendingSnipes insertObject:contract atIndex:0];
         else
             [pendingSnipes addObject:contract];
@@ -494,5 +370,76 @@
 
 }
 */
+
++ (Game *) createGame:(NSString *)gameName withUserIds:(NSArray *)userIdArray
+{
+    NSDictionary *createGameDict = [[NSDictionary alloc] initWithObjectsAndKeys:gameName, @"gameName", userIdArray, @"userList", nil];
+    PFObject *gameObject = [PFCloud callFunction:@"createGame" withParameters:createGameDict];
+    
+    Game *game = [self getGameFromGameObject:gameObject];
+    
+    return game;
+}
+
++ (Game *) getGameFromGameObject:(PFObject *)gameObject
+{
+    Game *game = [[Game alloc] init];
+    
+    game.name = [NSString stringWithString:gameObject[@"name"]];
+    game.gameId = [NSString stringWithString:gameObject.objectId];
+    NSArray *numPlayers = gameObject[@"players"];
+    game.numberOfAssassins = [NSNumber numberWithUnsignedInteger:[numPlayers count]];
+    NSArray *contractArray = gameObject[@"contracts"];
+    int numAliveAssassins = (int) (2 * [numPlayers count] - [contractArray count]);
+    game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
+    game.assassins = gameObject[@"players"];
+    game.contracts = gameObject[@"contracts"];
+    
+    return game;
+}
+
++ (Contract *) getContractFromContractObject:(PFObject *)contractObject
+{
+    Contract *contract = [[Contract alloc] init];
+    
+    contract.contractId = contractObject.objectId;
+    contract.time = [NSDate date];
+    contract.state = contractObject[@"state"];
+    
+    PFUser *assassin = contractObject[@"assassin"];
+    [assassin fetchIfNeeded];
+    contract.assassinName = assassin.username;
+    contract.assassinFbId = assassin[@"facebookId"];
+    PFUser *target = contractObject[@"target"];
+    [target fetch];
+    contract.targetName = target.username;
+    contract.targetFbId = target[@"facebookId"];
+    
+    if (([contract.state isEqualToString:@"Completed"]) || ([contract.state isEqualToString:@"Pending"]))
+    {
+        PFFile *imageFile = contractObject[@"image"];
+        
+        NSData *imageData = [imageFile getData];
+        contract.image = [UIImage imageWithData:imageData];
+        
+        contract.comment = contractObject[@"comment"];
+        contract.commentYCoord = [contractObject[@"commentLocation"] floatValue];
+    }
+    
+    else if ([contract.state isEqualToString:@"Active"])
+    {
+        contract.image = nil;
+        
+        contract.comment = nil;
+        contract.commentYCoord = -1;
+    }
+    
+    else
+    {
+        NSLog(@"FATAL ERROR: Unknown state of contract");
+    }
+    
+    return contract;
+}
 
 @end

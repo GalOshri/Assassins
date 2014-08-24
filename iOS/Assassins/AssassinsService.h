@@ -21,8 +21,8 @@
 // called in GameTableViewController
 + (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId;
 
-// TODO: DON'T USE THIS WITHOUT FIXING GAME ID STUFF
-+ (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray;
+// TODO: DON'T USE THIS WITHOUT FIXING GAME ID STUFF - not used for anything now
+// + (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray;
 
 + (Contract *)getContractForGame:(NSString *)gameId;
 
@@ -39,5 +39,8 @@
 + (NSArray *)getPendingSnipes;
 
 // + (FBProfilePictureView *)getUserProfilePic:(PFUser *)user;
+
++ (Game *) createGame:(NSString *)gameName withUserIds:(NSArray *)userIdArray;
+
 
 @end
