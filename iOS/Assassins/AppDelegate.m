@@ -27,6 +27,7 @@
     
     [PFFacebookUtils initializeFacebook];
     [FBProfilePictureView class];
+    [FBFriendPickerViewController class];
     
     // Register for push notifications
     [application registerForRemoteNotificationTypes:
