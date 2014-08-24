@@ -7,7 +7,6 @@
 //
 
 #import "CreateGameViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "fbFriend.h"
 #import "FriendTableViewCell.h"
 #import "AssassinsService.h"
@@ -17,11 +16,11 @@
 @interface CreateGameViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *gameNameField;
-@property (weak, nonatomic) IBOutlet UISearchBar *friendSearchBar;
+@property (weak, nonatomic) IBOutlet UITextView *selectedPlayersTextView;
 
 @property (strong, nonatomic) NSMutableArray *friendList;
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
-
+@property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
 
 @end
 
@@ -31,8 +30,6 @@
     // search results array for search term
     NSArray *searchResults;
 }
-
-@synthesize friendTableView;
 
 
  #pragma mark - Navigation
@@ -51,7 +48,6 @@
      }
      
  }
- 
 
 - (void)viewDidLoad
 {
@@ -60,20 +56,70 @@
     
     self.friendList = [[NSMutableArray alloc] init];
     self.selectedFriends = [[NSMutableArray alloc] init];
-    
-    [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id data, NSError *error)
+
+}
+
+- (IBAction)selectPlayers:(id)sender
+{
+    // FBSample logic
+    // if the session is open, then load the data for our view controller
+    if (!FBSession.activeSession.isOpen)
     {
-        if (!error)
+        // if the session is closed, then we open it here, and establish a handler for state changes
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_friends"] allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState state, NSError *error)
         {
-            NSLog(@"friends: %@", data);
-            
-            // TODO: add facebook friends into array self.friendList
-            self.friendList = (NSMutableArray *)[data data];
-        }
+            if (error)
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                  [alertView show];
+            }
+            else if (session.isOpen)
+                [self selectPlayers:sender];
+        }];
         
-        else
-            NSLog(@"ERROR!");
-    }];
+        return;
+    }
+    
+    if (self.friendPickerController == nil)
+    {
+        // Create friend picker, and get data loaded into it.
+        self.friendPickerController = [[FBFriendPickerViewController alloc] init];
+        self.friendPickerController.title = @"Pick Friends";
+        self.friendPickerController.delegate = self;
+    }
+    
+    [self.friendPickerController loadData];
+    [self.friendPickerController clearSelection];
+    
+    [self presentViewController:self.friendPickerController animated:YES completion:nil];
+
+}
+
+# pragma mark - Friend picker work
+- (void)facebookViewControllerDoneWasPressed:(id)sender {
+    NSMutableString *text = [[NSMutableString alloc] init];
+    
+    // we pick up the users from the selection, and create a string that we use to update the text view
+    for (id<FBGraphUser> user in self.friendPickerController.selection)
+    {
+        if ([text length]) {
+            [text appendString:@", "];
+        }
+        [text appendString:user.name];
+    }
+    
+    [self fillTextBoxAndDismiss:text.length > 0 ? text : @"<None>"];
+}
+
+- (void)facebookViewControllerCancelWasPressed:(id)sender
+{
+    [self fillTextBoxAndDismiss:@"No friends selected"];
+}
+
+- (void)fillTextBoxAndDismiss:(NSString *)text {
+    self.selectedPlayersTextView.text = text;
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
@@ -91,7 +137,7 @@
 }
 
 
-
+/*
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -136,5 +182,5 @@
     [self.selectedFriends removeObject:selectedFbFriend];
 
 }
-
+*/
 @end

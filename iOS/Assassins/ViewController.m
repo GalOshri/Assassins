@@ -94,11 +94,7 @@ CGFloat scale;
     [[self.snipeNotificationButton layer] setCornerRadius:5];
     [[self.snipeNotificationButton layer] setMasksToBounds:YES];
     
-    // Log in / sign up if no user signed in
-    if (![PFUser currentUser])
-    {
-        [self showLogInAndSignUpView];
-    }
+
     
     // CODE TO START THE GAME. RUN ONLY ONCE.
     /*PFQuery *query = [PFUser query];
@@ -138,6 +134,12 @@ CGFloat scale;
     // check to see if have snipe pending
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
+    // Log in / sign up if no user signed in
+    if (![PFUser currentUser])
+    {
+        [self showLogInAndSignUpView];
+    }
+    
     if (appDelegate.hasPendingSnipe)
     {
         NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];

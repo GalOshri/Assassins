@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface CreateGameViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface CreateGameViewController : UIViewController <FBFriendPickerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *friendTableView;
 
 @end

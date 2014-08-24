@@ -113,14 +113,19 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (BOOL)checkPendingSnipe
 {
-    PFQuery *targetQuery = [PFQuery queryWithClassName:@"Contract"];
-    [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
-    [targetQuery whereKey:@"state" equalTo:@"Pending"];
-    
-    NSInteger pendingCount = [targetQuery countObjects];
-    
-    if (pendingCount != 0)
-        return YES;
+    if ([PFUser currentUser])
+    {
+        PFQuery *targetQuery = [PFQuery queryWithClassName:@"Contract"];
+        [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
+        [targetQuery whereKey:@"state" equalTo:@"Pending"];
+        
+        NSInteger pendingCount = [targetQuery countObjects];
+        
+        if (pendingCount != 0)
+            return YES;
+        else
+            return NO;
+    }
     else
         return NO;
 }
