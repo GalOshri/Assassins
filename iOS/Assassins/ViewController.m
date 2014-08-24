@@ -131,14 +131,15 @@ CGFloat scale;
 {
     [super viewDidAppear:animated];
     
-    // check to see if have snipe pending
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
+    
     // Log in / sign up if no user signed in
     if (![PFUser currentUser])
     {
         [self showLogInAndSignUpView];
     }
+    
+    // check to see if have snipe pending
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if (appDelegate.hasPendingSnipe)
     {
@@ -153,7 +154,7 @@ CGFloat scale;
     // Create the log in view controller
     AssassinsLogInView *logInViewController = [[AssassinsLogInView alloc] init];
     [logInViewController setDelegate:self]; // Set ourselves as the delegate
-    [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", @"publish_actions", nil]];
+    [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", @"publish_actions", @"user_friends", nil]];
     //[logInViewController setFields: PFLogInFieldsDefault | PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsDismissButton];
     [logInViewController setFields: PFLogInFieldsFacebook];
     
