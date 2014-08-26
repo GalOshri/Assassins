@@ -165,37 +165,43 @@ Parse.Cloud.define("createGame", function(request, response) {
 	*/
 
 	// TODO: go from facebook ID to parse ID
-
-
 	var userList = request.params.userList;
+	console.log("userlist is " + userList + " with length " + userList.length);
 	var userObjectList = [];
-
 	for (var i = 0; i < userList.length; i++)
 	{
+		console.log("facebook ID is " + userList[i].id);
 		var userObject = new Parse.User();
 		var parseId;
 
 		// TODO: grab Parse objectID
 		var userQuery = new Parse.Query(Parse.User);
-		userQuery.matchesKeyInQuery("facebookId", userList[i].id);
+		userQuery.equalTo("facebookId", userList[i].id);
+
 		userQuery.first({
 			success: function(object) 
 			{
 				// Successfully retrieved the object.
 				parseId = object.id;
-				console.log("fbID was " + userList[i].id + " and parse id is " + parseId);
+				console.log("successfully made userQuery");
+				// console.log("fbID was " + userList[i].id + " and parse id is " + parseId);
 			},
 
 			error: function(error) 
 			{
-				alert("Error: " + error.code + " " + error.message);
+				alert("Error from userQuery: " + error.code + " " + error.message);
 			}
-
-		});
+	});
 
 		userObject.id = parseId;
 		userObjectList.push(userObject);
 	}
+
+	// add self to userObjectList
+	var meUserObject = new Parse.User();
+	meUserObject.id = request.params.meId;
+	userObjectList.push(meUserObject);
+	// console.log(meUserObject);
 
 	// Populate game with user POINTERS
 	game.set("players", userObjectList);

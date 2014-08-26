@@ -365,13 +365,14 @@
 
 + (Game *) createGame:(NSString *)gameName withUserIds:(NSArray *)userIdArray
 {
-    NSDictionary *createGameDict = [[NSDictionary alloc] initWithObjectsAndKeys:gameName, @"gameName", userIdArray, @"userList", nil];
+    NSDictionary *createGameDict = [[NSDictionary alloc] initWithObjectsAndKeys:gameName, @"gameName", userIdArray, @"userList",[PFUser user].objectId, @"meId", nil];
+    
     PFObject *gameObject = [PFCloud callFunction:@"createGame" withParameters:createGameDict];
     
     Game *game = [self getGameFromGameObject:gameObject];
-    
     return game;
 }
+
 
 + (Game *) getGameFromGameObject:(PFObject *)gameObject
 {

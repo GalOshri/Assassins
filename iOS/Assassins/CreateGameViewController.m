@@ -100,7 +100,8 @@
 - (IBAction)createGame:(id)sender
 {
     // TODO: go from facebookId to parse object ID
-    NSArray *newGameParticipants = [[NSArray alloc] initWithObjects:self.friendPickerController.selection, self.friendPickerController.userID, nil];
+    NSArray *newGameParticipants = [[NSArray alloc] initWithArray:self.friendPickerController.selection];
+
     // NSArray *userIdArray = @[@"GUFHki0asM", @"wahMYDPk15"];
     
     Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants];
@@ -118,7 +119,8 @@
     // we pick up the users from the selection, and create a string that we use to update the text view
     for (id<FBGraphUser> user in self.friendPickerController.selection)
     {
-        if ([text length]) {
+        if (![text isEqualToString:@"Participants:\n\n"])
+        {
             [text appendString:@", "];
         }
         [text appendString:user.name];
@@ -130,7 +132,6 @@
 - (void)facebookViewControllerCancelWasPressed:(id)sender
 {
     [self fillTextBoxAndDismiss:@"No friends selected"];
-    NSLog(@"%@",self.friendPickerController.selection);
 }
 
 - (void)fillTextBoxAndDismiss:(NSString *)text {
