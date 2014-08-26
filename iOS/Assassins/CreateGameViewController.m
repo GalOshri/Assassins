@@ -85,6 +85,8 @@
         // Create friend picker, and get data loaded into it.
         self.friendPickerController = [[FBFriendPickerViewController alloc] init];
         self.friendPickerController.title = @"Pick Friends";
+        self.friendPickerController.allowsMultipleSelection = YES;
+        self.friendPickerController.sortOrdering = FBFriendSortByLastName;
         self.friendPickerController.delegate = self;
     }
     
@@ -95,9 +97,23 @@
 
 }
 
+- (IBAction)createGame:(id)sender
+{
+    // TODO: go from facebookId to parse object ID
+    NSArray *newGameParticipants = [[NSArray alloc] initWithObjects:self.friendPickerController.selection, self.friendPickerController.userID, nil];
+    // NSArray *userIdArray = @[@"GUFHki0asM", @"wahMYDPk15"];
+    
+    Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants];
+    
+    [self performSegueWithIdentifier:@"SegueFromGameCreationToGameView" sender:newGame];
+    
+}
+
+
 # pragma mark - Friend picker work
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
     NSMutableString *text = [[NSMutableString alloc] init];
+    [text appendString:@"Participants:\n\n"];
     
     // we pick up the users from the selection, and create a string that we use to update the text view
     for (id<FBGraphUser> user in self.friendPickerController.selection)
@@ -108,32 +124,19 @@
         [text appendString:user.name];
     }
     
-    [self fillTextBoxAndDismiss:text.length > 0 ? text : @"<None>"];
+    [self fillTextBoxAndDismiss:text.length > 0 ? text : @"No friends selected"];
 }
 
 - (void)facebookViewControllerCancelWasPressed:(id)sender
 {
     [self fillTextBoxAndDismiss:@"No friends selected"];
+    NSLog(@"%@",self.friendPickerController.selection);
 }
 
 - (void)fillTextBoxAndDismiss:(NSString *)text {
     self.selectedPlayersTextView.text = text;
     
     [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-
-- (IBAction)createGame:(id)sender
-{
-    // Assuming game name is filled and selectedFriends is populated.
-    // TODO: NEED A USER ID.
-    
-    NSArray *userIdArray = @[@"GUFHki0asM", @"wahMYDPk15"];
-    
-    Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:userIdArray];
-    
-    [self performSegueWithIdentifier:@"SegueFromGameCreationToGameView" sender:newGame];
-    
 }
 
 

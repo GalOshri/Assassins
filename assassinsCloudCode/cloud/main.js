@@ -144,13 +144,56 @@ Parse.Cloud.define("createGame", function(request, response) {
 
 
 	// Parse list of users (not sure if we can pass up user objects or just a list of IDs)
+	// DEFAULT: each userObject looks like this:
+	/*
+		(
+	        {
+		        "first_name" = Gal;
+		        id = 10154590671315045;
+		        "last_name" = Oshri;
+		        name = "Gal Oshri";
+		        picture =         {
+		            data =             {
+		                height = 100;
+		                "is_silhouette" = 0;
+		                url = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/v/t1.0-1/c50.49.618.618/s100x100/60089_10152163890980045_192814225_n.jpg?oh=fc7fe63a0c4f4cc93736968ccf96ecc0&oe=547F59CD&__gda__=1416039518_536274aacda429f6fbb173085d508537";
+		                width = 100;
+		            };
+		        };
+		    }
+		)
+	*/
+
+	// TODO: go from facebook ID to parse ID
+
+
 	var userList = request.params.userList;
 	var userObjectList = [];
 
 	for (var i = 0; i < userList.length; i++)
 	{
 		var userObject = new Parse.User();
-		userObject.id = userList[i];
+		var parseId;
+
+		// TODO: grab Parse objectID
+		var userQuery = new Parse.Query(Parse.User);
+		userQuery.matchesKeyInQuery("facebookId", userList[i].id);
+		userQuery.first({
+			success: function(object) 
+			{
+				// Successfully retrieved the object.
+				parseId = object.id;
+				console.log("fbID was " + userList[i].id + " and parse id is " + parseId);
+			},
+
+			error: function(error) 
+			{
+				alert("Error: " + error.code + " " + error.message);
+			}
+
+		});
+
+		userObject.id = parseId;
 		userObjectList.push(userObject);
 	}
 
