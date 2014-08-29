@@ -70,7 +70,7 @@
 - (void)removePendingSnipe
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.hasPendingSnipe = NO;
+    appDelegate.numberPendingSnipe -= 1;
 }
 
 @end

@@ -144,25 +144,6 @@ Parse.Cloud.define("createGame", function(request, response) {
 
 
 	// Parse list of users (not sure if we can pass up user objects or just a list of IDs)
-	// DEFAULT: each userObject looks like this:
-	/*
-		(
-	        {
-		        "first_name" = Gal;
-		        id = 10154590671315045;
-		        "last_name" = Oshri;
-		        name = "Gal Oshri";
-		        picture =         {
-		            data =             {
-		                height = 100;
-		                "is_silhouette" = 0;
-		                url = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/v/t1.0-1/c50.49.618.618/s100x100/60089_10152163890980045_192814225_n.jpg?oh=fc7fe63a0c4f4cc93736968ccf96ecc0&oe=547F59CD&__gda__=1416039518_536274aacda429f6fbb173085d508537";
-		                width = 100;
-		            };
-		        };
-		    }
-		)
-	*/
 
 	// TODO: go from facebook ID to parse ID
 	var userList = request.params.userList;
@@ -170,7 +151,6 @@ Parse.Cloud.define("createGame", function(request, response) {
 	var userObjectList = [];
 	for (var i = 0; i < userList.length; i++)
 	{
-		console.log("facebook ID is " + userList[i].id);
 		var userObject = new Parse.User();
 		var parseId;
 
@@ -183,8 +163,7 @@ Parse.Cloud.define("createGame", function(request, response) {
 			{
 				// Successfully retrieved the object.
 				parseId = object.id;
-				console.log("successfully made userQuery");
-				// console.log("fbID was " + userList[i].id + " and parse id is " + parseId);
+				console.log("successfully made userQuery with id: " + object.id);
 			},
 
 			error: function(error) 
@@ -225,6 +204,8 @@ Parse.Cloud.define("createGame", function(request, response) {
 
 	game.save(null, {
 	  success: function(game) {
+	  	console.log("do we get into the save at all");
+
 	    // Execute any logic that should take place after the object is saved.
 	    // Create contracts
 		var contractList = [];
@@ -246,6 +227,8 @@ Parse.Cloud.define("createGame", function(request, response) {
 		    var gamePointer = {__type: "Pointer", className: "Game", objectId: game.id};
 		    contract.set("game",gamePointer);
 
+		    console.log("We made it this far in game save, did we?");
+		    
 		    contract.save(null, {
 		    	success: function(contract) {
 		    		var contractPointer = {__type: "Pointer", className: "Contract", objectId: contract.id};
@@ -265,7 +248,7 @@ Parse.Cloud.define("createGame", function(request, response) {
 		    		}
 		    	},
 		    	error: function(contract, error) {
-		    		response.error("contract creation failed");
+		    		response.error("contract creation failed with error: " + error.code + " : " + error.message);
 		    	}
 		    });
 		}
@@ -273,8 +256,7 @@ Parse.Cloud.define("createGame", function(request, response) {
 	  error: function(game, error) {
 	    // Execute any logic that should take place if the save fails.
 	    // error is a Parse.Error with an error code and description.
-	    alert('Failed to create new object, with error code: ' + error.message);
-	    response.error("game creation failed");
+	    response.error("game creation failed with error: "+ error.code + " : " + error.message);
 	  }
 	});
 

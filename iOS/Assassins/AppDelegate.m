@@ -35,7 +35,7 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
     
-    self.hasPendingSnipe = [self checkPendingSnipe];
+    self.numberPendingSnipe = [self checkPendingSnipe];
     
     // Deal with push notification
     if (launchOptions != nil) {
@@ -112,7 +112,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
 }
 
-- (BOOL)checkPendingSnipe
+- (int)checkPendingSnipe
 {
     if ([PFUser currentUser])
     {
@@ -121,14 +121,10 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [targetQuery whereKey:@"state" equalTo:@"Pending"];
         
         NSInteger pendingCount = [targetQuery countObjects];
-        
-        if (pendingCount != 0)
-            return YES;
-        else
-            return NO;
+        return pendingCount;
     }
     else
-        return NO;
+        return 0;
 }
 
 -(void)applicationDidBecomeActive:(UIApplication *)application
