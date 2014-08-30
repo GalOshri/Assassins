@@ -363,7 +363,7 @@
 }
 */
 
-+ (Game *) createGame:(NSString *)gameName withUserIds:(NSArray *)userIdArray withCurrentUserId:(NSString *)currentUserId
++ (Game *) createGame:(NSString *)gameName withUserIds:(NSMutableArray *)userIdArray withCurrentUserId:(NSString *)currentUserId
 {
     NSDictionary *createGameDict = [[NSDictionary alloc] initWithObjectsAndKeys:currentUserId, @"meUserId", gameName, @"gameName", userIdArray, @"userList", nil];
     

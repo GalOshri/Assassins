@@ -99,10 +99,11 @@
 
 - (IBAction)createGame:(id)sender
 {
-    // TODO: go from facebookId to parse object ID
-    NSArray *newGameParticipants = [[NSArray alloc] initWithArray:self.friendPickerController.selection];
-
-    // NSArray *userIdArray = @[@"GUFHki0asM", @"wahMYDPk15"];
+    // create array of facebook ID
+    NSMutableArray *newGameParticipants = [[NSMutableArray alloc] init];
+    
+    for(int i=0; i< [self.friendPickerController.selection count]; i++)
+        [newGameParticipants addObject:[self.friendPickerController.selection[i] objectForKey:@"id"]];
     
     Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants withCurrentUserId: [PFUser currentUser].objectId];
     
