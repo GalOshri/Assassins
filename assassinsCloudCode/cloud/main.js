@@ -160,10 +160,7 @@ Parse.Cloud.define("createGame", function(request, response) {
 		var promise = Parse.Promise.as();
 		for (var participant in gameParticipants)
 		{
-			console.log("participant ID: " + gameParticipants[participant].id);
-
-			// for each item, add it to the userObjectList
-			// extend the promise with a function to add it
+			// extend the promise with a function to add parse id to userobjectlist
 			promise = promise.then(function() {
 				userObject = new Parse.User();
 				userObject.id = gameParticipants[participant].id;
@@ -173,15 +170,12 @@ Parse.Cloud.define("createGame", function(request, response) {
 		return promise;
 
 	}).then(function() {
-		// userObjectList populated. Add current user to userobjectlist
-		
+		// userObjectList populated with other players
+		// Add current user to userobjectlist
 		var meUserId =  request.params.meUserId;
 		var meUser = new Parse.User();
 		meUser.id = meUserId;
-		console.log("adding self to userObjectList with id " + meUser.id);
 		userObjectList.push(meUser);
-
-		console.log("userObjectList is " + userObjectList);
 
 		// Populate game with user POINTERS
 		game.set("players", userObjectList);
@@ -202,18 +196,15 @@ Parse.Cloud.define("createGame", function(request, response) {
 			userObjectList[currentIndex] = userObjectList[randomIndex];
 			userObjectList[randomIndex] = temporaryValue;
 		}
-		console.log("just shuffled userObjectList");
 
 		game.save(null, {
 		  success: function(game) {
-		  	console.log("building contracts success");
 		    // Execute any logic that should take place after the object is saved.
 		    // Create contracts
 			var contractList = [];
 			var Contract = Parse.Object.extend("Contract");
-			
 
-
+			// 
 			for (var i = 0; i < userObjectList.length; i++) // this is the number of contracts we need
 			{
 				var assassin = userObjectList[i]; 
@@ -230,8 +221,6 @@ Parse.Cloud.define("createGame", function(request, response) {
 			    contract.set("commentLocation", -1);
 			    var gamePointer = {__type: "Pointer", className: "Game", objectId: game.id};
 			    contract.set("game",gamePointer);
-
-			    console.log("We made it this far in game save, did we?");
 			    
 			    contract.save(null, {
 			    	success: function(contract) {
@@ -252,7 +241,6 @@ Parse.Cloud.define("createGame", function(request, response) {
 			    		}
 			    	},
 			    	error: function(contract, error) {
-			    		console.log("building contracts error");
 			    		response.error("contract creation failed with error: " + error.code + " : " + error.message);
 			    	}
 			    });
@@ -266,160 +254,3 @@ Parse.Cloud.define("createGame", function(request, response) {
 		});
 	});
 });
-
-	/*
-	for (var i = 0; i < userList.length; i++)
-	{
-		var userObject; // = new Parse.User();
-
-		// TODO: grab Parse objectID
-		var userQuery = new Parse.Query(Parse.User);
-		userQuery.equalTo("facebookId", userList[i]);
-
-		userQueryfirst().then(function(result) {
-			success: function(object) 
-			{
-				// Successfully retrieved the object.
-				userObject = new Parse.User();
-				userObject.id = object.id;
-				console.log("successfully made userQuery with id: " + userObject.id);
-			},
-
-			error: function(error) 
-			{
-				alert("Error from userQuery: " + error.code + " " + error.message);
-			}
-			
-			userObjectList.push(userObject);
-		});
-	}
-
-	// add self to userObjectList
-	var meUserId =  request.params.meUserId; // = new Parse.User();
-	var meUser = new Parse.User();
-	meUser.id = meUserId;
-	userObjectList.push(meUser);
-	
-
-	// Populate game with user POINTERS
-	game.set("players", userObjectList);
-
-	// Shuffle list of users. Important to do this AFTER you save it as the game object so that
-	// the order of the contracts can't be seen by the players
-	var currentIndex = userObjectList.length, temporaryValue, randomIndex;
-
-	// While there remain elements to shuffle...
-	while (0 !== currentIndex) 
-	{
-		// Pick a remaining element...
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex -= 1;
-
-		// And swap it with the current element.
-		temporaryValue = userObjectList[currentIndex];
-		userObjectList[currentIndex] = userObjectList[randomIndex];
-		userObjectList[randomIndex] = temporaryValue;
-	}
-
-	game.save(null, {
-	  success: function(game) {
-	    // Execute any logic that should take place after the object is saved.
-	    // Create contracts
-		var contractList = [];
-		var Contract = Parse.Object.extend("Contract");
-		for (var i = 0; i < userObjectList.length; i++) // this is the number of contracts we need
-		{
-			var assassin = userObjectList[i]; 
-			if (i == userObjectList.length - 1) // This is the last user, his target is first user
-				var target = userObjectList[0]; 
-			else
-				var target = userObjectList[i + 1];
-
-			var contract = new Contract();
-
-			contract.set("assassin", assassin);
-		    contract.set("target", target);
-		    contract.set("state", "Active");
-		    contract.set("commentLocation", -1);
-		    var gamePointer = {__type: "Pointer", className: "Game", objectId: game.id};
-		    contract.set("game",gamePointer);
-
-		    console.log("We made it this far in game save, did we?");
-		    
-		    contract.save(null, {
-		    	success: function(contract) {
-		    		var contractPointer = {__type: "Pointer", className: "Contract", objectId: contract.id};
-		    		contractList.push(contractPointer);
-		    		if (contractList.length == userObjectList.length)
-		    		{
-		    			game.set("contracts", contractList);
-		    			game.save(null, {
-		    				success: function(game) {
-		    					response.success(game);
-		    				},
-		    				error: function(game, error) {
-		    					response.error("game update failed");
-		    				}
-		    			});
-		    			
-		    		}
-		    	},
-		    	error: function(contract, error) {
-		    		response.error("contract creation failed with error: " + error.code + " : " + error.message);
-		    	}
-		    });
-		}
-	  },
-	  error: function(game, error) {
-	    // Execute any logic that should take place if the save fails.
-	    // error is a Parse.Error with an error code and description.
-	    response.error("game creation failed with error: "+ error.code + " : " + error.message);
-	  }
-	});
-	*/
-
-
-
-/* after save cloud code
-// update contracts
-*/
-/*
-Parse.Cloud.afterSave("Contract", function(request, response) 
-{	
-	var Contract = Parse.Object.extend("Contract");
-	var query = new Parse.Query(Contract);
-	console.log("request object id: " + request.object.id);
-
-	// change state from Active to Pending
-	query.get(request.object.id, {
-		success: function(query)
-		{
-			query.set("state", "Pending");
-			query.save();
-			console.log("saved it brah!");
-
-			var pushQuery = new Parse.Query(Parse.Installation);
-			  pushQuery.equalTo('objectId', 'IpbnC5txgv');
-			    
-			  Parse.Push.send({
-			    where: pushQuery, // Set our Installation query
-			    data: {
-			      alert: "You got sniped!",
-			      contractId: request.object.id
-			    }
-			  }, {
-			    success: function() {
-			      // Push was successful
-			    },
-			    error: function(error) {
-			      throw "Got an error " + error.code + " : " + error.message;
-			    }
-			  });
-		},
-		error: function(error)
-		{
-			console.error("Got an error " + error.code + " : " + error.message);
-		}
-	});
-});
-*/
