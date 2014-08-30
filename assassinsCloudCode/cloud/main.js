@@ -147,12 +147,10 @@ Parse.Cloud.define("createGame", function(request, response) {
 
 	// TODO: go from facebook ID to parse ID
 	var userList = request.params.userList;
-	console.log("userlist is " + userList + " with length " + userList.length);
 	var userObjectList = [];
 	for (var i = 0; i < userList.length; i++)
 	{
-		var userObject = new Parse.User();
-		var parseId;
+		var userObject; // = new Parse.User();
 
 		// TODO: grab Parse objectID
 		var userQuery = new Parse.Query(Parse.User);
@@ -162,25 +160,25 @@ Parse.Cloud.define("createGame", function(request, response) {
 			success: function(object) 
 			{
 				// Successfully retrieved the object.
-				parseId = object.id;
-				console.log("successfully made userQuery with id: " + object.id);
+				userObject = new Parse.User();
+				userObject.id = object.id;
+				console.log("successfully made userQuery with id: " + userObject.id);
 			},
 
 			error: function(error) 
 			{
 				alert("Error from userQuery: " + error.code + " " + error.message);
 			}
-	});
-
-		userObject.id = parseId;
+		});
 		userObjectList.push(userObject);
 	}
 
 	// add self to userObjectList
-	var meUserObject = new Parse.User();
-	meUserObject.id = request.params.meId;
-	userObjectList.push(meUserObject);
-	// console.log(meUserObject);
+	var meUserId =  request.params.meUserId; // = new Parse.User();
+	var meUser = new Parse.User();
+	meUser.id = meUserId;
+	userObjectList.push(meUser);
+
 
 	// Populate game with user POINTERS
 	game.set("players", userObjectList);
@@ -204,8 +202,6 @@ Parse.Cloud.define("createGame", function(request, response) {
 
 	game.save(null, {
 	  success: function(game) {
-	  	console.log("do we get into the save at all");
-
 	    // Execute any logic that should take place after the object is saved.
 	    // Create contracts
 		var contractList = [];

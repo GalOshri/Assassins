@@ -104,7 +104,7 @@
 
     // NSArray *userIdArray = @[@"GUFHki0asM", @"wahMYDPk15"];
     
-    Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants];
+    Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants withCurrentUserId: [PFUser currentUser].objectId];
     
     [self performSegueWithIdentifier:@"SegueFromGameCreationToGameView" sender:newGame];
     

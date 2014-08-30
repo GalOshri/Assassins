@@ -363,9 +363,9 @@
 }
 */
 
-+ (Game *) createGame:(NSString *)gameName withUserIds:(NSArray *)userIdArray
++ (Game *) createGame:(NSString *)gameName withUserIds:(NSArray *)userIdArray withCurrentUserId:(NSString *)currentUserId
 {
-    NSDictionary *createGameDict = [[NSDictionary alloc] initWithObjectsAndKeys:gameName, @"gameName", userIdArray, @"userList",[PFUser user].objectId, @"meId", nil];
+    NSDictionary *createGameDict = [[NSDictionary alloc] initWithObjectsAndKeys:currentUserId, @"meUserId", gameName, @"gameName", userIdArray, @"userList", nil];
     
     PFObject *gameObject = [PFCloud callFunction:@"createGame" withParameters:createGameDict];
     
