@@ -68,7 +68,7 @@
     self.games = [AssassinsService getGameList];
     PFUser *currentUser = [PFUser currentUser];
     
-    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total hits", [currentUser[@"lifetimeSnipes"] intValue]];
+    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
     self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d total games",[currentUser[@"lifetimeGames"] intValue]];
     
     //[self.tableView reloadData];
