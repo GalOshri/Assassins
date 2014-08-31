@@ -403,6 +403,9 @@
     [target fetch];
     contract.targetName = target.username;
     contract.targetFbId = target[@"facebookId"];
+    PFObject *game = contractObject[@"game"];
+    [game fetchIfNeeded];
+    contract.gameId = game.objectId;
     
     if (([contract.state isEqualToString:@"Completed"]) || ([contract.state isEqualToString:@"Pending"]))
     {

@@ -20,6 +20,6 @@
 @property (strong, nonatomic) NSString *comment;
 @property (strong, nonatomic) NSString *state;
 @property float commentYCoord;
-
+@property (strong, nonatomic) NSString *gameId;
 
 @end

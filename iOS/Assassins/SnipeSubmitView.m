@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *snipeToggle;
 @property (strong, nonatomic) NSMutableArray *submitContracts;
+@property (strong, nonatomic) NSString *selectedGameId;
 
 @end
 
@@ -25,14 +26,6 @@
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
-     if ([segue.identifier isEqualToString:@"SegueAfterSnipeSubmit"]) {
-         if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
-         {
-             GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
-             Game *game = [AssassinsService getGameWithId:@"Jr9NNIwOiO"];
-             gtvc.game = game;
-         }
-     }
  }
 
 - (void)viewDidLoad
@@ -127,10 +120,23 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([alertView.title isEqualToString:@"Whom did you snipe?"])
     {
-        // grab correct contract id
-        Contract *selectedContract = self.submitContracts[buttonIndex];
-        
-        [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContractId:selectedContract.contractId];
+        if (buttonIndex-1 > 0)
+        {
+            // grab correct contract id and selected game Id
+            Contract *selectedContract = self.submitContracts[buttonIndex-1];
+            self.selectedGameId = selectedContract.gameId;
+            [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContractId:selectedContract.contractId];
+            
+            // perform segue
+            UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            GameTableViewController* gtvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"gameTableView"];
+            
+            Game *game = [AssassinsService getGameWithId:self.selectedGameId];
+            gtvc.game = game;
+            
+            [gtvc setModalPresentationStyle:UIModalPresentationFullScreen];
+            [self presentViewController:gtvc animated:YES completion:nil];
+        }
     }
 }
 

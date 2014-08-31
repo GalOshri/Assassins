@@ -625,7 +625,6 @@
                                 </state>
                                 <connections>
                                     <action selector="submitAssassination:" destination="LuB-hi-AS8" eventType="touchUpInside" id="jd9-Wv-PiG"/>
-                                    <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueAfterSnipeSubmit" id="6M9-kQ-b4n"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="95t-Av-2iq">
@@ -722,7 +721,7 @@
         <!--Game Table View Controller - Super Long Name Title-->
         <scene sceneID="VxP-f9-5Cp">
             <objects>
-                <tableViewController id="oR9-sX-s2Z" customClass="GameTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="gameTableView" id="oR9-sX-s2Z" customClass="GameTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="265" sectionHeaderHeight="22" sectionFooterHeight="22" id="8G1-t1-2Jj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1064,8 +1063,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9Ye-yq-03F"/>
         <segue reference="MT2-MO-86x"/>
         <segue reference="s1C-qG-npf"/>
+        <segue reference="FiI-vM-hIN"/>
     </inferredMetricsTieBreakers>
 </document>

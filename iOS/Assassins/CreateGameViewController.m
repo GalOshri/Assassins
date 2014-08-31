@@ -7,7 +7,6 @@
 //
 
 #import "CreateGameViewController.h"
-#import "FriendTableViewCell.h"
 #import "AssassinsService.h"
 #import "Game.h"
 #import "GameTableViewController.h"
