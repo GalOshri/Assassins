@@ -22,12 +22,13 @@
 @property UIImagePickerController *picker;
 @property (weak, nonatomic) IBOutlet UIButton *flipCamera;
 @property (weak, nonatomic) IBOutlet UIButton *snipeNotificationButton;
+@property BOOL flashMode;
+
 
 @end
 
 @implementation ViewController
 
-UIImagePickerController *picker;
 UIImagePickerController *picker;
 CGFloat cameraAspectRatio = 4.0f/3.0f;
 CGFloat scale;
@@ -76,6 +77,7 @@ CGFloat scale;
     [picker setToolbarHidden:YES];
     [picker setAllowsEditing:NO];
     picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+    self.flashMode = NO;
     
     //math to resize to size of phone
     CGSize screenBounds = [UIScreen mainScreen].bounds.size;
@@ -143,7 +145,7 @@ CGFloat scale;
         NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
     }
     else
-        [self.snipeNotificationButton setHidden:YES];
+        [self.snipeNotificationButton setImage:[UIImage imageNamed:@"snipeNotificationNone.png"] forState:UIControlStateNormal];
 }
 
 - (void)showLogInAndSignUpView
@@ -190,16 +192,18 @@ CGFloat scale;
 }
 */
 - (IBAction)toggleFlash:(UIButton *)sender {
-    
-    if (picker.cameraFlashMode == UIImagePickerControllerCameraFlashModeOn)
+    NSLog(@"%d", picker.cameraFlashMode);
+    if (self.flashMode)
     {
-        picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        [picker setCameraFlashMode: 0];
         [sender setImage:[UIImage imageNamed:  @"noFlash.png"] forState:UIControlStateNormal];
+        self.flashMode = NO;
     }
     else
     {
-        picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+        [picker setCameraFlashMode: 1];
         [sender setImage:[UIImage imageNamed: @"flash.png"] forState:UIControlStateNormal];
+        self.flashMode = YES;
     }
 }
 

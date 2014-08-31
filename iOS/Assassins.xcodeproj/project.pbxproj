@@ -41,6 +41,7 @@
 		0DBF67131992101B00AFF5F8 /* Contract.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67121992101B00AFF5F8 /* Contract.m */; };
 		0DBF67161998542C00AFF5F8 /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67151998542C00AFF5F8 /* GameCell.m */; };
 		DA42AB6D19A605F100356E7A /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42AB6C19A605F100356E7A /* CreateGameViewController.m */; };
+		DA57C43619B3C1E8006431E7 /* snipeNotificationNone.png in Resources */ = {isa = PBXBuildFile; fileRef = DA57C43519B3C1E8006431E7 /* snipeNotificationNone.png */; };
 		DAA7D033199892D600656414 /* PendingContractsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D032199892D600656414 /* PendingContractsTableViewController.m */; };
 		DAA7D0391998AA4C00656414 /* PendingContractsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */; };
 		DAA7D03C199E546B00656414 /* CompletedContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D03B199E546B00656414 /* CompletedContractViewController.m */; };
@@ -129,6 +130,7 @@
 		0DBF67151998542C00AFF5F8 /* GameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCell.m; sourceTree = "<group>"; };
 		DA42AB6B19A605F100356E7A /* CreateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
 		DA42AB6C19A605F100356E7A /* CreateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
+		DA57C43519B3C1E8006431E7 /* snipeNotificationNone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snipeNotificationNone.png; sourceTree = "<group>"; };
 		DAA7D031199892D600656414 /* PendingContractsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingContractsTableViewController.h; sourceTree = "<group>"; };
 		DAA7D032199892D600656414 /* PendingContractsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingContractsTableViewController.m; sourceTree = "<group>"; };
 		DAA7D0371998AA4C00656414 /* PendingContractsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PendingContractsTableViewCell.h; path = ../PendingContractsTableViewCell.h; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 		0D277D0B198EE318002362C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA57C43519B3C1E8006431E7 /* snipeNotificationNone.png */,
 				DAA7D04619A4B08400656414 /* snipeNotification.png */,
 				DAA7D04419A4A09F00656414 /* usersDark.png */,
 				DAA7D04219A49FA800656414 /* users.png */,
@@ -548,6 +551,7 @@
 				0D52C4AE197E284A00E5E5B9 /* Main.storyboard in Resources */,
 				DAA7D04319A49FA800656414 /* users.png in Resources */,
 				DAA7D03F199F5FCB00656414 /* settingGear.png in Resources */,
+				DA57C43619B3C1E8006431E7 /* snipeNotificationNone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
