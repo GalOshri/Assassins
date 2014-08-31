@@ -38,6 +38,8 @@
 
 + (NSArray *)getPendingSnipes;
 
++ (int)checkPendingSnipes;
+
 // + (FBProfilePictureView *)getUserProfilePic:(PFUser *)user;
 
 + (Game *)createGame:(NSString *)gameName withUserIds:(NSMutableArray *)userIdArray withCurrentUserId:(NSString *)currentUserId;

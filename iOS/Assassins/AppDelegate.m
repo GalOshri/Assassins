@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "VerifySnipeViewController.h"
-#import "AssassinsService.h"
 
 @implementation AppDelegate
 
@@ -35,7 +34,6 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
     
-    self.numberPendingSnipe = [self checkPendingSnipe];
     
     // Deal with push notification
     if (launchOptions != nil) {
@@ -110,21 +108,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
     vsvc.contract = contract;
     [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
-}
-
-- (int)checkPendingSnipe
-{
-    if ([PFUser currentUser])
-    {
-        PFQuery *targetQuery = [PFQuery queryWithClassName:@"Contract"];
-        [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
-        [targetQuery whereKey:@"state" equalTo:@"Pending"];
-        
-        int pendingCount = (int) [targetQuery countObjects];
-        return pendingCount;
-    }
-    else
-        return 0;
 }
 
 -(void)applicationDidBecomeActive:(UIApplication *)application

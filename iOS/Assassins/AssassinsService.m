@@ -323,6 +323,21 @@
     return pendingSnipes;
 }
 
++ (int)checkPendingSnipes
+{
+    if ([PFUser currentUser])
+    {
+        PFQuery *targetQuery = [PFQuery queryWithClassName:@"Contract"];
+        [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
+        [targetQuery whereKey:@"state" equalTo:@"Pending"];
+        
+        int pendingCount = (int) [targetQuery countObjects];
+        return pendingCount;
+    }
+    else
+        return 0;
+}
+
 /*
 + (UIImage *)getUserProfilePic:(PFUser *)user
 {

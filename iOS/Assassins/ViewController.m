@@ -15,6 +15,7 @@
 #import "GameTableViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
+#import "AssassinsService.h"
 
 @interface ViewController ()
 
@@ -140,6 +141,8 @@ CGFloat scale;
     
     // check to see if have snipe pending
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.numberPendingSnipe = [AssassinsService checkPendingSnipes];
+    
     if (appDelegate.numberPendingSnipe != 0)
     {
         NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
