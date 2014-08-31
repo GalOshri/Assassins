@@ -120,7 +120,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
         [targetQuery whereKey:@"state" equalTo:@"Pending"];
         
-        NSInteger pendingCount = [targetQuery countObjects];
+        int pendingCount = (int) [targetQuery countObjects];
         return pendingCount;
     }
     else

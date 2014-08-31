@@ -127,9 +127,9 @@ CGFloat scale;
 
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     
     
     // Log in / sign up if no user signed in
@@ -140,7 +140,7 @@ CGFloat scale;
     
     // check to see if have snipe pending
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+    NSLog(@"number pending snipes is %d", appDelegate.numberPendingSnipe);
     if (appDelegate.numberPendingSnipe != 0)
     {
         NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
