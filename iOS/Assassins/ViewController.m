@@ -127,9 +127,9 @@ CGFloat scale;
 
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
     
     // Log in / sign up if no user signed in
