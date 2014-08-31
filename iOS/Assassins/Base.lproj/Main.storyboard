@@ -284,7 +284,7 @@
                                     <rect key="frame" x="0.0" y="195" width="320" height="34"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScF-hW-OSW">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScF-hW-OSW">
                                             <rect key="frame" x="260" y="0.0" width="47" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="settingGear.png">
@@ -1064,7 +1064,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="MT2-MO-86x"/>
-        <segue reference="s1C-qG-npf"/>
+        <segue reference="tUb-jh-Mz9"/>
         <segue reference="FiI-vM-hIN"/>
     </inferredMetricsTieBreakers>
 </document>

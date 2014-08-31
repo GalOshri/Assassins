@@ -94,8 +94,6 @@ CGFloat scale;
     [[self.snipeNotificationButton layer] setCornerRadius:5];
     [[self.snipeNotificationButton layer] setMasksToBounds:YES];
     
-
-    
     // CODE TO START THE GAME. RUN ONLY ONCE.
     /*PFQuery *query = [PFUser query];
     NSArray *users = [query findObjects];
