@@ -7,7 +7,6 @@
 //
 
 #import "CreateGameViewController.h"
-#import "fbFriend.h"
 #import "FriendTableViewCell.h"
 #import "AssassinsService.h"
 #import "Game.h"
@@ -141,51 +140,4 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-
-/*
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.friendList count];
-}
-
-- (FriendTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    FriendTableViewCell *cell = (FriendTableViewCell *) [self.friendTableView dequeueReusableCellWithIdentifier:@"friendCell"];
-    fbFriend *fbFriend = [self.friendList objectAtIndex:indexPath.row];
-    
-    cell.fbFriend = fbFriend;
-    cell.nameLabel.text = fbFriend.name;
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // place checkmark on FriendTableViewCell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
-    // if selected friend, add friend to selectedFriend array
-    fbFriend *selectedFbFriend = [self.friendList objectAtIndex:indexPath.row];
-    [self.selectedFriends addObject:selectedFbFriend];
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //remove checkmark from FriendTableViewCell
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    // if deslected, remove friend from selectedFriend array
-    fbFriend *selectedFbFriend = [self.friendList objectAtIndex:indexPath.row];
-    [self.selectedFriends removeObject:selectedFbFriend];
-
-}
-*/
 @end

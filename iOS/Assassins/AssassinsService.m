@@ -21,10 +21,6 @@
         NSData *snipeImageData = UIImageJPEGRepresentation(snipeImage, 1);
         PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"SnipeImage.jpg"] data:snipeImageData];
         
-        // Get Contract
-        NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-        NSString *contractId = [userData objectForKey:@"contractId"];
-        
         PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
         
         // Retrieve the object by id
@@ -504,9 +500,6 @@
     }
     
     return contracts;
-    
-    
-    
 }
 
 @end
