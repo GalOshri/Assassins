@@ -24,6 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *currentTargetProfilePicture;
+@property (weak, nonatomic) IBOutlet UILabel *currentTargetLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 
@@ -80,11 +81,20 @@
     // call to AssassinsService to fill current contract
     self.currentContract = [AssassinsService getContractForGame:self.game.gameId];
     
-    self.currentTargetUsername.text = self.currentContract.targetName;
-    self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
-    self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-    [[self.currentTargetProfilePicture layer] setCornerRadius:5];
-    [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
+    if (self.currentContract)
+    {
+        self.currentTargetUsername.text = self.currentContract.targetName;
+        self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
+        self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+        [[self.currentTargetProfilePicture layer] setCornerRadius:5];
+        [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
+    }
+    else
+    {
+        self.currentTargetLabel.text = @"Game won by:";
+        [self.currentTargetProfilePicture setHidden:YES];
+        self.currentTargetUsername.text = self.game.winnerName;
+    }
     
     // call AssassinsService to fill list with events
     self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];

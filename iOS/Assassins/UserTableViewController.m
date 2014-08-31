@@ -123,27 +123,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        Game *currentGame = [self.games objectAtIndex:indexPath.row];
-
-        GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
-        //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        cell.textLabel.text = currentGame.name;
-        cell.game = currentGame;
-        return cell;
-    }
+    Game *currentGame = [self.games objectAtIndex:indexPath.row];
+    GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
+    cell.textLabel.text = currentGame.name;
+    cell.game = currentGame;
     
+    if (currentGame.isComplete)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Won by %@", currentGame.winnerName];
+    }
     else
     {
-        // display completed contracts dealing with user (user is assassin, user is target and died)
-        // call to AssassinsService
-        AssassinationEventCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userEvents" forIndexPath:indexPath];
-        //[cell.userImage setImage:[UIImage imageNamed:@"snipeCircle.png"]];
-        //cell.headlineLabel.text = @"placeholder for now; we'll fill";
-        cell.textLabel.text = @"hi";
-        return cell;
+        cell.detailTextLabel.text = @"";
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
+
+    return cell;
 }
 
 /*

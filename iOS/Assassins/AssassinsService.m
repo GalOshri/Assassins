@@ -254,14 +254,19 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     [query whereKey:@"assassin" equalTo:[PFUser currentUser]];
+    [query whereKey:@"state" containedIn:@[@"Active", @"Pending"]];
     [query whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
     
     // Retrieve the object by id
     PFObject *contractObject = [query getFirstObject];
     
-    Contract *contract = [self getContractFromContractObject:contractObject];
-    
-    return contract;
+    if (contractObject)
+    {
+        Contract *contract = [self getContractFromContractObject:contractObject];
+        return contract;
+    }
+    else
+        return nil;
 }
 
 

@@ -322,24 +322,32 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userGames" rowHeight="102" id="Uoy-Bv-umN" customClass="GameCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userGames" textLabel="TA9-EX-eRQ" detailTextLabel="jhF-up-ZoW" rowHeight="102" style="IBUITableViewCellStyleSubtitle" id="Uoy-Bv-umN" customClass="GameCell">
                                 <rect key="frame" x="0.0" y="251" width="320" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uoy-Bv-umN" id="Dio-n9-f9q">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TA9-EX-eRQ">
+                                            <rect key="frame" x="15" y="32" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jhF-up-ZoW">
+                                            <rect key="frame" x="15" y="54" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueToGameView" id="FiI-vM-hIN"/>
                                 </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userEvents" rowHeight="102" id="B3P-To-xLp">
-                                <rect key="frame" x="0.0" y="353" width="320" height="102"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B3P-To-xLp" id="obs-Lj-812">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -902,6 +910,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="currentTargetLabel" destination="Phr-18-wAf" id="1NP-dr-gDt"/>
                         <outlet property="currentTargetProfilePicture" destination="9vm-5a-w5m" id="bfJ-7V-kBD"/>
                         <outlet property="currentTargetUsername" destination="SxF-Ye-Y58" id="bWd-Ba-n11"/>
                         <outlet property="gameImage" destination="Yb5-Od-urc" id="jLD-SH-Lm1"/>
