@@ -8,8 +8,6 @@
 
 #import "CreateGameViewController.h"
 #import "AssassinsService.h"
-#import "Game.h"
-#import "GameTableViewController.h"
 
 @interface CreateGameViewController ()
 
@@ -35,14 +33,10 @@
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
-     if ([segue.identifier isEqualToString:@"SegueFromGameCreationToGameView"])
+     if ([segue.identifier isEqualToString:@"UnwindOnCreate"])
      {
-         if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
-         {
-             GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
-             Game *game = (Game *)sender;
-             gtvc.game = game;
-         }
+         Game *game = (Game *)sender;
+         self.createdGame = game;
      }
      
  }
@@ -105,7 +99,7 @@
     
     Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants withCurrentUserId: [PFUser currentUser].objectId];
     
-    [self performSegueWithIdentifier:@"SegueFromGameCreationToGameView" sender:newGame];
+    [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
     
 }
 

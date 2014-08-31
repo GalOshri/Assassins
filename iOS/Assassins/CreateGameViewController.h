@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "Game.h"
 
 @interface CreateGameViewController : UIViewController <FBFriendPickerDelegate>
+
+@property (strong, nonatomic) Game *createdGame;
 
 
 @end

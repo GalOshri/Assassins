@@ -13,6 +13,7 @@
 #import <Parse/Parse.h>
 #import "GameCell.h"
 #import "GameTableViewController.h"
+#import "CreateGameViewController.h"
 
 
 @interface UserTableViewController ()
@@ -21,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+
+@property (strong, nonatomic) Game *createdGame;
 
 
 @property (strong, nonatomic) NSArray *games;
@@ -32,7 +35,16 @@
 
 - (IBAction)unwindToUserPage:(UIStoryboardSegue *)segue
 {
-    
+    if ([segue.identifier isEqualToString:@"UnwindOnCreate"])
+    {
+        if ([segue.sourceViewController isKindOfClass:[CreateGameViewController class]])
+        {
+            CreateGameViewController *cgvc = (CreateGameViewController *)segue.sourceViewController;
+            
+            self.createdGame = cgvc.createdGame;
+            
+        }
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -73,6 +85,18 @@
     [[self.profilePicture layer] setCornerRadius:5];
     [[self.profilePicture layer] setMasksToBounds:YES];
 
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    if (self.createdGame)
+    {
+        GameCell *createdGameCell = [[GameCell alloc] init];
+        createdGameCell.game = self.createdGame;
+        self.createdGame = nil;
+        [self performSegueWithIdentifier:@"SegueToGameView" sender:createdGameCell];
+
+    }
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView

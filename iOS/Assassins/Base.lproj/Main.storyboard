@@ -146,7 +146,6 @@
                                         </state>
                                         <connections>
                                             <action selector="createGame:" destination="TbO-PD-dIe" eventType="touchUpInside" id="Du6-r9-cGX"/>
-                                            <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueFromGameCreationToGameView" id="9Ye-yq-03F"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcV-qe-eu2">
@@ -195,6 +194,7 @@
                         <outlet property="gameNameField" destination="ScG-S2-B4V" id="ru8-6q-6e1"/>
                         <outlet property="searchDisplayController" destination="8v8-cf-T25" id="KLV-av-98H"/>
                         <outlet property="selectedPlayersTextView" destination="2id-Xu-yRC" id="bqd-Mx-7Fl"/>
+                        <segue destination="1Zf-50-VA1" kind="unwind" identifier="UnwindOnCreate" unwindAction="unwindToUserPage:" id="VUa-k9-5Hx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NEt-D0-mBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,7 +231,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zJ-Js-7fb">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zJ-Js-7fb">
                                                     <rect key="frame" x="20" y="152" width="180" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
@@ -239,9 +239,6 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <segue destination="1q2-cU-T8P" kind="modal" id="tUb-jh-Mz9"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total hits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-GT-dP5">
                                                     <rect key="frame" x="20" y="97" width="98" height="21"/>
@@ -359,7 +356,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RM5-aN-xuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="P7b-Ss-XnP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="561" y="-1093"/>
+            <point key="canvasLocation" x="561" y="-1096"/>
         </scene>
         <!--Pending Contracts Table View Controller-->
         <scene sceneID="oCu-z1-QgJ">
@@ -394,9 +391,6 @@
                                     <state key="normal" title="Button" image="backArrow.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
-                                    <connections>
-                                        <segue destination="ox9-1U-7RE" kind="modal" id="MT2-MO-86x"/>
-                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GT8-wt-QzA" customClass="FBProfilePictureView">
                                     <rect key="frame" x="120" y="94" width="80" height="80"/>
@@ -461,7 +455,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bg0-LC-dfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="949" y="-281"/>
+            <point key="canvasLocation" x="1109" y="-353"/>
         </scene>
         <!--Verify Snipe View Controller - h-->
         <scene sceneID="yJZ-4X-pgf">
@@ -563,7 +557,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZe-YN-B2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="en8-k3-hke" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="-1093"/>
+            <point key="canvasLocation" x="1742" y="-353"/>
         </scene>
         <!--Snipe Submit View-->
         <scene sceneID="jpJ-Dg-kLF">
@@ -716,7 +710,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfQ-z4-bBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9xW-Vj-wXb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="327"/>
+            <point key="canvasLocation" x="2410" y="-1929"/>
         </scene>
         <!--Game Table View Controller - Super Long Name Title-->
         <scene sceneID="VxP-f9-5Cp">
@@ -914,7 +908,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daN-7H-irG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="stc-Fg-dtT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1669" y="-353"/>
+            <point key="canvasLocation" x="1742" y="-1096"/>
         </scene>
         <!--Participants Table View Controller - Participants-->
         <scene sceneID="Vsq-Jt-js4">
@@ -1039,7 +1033,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1PZ-dk-XGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ha3-9d-0bd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="-353"/>
+            <point key="canvasLocation" x="2410" y="-1096"/>
         </scene>
     </scenes>
     <resources>
@@ -1062,9 +1056,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="MT2-MO-86x"/>
-        <segue reference="tUb-jh-Mz9"/>
-        <segue reference="FiI-vM-hIN"/>
-    </inferredMetricsTieBreakers>
 </document>
