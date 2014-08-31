@@ -102,7 +102,9 @@
 - (IBAction)submitAssassination:(UIButton *)sender {
     if ([self.snipeToggle selectedSegmentIndex] == 0)
     {
-        [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y];
+        //show alert to pick which contract to submit snipe to
+        UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"Gal Oshri", @"Dean Stavropoulos", nil];
+        [pickContract show];
     }
     
     else
@@ -113,5 +115,13 @@
         [defenseAlert show];
     }
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView.title isEqualToString:@"Whom did you snipe?"])
+    {
+        [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y];
+    }
+}
+
 
 @end
