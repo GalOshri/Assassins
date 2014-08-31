@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *snipeToggle;
+@property (strong, nonatomic) NSArray *submitContracts;
 
 @end
 
@@ -102,8 +103,18 @@
 - (IBAction)submitAssassination:(UIButton *)sender {
     if ([self.snipeToggle selectedSegmentIndex] == 0)
     {
+        // grab list of related contracts
+        self.submitContracts = [AssassinsService getContractArray];
+        
         //show alert to pick which contract to submit snipe to
-        UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"Gal Oshri", @"Dean Stavropoulos", nil];
+        NSMutableArray *names = [[NSMutableArray alloc] init];
+        for (Contract *contract in self.submitContracts)
+            [names addObject:contract.targetName];
+        
+        UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
+        for (NSString *name in names)
+            [pickContract addButtonWithTitle:name];
+        
         [pickContract show];
     }
     
@@ -119,7 +130,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([alertView.title isEqualToString:@"Whom did you snipe?"])
     {
-        [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y];
+        // grab correct contract id
+        Contract *selectedContract = self.submitContracts[buttonIndex];
+        
+        [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContractId:selectedContract.contractId];
     }
 }
 

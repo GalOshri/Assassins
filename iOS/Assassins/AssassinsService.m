@@ -14,21 +14,17 @@
 
 @implementation AssassinsService
 
-+ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord withContractId:(NSString *)contractId
++ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord withContractId:(NSString *)selectedContractId
 {
     if (isAttack)
     {
         NSData *snipeImageData = UIImageJPEGRepresentation(snipeImage, 1);
         PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"SnipeImage.jpg"] data:snipeImageData];
         
-        // Get Contract
-        NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-        NSString *contractId = [userData objectForKey:@"contractId"];
-        
         PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
         
         // Retrieve the object by id
-        [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
+        [query getObjectInBackgroundWithId:selectedContractId block:^(PFObject *contract, NSError *error) {
         
             // set image, status
             contract[@"image"] = imageFile;
