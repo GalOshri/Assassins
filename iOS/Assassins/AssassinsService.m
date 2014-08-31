@@ -458,7 +458,12 @@
         // Now let's update it with some new data. In this case, only cheatMode and score
         // will get sent to the cloud. playerName hasn't changed.
         contract[@"state"] = @"Completed";
-        [contract saveInBackground];
+        [contract save];
+        
+        NSDictionary *completedContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:contractId, @"contractId", nil];
+        NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
+        
+        NSLog(@"%@", responseString);
         
         PFUser *assassin = contract[@"assassin"];
         
