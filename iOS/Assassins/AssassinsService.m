@@ -398,6 +398,19 @@
     game.assassins = gameObject[@"players"];
     game.contracts = gameObject[@"contracts"];
     
+    if ([gameObject[@"state"] isEqualToString:@"Completed"])
+    {
+        game.isComplete = YES;
+        PFUser *gameWinner = gameObject[@"winner"];
+        [gameWinner fetch];
+        game.winnerName = gameWinner.username;
+    }
+    else
+    {
+        game.isComplete = NO;
+        game.winnerName = nil;
+    }
+    
     return game;
 }
 
