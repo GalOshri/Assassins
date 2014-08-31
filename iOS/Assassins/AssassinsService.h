@@ -16,7 +16,7 @@
 @property BOOL hasPendingSnipe;
 
 // called in VerifySnipeViewController
-+ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord;
++ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord withContractId: (NSString *)contractId;
 
 // called in GameTableViewController
 + (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId;

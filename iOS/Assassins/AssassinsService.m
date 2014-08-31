@@ -14,7 +14,7 @@
 
 @implementation AssassinsService
 
-+ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord
++ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord withContractId:(NSString *)contractId
 {
     if (isAttack)
     {
