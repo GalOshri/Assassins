@@ -483,7 +483,7 @@
     }];
 }
 
-+ (NSArray *)getContractArray
++ (NSMutableArray *)getContractArray
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     [query whereKey:@"assassin" equalTo:[PFUser currentUser]];

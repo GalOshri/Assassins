@@ -47,6 +47,6 @@
 + (void)declineAssassination:(NSString *)contractId;
 
 // Get array of Contract objects
-+ (NSArray *)getContractArray;
++ (NSMutableArray *)getContractArray;
 
 @end

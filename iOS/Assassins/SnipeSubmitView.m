@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *snipeToggle;
-@property (strong, nonatomic) NSArray *submitContracts;
+@property (strong, nonatomic) NSMutableArray *submitContracts;
 
 @end
 
@@ -106,14 +106,11 @@
         // grab list of related contracts
         self.submitContracts = [AssassinsService getContractArray];
         
-        //show alert to pick which contract to submit snipe to
-        NSMutableArray *names = [[NSMutableArray alloc] init];
-        for (Contract *contract in self.submitContracts)
-            [names addObject:contract.targetName];
-        
         UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
-        for (NSString *name in names)
-            [pickContract addButtonWithTitle:name];
+       
+        //show alert to pick which contract to submit snipe to
+        for (Contract *contract in self.submitContracts)
+            [pickContract addButtonWithTitle:contract.targetName];
         
         [pickContract show];
     }
