@@ -487,4 +487,26 @@
     }];
 }
 
++ (NSArray *)getContractArray
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    [query whereKey:@"assassin" equalTo:[PFUser currentUser]];
+    [query whereKey:@"state" containedIn:@[@"Active", @"Pending"]];
+    
+    NSArray *contractObjects = [query findObjects];
+    NSMutableArray *contracts = [[NSMutableArray alloc] init];
+    
+    for (PFObject *contractObject in contractObjects)
+    {
+        Contract *contract = [self getContractFromContractObject:contractObject];
+        
+        [contracts addObject:contract];
+    }
+    
+    return contracts;
+    
+    
+    
+}
+
 @end
