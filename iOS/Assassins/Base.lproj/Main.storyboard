@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -208,7 +208,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1109" y="-1773"/>
+            <point key="canvasLocation" x="1109" y="-1837"/>
         </scene>
         <!--User Table View Controller - Super Long Name Here-->
         <scene sceneID="aSR-mX-Q2G">
@@ -461,7 +461,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bg0-LC-dfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="-1093"/>
+            <point key="canvasLocation" x="949" y="-281"/>
         </scene>
         <!--Verify Snipe View Controller - h-->
         <scene sceneID="yJZ-4X-pgf">
@@ -563,7 +563,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZe-YN-B2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="en8-k3-hke" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="-1101"/>
+            <point key="canvasLocation" x="2238" y="-1093"/>
         </scene>
         <!--Snipe Submit View-->
         <scene sceneID="jpJ-Dg-kLF">
@@ -716,7 +716,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfQ-z4-bBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9xW-Vj-wXb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="379"/>
+            <point key="canvasLocation" x="2238" y="327"/>
         </scene>
         <!--Game Table View Controller - Super Long Name Title-->
         <scene sceneID="VxP-f9-5Cp">
@@ -914,7 +914,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daN-7H-irG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="stc-Fg-dtT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="-353"/>
+            <point key="canvasLocation" x="1669" y="-353"/>
         </scene>
         <!--Participants Table View Controller - Participants-->
         <scene sceneID="Vsq-Jt-js4">
@@ -1039,7 +1039,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1PZ-dk-XGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ha3-9d-0bd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="-353"/>
+            <point key="canvasLocation" x="2238" y="-353"/>
         </scene>
     </scenes>
     <resources>

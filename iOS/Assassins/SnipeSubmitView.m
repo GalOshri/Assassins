@@ -120,7 +120,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([alertView.title isEqualToString:@"Whom did you snipe?"])
     {
-        if (buttonIndex-1 > 0)
+        if (buttonIndex-1 >= 0)
         {
             // grab correct contract id and selected game Id
             Contract *selectedContract = self.submitContracts[buttonIndex-1];
