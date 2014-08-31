@@ -14,7 +14,7 @@
 
 @implementation AssassinsService
 
-+ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord withContractId:(NSString *)selectedContractId
++ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord withContractId:(NSString *)contractId
 {
     if (isAttack)
     {
@@ -24,7 +24,7 @@
         PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
         
         // Retrieve the object by id
-        [query getObjectInBackgroundWithId:selectedContractId block:^(PFObject *contract, NSError *error) {
+        [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
         
             // set image, status
             contract[@"image"] = imageFile;
@@ -481,6 +481,25 @@
         [push setMessage:@"Your assassination was denied."];
         [push sendPushInBackground];
     }];
+}
+
++ (NSArray *)getContractArray
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    [query whereKey:@"assassin" equalTo:[PFUser currentUser]];
+    [query whereKey:@"state" containedIn:@[@"Active", @"Pending"]];
+    
+    NSArray *contractObjects = [query findObjects];
+    NSMutableArray *contracts = [[NSMutableArray alloc] init];
+    
+    for (PFObject *contractObject in contractObjects)
+    {
+        Contract *contract = [self getContractFromContractObject:contractObject];
+        
+        [contracts addObject:contract];
+    }
+    
+    return contracts;
 }
 
 @end

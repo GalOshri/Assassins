@@ -117,13 +117,13 @@ CGFloat scale;
     [game saveInBackground];*/
     
     // CODE TO HARDCODE THE GAMEID
-    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+    /* NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
     [userData setObject:@"Jr9NNIwOiO" forKey:@"gameId"];
     if ([[PFUser currentUser].objectId isEqualToString:@"GUFHki0asM"])
         [userData setObject:@"EJyZKoN3pT" forKey:@"contractId"];
     else if ([[PFUser currentUser].objectId isEqualToString:@"wahMYDPk15"])
         [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
-    [userData synchronize];
+    [userData synchronize]; */
 
 }
 
