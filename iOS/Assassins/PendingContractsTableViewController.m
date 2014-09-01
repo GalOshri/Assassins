@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 
-@property (strong, nonatomic) NSArray *pendingContracts;
+@property (strong, nonatomic) NSMutableArray *pendingContracts;
 
 @end
 
@@ -29,7 +29,17 @@
 
 - (IBAction)unwindToPendingSnipesPage:(UIStoryboardSegue *)segue
 {
-    
+    if (([segue.identifier isEqualToString:@"UnwindWithConfirmedSnipe"]) || ([segue.identifier isEqualToString:@"UnwindWithDeniedSnipe"]))
+    {
+        if ([segue.sourceViewController isKindOfClass:[VerifySnipeViewController class]])
+        {
+            VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.sourceViewController;
+            
+            [self.pendingContracts removeObjectIdenticalTo:vsvc.contract];
+            
+            [self.tableView reloadData];
+        }
+    }
 }
 
 
@@ -51,7 +61,7 @@
     [super viewDidLoad];
     
     // get pending snipes for user!
-    self.pendingContracts = [AssassinsService getPendingSnipes];
+    self.pendingContracts = [[AssassinsService getPendingSnipes] mutableCopy];
     
     PFUser *currentUser = [PFUser currentUser];
     self.usernameLabel.text = currentUser.username;

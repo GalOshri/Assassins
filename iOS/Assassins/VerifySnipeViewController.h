@@ -15,4 +15,6 @@
 @property (strong, nonatomic) Contract *contract;
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImage;
 
+@property BOOL isSnipeChanged;
+
 @end

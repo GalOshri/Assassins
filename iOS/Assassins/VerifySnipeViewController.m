@@ -22,6 +22,21 @@
 
 @implementation VerifySnipeViewController
 
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    self.isSnipeChanged = NO;
+    if (([segue.identifier isEqualToString:@"UnwindWithConfirmedSnipe"]) || ([segue.identifier isEqualToString:@"UnwindWithDeniedSnipe"]))
+    {
+        self.isSnipeChanged = YES;
+    }
+    
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

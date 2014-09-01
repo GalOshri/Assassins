@@ -525,7 +525,7 @@
                                         </state>
                                         <connections>
                                             <action selector="confirmedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="6mM-MR-WvK"/>
-                                            <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToPendingSnipesPage:" id="N8g-gt-xqu"/>
+                                            <segue destination="en8-k3-hke" kind="unwind" identifier="UnwindWithConfirmedSnipe" unwindAction="unwindToPendingSnipesPage:" id="N8g-gt-xqu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-8Q-I0f">
@@ -537,7 +537,7 @@
                                         </state>
                                         <connections>
                                             <action selector="declinedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="r6Z-Sb-DUV"/>
-                                            <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToPendingSnipesPage:" id="IIQ-j0-oxV"/>
+                                            <segue destination="en8-k3-hke" kind="unwind" identifier="UnwindWithDeniedSnipe" unwindAction="unwindToPendingSnipesPage:" id="IIQ-j0-oxV"/>
                                         </connections>
                                     </button>
                                 </subviews>
