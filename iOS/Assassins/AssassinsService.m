@@ -223,7 +223,7 @@
         assassin.userId = user.objectId;
         assassin.fbId = user[@"facebookId"];
         assassin.isAlive = YES;
-        assassin.numberOfSnipes = user[@"lifetimeSnipes"];
+        assassin.numberOfSnipes = (int) user[@"lifetimeSnipes"];
         
         [assassinArray addObject:assassin];
     }

@@ -263,8 +263,10 @@ CGFloat scale;
     PFUser *currentUser = [PFUser currentUser];
     if ([PFFacebookUtils isLinkedWithUser:currentUser])
     {
+        NSLog(@"currentuser facebookId is: %@", currentUser[@"facebookId"]);
         if (currentUser[@"facebookId"] == nil)
         {
+            NSLog(@"we get in the if statement to change things");
             // Create request for user's Facebook data
             FBRequest *request = [FBRequest requestForMe];
             
@@ -276,9 +278,13 @@ CGFloat scale;
                     
                     currentUser[@"facebookId"] = userData[@"id"];
                     currentUser[@"username"] = userData[@"name"];
-                    
+                    currentUser[@"lifetimeSnipes"] = [NSNumber numberWithInt:0];
+                    currentUser[@"lifetimeGames"] = [NSNumber numberWithInt:0];
+                    NSLog(@"does this happen?");
                     [currentUser save];
                 }
+                else
+                    NSLog(@"facebook request error: %@", error);
             }];
         }
     }
