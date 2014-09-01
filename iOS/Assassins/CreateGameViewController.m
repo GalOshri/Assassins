@@ -103,6 +103,9 @@
     
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 
 # pragma mark - Friend picker work
 - (void)facebookViewControllerDoneWasPressed:(id)sender {

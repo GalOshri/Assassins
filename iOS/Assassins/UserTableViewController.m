@@ -69,7 +69,7 @@
     PFUser *currentUser = [PFUser currentUser];
     
     self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
-    self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d total games",[currentUser[@"lifetimeGames"] intValue]];
+    self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d completed games",[currentUser[@"lifetimeGames"] intValue]];
     
     //[self.tableView reloadData];
     //[AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
@@ -140,6 +140,10 @@
     }
 
     return cell;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 /*

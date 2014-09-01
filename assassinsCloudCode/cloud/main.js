@@ -13,7 +13,6 @@ Parse.Cloud.define("completedContract", function(request, response) {
 	var contractQuery = new Parse.Query(Contract);
 
 	contractQuery.get(contractId, {
-
 		success:function(oldContract) {
 			var assassin = oldContract.get("assassin");
 			var target = oldContract.get("target");
@@ -61,6 +60,8 @@ Parse.Cloud.define("completedContract", function(request, response) {
 								success: function(winner) {
 									console.log('hi: ' + winner.get("username"));
 
+									winner.increment("lifetimeSnipes");
+									winner.save();
 									var playersArray = game.get("players");
 
 									var pushQuery = new Parse.Query(Parse.Installation);
@@ -97,32 +98,63 @@ Parse.Cloud.define("completedContract", function(request, response) {
 			    	// Create new contract
 			    	else
 			    	{
+					    // create new contract
 					    var contract = new Contract();
-
 					    contract.set("assassin", assassin);
 					    contract.set("target", targetContract.get("target"));
 					    contract.set("state", "Active");
 					    contract.set("commentLocation", -1);
 					    contract.set("game", game);
 
-					    contract.save(null, {
-					    	success: function(contract) {
-					    		alert('New contract created');
-					    		response.success("New contract created!");
-					    	},
-					    	error: function(contract, error) {
-					    		response.error('contract creation failed with error: ' + error.message);
-					    	}
-					    });
-					}
+					    // create assassins query
+					    var assassinQuery = new Parse.Query(Parse.User);
+						assassinQuery.get(assassin.id).then({
+							success: function(killer) {
+								//  increment lifetime snipes
+								killer.increment("lifetimeSnipes");
+								killer.save();
 
+								//set assassinName and assassinFbId
+								contract.set("assassinName", killer.username);
+								contract.set("assassinFbId", killer.facebookId);
+							},
+							error: function(error) {
+								response.error("killer update lifetimeSnipes error: " + error.message);
+							}
+
+						}).then(function() {
+							// create target query
+							var targetQuery = new Parse.Query(Parse.User());
+							targetQuery.get(target.id, {
+								success: function(victim) {
+									//set assassinName and assassinFbId
+									victim.set("targetName", victim.username);
+									victim.set("targetFbId", victim.facebookId);
+							},
+								error: function(error) {
+									response.error("victim error: " + error.message);
+								}
+							});
+
+						}).then(function() {
+							// save contract
+							contract.save(null, {
+						    	success: function(contract) {
+						    		alert('New contract created');
+						    		response.success("New contract created!");
+						    	},
+						    	error: function(contract, error) {
+						    		response.error('contract creation failed with error: ' + error.message);
+						    	}
+						    });
+
+						});	
+					}
 			    },
 			    error: function(error) {
 			    	response.error("Couldn't find target contract: " + error.message);
 			    }
 			});
-
-
 		},
 		error: function(error){
 			response.error("couldn't find contract: " + error.message);
