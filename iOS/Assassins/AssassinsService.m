@@ -406,9 +406,7 @@
     if ([gameObject[@"state"] isEqualToString:@"Completed"])
     {
         game.isComplete = YES;
-        PFUser *gameWinner = gameObject[@"winner"];
-        [gameWinner fetch];
-        game.winnerName = gameWinner.username;
+        game.winnerName = gameObject[@"winnerName"];
     }
     else
     {
@@ -427,16 +425,15 @@
     contract.time = [NSDate date];
     contract.state = contractObject[@"state"];
     
-    PFUser *assassin = contractObject[@"assassin"];
-    [assassin fetchIfNeeded];
-    contract.assassinName = assassin.username;
-    contract.assassinFbId = assassin[@"facebookId"];
-    PFUser *target = contractObject[@"target"];
-    [target fetch];
-    contract.targetName = target.username;
-    contract.targetFbId = target[@"facebookId"];
+    // PFUser *assassin = contractObject[@"assassin"];
+    contract.assassinName = contractObject[@"assassinName"];
+    contract.assassinFbId = contractObject[@"assassinFbId"];
+    // PFUser *target = contractObject[@"target"];
+
+    contract.targetName = contractObject[@"targetName"];
+    contract.targetFbId = contractObject[@"targetFbId"];
     PFObject *game = contractObject[@"game"];
-    [game fetchIfNeeded];
+    // [game fetchIfNeeded];
     contract.gameId = game.objectId;
     
     if (([contract.state isEqualToString:@"Completed"]) || ([contract.state isEqualToString:@"Pending"]))

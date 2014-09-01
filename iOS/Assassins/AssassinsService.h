@@ -51,4 +51,6 @@
 // Get array of Contract objects
 + (NSMutableArray *)getContractArray;
 
++ (Contract *) getContractFromContractObject:(PFObject *)contractObject;
+
 @end

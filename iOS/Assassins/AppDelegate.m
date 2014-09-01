@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "VerifySnipeViewController.h"
+#import "AssassinsService.h"
 
 @implementation AppDelegate
 
@@ -87,22 +88,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     PFObject *contractObject = [query getObjectWithId:contractId];
     
-    Contract *contract = [[Contract alloc] init];
-    contract.contractId = contractObject.objectId;
-    contract.time = contractObject[@"snipeTime"];
-    PFFile *imageFile = contractObject[@"image"];
-    NSData *imageData = [imageFile getData];
-    contract.image = [UIImage imageWithData:imageData];
-    
-    PFUser *assassin = contractObject[@"assassin"];
-    [assassin fetch];
-    contract.assassinName = assassin.username;
-    PFUser *target = contractObject[@"target"];
-    [target fetch];
-    contract.targetName = target.username;
-    contract.comment = contractObject[@"comment"];
-    contract.state = contractObject[@"state"];
-    contract.commentYCoord = [contractObject[@"commentLocation"] floatValue];
+    Contract *contract = [AssassinsService getContractFromContractObject:contractObject];
     
     UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
