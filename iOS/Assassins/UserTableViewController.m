@@ -94,6 +94,7 @@
         GameCell *createdGameCell = [[GameCell alloc] init];
         createdGameCell.game = self.createdGame;
         self.createdGame = nil;
+        [self.tableView reloadData];
         [self performSegueWithIdentifier:@"SegueToGameView" sender:createdGameCell];
 
     }
