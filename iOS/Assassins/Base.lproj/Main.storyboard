@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -79,7 +79,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1q2-cU-T8P" kind="modal" id="s1C-qG-npf"/>
+                                    <segue destination="1q2-cU-T8P" kind="modal" identifier="SegueToPendingSnipes" id="s1C-qG-npf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -547,7 +547,7 @@
                                     <constraint firstAttribute="width" constant="320" id="wYK-VO-Xtb"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9j-YwT">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9j-YwT">
                                 <rect key="frame" x="20" y="20" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="backArrow.png">
@@ -676,6 +676,7 @@
                         <outlet property="commentField" destination="00Q-O2-Xrt" id="pxo-jw-e0W"/>
                         <outlet property="snipeImageView" destination="mVZ-Ld-7MD" id="K7e-VK-hQ9"/>
                         <outlet property="snipeToggle" destination="95t-Av-2iq" id="FTJ-Bm-AUI"/>
+                        <segue destination="1zH-iF-qft" kind="unwind" identifier="UnwindToCameraAfterSnipe" unwindAction="unwindToCamera:" id="cCw-Jg-sFv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMC-9K-W8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -798,16 +799,6 @@
                                                     </state>
                                                     <connections>
                                                         <segue destination="stc-Fg-dtT" kind="unwind" unwindAction="unwindToUserPage:" id="dAl-2t-Mcv"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nxd-fa-9kT">
-                                                    <rect key="frame" x="263" y="-2" width="37" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="cameraIcon.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="stc-Fg-dtT" kind="unwind" unwindAction="unwindToCamera:" id="aqK-zK-16Y"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1061,7 +1052,6 @@
     <resources>
         <image name="backArrow.png" width="600" height="600"/>
         <image name="cameraButton.png" width="120" height="120"/>
-        <image name="cameraIcon.png" width="300" height="300"/>
         <image name="cameraIconSmall.png" width="28" height="28"/>
         <image name="flipCamera.png" width="300" height="300"/>
         <image name="gameImg.png" width="253" height="199"/>

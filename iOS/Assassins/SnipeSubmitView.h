@@ -15,4 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImageView;
 @property (strong, nonatomic) UIImage *snipeImage;
 
+@property BOOL isSnipeSubmitted;
+
 @end

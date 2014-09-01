@@ -13,21 +13,23 @@
 
 @implementation AssassinsService
 
-+ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord withContractId:(NSString *)contractId
++ (void)submitAssassination:(UIImage *)snipeImage withMode:(BOOL)isAttack withComment:(NSString *)comment withCommentLocation:(CGFloat)yCoord withContract:(Contract *)contract
 {
     if (isAttack)
     {
         NSData *snipeImageData = UIImageJPEGRepresentation(snipeImage, 1);
         PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"SnipeImage.jpg"] data:snipeImageData];
         
+        NSDate *snipeTime = [NSDate date];
+        
         PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
         
         // Retrieve the object by id
-        [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
+        [query getObjectInBackgroundWithId:contract.contractId block:^(PFObject *contract, NSError *error) {
         
-            // set image, status
             contract[@"image"] = imageFile;
             contract[@"state"] = @"Pending";
+            contract[@"snipeTime"] = snipeTime;
             
             // set comment fields
             if ([comment isEqualToString:@""]) {
@@ -39,7 +41,7 @@
                 contract[@"comment"] = comment;
             }
             
-            [contract save];
+            [contract saveInBackground];
             
             // send push notifiaction to target
             //query to grab correct user

@@ -26,6 +26,15 @@
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
+     if ([segue.identifier isEqualToString:@"UnwindToCameraAfterSnipe"])
+     {
+         /* if ([segue.destinationViewController isKindOfClass:[ViewController class]])
+         {
+             
+         } */
+         self.isSnipeSubmitted = YES;
+     }
+     
  }
 
 - (void)viewDidLoad
@@ -40,6 +49,10 @@
     [tapRecognizer setNumberOfTapsRequired:1];
     [tapRecognizer setDelegate:self];
     [self.snipeImageView addGestureRecognizer:tapRecognizer];
+    
+    self.isSnipeSubmitted = NO;
+    
+    
 
     
 }
@@ -120,13 +133,17 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([alertView.title isEqualToString:@"Whom did you snipe?"])
     {
-        if (buttonIndex-1 >= 0)
+        if (buttonIndex - 1 >= 0)
         {
             // grab correct contract id and selected game Id
             Contract *selectedContract = self.submitContracts[buttonIndex-1];
             self.selectedGameId = selectedContract.gameId;
-            [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContractId:selectedContract.contractId];
+            [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
             
+            
+            [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
+            
+            /*
             // perform segue
             UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             GameTableViewController* gtvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"gameTableView"];
@@ -136,6 +153,7 @@
             
             [gtvc setModalPresentationStyle:UIModalPresentationFullScreen];
             [self presentViewController:gtvc animated:YES completion:nil];
+             */
         }
     }
 }

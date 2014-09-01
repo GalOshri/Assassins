@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *snipeNotificationButton;
 @property BOOL flashMode;
 
+@property BOOL isSnipeSubmitted;
+
 
 @end
 
@@ -36,6 +38,15 @@ CGFloat scale;
 
 - (IBAction)unwindToCamera:(UIStoryboardSegue *)segue {
     
+    if ([segue.identifier isEqualToString:@"UnwindToCameraAfterSnipe"])
+    {
+        if ([segue.sourceViewController isKindOfClass:[SnipeSubmitView class]])
+        {
+            SnipeSubmitView *ssv = (SnipeSubmitView *)segue.sourceViewController;
+            self.isSnipeSubmitted = ssv.isSnipeSubmitted;
+            
+        }
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -125,11 +136,15 @@ CGFloat scale;
     else if ([[PFUser currentUser].objectId isEqualToString:@"wahMYDPk15"])
         [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
     [userData synchronize]; */
+    
+    self.isSnipeSubmitted = NO;
 
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    
+    
     [super viewDidAppear:animated];
     
     
@@ -137,6 +152,12 @@ CGFloat scale;
     if (![PFUser currentUser])
     {
         [self showLogInAndSignUpView];
+    }
+    
+    if (self.isSnipeSubmitted)
+    {
+        self.isSnipeSubmitted = NO;
+        [self performSegueWithIdentifier:@"SegueToPendingSnipes" sender:self];
     }
     
     // check to see if have snipe pending
@@ -149,6 +170,8 @@ CGFloat scale;
     }
     else
         [self.snipeNotificationButton setImage:[UIImage imageNamed:@"snipeNotificationNone.png"] forState:UIControlStateNormal];
+    
+    
 }
 
 - (void)showLogInAndSignUpView
