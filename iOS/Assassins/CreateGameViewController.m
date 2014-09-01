@@ -133,4 +133,10 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (IBAction)textFieldFinish:(id)sender {
+    [sender resignFirstResponder];
+}
+
+
+
 @end
