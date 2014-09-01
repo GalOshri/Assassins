@@ -102,52 +102,38 @@ Parse.Cloud.define("completedContract", function(request, response) {
 					    // create new contract
 					    var contract = new Contract();
 					    contract.set("assassin", assassin);
+					    contract.set("assassinName", oldContract.get("assassinName"));
+						contract.set("assassinFbId", oldContract.get("assassinFbId"));
+
 					    contract.set("target", targetContract.get("target"));
+					    contract.set("targetName", targetContract.get("targetName"));
+					    contract.set("targetFbId", targetContract.get("targetFbId"));
+
 					    contract.set("state", "Active");
 					    contract.set("commentLocation", -1);
 					    contract.set("game", game);
 
-					    // create assassins query
+						contract.save(null, {
+					    	success: function(contract) {
+					    		alert('New contract created');
+					    		response.success("New contract created!");
+					    	},
+					    	error: function(contract, error) {
+					    		response.error('contract creation failed with error: ' + error.message);
+					    	}
+					    });
+
+						// assassins query to inrement kills
 					    var assassinQuery = new Parse.Query(Parse.User);
-						assassinQuery.get(assassin.id).then({
+						assassinQuery.get(assassin.id, {
 							success: function(killer) {
 								//  increment lifetime snipes
 								killer.increment("lifetimeSnipes");
 								killer.save();
-
-								//set assassinName and assassinFbId
-								contract.set("assassinName", killer.username);
-								contract.set("assassinFbId", killer.facebookId);
 							},
 							error: function(error) {
 								response.error("killer update lifetimeSnipes error: " + error.message);
 							}
-
-						}).then(function() {
-							// create target query
-							var targetQuery = new Parse.Query(Parse.User());
-							targetQuery.get(target.id, {
-								success: function(victim) {
-									//set assassinName and assassinFbId
-									victim.set("targetName", victim.username);
-									victim.set("targetFbId", victim.facebookId);
-							},
-								error: function(error) {
-									response.error("victim error: " + error.message);
-								}
-							});
-
-						}).then(function() {
-							// save contract
-							contract.save(null, {
-						    	success: function(contract) {
-						    		alert('New contract created');
-						    		response.success("New contract created!");
-						    	},
-						    	error: function(contract, error) {
-						    		response.error('contract creation failed with error: ' + error.message);
-						    	}
-						    });
 
 						});	
 					}

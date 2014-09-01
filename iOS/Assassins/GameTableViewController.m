@@ -81,13 +81,23 @@
     // call to AssassinsService to fill current contract
     self.currentContract = [AssassinsService getContractForGame:self.game.gameId];
     
-    if (self.currentContract)
+    if (!self.game.winnerName)
     {
-        self.currentTargetUsername.text = self.currentContract.targetName;
-        self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
-        self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-        [[self.currentTargetProfilePicture layer] setCornerRadius:5];
-        [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
+        if (self.currentContract)
+        {
+            self.currentTargetUsername.text = self.currentContract.targetName;
+            self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
+            self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+            [[self.currentTargetProfilePicture layer] setCornerRadius:5];
+            [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
+        }
+        else
+        {
+            self.currentTargetLabel.text = @"You have been sniped";
+            [self.currentTargetProfilePicture setHidden:YES];
+            self.currentTargetUsername.text = @"Game is not completed";
+            
+        }
     }
     else
     {
