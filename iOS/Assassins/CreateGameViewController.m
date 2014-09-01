@@ -97,7 +97,9 @@
     for(int i=0; i< [self.friendPickerController.selection count]; i++)
         [newGameParticipants addObject:[self.friendPickerController.selection[i] objectForKey:@"id"]];
     
-    Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants withCurrentUserId: [PFUser currentUser].objectId];
+    [newGameParticipants addObject:[[PFUser currentUser] objectForKey:@"facebookId"]];
+    
+    Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants];
     
     [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
     

@@ -8,12 +8,12 @@
 
 Parse.Cloud.define("completedContract", function(request, response) {
 	var contractId = request.params.contractId;
-
 	var Contract = Parse.Object.extend("Contract");
 	var contractQuery = new Parse.Query(Contract);
 
 	contractQuery.get(contractId, {
 		success:function(oldContract) {
+			console.log("getting contract's target");
 			var assassin = oldContract.get("assassin");
 			var target = oldContract.get("target");
 			var game = oldContract.get("game");
@@ -25,11 +25,12 @@ Parse.Cloud.define("completedContract", function(request, response) {
 
 			targetContractQuery.first({
 				success: function(targetContract) {
-
+					console.log("got contract's target, setting state to failed");
 					targetContract.set("state", "Failed");
 					targetContract.save();
 			      
 			    	// If the game is over
+			    	console.log("checking who is the winner");
 			    	if (targetContract.get("target").id == assassin.id)
 			    	{
 			    		alert("HI WE ARE MATCH with game: " + game.id);
@@ -181,7 +182,8 @@ Parse.Cloud.define("createGame", function(request, response) {
 	// create Promises
 
 	var userList = request.params.userList;
-	var userObjectList = [];
+	var userObjectPointerList = [];
+	var userObjectList = []
 	
 	// perform query for users where Facebook ID contained in userList
 	var userIdQuery = new Parse.Query(Parse.User);
@@ -192,29 +194,28 @@ Parse.Cloud.define("createGame", function(request, response) {
 		var promise = Parse.Promise.as();
 		for (var participant in gameParticipants)
 		{
-			// extend the promise with a function to add parse id to userobjectlist
+			// extend the promise with a function to add parse id to userobjectpointerlist
 			promise = promise.then(function() {
 				userObject = new Parse.User();
 				userObject.id = gameParticipants[participant].id;
+				userObjectPointerList.push(userObject);
+
+				// create userobjectlist
+				userObject.username = gameParticipants[participant].username;
+				userObject.facebookId = gameParticipants[participant].facebookId;
 				return userObjectList.push(userObject);
 			});
 		}
 		return promise;
 
 	}).then(function() {
-		// userObjectList populated with other players
-		// Add current user to userobjectlist
-		var meUserId =  request.params.meUserId;
-		var meUser = new Parse.User();
-		meUser.id = meUserId;
-		userObjectList.push(meUser);
 
 		// Populate game with user POINTERS
-		game.set("players", userObjectList);
+		game.set("players", userObjectPointerList);
 
 		// Shuffle list of users. Important to do this AFTER you save it as the game object so that
 		// the order of the contracts can't be seen by the players
-		var currentIndex = userObjectList.length, temporaryValue, randomIndex;
+		var currentIndex = userObjectPointerList.length, temporaryValue, randomIndex;
 
 		// While there remain elements to shuffle...
 		while (0 !== currentIndex) 
@@ -224,9 +225,9 @@ Parse.Cloud.define("createGame", function(request, response) {
 			currentIndex -= 1;
 
 			// And swap it with the current element.
-			temporaryValue = userObjectList[currentIndex];
-			userObjectList[currentIndex] = userObjectList[randomIndex];
-			userObjectList[randomIndex] = temporaryValue;
+			temporaryValue = userObjectPointerList[currentIndex];
+			userObjectPointerList[currentIndex] = userObjectPointerList[randomIndex];
+			userObjectPointerList[randomIndex] = temporaryValue;
 		}
 
 		game.save(null, {
@@ -236,7 +237,6 @@ Parse.Cloud.define("createGame", function(request, response) {
 			var contractList = [];
 			var Contract = Parse.Object.extend("Contract");
 
-			// 
 			for (var i = 0; i < userObjectList.length; i++) // this is the number of contracts we need
 			{
 				var assassin = userObjectList[i]; 
@@ -248,7 +248,11 @@ Parse.Cloud.define("createGame", function(request, response) {
 				var contract = new Contract();
 
 				contract.set("assassin", assassin);
+				contract.set("assassinName", assassin.username);
+				contract.set("assassinFbId", assassin.facebookId);
 			    contract.set("target", target);
+			    contract.set("targetName", assassin.username);
+				contract.set("targetFbId", assassin.facebookId);
 			    contract.set("state", "Active");
 			    contract.set("commentLocation", -1);
 			    var gamePointer = {__type: "Pointer", className: "Game", objectId: game.id};
