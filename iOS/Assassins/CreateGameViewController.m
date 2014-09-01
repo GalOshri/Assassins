@@ -93,11 +93,11 @@
 {
     // create array of facebook ID
     NSMutableArray *newGameParticipants = [[NSMutableArray alloc] init];
+
+    [newGameParticipants addObject:[[PFUser currentUser] objectForKey:@"facebookId"]];
     
     for(int i=0; i< [self.friendPickerController.selection count]; i++)
         [newGameParticipants addObject:[self.friendPickerController.selection[i] objectForKey:@"id"]];
-    
-    [newGameParticipants addObject:[[PFUser currentUser] objectForKey:@"facebookId"]];
     
     Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants];
     

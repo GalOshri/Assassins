@@ -201,8 +201,10 @@ Parse.Cloud.define("createGame", function(request, response) {
 				userObjectPointerList.push(userObject);
 
 				// create userobjectlist
-				userObject.username = gameParticipants[participant].username;
-				userObject.facebookId = gameParticipants[participant].facebookId;
+				userObject.set("username", gameParticipants[participant].get("username"));
+				userObject.set("facebookId", gameParticipants[participant].get("facebookId"));
+				console.log('user username is ' + userObject.get("username"));
+				console.log( 'user facebook id is ' + userObject.get("facebookId"));
 				return userObjectList.push(userObject);
 			});
 		}
@@ -246,13 +248,14 @@ Parse.Cloud.define("createGame", function(request, response) {
 					var target = userObjectList[i + 1];
 
 				var contract = new Contract();
-
+				// console.log("assassin: " + assassin + " target: " + target);
+				// console.log("this contract will have assassinName " + assassin.username + " with fbid " + assassin.facebookId + " and targetname " + target.username + " with fbid " + target.facebookId);
 				contract.set("assassin", assassin);
-				contract.set("assassinName", assassin.username);
-				contract.set("assassinFbId", assassin.facebookId);
+				contract.set("assassinName", assassin.get("username"));
+				contract.set("assassinFbId", assassin.get("facebookId"));
 			    contract.set("target", target);
-			    contract.set("targetName", assassin.username);
-				contract.set("targetFbId", assassin.facebookId);
+			    contract.set("targetName", assassin.get("username"));
+				contract.set("targetFbId", assassin.get("facebookId"));
 			    contract.set("state", "Active");
 			    contract.set("commentLocation", -1);
 			    var gamePointer = {__type: "Pointer", className: "Game", objectId: game.id};
