@@ -424,7 +424,7 @@
     Contract *contract = [[Contract alloc] init];
     
     contract.contractId = contractObject.objectId;
-    contract.time = [NSDate date];
+    contract.time = contractObject[@"snipeTime"];
     contract.state = contractObject[@"state"];
     
     // PFUser *assassin = contractObject[@"assassin"];
