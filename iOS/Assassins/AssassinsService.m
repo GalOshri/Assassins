@@ -450,7 +450,7 @@
         contract.commentYCoord = [contractObject[@"commentLocation"] floatValue];
     }
     
-    else if ([contract.state isEqualToString:@"Active"])
+    else if ([contract.state isEqualToString:@"Active"] || ([contract.state isEqualToString:@"Failed"]))
     {
         contract.image = nil;
         
