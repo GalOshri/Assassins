@@ -292,21 +292,12 @@
 			isa = PBXGroup;
 			children = (
 				0D52C4AC197E284A00E5E5B9 /* Main.storyboard */,
-				0D52C4AF197E284A00E5E5B9 /* ViewController.h */,
-				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
-				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
-				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
-				DAD0DD76199094310075E69D /* Verify Snipe */,
+				0D8B2C4F19B5236100552D11 /* Camera Page */,
+				0D8B2C5019B5237600552D11 /* Snipe Submit Page */,
 				DAA7D030199892C400656414 /* Pending Contracts */,
-				DAD0DD6E198F78420075E69D /* Game Page */,
-				DAA7D03D199E548800656414 /* Completed Contract Image  */,
-				DAD0DD80199324120075E69D /* Participant Page */,
 				DAD0DD84199359450075E69D /* User Page */,
-				DA42AB6E19A6060E00356E7A /* Create Game */,
 				0D277D0C198EE32E002362C6 /* Service */,
 				0DBF67101992100200AFF5F8 /* Models */,
-				0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */,
-				0DBF670B198EFD5C00AFF5F8 /* Image Helpers */,
 				0D277D0B198EE318002362C6 /* Images */,
 				0D52C4B2197E284A00E5E5B9 /* Images.xcassets */,
 				0D52C4A1197E284A00E5E5B9 /* Supporting Files */,
@@ -343,6 +334,26 @@
 				0D52C4C2197E284A00E5E5B9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0D8B2C4F19B5236100552D11 /* Camera Page */ = {
+			isa = PBXGroup;
+			children = (
+				0D52C4AF197E284A00E5E5B9 /* ViewController.h */,
+				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
+				0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */,
+				0DBF670B198EFD5C00AFF5F8 /* Image Helpers */,
+			);
+			name = "Camera Page";
+			sourceTree = "<group>";
+		};
+		0D8B2C5019B5237600552D11 /* Snipe Submit Page */ = {
+			isa = PBXGroup;
+			children = (
+				0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */,
+				0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */,
+			);
+			name = "Snipe Submit Page";
 			sourceTree = "<group>";
 		};
 		0DBF670B198EFD5C00AFF5F8 /* Image Helpers */ = {
@@ -399,6 +410,7 @@
 				DAA7D032199892D600656414 /* PendingContractsTableViewController.m */,
 				DAA7D0371998AA4C00656414 /* PendingContractsTableViewCell.h */,
 				DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */,
+				DAD0DD76199094310075E69D /* Verify Snipe */,
 			);
 			name = "Pending Contracts";
 			sourceTree = "<group>";
@@ -419,6 +431,8 @@
 				DAD0DD67198F75E30075E69D /* GameTableViewController.m */,
 				DAD0DD6B198F783A0075E69D /* AssassinationEventCell.h */,
 				DAD0DD6C198F783A0075E69D /* AssassinationEventCell.m */,
+				DAA7D03D199E548800656414 /* Completed Contract Image  */,
+				DAD0DD80199324120075E69D /* Participant Page */,
 			);
 			name = "Game Page";
 			sourceTree = "<group>";
@@ -450,6 +464,8 @@
 				DAD0DD82199359360075E69D /* UserTableViewController.m */,
 				0DBF67141998542C00AFF5F8 /* GameCell.h */,
 				0DBF67151998542C00AFF5F8 /* GameCell.m */,
+				DAD0DD6E198F78420075E69D /* Game Page */,
+				DA42AB6E19A6060E00356E7A /* Create Game */,
 			);
 			name = "User Page";
 			sourceTree = "<group>";
