@@ -217,17 +217,17 @@ CGFloat scale;
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 */
-- (IBAction)toggleFlash:(UIButton *)sender {
-    NSLog(@"%d", picker.cameraFlashMode);
+- (IBAction)toggleFlash:(UIButton *)sender
+{
     if (self.flashMode)
     {
-        [picker setCameraFlashMode: 0];
+        [picker setCameraFlashMode: UIImagePickerControllerCameraFlashModeOff];
         [sender setImage:[UIImage imageNamed:  @"noFlash.png"] forState:UIControlStateNormal];
         self.flashMode = NO;
     }
     else
     {
-        [picker setCameraFlashMode: 1];
+        [picker setCameraFlashMode: UIImagePickerControllerCameraFlashModeOn];
         [sender setImage:[UIImage imageNamed: @"flash.png"] forState:UIControlStateNormal];
         self.flashMode = YES;
     }
@@ -286,10 +286,8 @@ CGFloat scale;
     PFUser *currentUser = [PFUser currentUser];
     if ([PFFacebookUtils isLinkedWithUser:currentUser])
     {
-        NSLog(@"currentuser facebookId is: %@", currentUser[@"facebookId"]);
         if (currentUser[@"facebookId"] == nil)
         {
-            NSLog(@"we get in the if statement to change things");
             // Create request for user's Facebook data
             FBRequest *request = [FBRequest requestForMe];
             
@@ -303,7 +301,6 @@ CGFloat scale;
                     currentUser[@"username"] = userData[@"name"];
                     currentUser[@"lifetimeSnipes"] = [NSNumber numberWithInt:0];
                     currentUser[@"lifetimeGames"] = [NSNumber numberWithInt:0];
-                    NSLog(@"does this happen?");
                     [currentUser save];
                 }
                 else

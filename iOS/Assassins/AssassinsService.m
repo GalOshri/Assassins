@@ -479,9 +479,7 @@
         
         NSDictionary *completedContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:contractId, @"contractId", nil];
         NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
-        
-        NSLog(@"%@", responseString);
-        
+                
         PFUser *assassin = contract[@"assassin"];
         
         // Find devices associated with these users

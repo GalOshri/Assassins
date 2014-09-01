@@ -110,8 +110,6 @@
     NSString *time = [timeArray objectAtIndex:0];
     cell.pendingDateLabel.text = time;
     
-    NSLog(@"%@, %@", [PFUser currentUser].username, currentContract.targetName);
-    
     if ([[PFUser currentUser].username isEqualToString:currentContract.targetName])
     {
         cell.pendingLabel.text = [NSString stringWithFormat:@"Did %@ tag you?", currentContract.assassinName];

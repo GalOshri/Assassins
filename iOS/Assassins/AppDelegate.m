@@ -63,8 +63,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"%@", userInfo[@"aps"][@"alert"]);
-    NSLog(@"%@", self.window.rootViewController);
     
     [PFPush handlePush:userInfo];
     
