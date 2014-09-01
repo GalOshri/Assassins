@@ -201,11 +201,8 @@ Parse.Cloud.define("createGame", function(request, response) {
 				userObjectPointerList.push(userObject);
 
 				// create userobjectlist
-				userObject.set("username", gameParticipants[participant].get("username"));
-				userObject.set("facebookId", gameParticipants[participant].get("facebookId"));
-				console.log('user username is ' + userObject.get("username"));
-				console.log( 'user facebook id is ' + userObject.get("facebookId"));
-				return userObjectList.push(userObject);
+				var userInfo = {"userObject": userObject, "username": gameParticipants[participant].get("username"), "facebookId": gameParticipants[participant].get("facebookId")};
+				return userObjectList.push(userInfo);
 			});
 		}
 		return promise;
@@ -217,7 +214,7 @@ Parse.Cloud.define("createGame", function(request, response) {
 
 		// Shuffle list of users. Important to do this AFTER you save it as the game object so that
 		// the order of the contracts can't be seen by the players
-		var currentIndex = userObjectPointerList.length, temporaryValue, randomIndex;
+		var currentIndex = userObjectList.length, temporaryValue, randomIndex;
 
 		// While there remain elements to shuffle...
 		while (0 !== currentIndex) 
@@ -227,9 +224,9 @@ Parse.Cloud.define("createGame", function(request, response) {
 			currentIndex -= 1;
 
 			// And swap it with the current element.
-			temporaryValue = userObjectPointerList[currentIndex];
-			userObjectPointerList[currentIndex] = userObjectPointerList[randomIndex];
-			userObjectPointerList[randomIndex] = temporaryValue;
+			temporaryValue = userObjectList[currentIndex];
+			userObjectList[currentIndex] = userObjectList[randomIndex];
+			userObjectList[randomIndex] = temporaryValue;
 		}
 
 		game.save(null, {
@@ -241,21 +238,22 @@ Parse.Cloud.define("createGame", function(request, response) {
 
 			for (var i = 0; i < userObjectList.length; i++) // this is the number of contracts we need
 			{
-				var assassin = userObjectList[i]; 
+				var assassinObject = userObjectList[i]; 
 				if (i == userObjectList.length - 1) // This is the last user, his target is first user
-					var target = userObjectList[0]; 
+					var targetObject = userObjectList[0]; 
 				else
-					var target = userObjectList[i + 1];
+					var targetObject = userObjectList[i + 1];
 
 				var contract = new Contract();
-				// console.log("assassin: " + assassin + " target: " + target);
-				// console.log("this contract will have assassinName " + assassin.username + " with fbid " + assassin.facebookId + " and targetname " + target.username + " with fbid " + target.facebookId);
-				contract.set("assassin", assassin);
-				contract.set("assassinName", assassin.get("username"));
-				contract.set("assassinFbId", assassin.get("facebookId"));
-			    contract.set("target", target);
-			    contract.set("targetName", assassin.get("username"));
-				contract.set("targetFbId", assassin.get("facebookId"));
+				console.log("assassin: " + assassinObject.userObject+ " target: " + targetObject.userObject);
+				console.log("this contract will have assassinName " + assassinObject.username + " with fbid " + assassinObject.facebookId + " and targetname " + targetObject.username + " with fbid " + targetObject.facebookId);
+				
+				contract.set("assassin", assassinObject.userObject);
+				contract.set("assassinName", assassinObject.username);
+				contract.set("assassinFbId", assassinObject.facebookId);
+			    contract.set("target", targetObject.userObject);
+			    contract.set("targetName", targetObject.username);
+				contract.set("targetFbId", targetObject.facebookId);
 			    contract.set("state", "Active");
 			    contract.set("commentLocation", -1);
 			    var gamePointer = {__type: "Pointer", className: "Game", objectId: game.id};
