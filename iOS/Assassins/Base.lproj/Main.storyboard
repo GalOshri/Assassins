@@ -878,7 +878,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.036265060260000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="ThePasta has been removed" translatesAutoresizingMaskIntoConstraints="NO" id="Wrc-SN-hBD">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="ThePasta has been removed" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrc-SN-hBD">
                                             <rect key="frame" x="79" y="28" width="221" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
