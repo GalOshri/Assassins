@@ -607,7 +607,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="unwindToCamera:" destination="ZMC-9K-W8e" eventType="touchUpInside" id="BJZ-gi-GGZ"/>
                                     <segue destination="1zH-iF-qft" kind="unwind" unwindAction="unwindToCamera:" id="90q-tv-eDY"/>
                                 </connections>
                             </button>

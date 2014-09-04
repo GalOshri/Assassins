@@ -53,6 +53,7 @@
     {
         [self.commentField setHidden:NO];
         [self.commentField setText:self.contract.comment];
+        self.commentField.textAlignment = NSTextAlignmentCenter;
         self.commentField.frame = CGRectMake(0,self.contract.commentYCoord, self.commentField.frame.size.width, self.commentField.frame.size.height);
     }
     
