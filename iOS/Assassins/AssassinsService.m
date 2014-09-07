@@ -25,41 +25,45 @@
         PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
         
         // Retrieve the object by id
-        [query getObjectInBackgroundWithId:contract.contractId block:^(PFObject *contract, NSError *error) {
+        [query getObjectInBackgroundWithId:contract.contractId block:^(PFObject *contractObject, NSError *error) {
         
-            contract[@"image"] = imageFile;
-            contract[@"state"] = @"Pending";
-            contract[@"snipeTime"] = snipeTime;
+            contractObject[@"image"] = imageFile;
+            contractObject[@"state"] = @"Completed"; // NOPENDING
+            contractObject[@"snipeTime"] = snipeTime;
             
             // set comment fields
             if ([comment isEqualToString:@""]) {
-                contract[@"commentLocation"] = [NSNumber numberWithFloat:-1.0];
-                contract[@"comment"] = @"";
+                contractObject[@"commentLocation"] = [NSNumber numberWithFloat:-1.0];
+                contractObject[@"comment"] = @"";
             }
             else {
-                contract[@"commentLocation"] = [NSNumber numberWithFloat:yCoord];
-                contract[@"comment"] = comment;
+                contractObject[@"commentLocation"] = [NSNumber numberWithFloat:yCoord];
+                contractObject[@"comment"] = comment;
             }
             
-            [contract saveInBackground];
+            [contractObject save];
             
+            // NOPENDING --------------------------------------------*************************************
+            NSDictionary *completedContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:contractObject.objectId, @"contractId", nil];
+            NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
+            
+         
             // send push notifiaction to target
             //query to grab correct user
-            PFUser *target = contract[@"target"];
+            PFUser *target = contractObject[@"target"];
             PFQuery *pushQuery = [PFInstallation query];
             [pushQuery whereKey:@"user" equalTo:target];
             
             // Send push notification to query
             NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  @"You got sniped!", @"alert",
-                                  contract.objectId, @"contractId",
+                                  [NSString stringWithFormat:@"You got eliminated by %@!", [PFUser currentUser].username], @"alert",
+                                  contractObject.objectId, @"contractId", contract.gameId, @"gameId",
                                   nil];
             
             PFPush *push = [[PFPush alloc] init];
             [push setQuery:pushQuery];
             [push setData:data];
             [push sendPushInBackground];
-
         }];
     }
 }

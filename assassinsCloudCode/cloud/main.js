@@ -71,7 +71,8 @@ Parse.Cloud.define("completedContract", function(request, response) {
 									Parse.Push.send({
 									  where: pushQuery, // Set our Installation query
 									  data: {
-									  	alert: winner.get("username") + " just won the game!"
+									  	alert: winner.get("username") + " just won the game!",
+									  	"gameId" : game.id
 									  }
 									}, {
 									  success: function() {

@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "VerifySnipeViewController.h"
 #import "AssassinsService.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
@@ -45,8 +46,11 @@
         
         // Create a pointer to the Photo object
         NSString *contractId = [notificationPayload objectForKey:@"contractId"];
+        NSString *gameId = [notificationPayload objectForKey:@"gameId"];
         
-        [self presentSnipeVerificationView:contractId];
+        [self presentCameraView:gameId];
+        
+        // [self presentSnipeVerificationView:contractId]; // NOPENDING
     }
     
     return YES;
@@ -68,8 +72,10 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     // Create a pointer to the Photo object
     NSString *contractId = [userInfo objectForKey:@"contractId"];
+    NSString *gameId = [userInfo objectForKey:@"gameId"];
     
-    [self presentSnipeVerificationView:contractId];
+    //[self presentSnipeVerificationView:contractId];
+    [self presentCameraView:gameId];
 }
 
 - (void)presentSnipeVerificationView:(NSString *)contractId
@@ -83,6 +89,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
     vsvc.contract = contract;
     [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
+}
+
+- (void)presentCameraView:(NSString *)gameId
+{
+    UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController* vc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    vc.goToGameId = gameId;
+    [self.window.rootViewController presentViewController:vc animated:YES completion:NULL];
 }
 
 -(void)applicationDidBecomeActive:(UIApplication *)application

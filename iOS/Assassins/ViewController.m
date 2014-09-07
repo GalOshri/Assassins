@@ -16,6 +16,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "AssassinsService.h"
+#import "UserTableViewController.h"
 
 @interface ViewController ()
 
@@ -25,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *snipeNotificationButton;
 @property BOOL flashMode;
 
-@property BOOL isSnipeSubmitted;
+
 
 
 @end
@@ -43,7 +44,7 @@ CGFloat scale;
         if ([segue.sourceViewController isKindOfClass:[SnipeSubmitView class]])
         {
             SnipeSubmitView *ssv = (SnipeSubmitView *)segue.sourceViewController;
-            self.isSnipeSubmitted = ssv.isSnipeSubmitted;
+            self.goToGameId = ssv.selectedGameId;
             
         }
     }
@@ -71,6 +72,19 @@ CGFloat scale;
             CGImageRelease(imageRef);
             
             ssv.snipeImage = (UIImage *) croppedImage;
+        }
+    }
+    
+    if ([segue.identifier isEqualToString:@"SegueToUserPage"])
+    {
+        if ([segue.destinationViewController isKindOfClass:[UserTableViewController class]])
+        {
+            UserTableViewController *utvc = (UserTableViewController *)segue.destinationViewController;
+            
+            Game *selectedGame = [AssassinsService getGameWithId:self.goToGameId];
+            self.goToGameId = nil;
+            utvc.goToGame = selectedGame;
+            
         }
     }
 }
@@ -137,7 +151,7 @@ CGFloat scale;
         [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
     [userData synchronize]; */
     
-    self.isSnipeSubmitted = NO;
+    self.goToGameId = nil;
 
 }
 
@@ -154,10 +168,9 @@ CGFloat scale;
         [self showLogInAndSignUpView];
     }
     
-    if (self.isSnipeSubmitted)
+    if (self.goToGameId)
     {
-        self.isSnipeSubmitted = NO;
-        [self performSegueWithIdentifier:@"SegueToPendingSnipes" sender:self];
+        [self performSegueWithIdentifier:@"SegueToUserView" sender:self]; // NOPENDING
     }
     
     // check to see if have snipe pending

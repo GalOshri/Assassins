@@ -11,4 +11,6 @@
 
 @interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
+@property (strong, nonatomic) NSString *goToGameId;
+
 @end

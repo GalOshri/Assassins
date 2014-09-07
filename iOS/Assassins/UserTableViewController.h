@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "Game.h"
 
 @interface UserTableViewController : UITableViewController
+
+@property (strong, nonatomic) Game *goToGame;
 
 @end

@@ -15,6 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImageView;
 @property (strong, nonatomic) UIImage *snipeImage;
 
-@property BOOL isSnipeSubmitted;
+@property (strong, nonatomic) NSString *selectedGameId;
 
 @end

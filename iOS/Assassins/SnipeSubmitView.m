@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *snipeToggle;
 @property (strong, nonatomic) NSMutableArray *submitContracts;
-@property (strong, nonatomic) NSString *selectedGameId;
+
 
 @end
 
@@ -32,7 +32,7 @@
          {
              
          } */
-         self.isSnipeSubmitted = YES;
+         //self.isSnipeSubmitted = NO; // NOPENDING
      }
      
  }
@@ -50,7 +50,7 @@
     [tapRecognizer setDelegate:self];
     [self.snipeImageView addGestureRecognizer:tapRecognizer];
     
-    self.isSnipeSubmitted = NO;
+    //self.isSnipeSubmitted = NO;
     
     
 

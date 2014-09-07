@@ -8,7 +8,6 @@
 
 #import "UserTableViewController.h"
 #import "AssassinationEventCell.h"
-#import "Game.h"
 #import "AssassinsService.h"
 #import <Parse/Parse.h>
 #import "GameCell.h"
@@ -23,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 
-@property (strong, nonatomic) Game *createdGame;
+
 
 
 @property (strong, nonatomic) NSArray *games;
@@ -41,7 +40,7 @@
         {
             CreateGameViewController *cgvc = (CreateGameViewController *)segue.sourceViewController;
             
-            self.createdGame = cgvc.createdGame;
+            self.goToGame = cgvc.createdGame;
             
         }
     }
@@ -89,11 +88,11 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    if (self.createdGame)
+    if (self.goToGame)
     {
         GameCell *createdGameCell = [[GameCell alloc] init];
-        createdGameCell.game = self.createdGame;
-        self.createdGame = nil;
+        createdGameCell.game = self.goToGame;
+        self.goToGame = nil;
         [self.tableView reloadData];
         [self performSegueWithIdentifier:@"SegueToGameView" sender:createdGameCell];
 
