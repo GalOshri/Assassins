@@ -413,6 +413,7 @@
     {
         game.isComplete = YES;
         game.winnerName = gameObject[@"winnerName"];
+        game.winnerFbId = gameObject[@"winnerFbId"];
     }
     else
     {

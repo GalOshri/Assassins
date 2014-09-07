@@ -81,7 +81,7 @@
     // call to AssassinsService to fill current contract
     self.currentContract = [AssassinsService getContractForGame:self.game.gameId];
     
-    if (!self.game.winnerName)
+    if (!self.game.isComplete)
     {
         if (self.currentContract)
         {
@@ -93,17 +93,20 @@
         }
         else
         {
-            self.currentTargetLabel.text = @"You have been sniped";
+            self.currentTargetLabel.text = @"You were eliminated";
             [self.currentTargetProfilePicture setHidden:YES];
-            self.currentTargetUsername.text = @"Game is not completed";
+            self.currentTargetUsername.text = @"Game is not over";
             
         }
     }
     else
     {
         self.currentTargetLabel.text = @"Game won by:";
-        [self.currentTargetProfilePicture setHidden:YES];
         self.currentTargetUsername.text = self.game.winnerName;
+        self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
+        self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+        [[self.currentTargetProfilePicture layer] setCornerRadius:5];
+        [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
     }
     
     // call AssassinsService to fill list with events

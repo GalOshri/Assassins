@@ -18,5 +18,6 @@
 @property (strong, nonatomic) NSArray *contracts;
 @property BOOL isComplete;
 @property (strong, nonatomic) NSString *winnerName;
+@property (strong, nonatomic) NSString *winnerFbId;
 
 @end

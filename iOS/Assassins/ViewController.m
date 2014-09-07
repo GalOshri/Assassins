@@ -45,7 +45,6 @@ CGFloat scale;
         {
             SnipeSubmitView *ssv = (SnipeSubmitView *)segue.sourceViewController;
             self.goToGameId = ssv.selectedGameId;
-            
         }
     }
 }
@@ -155,7 +154,7 @@ CGFloat scale;
         [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
     [userData synchronize]; */
     
-    self.goToGameId = nil;
+
 
 }
 

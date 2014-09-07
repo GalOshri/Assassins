@@ -15,6 +15,8 @@ Parse.Cloud.define("completedContract", function(request, response) {
 		success:function(oldContract) {
 			console.log("getting contract's target");
 			var assassin = oldContract.get("assassin");
+			var assassinName = oldContract.get("assassinName");
+			var assassinFbId = oldContract.get("assassinFbId");
 			var target = oldContract.get("target");
 			var game = oldContract.get("game");
 
@@ -44,6 +46,8 @@ Parse.Cloud.define("completedContract", function(request, response) {
 						    // Game state is over
 						    game.set("state", "Completed");
 						    game.set("winner", assassin);
+						    game.set("winnerName", assassinName);
+						    game.set("winnerFbId", assassinFbId);
 							game.save();
 
 							// Not needed: var User = Parse.Object.extend("User");

@@ -93,10 +93,12 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)presentCameraView:(NSString *)gameId
 {
-    UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+     UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ViewController* vc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
     vc.goToGameId = gameId;
     [self.window.rootViewController presentViewController:vc animated:YES completion:NULL];
+    
 }
 
 -(void)applicationDidBecomeActive:(UIApplication *)application
