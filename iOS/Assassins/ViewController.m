@@ -75,15 +75,19 @@ CGFloat scale;
         }
     }
     
-    if ([segue.identifier isEqualToString:@"SegueToUserPage"])
+    if ([segue.identifier isEqualToString:@"SegueToUserView"])
     {
         if ([segue.destinationViewController isKindOfClass:[UserTableViewController class]])
         {
-            UserTableViewController *utvc = (UserTableViewController *)segue.destinationViewController;
+            if (self.goToGameId != nil)
+            {
             
-            Game *selectedGame = [AssassinsService getGameWithId:self.goToGameId];
-            self.goToGameId = nil;
-            utvc.goToGame = selectedGame;
+                UserTableViewController *utvc = (UserTableViewController *)segue.destinationViewController;
+                
+                Game *selectedGame = [AssassinsService getGameWithId:self.goToGameId];
+                self.goToGameId = nil;
+                utvc.goToGame = selectedGame;
+            }
             
         }
     }
