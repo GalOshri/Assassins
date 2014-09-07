@@ -97,7 +97,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
      UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ViewController* vc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
     vc.goToGameId = gameId;
-    [self.window.rootViewController presentViewController:vc animated:YES completion:NULL];
+    [self.window.rootViewController presentViewController:vc animated:NO completion:NULL];
     
 }
 

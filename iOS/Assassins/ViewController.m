@@ -154,7 +154,9 @@ CGFloat scale;
         [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
     [userData synchronize]; */
     
-
+    [[PFUser currentUser] refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        // noop
+    }];
 
 }
 
@@ -177,16 +179,18 @@ CGFloat scale;
     }
     
     // check to see if have snipe pending
+    /* NOPENDING ------------------------***************************
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.numberPendingSnipe = [AssassinsService checkPendingSnipes];
     
-    if (appDelegate.numberPendingSnipe != 0)
+    
+     if (appDelegate.numberPendingSnipe != 0)
     {
         NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
     }
     else
         [self.snipeNotificationButton setImage:[UIImage imageNamed:@"snipeNotificationNone.png"] forState:UIControlStateNormal];
-    
+    */
     
 }
 

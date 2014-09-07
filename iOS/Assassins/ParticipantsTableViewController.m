@@ -30,7 +30,10 @@
     
     self.gameNameLabel.text = [NSString stringWithString:self.game.name];
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
-    self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+    if (!self.game.isComplete)
+        self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+    else
+        self.numActiveAssassinsLabel.text = @"";
     
     self.assassins = [AssassinsService getAssassinListFromGame:self.game];
     
@@ -74,7 +77,12 @@
     [[cell.profilePicture layer] setMasksToBounds:YES];
     
     if (currentAssassin.isAlive)
-        cell.isAliveLabel.text = @"Alive";
+    {
+        if (self.game.isComplete)
+            cell.isAliveLabel.text = @"Winner";
+        else
+            cell.isAliveLabel.text = @"Alive";
+    }
     else {
         cell.isAliveLabel.text = @"Neutralized";
         [cell.username setAlpha:0.5];

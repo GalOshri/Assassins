@@ -25,7 +25,7 @@
 
 
 
-@property (strong, nonatomic) NSArray *games;
+@property (strong, nonatomic) NSMutableArray *games;
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 
 @end
@@ -41,6 +41,8 @@
             CreateGameViewController *cgvc = (CreateGameViewController *)segue.sourceViewController;
             
             self.goToGame = cgvc.createdGame;
+            [self.games addObject:self.goToGame];
+            [self.tableView reloadData];
             
         }
     }
@@ -64,8 +66,10 @@
     [super viewDidLoad];
     
     //self.completedContracts = [[NSMutableArray alloc] init];
-    self.games = [AssassinsService getGameList];
+    self.games = [[AssassinsService getGameList] mutableCopy];
     PFUser *currentUser = [PFUser currentUser];
+    
+    
     
     self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
     self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d completed games",[currentUser[@"lifetimeGames"] intValue]];
@@ -83,6 +87,9 @@
     self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     [[self.profilePicture layer] setCornerRadius:5];
     [[self.profilePicture layer] setMasksToBounds:YES];
+    
+    // Change table separators
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
 
 }
 

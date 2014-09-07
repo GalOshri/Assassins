@@ -75,7 +75,7 @@
     [super viewDidLoad];
     
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
-    self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+    
     self.gameNameLabel.text = self.game.name;
     
     // call to AssassinsService to fill current contract
@@ -83,6 +83,8 @@
     
     if (!self.game.isComplete)
     {
+        self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+        
         if (self.currentContract)
         {
             self.currentTargetUsername.text = self.currentContract.targetName;
@@ -101,6 +103,8 @@
     }
     else
     {
+        self.numActiveAssassinsLabel.text = @"";
+        
         self.currentTargetLabel.text = @"Game won by:";
         self.currentTargetUsername.text = self.game.winnerName;
         self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
@@ -145,12 +149,17 @@
     
     // set items in cell
     cell.commentLabel.text = currentContract.comment;
-    cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been removed", currentContract.targetName];
+    cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been eliminated", currentContract.targetName];
     
     // time altercation
-    NSArray *timeArray = [[NSString stringWithFormat:@"%@", currentContract.time] componentsSeparatedByString:@"+"];
-    NSString *time = [timeArray objectAtIndex:0];
-    cell.timeLabel.text = [NSString stringWithFormat:@"%@",time];
+    /*NSArray *timeArray = [[NSString stringWithFormat:@"%@", currentContract.time] componentsSeparatedByString:@"+"];
+    NSString *time = [timeArray objectAtIndex:0];*/
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a MMM-dd" options:0 locale:[NSLocale currentLocale]]];
+    NSString *theTime = [dateFormatter stringFromDate:currentContract.time];
+    
+    cell.timeLabel.text = theTime;
     
     // tweak aesthetics of images
     [cell.snipeImagePreview setImage:currentContract.image];
