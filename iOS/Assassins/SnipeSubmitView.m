@@ -112,13 +112,32 @@
         // grab list of related contracts
         self.submitContracts = [AssassinsService getContractArray];
         
-        UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
-       
-        //show alert to pick which contract to submit snipe to
-        for (Contract *contract in self.submitContracts)
-            [pickContract addButtonWithTitle:contract.targetName];
+        if ([self.submitContracts count] == 0) {
+            UIAlertView *noContract = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"You are currently not in a game, and have no target. Create a game with friends to play!" delegate:self cancelButtonTitle:@"ok, shya breh!" otherButtonTitles:nil];
+            
+            [noContract show];
+        }
         
-        [pickContract show];
+        else if ([self.submitContracts count] > 1)
+        {
+            UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
+           
+            //show alert to pick which contract to submit snipe to
+            for (Contract *contract in self.submitContracts)
+                [pickContract addButtonWithTitle:contract.targetName];
+            
+            [pickContract show];
+        }
+        
+        else
+        {
+            // only 1 contract!
+            Contract *selectedContract = self.submitContracts[0];
+            [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
+            
+            [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
+        }
+            
     }
     
     else
@@ -131,7 +150,10 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([alertView.title isEqualToString:@"Whom did you snipe?"])
+    if ([alertView.title isEqualToString:@"Oops!"])
+        [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
+    
+    else if ([alertView.title isEqualToString:@"Whom did you snipe?"])
     {
         if (buttonIndex - 1 >= 0)
         {
