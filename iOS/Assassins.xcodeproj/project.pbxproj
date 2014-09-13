@@ -40,6 +40,8 @@
 		0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */; };
 		0DBF67131992101B00AFF5F8 /* Contract.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67121992101B00AFF5F8 /* Contract.m */; };
 		0DBF67161998542C00AFF5F8 /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67151998542C00AFF5F8 /* GameCell.m */; };
+		DA28DE9E19C5061C0015BE4C /* backArrowNoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DA28DE9D19C5061C0015BE4C /* backArrowNoBackground.png */; };
+		DA28DEA019C509A50015BE4C /* menuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DA28DE9F19C509A50015BE4C /* menuBackground.png */; };
 		DA42AB6D19A605F100356E7A /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42AB6C19A605F100356E7A /* CreateGameViewController.m */; };
 		DA57C43619B3C1E8006431E7 /* snipeNotificationNone.png in Resources */ = {isa = PBXBuildFile; fileRef = DA57C43519B3C1E8006431E7 /* snipeNotificationNone.png */; };
 		DAA7D033199892D600656414 /* PendingContractsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D032199892D600656414 /* PendingContractsTableViewController.m */; };
@@ -128,6 +130,8 @@
 		0DBF67121992101B00AFF5F8 /* Contract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contract.m; sourceTree = "<group>"; };
 		0DBF67141998542C00AFF5F8 /* GameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCell.h; sourceTree = "<group>"; };
 		0DBF67151998542C00AFF5F8 /* GameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCell.m; sourceTree = "<group>"; };
+		DA28DE9D19C5061C0015BE4C /* backArrowNoBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrowNoBackground.png; sourceTree = "<group>"; };
+		DA28DE9F19C509A50015BE4C /* menuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBackground.png; sourceTree = "<group>"; };
 		DA42AB6B19A605F100356E7A /* CreateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
 		DA42AB6C19A605F100356E7A /* CreateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
 		DA57C43519B3C1E8006431E7 /* snipeNotificationNone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snipeNotificationNone.png; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 		0D277D0B198EE318002362C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA28DE9F19C509A50015BE4C /* menuBackground.png */,
+				DA28DE9D19C5061C0015BE4C /* backArrowNoBackground.png */,
 				DA57C43519B3C1E8006431E7 /* snipeNotificationNone.png */,
 				DAA7D04619A4B08400656414 /* snipeNotification.png */,
 				DAA7D04419A4A09F00656414 /* usersDark.png */,
@@ -558,6 +564,7 @@
 				DAD0DD3D198B74BF0075E69D /* flash.png in Resources */,
 				DAD0DD63198F38710075E69D /* cameraIcon.png in Resources */,
 				0D52C4B3197E284A00E5E5B9 /* Images.xcassets in Resources */,
+				DA28DE9E19C5061C0015BE4C /* backArrowNoBackground.png in Resources */,
 				DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */,
 				DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */,
 				DAD0DD65198F59730075E69D /* cameraIconSmall.png in Resources */,
@@ -565,6 +572,7 @@
 				DAA7D04519A4A09F00656414 /* usersDark.png in Resources */,
 				0D52C4A5197E284A00E5E5B9 /* InfoPlist.strings in Resources */,
 				0D52C4AE197E284A00E5E5B9 /* Main.storyboard in Resources */,
+				DA28DEA019C509A50015BE4C /* menuBackground.png in Resources */,
 				DAA7D04319A49FA800656414 /* users.png in Resources */,
 				DAA7D03F199F5FCB00656414 /* settingGear.png in Resources */,
 				DA57C43619B3C1E8006431E7 /* snipeNotificationNone.png in Resources */,

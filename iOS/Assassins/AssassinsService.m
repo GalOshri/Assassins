@@ -283,6 +283,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Game"];
     
     [query whereKey:@"players" equalTo:currentUser];
+    [query orderByAscending:@"state"];
     NSArray *gameObjects = [query findObjects];
     
     for (PFObject *gameObject in gameObjects)

@@ -73,9 +73,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.view setBackgroundColor:self.view.tintColor];
+    [self.view setBackgroundColor:[UIColor colorWithRed:22.0/256 green:174.0/256 blue:255.0/256 alpha:1.0]];
+
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
-    
     self.gameNameLabel.text = self.game.name;
     
     // call to AssassinsService to fill current contract
@@ -103,7 +104,7 @@
     }
     else
     {
-        self.numActiveAssassinsLabel.text = @"";
+        self.numActiveAssassinsLabel.text = @"Game completed";
         
         self.currentTargetLabel.text = @"Game won by:";
         self.currentTargetUsername.text = self.game.winnerName;

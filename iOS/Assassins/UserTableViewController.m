@@ -65,6 +65,9 @@
 {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:self.view.tintColor];
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:22.0/256 green:174.0/256 blue:255.0/256 alpha:1.0]];
     //self.completedContracts = [[NSMutableArray alloc] init];
     self.games = [[AssassinsService getGameList] mutableCopy];
     PFUser *currentUser = [PFUser currentUser];
