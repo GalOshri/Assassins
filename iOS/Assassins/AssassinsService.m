@@ -339,12 +339,8 @@
 {
     if ([PFUser currentUser])
     {
-        PFQuery *targetQuery = [PFQuery queryWithClassName:@"Contract"];
-        [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
-        [targetQuery whereKey:@"state" equalTo:@"Pending"];
-        
-        int pendingCount = (int) [targetQuery countObjects];
-        return pendingCount;
+        PFUser *currentUser = [PFUser currentUser];
+        return (int)currentUser[@"snipesToVerify"];
     }
     else
         return 0;
@@ -473,57 +469,28 @@
 
 + (void)confirmAssassination:(NSString *)contractId
 {
-    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
-    
-    // Retrieve the object by id
-    [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
-        
-        // Now let's update it with some new data. In this case, only cheatMode and score
-        // will get sent to the cloud. playerName hasn't changed.
-        contract[@"state"] = @"Completed";
-        [contract save];
-        
-        NSDictionary *completedContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:contractId, @"contractId", nil];
-        NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
-                
-        PFUser *assassin = contract[@"assassin"];
-        
-        // Find devices associated with these users
-        PFQuery *pushQuery = [PFInstallation query];
-        [pushQuery whereKey:@"user" equalTo:assassin];
-        
-        // Send push notification to query
-        PFPush *push = [[PFPush alloc] init];
-        [push setQuery:pushQuery]; // Set our Installation query
-        [push setMessage:[NSString stringWithFormat:@"Your assassination of %@ was confirmed!", [PFUser currentUser].username]];
-        [push sendPushInBackground];
-    }];
+
 }
 
-+ (void)declineAssassination:(NSString *)contractId
++ (void)declineAssassination:(NSString *)contractId withGameId:(NSString *)gameId
 {
-    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
-    
-    // Retrieve the object by id
-    [query getObjectInBackgroundWithId:contractId block:^(PFObject *contract, NSError *error) {
-        
-        // Now let's update it with some new data. In this case, only cheatMode and score
-        // will get sent to the cloud. playerName hasn't changed.
-        contract[@"state"] = @"Active";
-        [contract saveInBackground];
-        
-        PFUser *assassin = contract[@"assassin"];
-        
-        // Find devices associated with these users
-        PFQuery *pushQuery = [PFInstallation query];
-        [pushQuery whereKey:@"user" equalTo:assassin];
-        
-        // Send push notification to query
-        PFPush *push = [[PFPush alloc] init];
-        [push setQuery:pushQuery]; // Set our Installation query
-        [push setMessage:@"Your assassination was denied."];
-        [push sendPushInBackground];
-    }];
+    // call cloud code to add username to array of invalidateVoters, check if it has been overturned, and clean function if not
+    NSDictionary *declineSnipeDict = [[NSDictionary alloc] initWithObjectsAndKeys:gameId, @"gameId", contractId, @"contractId", [PFUser currentUser].objectId, @"userId", nil];
+    NSString *responseString = [PFCloud callFunction:@"checkInvalidatedSnipe" withParameters:declineSnipeDict];
+}
+
++ (void)startPendingContractProcess:(Contract *)contract withGame:(Game *)game
+{
+    NSDictionary *pendingContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:game.gameId, @"gameId", contract.contractId, @"contractId",contract.targetName, @"targetName", nil];
+    NSString *responseString = [PFCloud callFunction:@"startPendingContractProcess" withParameters:pendingContractDict];
+}
+
++ (int)getNumberOfPendingSnipes
+{
+    // make query for current user to find number of pending snipes.
+    PFUser *currentUser = [PFUser currentUser];
+    int numberOfSnipes = (int) currentUser[@"snipesToVerify"];
+    return numberOfSnipes;
 }
 
 + (NSMutableArray *)getContractArray

@@ -11,6 +11,8 @@ Parse.Cloud.define("completedContract", function(request, response) {
 	var Contract = Parse.Object.extend("Contract");
 	var contractQuery = new Parse.Query(Contract);
 
+	Parse.Cloud.useMasterKey();
+
 	contractQuery.get(contractId, {
 		success:function(oldContract) {
 			console.log("getting contract's target");
@@ -53,9 +55,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 							// Not needed: var User = Parse.Object.extend("User");
 							var userQuery = new Parse.Query(Parse.User);
 							userQuery.each(function(user) {
-
-								var numGames = user.get("lifetimeGames");
-								user.set("lifetimeGames", numGames + 1);
+								user.increment("lifetimeGames");
 								user.save();
 							});
 
@@ -282,3 +282,362 @@ Parse.Cloud.define("createGame", function(request, response) {
 		});
 	});
 });
+
+Parse.Cloud.define("startPendingContractProcess", function(request, response) {
+	
+	var gameId = request.params.gameId;
+	var contractId = request.params.contractId;
+	var targetName = request.params.targetName;
+
+	var assassins = [];
+	var assassinsList = [];
+
+	//grab players with game ID
+	var GameObject = Parse.Object.extend("Game");
+	var gameQuery = new Parse.Query(GameObject);
+
+	gameQuery.get(gameId, {
+		success: function(game) {
+			assassins = game.get("players");
+
+		},
+		error: function(error)
+		{
+			console.log("Error: " + error.code + " " + error.message);
+		}
+	}).then(function() {
+		
+		var userList = new Parse.Query(Parse.User);
+/*
+		for(var i=0; i< assassins.length; i++)
+		{			
+			userList.get(assassins[i].id, {
+				success: function(user) {
+					user.increment("snipesToVerify");
+					user.save();
+					console.log("incremented for user " + user.id);
+				},
+				error: function(error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		}
+*/
+	
+	// turn assassins into poitners
+		/*
+		var assassinsPoint = assassins.map(function(item) {
+    		var pointer = new Parse.User;
+	    	pointer.id = item.id;
+	    	return pointer;
+	    });
+	    */
+
+	    for(var i=0; i< assassins.length; i++)
+	    	assassinsList.push(assassins[i].id);
+	    Parse.Cloud.useMasterKey();
+
+		userList.containedIn("objectId", assassinsList);
+		userList.find({
+			success: function(results) {
+				console.log("results length is " + results.length);
+				// increment snipesToVerify by 1
+				 results.forEach(function(user) {
+					user.increment("snipesToVerify");
+					user.save();
+					console.log("increment for " + user.id + " to " +user.get("snipesToVerify"));	
+				});
+			},
+			error: function(error) {
+
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	}).then(function() {
+
+
+		// mark contract as pending
+		var Contract = Parse.Object.extend("Contract");
+		var pendingQuery = new Parse.Query(Contract);
+		pendingQuery.get(contractId, {
+			success: function(pendingContract)
+			{
+				var currentDate = new Date();
+				pendingContract.set("state", "Pending");
+				pendingContract.set("timePendingStarted", currentDate);
+				pendingContract.set("invalidateVoters", []);
+				pendingContract.save();
+			},
+			error: function(error)
+			{
+				console.log("could not make contract pending: " + error.message);
+			}
+		});
+
+		// send push notification to all players in game
+		var pushQuery = new Parse.Query(Parse.Installation);
+		pushQuery.containedIn('user', assassins);
+		 
+		Parse.Push.send({
+		  where: pushQuery, // Set our Installation query
+		  data: {
+		  	alert: targetName + " challenges a snipe! Help confirm",
+		  	"contractId" : contractId
+		  	}
+		  },
+			{
+		  		success: function()
+		  		{
+		  			response.success("we pushed, yah?");
+		  		},
+		  		error: function(error)
+		  		{
+		  			response.error("oh-oh: " + respose.code + " " + response.error);
+		  		}
+		  	}
+		);
+	});
+});
+
+
+
+Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
+	//get variables from request and declare necessary variables
+	var gameId = request.params.gameId;
+	var contractId = request.params.contractId;
+	var userId = request.params.userId; 
+
+	var timePendingStarted; 
+	var endDate;
+	var currentDate = new Date(); 
+	var numInvalidators;
+	var numPlayers;
+	var assassinId;
+	var targetId;
+
+	// grab contract 
+	var Contract = Parse.Object.extend("Contract");
+	var pendingContractQuery = new Parse.Query(Contract);
+	pendingContractQuery.include("game");
+	pendingContractQuery.get(contractId, 
+	{
+		success:function(pendingContract) 
+		{
+			// grab time added 
+			timePendingStarted = pendingContract.get("timePendingStarted");
+			endDate = new Date(timePendingStarted);
+			endDate.setDate(endDate.getDate()+1);
+
+			if(currentDate > endDate)
+			{
+				// change state from pending to complete
+				pendingContract.set("state", "Completed");
+				console.log("currentdate is " + currentDate + " and endDate is " + endDate);
+
+				//TODO: send push notification
+			}
+
+			else
+			{
+				// add user ID to contract
+				pendingContract.addUnique("invalidateVoters", userId);
+				invalidateVoters = pendingContract.get("invalidateVoters");
+				numInvalidators = invalidateVoters.length;
+
+				var assassin = pendingContract.get("assassin");
+				assassinId = assassin.id;
+				var target = pendingContract.get("target");
+				targetId = target.id;
+
+				// console.log(" the assassin of the pending contract is " + assassinId);
+				// console.log(" the target of the pending contract is " + targetId);
+
+				var game = pendingContract.get("game");
+				var players = game.get("players");
+				numPlayers = players.length;
+
+				// now do check for players
+				if(numInvalidators > numPlayers/2)
+				{
+					// find assassin of contract, then send to checkContracts
+					// at this point, we know we need to nullify contract
+					pendingContract.set("state", "Overturned");
+					Parse.Cloud.run("checkContracts", {"assassinId": assassinId, "gameId":gameId, "userIdToInsert":targetId});
+				}
+			}
+
+			pendingContract.save();
+			response.success("ohhi");
+		},
+		error:function(error)
+		{
+			response.error("contract error: " + error.code + " " + error.message);
+		}
+	});
+});	
+
+Parse.Cloud.define("checkContracts", function(request, response) {
+	// define parameters passed:
+	var assassinId = request.params.assassinId;
+	var gameId = request.params.gameId;
+	var userIdToInsert = request.params.userIdToInsert;
+	var targetId;
+	var bringBackToLife = 0;
+
+	// create contract query and potential contracts to fill
+	var Contract = Parse.Object.extend("Contract");
+	var contractCheck = new Parse.Query(Contract);
+
+	// grab all contracts where user is assassin in given game
+	var Game = Parse.Object.extend("Game");
+	var gameObject = new Game();
+	gameObject.id = gameId;
+
+	var assassinUser = new Parse.User();
+	assassinUser.id = assassinId;
+
+	contractCheck.equalTo("assassin", assassinUser);
+	contractCheck.equalTo("game", gameObject);
+
+
+    // order by date to get the latest one first
+    contractCheck.descending("createdAt");
+	contractCheck.first({
+		success:function(lastContract)
+		{
+
+			var state = lastContract.get("state");
+			var target = lastContract.get("target");
+			targetId = target.id;
+
+			if(state == "Completed")
+			{
+				// grab userId, and call function again
+				console.log("assassinId is " + assassinId + ". recursive call");
+				Parse.Cloud.run("checkContracts", {"assassinId": targetId, "gameId":gameId, "userIdToInsert":userIdToInsert});
+			}
+
+			// base case 
+			if(state == "Active")
+			{	
+				console.log("we have an active case! Base Case!");
+				// we make current contract nullified
+				lastContract.set("state", "Nullified");
+				bringBackToLife = 1;
+				lastContract.save();
+			}
+		},
+		error: function(error)
+		{
+			//response.error("error in grabbing last contract in recursive function: " + error.code + " " + error.message);
+		}
+	}).then(function() {
+		if(bringBackToLife == 1)
+		{
+			var newContract1 = new Contract();
+			var newContract2 = new Contract();
+			var assassinFbId;
+			var targetFbId;
+			var userToAddFbId;
+			var assassinName;
+			var targetName;
+			var userToAddName;
+			
+			//PUT .THEN HERE
+			var userQuery = new Parse.Query(Parse.User);
+			var userQueryArray = [targetId, userIdToInsert, assassinId];
+			userQuery.containedIn("objectId", userQueryArray);
+			
+			userQuery.find({
+				success:function(users)
+				{
+					users.forEach(function(user) {
+						// save new objects
+						console.log("saving elements for new contracts for user " + user.id);
+						if(user.id == assassinId)
+						{
+							assassinFbId =  user.get("facebookId");
+							assassinName = user.get("username");
+
+							console.log(" got assassin's name and Id. Name is " +assassinName);
+						}
+
+						else if(user.id == userIdToInsert)
+						{
+							userToAddFbId =  user.get("facebookId");
+							userToAddName = user.get("username");
+
+							console.log(" got added-user's name and Id. name is " + userToAddName);
+						}
+
+						else //assassin (who is actually now the target)
+						{
+							targetFbId =  user.get("facebookId");
+							targetName = user.get("username");
+
+							console.log(" got target's name and Id. name is " + targetName);;
+						}
+					});
+					// response.success("save user info to new contracts");
+				},
+				error: function(error)
+				{
+					console.log("error in saving new contracts: " + error.code + " " + error.message);
+					// response.error("error in saving new contracts: " + error.code + " " + error.message);
+				}
+			}).then(function() {
+				// finish saving new contracts
+				newContract1.set("state", "Active");
+				newContract1.set("commentLocation", -1);
+				newContract2.set("state", "Active");
+				newContract2.set("commentLocation", -1);
+				
+				var userToInsert = new Parse.User();
+				userToInsert.id = userIdToInsert;
+
+				var targetUserToInsert = new Parse.User();
+				targetUserToInsert.id = targetId;
+				
+				// first contract
+				newContract1.set("game", gameObject);
+			    newContract1.set("assassin", assassinUser);
+			    newContract1.set("target", userToInsert);
+			    newContract1.set("assassinName", assassinName);
+			    newContract1.set("assassinFbId", assassinFbId);
+			    newContract1.set("targetFbId", userToAddFbId);
+			    newContract1.set("targetName", userToAddName);
+			    // second contract
+			    newContract2.set("game", gameObject);
+			    newContract2.set("target", targetUserToInsert);
+			    newContract2.set("assassin", userToInsert);
+			    newContract2.set("assassinName", userToAddName);
+			    newContract2.set("assassinFbId", userToAddFbId);
+			    newContract2.set("targetFbId", targetFbId);
+			    newContract2.set("targetName", targetName);
+
+			    console.log("match assassinname: " +assassinFbId);
+			    console.log("match userToAddname:  " + userToAddFbId);
+			    console.log("match targetName: " +targetFbId);
+			    //lastContract.save();
+
+			    var saveContractArray = new Array();
+			    saveContractArray.push(newContract1, newContract2);
+			    console.log("save contract array has assassins "  + newContract1.get("state") + " + " + newContract2.get("state"));
+
+			    Parse.Object.saveAll(saveContractArray,{
+				    success: function(list) {
+				      response.success("ok" ); 
+				    },
+				    error: function(error) {
+				      // An error occurred while saving one of the objects.
+				      response.error("failure on saving list " + error.code + " " + error.message);
+				    },
+				});
+			});
+		}
+	});
+});
+
+

@@ -46,7 +46,11 @@
 
 + (void)confirmAssassination:(NSString *)contractId;
 
-+ (void)declineAssassination:(NSString *)contractId;
++ (void)declineAssassination:(NSString *)contractId withGameId: (NSString *)gameId;
+
++ (void)startPendingContractProcess: (Contract *)contract withGame:(Game *)game;
+
++ (int)getNumberOfPendingSnipes;
 
 // Get array of Contract objects
 + (NSMutableArray *)getContractArray;

@@ -49,9 +49,18 @@
     if ([segue.identifier isEqualToString:@"SegueToSnipeVerify"]) {
         if ([segue.destinationViewController isKindOfClass:[VerifySnipeViewController class]])
         {
-            VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
-            PendingContractsTableViewCell *cell = (PendingContractsTableViewCell *)sender;
-            vsvc.contract = cell.contract;
+            if (self.goToContract)
+            {
+                VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
+                vsvc.contract = self.goToContract;
+            }
+            
+            else
+            {
+                VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
+                PendingContractsTableViewCell *cell = (PendingContractsTableViewCell *)sender;
+                vsvc.contract = cell.contract;
+            }
         }
     }
 }
@@ -59,19 +68,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor colorWithRed:22.0/256 green:174.0/256 blue:255.0/256 alpha:1.0]];
     
-    // get pending snipes for user!
-    self.pendingContracts = [[AssassinsService getPendingSnipes] mutableCopy];
+    if (self.goToContract != nil)
+    {
+        // perform segue
+        [self performSegueWithIdentifier:@"SegueToSnipeVerify" sender:self];
+    }
     
-    PFUser *currentUser = [PFUser currentUser];
-    self.usernameLabel.text = currentUser.username;
-    
-    self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
-    self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-    [[self.profilePicture layer] setCornerRadius:5];
-    [[self.profilePicture layer] setMasksToBounds:YES];
-    
+    else
+    {
+        [self.view setBackgroundColor:[UIColor colorWithRed:22.0/256 green:174.0/256 blue:255.0/256 alpha:1.0]];
+        
+        // get pending snipes for user!
+        self.pendingContracts = [[AssassinsService getPendingSnipes] mutableCopy];
+        
+        PFUser *currentUser = [PFUser currentUser];
+        self.usernameLabel.text = currentUser.username;
+        
+        self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
+        self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+        [[self.profilePicture layer] setCornerRadius:5];
+        [[self.profilePicture layer] setMasksToBounds:YES];
+    }
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView

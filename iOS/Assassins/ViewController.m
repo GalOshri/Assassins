@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *flipCamera;
 @property (weak, nonatomic) IBOutlet UIButton *snipeNotificationButton;
 @property BOOL flashMode;
-
+@property BOOL sendToPendingSnipe;
 
 
 
@@ -88,6 +88,10 @@ CGFloat scale;
                 utvc.goToGame = selectedGame;
             }
             
+            if (self.sendToPendingSnipe) {
+                UserTableViewController *utvc = (UserTableViewController *)segue.destinationViewController;
+                utvc.goToPendingNotifcations = self.sendToPendingSnipe;
+            }
         }
     }
 }
@@ -125,35 +129,6 @@ CGFloat scale;
     [[self.snipeNotificationButton layer] setCornerRadius:5];
     [[self.snipeNotificationButton layer] setMasksToBounds:YES];
     
-    // CODE TO START THE GAME. RUN ONLY ONCE.
-    /*PFQuery *query = [PFUser query];
-    NSArray *users = [query findObjects];
-    PFObject *game = [PFObject objectWithClassName:@"Game"];
-    PFObject *contract1 = [PFObject objectWithClassName:@"Contract"];
-    contract1[@"assassin"] = users[0];
-    contract1[@"target"] = users[1];
-    contract1[@"state"] = @"Active";
-    
-    PFObject *contract2 = [PFObject objectWithClassName:@"Contract"];
-    contract2[@"assassin"] = users[1];
-    contract2[@"target"] = users[0];
-    contract2[@"state"] = @"Active";
-    
-    [contract1 save];
-    [contract2 save];
-    game[@"contracts"] = @[contract1, contract2];
-    game[@"players"] = users;
-    [game saveInBackground];*/
-    
-    // CODE TO HARDCODE THE GAMEID
-    /* NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-    [userData setObject:@"Jr9NNIwOiO" forKey:@"gameId"];
-    if ([[PFUser currentUser].objectId isEqualToString:@"GUFHki0asM"])
-        [userData setObject:@"EJyZKoN3pT" forKey:@"contractId"];
-    else if ([[PFUser currentUser].objectId isEqualToString:@"wahMYDPk15"])
-        [userData setObject:@"VDV0s2rv4k" forKey:@"contractId"];
-    [userData synchronize]; */
-    
     [[PFUser currentUser] refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         // noop
     }];
@@ -166,6 +141,7 @@ CGFloat scale;
     
     [super viewDidAppear:animated];
     
+    self.sendToPendingSnipe = NO;
     
     // Log in / sign up if no user signed in
     if (![PFUser currentUser])
@@ -175,23 +151,20 @@ CGFloat scale;
     
     if (self.goToGameId)
     {
+        self.sendToPendingSnipe = YES;
         [self performSegueWithIdentifier:@"SegueToUserView" sender:self]; // NOPENDING
     }
     
     // check to see if have snipe pending
-    /* NOPENDING ------------------------***************************
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.numberPendingSnipe = [AssassinsService checkPendingSnipes];
     
     
-     if (appDelegate.numberPendingSnipe != 0)
+     if (appDelegate.numberPendingSnipe > 0)
     {
+        [self.snipeNotificationButton setHidden:NO];
         NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
     }
-    else
-        [self.snipeNotificationButton setImage:[UIImage imageNamed:@"snipeNotificationNone.png"] forState:UIControlStateNormal];
-    */
-    
 }
 
 - (void)showLogInAndSignUpView
@@ -277,6 +250,11 @@ CGFloat scale;
     }
 }
 
+- (IBAction)segueToUserToPendingContracts:(id)sender
+{
+    self.sendToPendingSnipe = YES;
+    [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
+}
 
 #pragma mark - User Identity Views
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
@@ -321,7 +299,9 @@ CGFloat scale;
                     currentUser[@"username"] = userData[@"name"];
                     currentUser[@"lifetimeSnipes"] = [NSNumber numberWithInt:0];
                     currentUser[@"lifetimeGames"] = [NSNumber numberWithInt:0];
+                    currentUser[@"objectIdCopy"] = currentUser.objectId;
                     [currentUser save];
+
                 }
                 else
                     NSLog(@"facebook request error: %@", error);

@@ -54,8 +54,8 @@
                                     <action selector="flipCamera:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UiZ-yF-Uej"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIK-59-BWW">
-                                <rect key="frame" x="244" y="507" width="39" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIK-59-BWW">
+                                <rect key="frame" x="244" y="508" width="39" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="KeO-jB-SbT"/>
@@ -69,17 +69,17 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMc-9s-nkT">
-                                <rect key="frame" x="20" y="509" width="30" height="30"/>
+                                <rect key="frame" x="20" y="505" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="3wv-6Y-gmz"/>
-                                    <constraint firstAttribute="height" constant="30" id="SMI-0v-54x"/>
+                                    <constraint firstAttribute="width" constant="37" id="5vf-83-1zE"/>
+                                    <constraint firstAttribute="height" constant="37" id="NV3-Op-P3Q"/>
                                 </constraints>
                                 <state key="normal" image="snipeNotification.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1q2-cU-T8P" kind="modal" identifier="SegueToPendingSnipes" id="s1C-qG-npf"/>
+                                    <action selector="segueToUserToPendingContracts:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4ww-ir-u9R"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -87,10 +87,10 @@
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pPb-yx-dXl" secondAttribute="bottom" constant="11" id="Gs3-B9-hOh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="BIK-59-BWW" secondAttribute="bottom" constant="28" id="JIg-tN-cMw"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="uMc-9s-nkT" secondAttribute="bottom" constant="29" id="KHK-SK-ucv"/>
                             <constraint firstAttribute="centerX" secondItem="pPb-yx-dXl" secondAttribute="centerX" id="TY3-ge-Uek"/>
-                            <constraint firstItem="uMc-9s-nkT" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="c6b-AS-Cyv"/>
                             <constraint firstAttribute="trailing" secondItem="BIK-59-BWW" secondAttribute="trailing" constant="37" id="frP-ha-EBV"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="uMc-9s-nkT" secondAttribute="bottom" constant="26" id="gHx-a9-wm6"/>
+                            <constraint firstItem="uMc-9s-nkT" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="ich-eU-yjS"/>
                         </constraints>
                     </view>
                     <connections>
@@ -240,15 +240,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zJ-Js-7fb">
-                                                    <rect key="frame" x="20" y="152" width="180" height="38"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                    <state key="normal" title="Pending Snipes">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total hits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-GT-dP5">
                                                     <rect key="frame" x="20" y="163" width="141" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -307,8 +298,8 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOj-L1-3pA">
-                                            <rect key="frame" x="209" y="0.0" width="91" height="34"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOj-L1-3pA">
+                                            <rect key="frame" x="193" y="0.0" width="107" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Create Game">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -316,6 +307,17 @@
                                             </state>
                                             <connections>
                                                 <segue destination="TbO-PD-dIe" kind="modal" id="lNN-Xr-TTc"/>
+                                            </connections>
+                                        </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zJ-Js-7fb">
+                                            <rect key="frame" x="20" y="-2" width="125" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Pending Snipes">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="1q2-cU-T8P" kind="modal" identifier="userTableToPendingSnipes" id="Py8-yv-0Gr"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -361,6 +363,7 @@
                     <connections>
                         <outlet property="lifetimeGamesLabel" destination="sMM-vu-P7t" id="K5K-su-e0z"/>
                         <outlet property="lifetimeSnipesLabel" destination="uD9-GT-dP5" id="wGP-BY-Yof"/>
+                        <outlet property="pendingContractsButton" destination="8zJ-Js-7fb" id="iig-aG-wRU"/>
                         <outlet property="profilePicture" destination="kFU-Bl-x3n" id="PTK-tO-Q5Z"/>
                         <outlet property="statusBarView" destination="ftZ-Hx-uMj" id="aro-4c-Dya"/>
                         <outlet property="usernameLabel" destination="8rl-2x-cwB" id="ph9-fj-nOr"/>
@@ -374,7 +377,7 @@
         <!--Pending Contracts Table View Controller-->
         <scene sceneID="oCu-z1-QgJ">
             <objects>
-                <tableViewController id="1q2-cU-T8P" customClass="PendingContractsTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PendingContractsView" id="1q2-cU-T8P" customClass="PendingContractsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="tKX-oV-q70">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -405,7 +408,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="F61-Id-P89" kind="unwind" unwindAction="unwindToCamera:" id="yyK-b8-4Bn"/>
+                                        <segue destination="F61-Id-P89" kind="unwind" unwindAction="unwindToUserPage:" id="rdu-Au-cMt"/>
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GT8-wt-QzA" customClass="FBProfilePictureView">
@@ -505,8 +508,8 @@
                                 <rect key="frame" x="0.0" y="505" width="320" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Is this a valid snipe of you?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXl-Vm-CV0">
-                                        <rect key="frame" x="47" y="1" width="227" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Is this a valid snipe of NAME?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXl-Vm-CV0">
+                                        <rect key="frame" x="20" y="1" width="280" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -521,7 +524,7 @@
                                         </state>
                                         <connections>
                                             <action selector="confirmedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="6mM-MR-WvK"/>
-                                            <segue destination="en8-k3-hke" kind="unwind" identifier="UnwindWithConfirmedSnipe" unwindAction="unwindToPendingSnipesPage:" id="N8g-gt-xqu"/>
+                                            <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToPendingSnipesPage:" id="2al-71-OpQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-8Q-I0f">
@@ -533,7 +536,7 @@
                                         </state>
                                         <connections>
                                             <action selector="declinedSnipe:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="r6Z-Sb-DUV"/>
-                                            <segue destination="en8-k3-hke" kind="unwind" identifier="UnwindWithDeniedSnipe" unwindAction="unwindToPendingSnipesPage:" id="IIQ-j0-oxV"/>
+                                            <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToPendingSnipesPage:" id="uCv-5f-3ME"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -543,7 +546,7 @@
                                     <constraint firstAttribute="width" constant="320" id="wYK-VO-Xtb"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9j-YwT">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9j-YwT">
                                 <rect key="frame" x="20" y="20" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="backArrow.png">
@@ -692,6 +695,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvD-DM-NpW">
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJK-OE-P5l">
+                                        <rect key="frame" x="102" y="3" width="116" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Mark as Invalid">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="initiateReviewProcess:" destination="Tsj-uF-E4u" eventType="touchUpInside" id="yQh-Jw-PBM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Gcu-mA-ZJE"/>
+                                    <constraint firstAttribute="height" constant="40" id="JrN-p5-RV8"/>
+                                </constraints>
+                            </view>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type to comment" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dsb-w8-7if">
                                 <rect key="frame" x="0.0" y="102" width="320" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -715,10 +740,17 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="gvD-DM-NpW" secondAttribute="bottom" id="JPb-nY-NGj"/>
+                            <constraint firstAttribute="trailing" secondItem="gvD-DM-NpW" secondAttribute="trailing" id="Swl-qa-f9K"/>
+                            <constraint firstItem="gvD-DM-NpW" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leading" id="b5s-US-Ayv"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomButtonContainer" destination="gvD-DM-NpW" id="ulR-Vq-s0r"/>
                         <outlet property="contractComment" destination="dsb-w8-7if" id="ech-Ap-aEB"/>
                         <outlet property="contractImage" destination="nzP-cj-N98" id="foc-L5-jQW"/>
+                        <outlet property="markAsInvalid" destination="wJK-OE-P5l" id="td1-Rp-Th7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfQ-z4-bBe" userLabel="First Responder" sceneMemberID="firstResponder"/>

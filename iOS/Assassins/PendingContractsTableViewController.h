@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Contract.h"
 
 @interface PendingContractsTableViewController : UITableViewController
+
+@property (strong, nonatomic) Contract *goToContract;
 
 @end

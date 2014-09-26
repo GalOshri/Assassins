@@ -58,27 +58,31 @@
     }
     
     // set the verify snipe section
-    if (![[PFUser currentUser].username isEqualToString: self.contract.targetName]) {
-        // user is not the victim, and cannot take action
+    if (([[PFUser currentUser].username isEqualToString:@"0uu0"])) {//  self.contract.targetName])) { || ([[PFUser currentUser].username isEqualToString: self.contract.assassinName])) {
+        // user is the victim, and cannot take action
         [self.confirmSnipeButton setHidden:YES];
         [self.declineSnipeButton setHidden:YES];
         [self.verifyLabel setText: @"This snipe is pending"];
         self.verifyLabel.center = CGPointMake(self.verifyLabel.center.x, (2* self.verifyBackground.frame.origin.x + self.verifyBackground.frame.size.height)/2);
     }
+    else
+    {
+        NSArray *spaceSplitter = [self.contract.targetName componentsSeparatedByString:@" "];
+        NSString *firstName = spaceSplitter[0];
+        [self.verifyLabel setText:[NSString stringWithFormat:@"Is this a valid snipe of %@?", firstName]];
+    }
 }
 
 - (IBAction)confirmedSnipe:(id)sender {
     
-    [AssassinsService confirmAssassination:self.contract.contractId];
-    
+    // [AssassinsService confirmAssassination:self.contract.contractId];
+    //do nothing, and segue back, breh!
     [self removePendingSnipe];
 }
 
 
 - (IBAction)declinedSnipe:(id)sender {
-
-    [AssassinsService declineAssassination:self.contract.contractId];
-    
+    [AssassinsService declineAssassination:self.contract.contractId withGameId:self.contract.gameId];
     [self removePendingSnipe];
 }
 
@@ -86,6 +90,8 @@
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.numberPendingSnipe -= 1;
+    
+    // make call to remove pending snipe from zeh sehvah?
 }
 
 @end

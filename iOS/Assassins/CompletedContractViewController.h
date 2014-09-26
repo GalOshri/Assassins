@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Contract.h"
+#import "Game.h"
 
 @interface CompletedContractViewController : UIViewController
 
@@ -16,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *contractComment;
 
 @property (strong, nonatomic) Contract *contract;
+@property (strong, nonatomic) Game *game;
 
 @end

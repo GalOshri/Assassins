@@ -10,6 +10,7 @@
 #import "AssassinationEventCell.h"
 #import "AssassinsService.h"
 #import <Parse/Parse.h>
+#import "AppDelegate.h"
 #import "GameCell.h"
 #import "GameTableViewController.h"
 #import "CreateGameViewController.h"
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
-
+@property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
 
 
 
@@ -69,6 +70,7 @@
     
     [self.view setBackgroundColor:[UIColor colorWithRed:22.0/256 green:174.0/256 blue:255.0/256 alpha:1.0]];
     //self.completedContracts = [[NSMutableArray alloc] init];
+    
     self.games = [[AssassinsService getGameList] mutableCopy];
     PFUser *currentUser = [PFUser currentUser];
     
@@ -93,6 +95,13 @@
     
     // Change table separators
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    
+    // unhide pending contracts button if necessary
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.numberPendingSnipe = [AssassinsService checkPendingSnipes];
+    
+    if (appDelegate.numberPendingSnipe > 0)
+        [self.pendingContractsButton setHidden:NO];
 
 }
 
@@ -106,6 +115,11 @@
         [self.tableView reloadData];
         [self performSegueWithIdentifier:@"SegueToGameView" sender:createdGameCell];
 
+    }
+    
+    if (self.goToPendingNotifcations) {
+        self.goToPendingNotifcations = NO;
+        [self performSegueWithIdentifier:@"userTableToPendingSnipes" sender:self];
     }
 }
 

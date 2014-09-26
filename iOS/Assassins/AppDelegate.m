@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-#import "VerifySnipeViewController.h"
+#import "PendingContractsTableViewController.h"
 #import "AssassinsService.h"
 #import "ViewController.h"
 
@@ -44,14 +44,23 @@
         // Extract the notification data
         NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
         
-        // Create a pointer to the Photo object
-        NSString *contractId = [notificationPayload objectForKey:@"contractId"];
-        NSString *gameId = [notificationPayload objectForKey:@"gameId"];
+        if ([notificationPayload valueForKey:@"contractId"] != nil) {
+            // someone wants to verify snipe
+            NSString *contractId = [notificationPayload objectForKey:@"contractId"];
+            [self presentSnipeVerificationView:contractId];
+        }
         
-        [self presentCameraView:gameId];
-        
-        // [self presentSnipeVerificationView:contractId]; // NOPENDING
+        else
+        {
+            // game was won
+            NSString *gameId = [notificationPayload objectForKey:@"gameId"];
+            [self presentCameraView:gameId];
+        }
+
     }
+    
+    // find number of pending snipes
+    self.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
     
     return YES;
 }
@@ -70,12 +79,18 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     [PFPush handlePush:userInfo];
     
-    // Create a pointer to the Photo object
-    NSString *contractId = [userInfo objectForKey:@"contractId"];
-    NSString *gameId = [userInfo objectForKey:@"gameId"];
+    if ([userInfo valueForKey:@"contractId"] != nil) {
+        // someone wants to verify snipe
+        NSString *contractId = [userInfo objectForKey:@"contractId"];
+        [self presentSnipeVerificationView:contractId];
+    }
     
-    //[self presentSnipeVerificationView:contractId];
-    [self presentCameraView:gameId];
+    else
+    {
+        // game was won
+        NSString *gameId = [userInfo objectForKey:@"gameId"];
+        [self presentCameraView:gameId];
+    }
 }
 
 - (void)presentSnipeVerificationView:(NSString *)contractId
@@ -86,9 +101,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     Contract *contract = [AssassinsService getContractFromContractObject:contractObject];
     
     UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    VerifySnipeViewController* vsvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"verifySnipeView"];
-    vsvc.contract = contract;
-    [self.window.rootViewController presentViewController:vsvc animated:YES completion:NULL];
+    PendingContractsTableViewController* pctvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"PendingContractsView"];
+    pctvc.goToContract = contract;
+    [self.window.rootViewController presentViewController:pctvc animated:YES completion:NULL];
 }
 
 - (void)presentCameraView:(NSString *)gameId

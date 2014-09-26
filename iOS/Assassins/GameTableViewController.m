@@ -66,6 +66,7 @@
             CompletedContractViewController *ccvc = (CompletedContractViewController *)segue.destinationViewController;
             AssassinationEventCell *cell = (AssassinationEventCell *)sender;
             ccvc.contract = cell.contract;
+            ccvc.game = self.game;
         }
     }
 }

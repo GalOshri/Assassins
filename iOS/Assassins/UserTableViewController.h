@@ -12,5 +12,6 @@
 @interface UserTableViewController : UITableViewController
 
 @property (strong, nonatomic) Game *goToGame;
+@property BOOL goToPendingNotifcations;
 
 @end
