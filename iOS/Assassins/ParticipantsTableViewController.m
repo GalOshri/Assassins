@@ -33,7 +33,8 @@
     if (!self.game.isComplete)
         self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
     else
-        self.numActiveAssassinsLabel.text = @"";
+        self.numActiveAssassinsLabel.text = @"Game completed";
+
     
     self.assassins = [AssassinsService getAssassinListFromGame:self.game];
     
@@ -73,7 +74,7 @@
     cell.username.text = currentAssassin.username;
     cell.profilePicture.profileID = currentAssassin.fbId;
     cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-    [[cell.profilePicture layer] setCornerRadius:5];
+    [[cell.profilePicture layer] setCornerRadius:cell.profilePicture.frame.size.width / 2];
     [[cell.profilePicture layer] setMasksToBounds:YES];
     
     if (currentAssassin.isAlive)

@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *backgroundHeaderView;
 
 
 
@@ -90,8 +91,31 @@
     // set picture ovah he-ah
     self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
     self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-    [[self.profilePicture layer] setCornerRadius:5];
+    [[self.profilePicture layer] setCornerRadius:self.profilePicture.frame.size.width/2];
     [[self.profilePicture layer] setMasksToBounds:YES];
+    
+    UIImage *backgroundImg = nil;
+    
+    
+    for (NSObject *obj in [self.profilePicture subviews]) {
+        if ([obj isMemberOfClass:[UIImageView class]]) {
+            UIImageView *objImg = (UIImageView *)obj;
+            backgroundImg = objImg.image;
+            break;
+        }
+    }
+    
+    FBProfilePictureView *imageView = [[FBProfilePictureView alloc] init];
+    imageView.profileID= [NSString stringWithString:currentUser[@"facebookId"]];
+    /*self.backgroundHeaderView.pictureCropping = FBProfilePictureCroppingSquare;
+    [self.backgroundHeaderView setAlpha:0.6];
+
+    [self.backgroundHeaderView addSubview:imageView ];
+    [self.backgroundHeaderView sendSubviewToBack:imageView ];
+    //self.backgroundHeaderView.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
+    //self.backgroundHeaderView.pictureCropping = FBProfilePictureCroppingSquare;
+    //[self.backgroundHeaderView setAlpha:0.6];
+    */
     
     // Change table separators
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];

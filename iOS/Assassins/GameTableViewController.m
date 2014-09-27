@@ -17,8 +17,6 @@
 
 @interface GameTableViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
 @property (strong, nonatomic) IBOutlet UILabel *gameNameLabel;
 
@@ -77,7 +75,6 @@
     [self.view setBackgroundColor:self.view.tintColor];
     [self.view setBackgroundColor:[UIColor colorWithRed:22.0/256 green:174.0/256 blue:255.0/256 alpha:1.0]];
 
-    self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
     self.gameNameLabel.text = self.game.name;
     
     // call to AssassinsService to fill current contract
@@ -85,8 +82,6 @@
     
     if (!self.game.isComplete)
     {
-        self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
-        
         if (self.currentContract)
         {
             self.currentTargetUsername.text = self.currentContract.targetName;
@@ -105,8 +100,6 @@
     }
     else
     {
-        self.numActiveAssassinsLabel.text = @"Game completed";
-        
         self.currentTargetLabel.text = @"Game won by:";
         self.currentTargetUsername.text = self.game.winnerName;
         self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
