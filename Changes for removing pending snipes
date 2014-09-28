@@ -1,7 +1,0 @@
-Changes for removing pending snipes:
-
-Move code from confirm assassination to submit assassination
-
-Hide pending snipes button on home screen
-
-Segue unwind from submission doesn't change boolean to go to pending snipe.

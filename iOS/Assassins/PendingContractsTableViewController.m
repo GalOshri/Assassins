@@ -77,7 +77,7 @@
     
     else
     {
-        [self.view setBackgroundColor:[UIColor colorWithRed:22.0/256 green:174.0/256 blue:255.0/256 alpha:1.0]];
+        [self.view setBackgroundColor:[UIColor whiteColor]];
         
         // get pending snipes for user!
         self.pendingContracts = [[AssassinsService getPendingSnipes] mutableCopy];

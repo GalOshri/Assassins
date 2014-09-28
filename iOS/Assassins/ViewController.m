@@ -113,18 +113,27 @@ CGFloat scale;
     self.flashMode = NO;
     
     //math to resize to size of phone
-    CGSize screenBounds = [UIScreen mainScreen].bounds.size;
-    cameraAspectRatio = 4.0f/3.0f;
-    CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
-    scale = screenBounds.height / camViewHeight;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    BOOL landscape = (orientation == UIInterfaceOrientationPortrait);
     
-    picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
-    picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
+    if (landscape)
+    {
+        CGSize screenBounds = [UIScreen mainScreen].bounds.size;
+        cameraAspectRatio = 4.0f/3.0f;
+        CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
+        scale = screenBounds.height / camViewHeight;
+        
+        picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
+        picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
+        
+        [self.view addSubview:picker.view];
+        [self.view sendSubviewToBack:picker.view];
 
-    [self.view addSubview:picker.view];
-    [self.view sendSubviewToBack:picker.view];
+        NSLog(@"screenBounds are %f and %f", screenBounds.width, screenBounds.height);
+        NSLog(@"camDimensions is %f", camViewHeight);
+    }
     
-    
+
     // snipe NotificationButton set
     [[self.snipeNotificationButton layer] setCornerRadius:5];
     [[self.snipeNotificationButton layer] setMasksToBounds:YES];

@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
-@property (strong, nonatomic) IBOutlet FBProfilePictureView *backgroundHeaderView;
+@property (strong, nonatomic) IBOutlet UIView *backgroundHeaderView;
 
 
 
@@ -67,10 +67,8 @@
 {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:self.view.tintColor];
-    
-    [self.view setBackgroundColor:[UIColor colorWithRed:22.0/256 green:174.0/256 blue:255.0/256 alpha:1.0]];
-    //self.completedContracts = [[NSMutableArray alloc] init];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
     
     self.games = [[AssassinsService getGameList] mutableCopy];
     PFUser *currentUser = [PFUser currentUser];

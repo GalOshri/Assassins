@@ -10,29 +10,29 @@
 	<string>Assassins</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>70DC57D6-4C86-48CA-9607-FCAF978B28D4</key>
+		<key>EDCF55C4AEB94A715B43550A29159AC8286408DD</key>
 		<string>https://github.com/GalOshri/Assassins.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>iOS/Assassins.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>70DC57D6-4C86-48CA-9607-FCAF978B28D4</key>
+		<key>EDCF55C4AEB94A715B43550A29159AC8286408DD</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/GalOshri/Assassins.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>70DC57D6-4C86-48CA-9607-FCAF978B28D4</string>
+	<string>EDCF55C4AEB94A715B43550A29159AC8286408DD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>70DC57D6-4C86-48CA-9607-FCAF978B28D4</string>
+			<string>EDCF55C4AEB94A715B43550A29159AC8286408DD</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Assassins</string>
 		</dict>

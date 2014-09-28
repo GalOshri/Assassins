@@ -28,6 +28,7 @@
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) Contract *currentContract;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 
 
@@ -72,8 +73,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setBackgroundColor:self.view.tintColor];
-    [self.view setBackgroundColor:[UIColor colorWithRed:22.0/256 green:174.0/256 blue:255.0/256 alpha:1.0]];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
 
     self.gameNameLabel.text = self.game.name;
     
@@ -107,6 +108,9 @@
         [[self.currentTargetProfilePicture layer] setCornerRadius:5];
         [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
     }
+    
+    [[self.currentTargetProfilePicture layer] setCornerRadius: self.currentTargetProfilePicture.frame.size.width/2];
+    [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
     
     // call AssassinsService to fill list with events
     self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
@@ -163,7 +167,7 @@
     
     cell.profilePicture.profileID = currentContract.assassinFbId;
     cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-    [[cell.profilePicture layer] setCornerRadius:5];
+    [[cell.profilePicture layer] setCornerRadius:cell.profilePicture.frame.size.width/2];
     [[cell.profilePicture layer] setMasksToBounds:YES];
     
     cell.contract = currentContract;

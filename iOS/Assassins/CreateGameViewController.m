@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *friendList;
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end
 
@@ -45,6 +46,8 @@
 {
     [super viewDidLoad];
     //Do any additional setup after loading the view.
+    
+    [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mysteryManBckgnd"]]];
     
     self.friendList = [[NSMutableArray alloc] init];
     self.selectedFriends = [[NSMutableArray alloc] init];
