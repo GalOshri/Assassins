@@ -128,12 +128,8 @@ CGFloat scale;
         
         [self.view addSubview:picker.view];
         [self.view sendSubviewToBack:picker.view];
-
-        NSLog(@"screenBounds are %f and %f", screenBounds.width, screenBounds.height);
-        NSLog(@"camDimensions is %f", camViewHeight);
     }
     
-
     // snipe NotificationButton set
     [[self.snipeNotificationButton layer] setCornerRadius:5];
     [[self.snipeNotificationButton layer] setMasksToBounds:YES];

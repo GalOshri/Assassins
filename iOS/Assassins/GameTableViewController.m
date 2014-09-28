@@ -148,7 +148,7 @@
     
     // set items in cell
     cell.commentLabel.text = currentContract.comment;
-    cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been eliminated", currentContract.targetName];
+    cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been eliminated by %@.", currentContract.targetName, currentContract.assassinName];
     
     // time altercation
     /*NSArray *timeArray = [[NSString stringWithFormat:@"%@", currentContract.time] componentsSeparatedByString:@"+"];

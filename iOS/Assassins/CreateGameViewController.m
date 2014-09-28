@@ -88,7 +88,10 @@
     [self.friendPickerController loadData];
     [self.friendPickerController clearSelection];
     
-    [self presentViewController:self.friendPickerController animated:YES completion:nil];
+    UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:self.friendPickerController];
+    //[nc setNavigationBarHidden:YES];
+    [self presentViewController:nc animated:YES completion:nil];
+    //[nc pushViewController:self.friendPickerController animated:YES];
 
 }
 
