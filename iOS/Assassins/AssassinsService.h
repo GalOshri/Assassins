@@ -52,6 +52,8 @@
 
 + (int)getNumberOfPendingSnipes;
 
++ (void)removeSnipeToVerify:(NSString *)contractId;
+
 // Get array of Contract objects
 + (NSMutableArray *)getContractArray;
 

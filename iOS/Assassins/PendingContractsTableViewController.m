@@ -129,17 +129,10 @@
     NSString *time = [timeArray objectAtIndex:0];
     cell.pendingDateLabel.text = time;
     
-    if ([[PFUser currentUser].username isEqualToString:currentContract.targetName])
-    {
-        cell.pendingLabel.text = [NSString stringWithFormat:@"Did %@ tag you?", currentContract.assassinName];
-        cell.profilePicture.profileID = currentContract.assassinFbId;
-    }
-    
-    else
-    {
-        cell.pendingLabel.text = [NSString stringWithFormat:@"Did you tag %@?", currentContract.targetName];
-        cell.profilePicture.profileID = currentContract.targetFbId;
-    }
+    NSArray *nameArray = [currentContract.assassinName componentsSeparatedByString:@" "];
+    NSString *firstName = nameArray[0];
+    cell.pendingLabel.text = [NSString stringWithFormat:@"Is %@ still alive?", firstName];
+    cell.profilePicture.profileID = currentContract.assassinFbId;
     
     cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     [[cell.profilePicture layer] setCornerRadius:5];

@@ -308,31 +308,6 @@ Parse.Cloud.define("startPendingContractProcess", function(request, response) {
 	}).then(function() {
 		
 		var userList = new Parse.Query(Parse.User);
-/*
-		for(var i=0; i< assassins.length; i++)
-		{			
-			userList.get(assassins[i].id, {
-				success: function(user) {
-					user.increment("snipesToVerify");
-					user.save();
-					console.log("incremented for user " + user.id);
-				},
-				error: function(error) {
-					console.log("Error: " + error.code + " " + error.message);
-				}
-			});
-
-		}
-*/
-	
-	// turn assassins into poitners
-		/*
-		var assassinsPoint = assassins.map(function(item) {
-    		var pointer = new Parse.User;
-	    	pointer.id = item.id;
-	    	return pointer;
-	    });
-	    */
 
 	    for(var i=0; i< assassins.length; i++)
 	    	assassinsList.push(assassins[i].id);
@@ -342,11 +317,10 @@ Parse.Cloud.define("startPendingContractProcess", function(request, response) {
 		userList.find({
 			success: function(results) {
 				console.log("results length is " + results.length);
-				// increment snipesToVerify by 1
+				// increment snipesToVerify
 				 results.forEach(function(user) {
-					user.increment("snipesToVerify");
+					user.addUnique("snipesToVerify", contractId);
 					user.save();
-					console.log("increment for " + user.id + " to " +user.get("snipesToVerify"));	
 				});
 			},
 			error: function(error) {
@@ -464,7 +438,7 @@ Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
 					// find assassin of contract, then send to checkContracts
 					// at this point, we know we need to nullify contract
 					pendingContract.set("state", "Overturned");
-					Parse.Cloud.run("checkContracts", {"assassinId": assassinId, "gameId":gameId, "userIdToInsert":targetId});
+					Parse.Cloud.run("checkContracts", {"assassinId": assassinId, "gameId":gameId, "userIdToInsert":targetId, "originalContractId":contractId});
 				}
 			}
 
@@ -480,6 +454,7 @@ Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
 
 Parse.Cloud.define("checkContracts", function(request, response) {
 	// define parameters passed:
+	var originalContractId = request.params.originalContractId;
 	var assassinId = request.params.assassinId;
 	var gameId = request.params.gameId;
 	var userIdToInsert = request.params.userIdToInsert;
@@ -617,11 +592,6 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 			    newContract2.set("targetFbId", targetFbId);
 			    newContract2.set("targetName", targetName);
 
-			    console.log("match assassinname: " +assassinFbId);
-			    console.log("match userToAddname:  " + userToAddFbId);
-			    console.log("match targetName: " +targetFbId);
-			    //lastContract.save();
-
 			    var saveContractArray = new Array();
 			    saveContractArray.push(newContract1, newContract2);
 			    console.log("save contract array has assassins "  + newContract1.get("state") + " + " + newContract2.get("state"));
@@ -634,6 +604,43 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 				      // An error occurred while saving one of the objects.
 				      response.error("failure on saving list " + error.code + " " + error.message);
 				    },
+				});
+			}).then(function(){
+				// for all users involved, remove contractId from snipesToVerify
+				var gameObjectRetrieval = Parse.Object.extend("Game");
+				var gameQueryRemoveSnipe = new Parse.Query(gameObjectRetrieval);
+				var usersToRemovePendingSnipe = [];
+
+				gameQueryRemoveSnipe.get(gameId, {
+					success: function(game) {
+						usersToRemovePendingSnipe = game.get("players");
+						var userIdsToRemovePendingSnipe = [];
+
+						for(var i=0; i< usersToRemovePendingSnipe.length; i++)
+					    	userIdsToRemovePendingSnipe.push(usersToRemovePendingSnipe[i].id);
+					   
+					    Parse.Cloud.useMasterKey();
+					    var userList = new Parse.Query(Parse.User);
+						userList.containedIn("objectId", userIdsToRemovePendingSnipe);
+						
+						userList.find({
+							success: function(results) {
+								// remove snipe from snipesToVerify
+								 results.forEach(function(user) {
+									user.remove("snipesToVerify", originalContractId);
+									user.save();
+								});
+							},
+							error: function(error) {
+
+								console.log("Error: " + error.code + " " + error.message);
+							}
+						});
+					},
+					error: function(error)
+					{
+						console.log("Error: " + error.code + " " + error.message);
+					}
 				});
 			});
 		}

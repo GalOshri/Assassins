@@ -162,7 +162,7 @@ CGFloat scale;
     
     // check to see if have snipe pending
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.numberPendingSnipe = [AssassinsService checkPendingSnipes];
+    appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
     
     
      if (appDelegate.numberPendingSnipe > 0)
@@ -304,7 +304,7 @@ CGFloat scale;
                     currentUser[@"username"] = userData[@"name"];
                     currentUser[@"lifetimeSnipes"] = [NSNumber numberWithInt:0];
                     currentUser[@"lifetimeGames"] = [NSNumber numberWithInt:0];
-                    currentUser[@"objectIdCopy"] = currentUser.objectId;
+                    currentUser[@"snipesToVerify"] = [NSArray arrayWithObjects:nil];
                     [currentUser save];
 
                 }

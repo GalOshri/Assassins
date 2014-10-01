@@ -89,10 +89,11 @@
 
 - (void)removePendingSnipe
 {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.numberPendingSnipe -= 1;
+    // AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    // appDelegate.numberPendingSnipe -= 1;
     
     // make call to remove pending snipe from zeh sehvah?
+    [AssassinsService removeSnipeToVerify:self.contract.contractId];
 }
 
 @end

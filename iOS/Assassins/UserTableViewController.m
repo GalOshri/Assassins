@@ -120,7 +120,7 @@
     
     // unhide pending contracts button if necessary
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.numberPendingSnipe = [AssassinsService checkPendingSnipes];
+    appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
     
     if (appDelegate.numberPendingSnipe > 0)
         [self.pendingContractsButton setHidden:NO];

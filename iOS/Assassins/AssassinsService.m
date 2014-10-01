@@ -50,13 +50,18 @@
          
             // send push notifiaction to target
             //query to grab correct user
-            PFUser *target = contractObject[@"target"];
+            
+            // should send to everyone! Grab all users
+            PFUser *game = contractObject[@"game"];
+            [game fetch];
+            NSArray *gamePlayers = game[@"players"];
+            
             PFQuery *pushQuery = [PFInstallation query];
-            [pushQuery whereKey:@"user" equalTo:target];
+            [pushQuery whereKey:@"user" containedIn:gamePlayers];
             
             // Send push notification to query
             NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSString stringWithFormat:@"You got eliminated by %@!", [PFUser currentUser].username], @"alert",
+                                  [NSString stringWithFormat:@"%@ has been eliminated!", contract.targetName], @"alert",
                                   contractObject.objectId, @"contractId", contract.gameId, @"gameId",
                                   nil];
             
@@ -310,24 +315,23 @@
 {
     NSMutableArray *pendingSnipes = [[NSMutableArray alloc] init];
     
-    PFQuery *targetQuery = [PFQuery queryWithClassName:@"Contract"];
-    [targetQuery whereKey:@"target" equalTo:[PFUser currentUser]];
-    [targetQuery whereKey:@"state" equalTo:@"Pending"];
+    // make query for current user to find pending snipes.
+    PFQuery *userSnipeQuery = [PFUser query];
+    [userSnipeQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
     
-    PFQuery *assassinQuery = [PFQuery queryWithClassName:@"Contract"];
-    [assassinQuery whereKey:@"assassin" equalTo:[PFUser currentUser]];
-    [assassinQuery whereKey:@"state" equalTo:@"Pending"];
+    PFObject *user = [userSnipeQuery getFirstObject];
+    NSArray *userPendingSnipes = [user objectForKey:@"snipesToVerify"];
     
-    PFQuery *query = [PFQuery orQueryWithSubqueries:@[targetQuery, assassinQuery]];
-    PFUser *currentUser = [PFUser currentUser];
+    PFQuery *findContracts = [PFQuery queryWithClassName:@"Contract"];
+    [findContracts whereKey:@"objectId" containedIn:userPendingSnipes];
     
-    NSArray *contractObjects = [query findObjects];
+    NSArray *contractObjects = [findContracts findObjects];
     
     for (PFObject *contractObject in contractObjects)
     {
         Contract *contract = [self getContractFromContractObject:contractObject];
         
-        if ([contract.targetFbId isEqualToString:currentUser[@"facebookId"]])
+        if ([contract.targetFbId isEqualToString:[user objectForKey:@"facebookId"]])
             [pendingSnipes insertObject:contract atIndex:0];
         else
             [pendingSnipes addObject:contract];
@@ -344,6 +348,20 @@
     }
     else
         return 0;
+}
+
++ (void) removeSnipeToVerify:(NSString *)contractId
+{
+    // get user
+    PFQuery *userQuery = [PFUser query];
+    [userQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+    PFObject *currentUser = [userQuery getFirstObject];
+    
+    // remove object and save
+    [currentUser removeObjectsInArray:@[contractId] forKey:@"snipesToVerify"];
+    [currentUser save];
+    
+
 }
 
 /*
@@ -488,9 +506,15 @@
 + (int)getNumberOfPendingSnipes
 {
     // make query for current user to find number of pending snipes.
-    PFUser *currentUser = [PFUser currentUser];
-    int numberOfSnipes = (int) currentUser[@"snipesToVerify"];
-    return numberOfSnipes;
+    // TODO: is this right?
+    // PFUser *currentUser = [PFUser currentUser];
+    PFQuery *userSnipeQuery = [PFUser query];
+    [userSnipeQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+    
+    PFObject *user = [userSnipeQuery getFirstObject];
+    NSArray *snipesToVerify = [user objectForKey:@"snipesToVerify"];
+    
+    return [snipesToVerify count];
 }
 
 + (NSMutableArray *)getContractArray

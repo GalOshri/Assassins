@@ -60,7 +60,7 @@
     }
     
     // find number of pending snipes
-    self.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
+    // self.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
     
     return YES;
 }
