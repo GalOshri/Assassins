@@ -87,8 +87,8 @@
         
         self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
         self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-        [[self.profilePicture layer] setCornerRadius:5];
-        [[self.profilePicture layer] setMasksToBounds:YES];
+        [[self.profilePicture layer] setCornerRadius:self.profilePicture.frame.size.width / 2];
+        [[self.profilePicture layer] setMasksToBounds:YES];\
     }
 }
 
@@ -129,10 +129,10 @@
     NSString *time = [timeArray objectAtIndex:0];
     cell.pendingDateLabel.text = time;
     
-    NSArray *nameArray = [currentContract.assassinName componentsSeparatedByString:@" "];
+    NSArray *nameArray = [currentContract.targetName componentsSeparatedByString:@" "];
     NSString *firstName = nameArray[0];
     cell.pendingLabel.text = [NSString stringWithFormat:@"Is %@ still alive?", firstName];
-    cell.profilePicture.profileID = currentContract.assassinFbId;
+    cell.profilePicture.profileID = currentContract.targetFbId;
     
     cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     [[cell.profilePicture layer] setCornerRadius:5];
