@@ -32,7 +32,7 @@
 + (NSArray *)getAssassinListFromGame:(Game *)game;
 
 // called in UserTableViewController.
-+ (NSArray *)getGameList;
++ (NSArray *)getGameList:(BOOL)getCurrentGamesOrNah;
 
 + (Game *) getGameWithId:(NSString *)gameId;
 

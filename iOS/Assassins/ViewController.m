@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *snipeNotificationButton;
 @property BOOL flashMode;
 @property BOOL sendToPendingSnipe;
+@property BOOL hasLoadedCamera;
 
 
 
@@ -99,35 +100,42 @@ CGFloat scale;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.hasLoadedCamera = NO;
 
-    // Set up the camera
-    picker  = [[UIImagePickerController alloc] init];
-    [picker setDelegate:self];
-    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    [picker setMediaTypes:@[@"public.image"]]; //specify image (not video)
-    [picker setShowsCameraControls:NO]; //hide default camera controls
-    [picker setNavigationBarHidden:YES];
-    [picker setToolbarHidden:YES];
-    [picker setAllowsEditing:NO];
-    picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-    self.flashMode = NO;
-    
-    //math to resize to size of phone
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    BOOL landscape = (orientation == UIInterfaceOrientationPortrait);
-    
-    if (landscape)
+    if (!self.hasLoadedCamera)
     {
-        CGSize screenBounds = [UIScreen mainScreen].bounds.size;
-        cameraAspectRatio = 4.0f/3.0f;
-        CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
-        scale = screenBounds.height / camViewHeight;
+        self.hasLoadedCamera = YES;
         
-        picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
-        picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
+        // Set up the camera
+        picker  = [[UIImagePickerController alloc] init];
+        [picker setDelegate:self];
+        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [picker setMediaTypes:@[@"public.image"]]; //specify image (not video)
+        [picker setShowsCameraControls:NO]; //hide default camera controls
+        [picker setNavigationBarHidden:YES];
+        [picker setToolbarHidden:YES];
+        [picker setAllowsEditing:NO];
+        picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        self.flashMode = NO;
         
-        [self.view addSubview:picker.view];
-        [self.view sendSubviewToBack:picker.view];
+        //math to resize to size of phone
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        BOOL landscape = (orientation == UIInterfaceOrientationPortrait);
+        
+        if (landscape)
+        {
+            CGSize screenBounds = [UIScreen mainScreen].bounds.size;
+            cameraAspectRatio = 4.0f/3.0f;
+            CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
+            scale = screenBounds.height / camViewHeight;
+            
+            picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
+            picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
+            
+            //[self presentViewController:picker animated:YES completion:NULL];
+            [self.view addSubview:picker.view];
+            [self.view sendSubviewToBack:picker.view];
+        }
     }
     
     // snipe NotificationButton set
@@ -137,14 +145,6 @@ CGFloat scale;
     [[PFUser currentUser] refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         // noop
     }];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    
-    
-    [super viewDidAppear:animated];
     
     self.sendToPendingSnipe = NO;
     
@@ -153,22 +153,23 @@ CGFloat scale;
     {
         [self showLogInAndSignUpView];
     }
+    else
+    {
+        // check to see if have snipe pending
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
+        
+        if (appDelegate.numberPendingSnipe > 0)
+        {
+            [self.snipeNotificationButton setHidden:NO];
+            NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
+        }
+    }
     
     if (self.goToGameId)
     {
         self.sendToPendingSnipe = YES;
         [self performSegueWithIdentifier:@"SegueToUserView" sender:self]; // NOPENDING
-    }
-    
-    // check to see if have snipe pending
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
-    
-    
-     if (appDelegate.numberPendingSnipe > 0)
-    {
-        [self.snipeNotificationButton setHidden:NO];
-        NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
     }
 }
 

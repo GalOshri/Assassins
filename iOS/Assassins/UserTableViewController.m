@@ -70,7 +70,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
     
-    self.games = [[AssassinsService getGameList] mutableCopy];
+    self.games = [[AssassinsService getGameList:YES] mutableCopy];
     PFUser *currentUser = [PFUser currentUser];
     
     
@@ -103,9 +103,9 @@
         }
     }
     
-    FBProfilePictureView *imageView = [[FBProfilePictureView alloc] init];
+    /* FBProfilePictureView *imageView = [[FBProfilePictureView alloc] init];
     imageView.profileID= [NSString stringWithString:currentUser[@"facebookId"]];
-    /*self.backgroundHeaderView.pictureCropping = FBProfilePictureCroppingSquare;
+    self.backgroundHeaderView.pictureCropping = FBProfilePictureCroppingSquare;
     [self.backgroundHeaderView setAlpha:0.6];
 
     [self.backgroundHeaderView addSubview:imageView ];
@@ -125,6 +125,8 @@
     if (appDelegate.numberPendingSnipe > 0)
         [self.pendingContractsButton setHidden:NO];
 
+    // remove table separators when not needed
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -160,10 +162,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-        return [self.games count];
-    else
-        return [self.completedContracts count];
+    return [self.games count];
 }
 
 
@@ -171,7 +170,7 @@
 {
     Game *currentGame = [self.games objectAtIndex:indexPath.row];
     GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
-    cell.textLabel.text = currentGame.name;
+    cell.gameNameLabel.text = currentGame.name;
     cell.game = currentGame;
     
     if (currentGame.isComplete)
@@ -181,64 +180,44 @@
     }
     else
     {
-        cell.detailTextLabel.text = @"";
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        // grab current contract to fill in data
+        cell.currentContract = [AssassinsService getContractForGame:cell.game.gameId];
+        
+        // if current contract exists
+        if (cell.currentContract)
+        {
+            NSArray *nameArray = [cell.currentContract.targetName componentsSeparatedByString:@" "];
+            NSString *firstName = nameArray[0];
+
+            cell.detailLabel.text = [NSString stringWithFormat:@"Your target: %@", firstName];
+            cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
+            cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
+            [[cell.targetProfilePic layer] setCornerRadius:5];
+            [[cell.targetProfilePic layer] setMasksToBounds:YES];
+        }
+        
+        // no contract exists. You were eliminated.
+        else
+        {
+            cell.detailLabel.text = @"You were eliminated";
+            [cell.targetProfilePic setHidden:YES];
+        }
+
     }
 
     return cell;
 }
 
+-(void) tableView:(UITableView *)tableView willDisplayCell:(GameCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell.targetProfilePic isHidden]) {
+        // move text over
+        [cell.detailLabel setFrame:CGRectMake(cell.targetProfilePic.frame.origin.x, cell.targetProfilePic.frame.origin.y, cell.detailLabel.frame.size.width, cell.detailLabel.frame.size.height)];
+    }
+}
+
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

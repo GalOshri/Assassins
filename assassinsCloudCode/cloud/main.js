@@ -404,13 +404,33 @@ Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
 			endDate = new Date(timePendingStarted);
 			endDate.setDate(endDate.getDate()+1);
 
+			var game = pendingContract.get("game");
+			var players = game.get("players");
+
 			if(currentDate > endDate)
 			{
 				// change state from pending to complete
 				pendingContract.set("state", "Completed");
 				console.log("currentdate is " + currentDate + " and endDate is " + endDate);
 
-				//TODO: send push notification
+				//send push notification that snipe was not overturned. 
+				var pushQuery = new Parse.Query(Parse.Installation);
+				pushQuery.containedIn('user', players);
+				 
+				Parse.Push.send({
+					where: pushQuery, // Set our Installation query
+					data: {
+				  		alert: pendingContract.get("targetName") + "has been eliminated from the game \"" + game.get("name") + "\". The pending snipe was not overturned.",
+				  		"gameId" : game.id
+					}
+					}, {
+					  success: function() {
+					    response.success("pending snipe not overturned");
+					  },
+					  error: function(error) {
+					    response.error("pending snipe not overturned error: " + error.message);
+					  }
+				});
 			}
 
 			else
@@ -428,8 +448,6 @@ Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
 				// console.log(" the assassin of the pending contract is " + assassinId);
 				// console.log(" the target of the pending contract is " + targetId);
 
-				var game = pendingContract.get("game");
-				var players = game.get("players");
 				numPlayers = players.length;
 
 				// now do check for players
@@ -606,6 +624,8 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 				    },
 				});
 			}).then(function(){
+				Parse.Cloud.useMasterKey();
+
 				// for all users involved, remove contractId from snipesToVerify
 				var gameObjectRetrieval = Parse.Object.extend("Game");
 				var gameQueryRemoveSnipe = new Parse.Query(gameObjectRetrieval);
@@ -622,7 +642,7 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 					    Parse.Cloud.useMasterKey();
 					    var userList = new Parse.Query(Parse.User);
 						userList.containedIn("objectId", userIdsToRemovePendingSnipe);
-						
+
 						userList.find({
 							success: function(results) {
 								// remove snipe from snipesToVerify
@@ -635,6 +655,25 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 
 								console.log("Error: " + error.code + " " + error.message);
 							}
+						});
+
+						// send push notification to tell users that person is back to life. 
+						var pushQuery = new Parse.Query(Parse.Installation);
+						pushQuery.containedIn('user', usersToRemovePendingSnipe);
+						 
+						Parse.Push.send({
+							where: pushQuery, // Set our Installation query
+							data: {
+						  		alert: pendingContract.get("targetName") + "has been brought back to life for the game \"" + game.get("name") + "\". The pending snipe was overturned.",
+						  		"gameId" : game.id
+							}
+							}, {
+							  success: function() {
+							    response.success("pending snipe overturned");
+							  },
+							  error: function(error) {
+							    response.error("pending snipe overturned error: " + error.message);
+							  }
 						});
 					},
 					error: function(error)

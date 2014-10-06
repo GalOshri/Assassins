@@ -7,8 +7,19 @@
 //
 
 #import "MoreUserInfoTableViewController.h"
+#import "GameTableViewController.h"
+#import "AssassinsService.h"
+#import "Game.h"
+#import "GameCell.h"
 
 @interface MoreUserInfoTableViewController ()
+
+@property (weak, nonatomic) IBOutlet UIView *backgroundHeaderView;
+@property (strong, nonatomic) NSMutableArray *games;
+@property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 
 @end
 
@@ -23,15 +34,41 @@
     return self;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"SegueToGameView"])
+    {
+        if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
+        {
+            GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
+            GameCell *cell = (GameCell *)sender;
+            gtvc.game = cell.game;
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.games = [[AssassinsService getGameList:NO] mutableCopy];
+
+    PFUser *currentUser = [PFUser currentUser];
+    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
+    self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d completed games",[currentUser[@"lifetimeGames"] intValue]];
+    
+    self.usernameLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
+    
+    self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
+    self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+    [[self.profilePicture layer] setCornerRadius:self.profilePicture.frame.size.width/2];
+    [[self.profilePicture layer] setMasksToBounds:YES];
+
+    // remove table separators when not needed
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,76 +81,41 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.games count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    Game *currentGame = [self.games objectAtIndex:indexPath.row];
+    GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
+    cell.gameNameLabel.text = currentGame.name;
+    cell.game = currentGame;
     
     // Configure the cell...
-    
+    if (currentGame.isComplete)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.detailLabel.text = [NSString stringWithFormat:@"Won by %@", currentGame.winnerName];
+        
+        // set picture to winner
+        cell.targetProfilePic.profileID = cell.game.winnerFbId;
+        cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
+        [[cell.targetProfilePic  layer] setCornerRadius:5];
+        [[cell.targetProfilePic layer] setMasksToBounds:YES];
+    }
+
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

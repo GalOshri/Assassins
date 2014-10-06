@@ -281,14 +281,20 @@
 }
 
 
-+ (NSArray *)getGameList
++ (NSArray *)getGameList:(BOOL)getCurrentGamesOrNah
 {
     NSMutableArray *gameList = [[NSMutableArray alloc] init];
     PFUser *currentUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Game"];
     
     [query whereKey:@"players" equalTo:currentUser];
-    [query orderByAscending:@"state"];
+    
+    if (getCurrentGamesOrNah)
+        [query whereKey:@"state" equalTo:@"Active"];
+    else
+        [query whereKey:@"state" equalTo:@"Completed"];
+
+    [query orderByDescending:@"createdAt"];
     NSArray *gameObjects = [query findObjects];
     
     for (PFObject *gameObject in gameObjects)
@@ -507,7 +513,7 @@
 {
     // make query for current user to find number of pending snipes.
     // TODO: is this right?
-    // PFUser *currentUser = [PFUser currentUser];
+    PFUser *currentUser = [PFUser currentUser];
     PFQuery *userSnipeQuery = [PFUser query];
     [userSnipeQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
     

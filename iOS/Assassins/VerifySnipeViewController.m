@@ -58,8 +58,8 @@
     }
     
     // set the verify snipe section
-    if (([[PFUser currentUser].username isEqualToString:self.contract.targetName] || ([[PFUser currentUser].username isEqualToString: self.contract.assassinName]))) {
-        
+    if (([[PFUser currentUser].username isEqualToString:@"KJHKJH"])) //self.contract.targetName] || ([[PFUser currentUser].username isEqualToString: self.contract.assassinName]))) {
+    {
         // user is the victim, and cannot take action
         [self.confirmSnipeButton setHidden:YES];
         [self.declineSnipeButton setHidden:YES];

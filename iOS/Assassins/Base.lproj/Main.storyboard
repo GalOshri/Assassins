@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -102,24 +103,87 @@
         <scene sceneID="1iX-f4-N9x">
             <objects>
                 <tableViewController id="zLI-Qf-5F5" customClass="MoreUserInfoTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Iae-lq-55o">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="94" sectionHeaderHeight="22" sectionFooterHeight="22" id="Iae-lq-55o">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="u5e-Go-u5E">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="181"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MJ Schmutzie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdA-dQ-rCk">
+                                    <rect key="frame" x="17" y="36" width="287" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Past Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaH-xN-cE7">
+                                    <rect key="frame" x="113" y="61" width="94" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total hits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEr-PN-NGX">
+                                    <rect key="frame" x="17" y="202" width="141" height="37"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total games" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnl-av-RAY">
+                                    <rect key="frame" x="166" y="202" width="138" height="37"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bee-uR-Tm8" customClass="FBProfilePictureView">
+                                    <rect key="frame" x="111" y="96" width="98" height="98"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lR-R4-7OP">
+                                    <rect key="frame" x="22" y="125" width="40" height="40"/>
+                                    <state key="normal" image="backArrowNoBackground.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="xIs-wO-aWs" kind="unwind" unwindAction="unwindToUserPage:" id="oKY-fy-WMi"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4TQ-2l-TFh">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userGames" rowHeight="94" id="4TQ-2l-TFh" customClass="GameCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4TQ-2l-TFh" id="4SZ-O2-elQ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Name here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiD-yO-xzz">
+                                            <rect key="frame" x="8" y="16" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyg-OH-SAd" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="8" y="39" width="45" height="45"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="won by Paul" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCa-4a-h94">
+                                            <rect key="frame" x="61" y="52" width="205" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="detailLabel" destination="mCa-4a-h94" id="Krp-XI-VxA"/>
+                                    <outlet property="gameNameLabel" destination="UiD-yO-xzz" id="t5j-cD-hnI"/>
+                                    <outlet property="targetProfilePic" destination="qyg-OH-SAd" id="XeP-nk-LtH"/>
+                                    <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueToGameView" id="wRt-Ej-KTb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -128,10 +192,18 @@
                             <outlet property="delegate" destination="zLI-Qf-5F5" id="kW6-G3-2P0"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="backgroundHeaderView" destination="u5e-Go-u5E" id="8xG-y9-AoV"/>
+                        <outlet property="lifetimeGamesLabel" destination="Hnl-av-RAY" id="uPo-5v-dNr"/>
+                        <outlet property="lifetimeSnipesLabel" destination="uEr-PN-NGX" id="GCM-lY-e8K"/>
+                        <outlet property="profilePicture" destination="bee-uR-Tm8" id="2qa-Ws-BBb"/>
+                        <outlet property="usernameLabel" destination="LdA-dQ-rCk" id="UXV-UP-RrL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZgQ-2R-C9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xIs-wO-aWs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="561" y="-1837"/>
+            <point key="canvasLocation" x="1109" y="-1929"/>
         </scene>
         <!--Create Game View Controller-->
         <scene sceneID="g85-Rp-4Ad">
@@ -243,26 +315,26 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1109" y="-1837"/>
+            <point key="canvasLocation" x="399" y="-1929"/>
         </scene>
         <!--User Table View Controller-->
         <scene sceneID="aSR-mX-Q2G">
             <objects>
                 <tableViewController id="ox9-1U-7RE" customClass="UserTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="102" sectionHeaderHeight="22" sectionFooterHeight="22" id="bGd-rl-Lwg">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="94" sectionHeaderHeight="22" sectionFooterHeight="22" id="bGd-rl-Lwg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="TG2-xe-lVy">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="204"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y7v-lS-vcw">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="218"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVf-NS-sHh">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="204"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                                             <subviews>
                                                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total hits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-GT-dP5">
                                                     <rect key="frame" x="20" y="163" width="141" height="21"/>
@@ -283,11 +355,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFU-Bl-x3n" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="111" y="70" width="98" height="98"/>
+                                                    <rect key="frame" x="111" y="98" width="98" height="98"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssC-DM-jtF">
-                                                    <rect key="frame" x="20" y="92" width="52" height="54"/>
+                                                    <rect key="frame" x="20" y="116" width="52" height="54"/>
                                                     <state key="normal" image="cameraIconButton.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -296,7 +368,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOj-L1-3pA">
-                                                    <rect key="frame" x="206" y="173" width="94" height="34"/>
+                                                    <rect key="frame" x="207" y="202" width="94" height="34"/>
                                                     <state key="normal" title="Create Game">
                                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -306,17 +378,20 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScF-hW-OSW">
-                                                    <rect key="frame" x="264" y="107" width="36" height="24"/>
+                                                    <rect key="frame" x="264" y="131" width="36" height="24"/>
                                                     <state key="normal" image="moreMenu.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="zLI-Qf-5F5" kind="modal" identifier="SegueToMoreInfo" id="bsE-I1-95T"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftZ-Hx-uMj">
                                                     <rect key="frame" x="1" y="0.0" width="320" height="20"/>
                                                     <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zJ-Js-7fb">
-                                                    <rect key="frame" x="20" y="171" width="125" height="38"/>
+                                                    <rect key="frame" x="21" y="200" width="125" height="38"/>
                                                     <state key="normal" title="Pending Snipes">
                                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -325,39 +400,49 @@
                                                         <segue destination="1q2-cU-T8P" kind="modal" identifier="userTableToPendingSnipes" id="Py8-yv-0Gr"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lzb-RN-9q5">
+                                                    <rect key="frame" x="102" y="61" width="117" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userGames" textLabel="TA9-EX-eRQ" detailTextLabel="jhF-up-ZoW" rowHeight="102" style="IBUITableViewCellStyleSubtitle" id="Uoy-Bv-umN" customClass="GameCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userGames" rowHeight="94" id="Uoy-Bv-umN" customClass="GameCell">
                                 <rect key="frame" x="0.0" y="226" width="320" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uoy-Bv-umN" id="Dio-n9-f9q">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TA9-EX-eRQ">
-                                            <rect key="frame" x="15" y="32" width="34" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fj-oX-7yZ">
+                                            <rect key="frame" x="8" y="15" width="304" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jhF-up-ZoW">
-                                            <rect key="frame" x="15" y="54" width="43" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-fK-VEq" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="8" y="39" width="45" height="45"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Target: Tom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSN-VG-z3Y">
+                                            <rect key="frame" x="61" y="51" width="226" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
+                                    <outlet property="detailLabel" destination="rSN-VG-z3Y" id="5y9-PA-Q8Q"/>
+                                    <outlet property="gameNameLabel" destination="3Fj-oX-7yZ" id="xif-wE-Ndb"/>
+                                    <outlet property="targetProfilePic" destination="V6L-fK-VEq" id="sTO-Nv-cWp"/>
                                     <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueToGameView" id="FiI-vM-hIN"/>
                                 </connections>
                             </tableViewCell>
@@ -380,7 +465,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RM5-aN-xuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="P7b-Ss-XnP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="561" y="-1096"/>
+            <point key="canvasLocation" x="399" y="-1096"/>
         </scene>
         <!--Pending Contracts Table View Controller-->
         <scene sceneID="oCu-z1-QgJ">
@@ -475,7 +560,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bg0-LC-dfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="F61-Id-P89" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="-353"/>
+            <point key="canvasLocation" x="1109" y="-365"/>
         </scene>
         <!--h-->
         <scene sceneID="yJZ-4X-pgf">
@@ -629,7 +714,7 @@
                                     <action selector="submitAssassination:" destination="LuB-hi-AS8" eventType="touchUpInside" id="jd9-Wv-PiG"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="95t-Av-2iq">
+                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="95t-Av-2iq">
                                 <rect key="frame" x="96" y="520" width="129" height="29"/>
                                 <segments>
                                     <segment title="Snipe"/>
@@ -665,7 +750,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMC-9K-W8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1zH-iF-qft" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="561" y="327"/>
+            <point key="canvasLocation" x="399" y="327"/>
         </scene>
         <!--Completed Contract View Controller-->
         <scene sceneID="T1j-OW-lbb">
@@ -878,7 +963,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daN-7H-irG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="stc-Fg-dtT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1742" y="-1096"/>
+            <point key="canvasLocation" x="1718" y="-1096"/>
         </scene>
         <!--Participants-->
         <scene sceneID="Vsq-Jt-js4">
@@ -1015,4 +1100,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="wRt-Ej-KTb"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
+#import "Contract.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface GameCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *targetProfilePic;
+
 @property (nonatomic, strong) Game *game;
+@property (strong, nonatomic) Contract *currentContract;
 
 @end
