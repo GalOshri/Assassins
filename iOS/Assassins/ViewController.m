@@ -141,6 +141,11 @@ CGFloat scale;
             [self.view sendSubviewToBack:picker.view];
         }
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
     // snipe NotificationButton set
     [[self.snipeNotificationButton layer] setCornerRadius:5];

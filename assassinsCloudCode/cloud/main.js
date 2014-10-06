@@ -442,7 +442,7 @@ Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
 				Parse.Push.send({
 					where: pushQuery, // Set our Installation query
 					data: {
-				  		alert: pendingContract.get("targetName") + "has been eliminated from the game \"" + game.get("name") + "\". The pending snipe was not overturned.",
+				  		alert: pendingContract.get("targetName") + "has been eliminated from the game \"" + game.get("name") + "\"",
 				  		"gameId" : game.id
 					}
 					}, {
