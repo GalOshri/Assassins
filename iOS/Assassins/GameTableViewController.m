@@ -148,7 +148,7 @@
     
     // set items in cell
     cell.commentLabel.text = currentContract.comment;
-    cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been eliminated by %@.", currentContract.targetName, currentContract.assassinName];
+    cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been eliminated", currentContract.targetName];
     
     // time altercation
     /*NSArray *timeArray = [[NSString stringWithFormat:@"%@", currentContract.time] componentsSeparatedByString:@"+"];
@@ -165,7 +165,7 @@
     [[cell.snipeImagePreview layer] setCornerRadius:5];
     [[cell.snipeImagePreview layer] setMasksToBounds:YES];
     
-    cell.profilePicture.profileID = currentContract.assassinFbId;
+    cell.profilePicture.profileID = currentContract.targetFbId;
     cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     [[cell.profilePicture layer] setCornerRadius:cell.profilePicture.frame.size.width/2];
     [[cell.profilePicture layer] setMasksToBounds:YES];

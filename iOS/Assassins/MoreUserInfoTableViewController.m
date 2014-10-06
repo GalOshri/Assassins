@@ -15,11 +15,13 @@
 @interface MoreUserInfoTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *backgroundHeaderView;
-@property (strong, nonatomic) NSMutableArray *games;
+@property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+
+@property (strong, nonatomic) NSMutableArray *games;
 
 @end
 
@@ -101,8 +103,11 @@
     // Configure the cell...
     if (currentGame.isComplete)
     {
+        NSArray *nameArray = [currentGame.winnerName componentsSeparatedByString:@" "];
+        NSString *firstName = nameArray[0];
+
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        cell.detailLabel.text = [NSString stringWithFormat:@"Won by %@", currentGame.winnerName];
+        cell.detailLabel.text = [NSString stringWithFormat:@"Won by %@", firstName];
         
         // set picture to winner
         cell.targetProfilePic.profileID = cell.game.winnerFbId;
@@ -116,6 +121,11 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
 }
 
 @end

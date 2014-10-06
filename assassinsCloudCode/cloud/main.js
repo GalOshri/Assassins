@@ -196,6 +196,28 @@ Parse.Cloud.define("createGame", function(request, response) {
 				return userObjectList.push(userInfo);
 			});
 		}
+
+		// send a push notification to all people in game
+		var pushQuery = new Parse.Query(Parse.Installation);
+		pushQuery.containedIn('user', userObjectPointerList);
+		 
+		Parse.Push.send({
+		  where: pushQuery, // Set our Installation query
+		  data: {
+		  	alert: "You are now an assassin in the game: " + gameName
+		  	}
+		  },
+			{
+		  		success: function()
+		  		{
+		  			console.log("we pushed game creation");
+		  		},
+		  		error: function(error)
+		  		{
+		  			console.log("oh-oh game creation: " + respose.code + " " + response.error);
+		  		}
+		  	}
+		);
 		return promise;
 
 	}).then(function() {
@@ -477,6 +499,7 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 	var gameId = request.params.gameId;
 	var userIdToInsert = request.params.userIdToInsert;
 	var targetId;
+	var userToAddName;
 	var bringBackToLife = 0;
 
 	// create contract query and potential contracts to fill
@@ -536,7 +559,6 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 			var userToAddFbId;
 			var assassinName;
 			var targetName;
-			var userToAddName;
 			
 			//PUT .THEN HERE
 			var userQuery = new Parse.Query(Parse.User);
@@ -639,12 +661,13 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 						for(var i=0; i< usersToRemovePendingSnipe.length; i++)
 					    	userIdsToRemovePendingSnipe.push(usersToRemovePendingSnipe[i].id);
 					   
-					    Parse.Cloud.useMasterKey();
+					    
 					    var userList = new Parse.Query(Parse.User);
 						userList.containedIn("objectId", userIdsToRemovePendingSnipe);
 
 						userList.find({
 							success: function(results) {
+								Parse.Cloud.useMasterKey();
 								// remove snipe from snipesToVerify
 								 results.forEach(function(user) {
 									user.remove("snipesToVerify", originalContractId);
@@ -664,7 +687,7 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 						Parse.Push.send({
 							where: pushQuery, // Set our Installation query
 							data: {
-						  		alert: pendingContract.get("targetName") + "has been brought back to life for the game \"" + game.get("name") + "\". The pending snipe was overturned.",
+						  		alert: userToAddName + " has been brought back to life for the game \"" + game.get("name") + "\"",
 						  		"gameId" : game.id
 							}
 							}, {

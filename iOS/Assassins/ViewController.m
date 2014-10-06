@@ -101,7 +101,11 @@ CGFloat scale;
 {
     [super viewDidLoad];
     self.hasLoadedCamera = NO;
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     if (!self.hasLoadedCamera)
     {
         self.hasLoadedCamera = YES;

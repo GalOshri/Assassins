@@ -149,6 +149,10 @@
                                         <segue destination="xIs-wO-aWs" kind="unwind" unwindAction="unwindToUserPage:" id="oKY-fy-WMi"/>
                                     </connections>
                                 </button>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0h-CV-buP">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                    <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -161,7 +165,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Name here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiD-yO-xzz">
-                                            <rect key="frame" x="8" y="16" width="304" height="21"/>
+                                            <rect key="frame" x="8" y="10" width="304" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -182,7 +186,7 @@
                                     <outlet property="detailLabel" destination="mCa-4a-h94" id="Krp-XI-VxA"/>
                                     <outlet property="gameNameLabel" destination="UiD-yO-xzz" id="t5j-cD-hnI"/>
                                     <outlet property="targetProfilePic" destination="qyg-OH-SAd" id="XeP-nk-LtH"/>
-                                    <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueToGameView" id="wRt-Ej-KTb"/>
+                                    <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueToGameView" modalTransitionStyle="flipHorizontal" id="wRt-Ej-KTb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -197,6 +201,7 @@
                         <outlet property="lifetimeGamesLabel" destination="Hnl-av-RAY" id="uPo-5v-dNr"/>
                         <outlet property="lifetimeSnipesLabel" destination="uEr-PN-NGX" id="GCM-lY-e8K"/>
                         <outlet property="profilePicture" destination="bee-uR-Tm8" id="2qa-Ws-BBb"/>
+                        <outlet property="statusBarView" destination="Q0h-CV-buP" id="Hcr-Ag-TJz"/>
                         <outlet property="usernameLabel" destination="LdA-dQ-rCk" id="UXV-UP-RrL"/>
                     </connections>
                 </tableViewController>
@@ -222,7 +227,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Emd-Zj-WjG">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                        <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f81-tr-oF7">
                                         <rect key="frame" x="99" y="56" width="122" height="26"/>
@@ -315,7 +320,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="399" y="-1929"/>
+            <point key="canvasLocation" x="399" y="-1904"/>
         </scene>
         <!--User Table View Controller-->
         <scene sceneID="aSR-mX-Q2G">
@@ -336,18 +341,6 @@
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVf-NS-sHh">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                                             <subviews>
-                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total hits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-GT-dP5">
-                                                    <rect key="frame" x="20" y="163" width="141" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="110 total games" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMM-vu-P7t">
-                                                    <rect key="frame" x="169" y="163" width="131" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rl-2x-cwB">
                                                     <rect key="frame" x="20" y="36" width="280" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
@@ -368,9 +361,9 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOj-L1-3pA">
-                                                    <rect key="frame" x="207" y="202" width="94" height="34"/>
-                                                    <state key="normal" title="Create Game">
-                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="224" y="126" width="76" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <state key="normal" title="New Game">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -378,18 +371,16 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScF-hW-OSW">
-                                                    <rect key="frame" x="264" y="131" width="36" height="24"/>
-                                                    <state key="normal" image="moreMenu.png">
+                                                    <rect key="frame" x="203" y="200" width="97" height="38"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="Past Games">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <segue destination="zLI-Qf-5F5" kind="modal" identifier="SegueToMoreInfo" id="bsE-I1-95T"/>
                                                     </connections>
                                                 </button>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftZ-Hx-uMj">
-                                                    <rect key="frame" x="1" y="0.0" width="320" height="20"/>
-                                                    <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zJ-Js-7fb">
                                                     <rect key="frame" x="21" y="200" width="125" height="38"/>
                                                     <state key="normal" title="Pending Snipes">
@@ -406,6 +397,10 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftZ-Hx-uMj">
+                                                    <rect key="frame" x="1" y="0.0" width="320" height="20"/>
+                                                    <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                     </subviews>
@@ -423,7 +418,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fj-oX-7yZ">
-                                            <rect key="frame" x="8" y="15" width="304" height="21"/>
+                                            <rect key="frame" x="8" y="10" width="304" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -443,7 +438,7 @@
                                     <outlet property="detailLabel" destination="rSN-VG-z3Y" id="5y9-PA-Q8Q"/>
                                     <outlet property="gameNameLabel" destination="3Fj-oX-7yZ" id="xif-wE-Ndb"/>
                                     <outlet property="targetProfilePic" destination="V6L-fK-VEq" id="sTO-Nv-cWp"/>
-                                    <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueToGameView" id="FiI-vM-hIN"/>
+                                    <segue destination="oR9-sX-s2Z" kind="modal" identifier="SegueToGameView" modalTransitionStyle="flipHorizontal" id="FiI-vM-hIN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -454,8 +449,6 @@
                     </tableView>
                     <connections>
                         <outlet property="backgroundHeaderView" destination="zVf-NS-sHh" id="DIO-6j-A6N"/>
-                        <outlet property="lifetimeGamesLabel" destination="sMM-vu-P7t" id="K5K-su-e0z"/>
-                        <outlet property="lifetimeSnipesLabel" destination="uD9-GT-dP5" id="wGP-BY-Yof"/>
                         <outlet property="pendingContractsButton" destination="8zJ-Js-7fb" id="iig-aG-wRU"/>
                         <outlet property="profilePicture" destination="kFU-Bl-x3n" id="PTK-tO-Q5Z"/>
                         <outlet property="statusBarView" destination="ftZ-Hx-uMj" id="aro-4c-Dya"/>
@@ -483,13 +476,13 @@
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pending Snipes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5V-em-GYT">
                                     <rect key="frame" x="100" y="65" width="121" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" red="0.1822864059" green="0.050917823039999997" blue="0.46047911349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ud9-zY-2pB">
                                     <rect key="frame" x="20" y="36" width="280" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                    <color key="textColor" red="0.1822864059" green="0.050917823039999997" blue="0.46047911349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-te-kwP">
@@ -507,10 +500,10 @@
                                 </view>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zka-tx-GqS">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                    <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.14574697066326525" green="0.14574697066326525" blue="0.14574697066326525" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pendingSnipeCell" rowHeight="88" id="Rgq-1k-55m" customClass="PendingContractsTableViewCell">
@@ -893,7 +886,7 @@
                                 </label>
                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0n-ym-Paj">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                    <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -981,28 +974,28 @@
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Assassins" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clr-LT-Mhn">
                                     <rect key="frame" x="106" y="67" width="109" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.1822864059" green="0.050917823039999997" blue="0.46047911349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Name Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5l-6v-2PG">
                                     <rect key="frame" x="20" y="34" width="280" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.1822864059" green="0.050917823039999997" blue="0.46047911349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30 assassins" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ra-Zj-BWv">
                                     <rect key="frame" x="20" y="113" width="91" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15 still alive" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfP-2S-b8V">
                                     <rect key="frame" x="221" y="113" width="79" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="usersDark.png" translatesAutoresizingMaskIntoConstraints="NO" id="cd7-3H-BBL">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="users.png" translatesAutoresizingMaskIntoConstraints="NO" id="cd7-3H-BBL">
                                     <rect key="frame" x="115" y="100" width="90" height="39"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3K-Gt-IeD">
@@ -1017,10 +1010,10 @@
                                 </button>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YYb-ub-pQY">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                    <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.087154649370000004" green="0.68148856950000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.14574697070000001" green="0.14574697070000001" blue="0.14574697070000001" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="assassinCell" rowHeight="77" id="Yoj-jo-AxF" customClass="ParticipantTableViewCell">
@@ -1089,11 +1082,10 @@
         <image name="cameraIconSmall.png" width="28" height="28"/>
         <image name="flipCamera.png" width="300" height="300"/>
         <image name="menuBackground.png" width="400" height="400"/>
-        <image name="moreMenu.png" width="500" height="250"/>
         <image name="noFlash.png" width="300" height="300"/>
         <image name="snipeCircle.png" width="500" height="500"/>
         <image name="snipeNotification.png" width="50" height="50"/>
-        <image name="usersDark.png" width="219" height="94"/>
+        <image name="users.png" width="219" height="94"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
