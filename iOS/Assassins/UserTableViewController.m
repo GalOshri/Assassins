@@ -86,7 +86,7 @@
     // [AssassinsService populateUserGames:self.games];
     // [AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
     
-    // set picture ovah he-ah
+    // set picture right he-ah
     self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
     self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     [[self.profilePicture layer] setCornerRadius:self.profilePicture.frame.size.width/2];

@@ -220,11 +220,7 @@ CGFloat scale;
 
     [self performSegueWithIdentifier:@"SnipeSegue" sender:chosenImage];
 }
-/*
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-}
-*/
+
 - (IBAction)toggleFlash:(UIButton *)sender
 {
     if (self.flashMode)

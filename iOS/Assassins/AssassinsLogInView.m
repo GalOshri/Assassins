@@ -31,23 +31,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.logInView setBackgroundColor:[UIColor blackColor]];
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Kefi.png"]]];
-    CGPoint currentCenter = CGPointMake(self.logInView.logo.center.x, self.logInView.logo.center.y);
-    self.logInView.logo.frame = CGRectMake(self.logInView.logo.frame.origin.x, self.logInView.logo.frame.origin.y, 200.0,82.0);
+    [self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"assassinsSignIn.png"]]];
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"assassinsLogoSignIn.png"]]];
+    CGPoint currentCenter = CGPointMake(self.logInView.logo.center.x-30 , self.logInView.logo.center.y);
+    self.logInView.logo.frame = CGRectMake(self.logInView.logo.frame.origin.x, self.logInView.logo.frame.origin.y, 120,120);
     self.logInView.logo.center = currentCenter;
     
     /*
+    [self.logInView.facebookButton setImage:nil forState:UIControlStateNormal];
+    [self.logInView.facebookButton setImage:nil forState:UIControlStateHighlighted];
+    [self.logInView.facebookButton setBackgroundImage:[UIImage imageNamed:@"facebook_down.png"] forState:UIControlStateHighlighted];
+    [self.logInView.facebookButton setBackgroundImage:[UIImage imageNamed:@"facebook.png"] forState:UIControlStateNormal];
+    [self.logInView.facebookButton setTitle:@"" forState:UIControlStateNormal];
+     [self.logInView.facebookButton setTitle:@"" forState:UIControlStateHighlighted];
+
      // Set buttons appearance
      [self.logInView.dismissButton setImage:[UIImage imageNamed:@"exit.png"] forState:UIControlStateNormal];
      [self.logInView.dismissButton setImage:[UIImage imageNamed:@"exit_down.png"] forState:UIControlStateHighlighted];
-     
-     [self.logInView.facebookButton setImage:nil forState:UIControlStateNormal];
-     [self.logInView.facebookButton setImage:nil forState:UIControlStateHighlighted];
-     [self.logInView.facebookButton setBackgroundImage:[UIImage imageNamed:@"facebook_down.png"] forState:UIControlStateHighlighted];
-     [self.logInView.facebookButton setBackgroundImage:[UIImage imageNamed:@"facebook.png"] forState:UIControlStateNormal];
-     [self.logInView.facebookButton setTitle:@"" forState:UIControlStateNormal];
-     [self.logInView.facebookButton setTitle:@"" forState:UIControlStateHighlighted];
      
      [self.logInView.twitterButton setImage:nil forState:UIControlStateNormal];
      [self.logInView.twitterButton setImage:nil forState:UIControlStateHighlighted];
@@ -81,6 +81,22 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
+    [self.logInView.facebookButton setFrame:CGRectMake(35.0f+130.0f, 287.0f, 120.0f, 40.0f)];
+    [self.logInView.facebookButton setCenter:CGPointMake(self.view.center.x, self.view.center.y + 75)];
+    
+    // create text to show people
+    UITextView *fbLabel = [[UITextView alloc]init];
+    [fbLabel setText:@"Assassins uses facebook for your name, picture, and friends' list so that you can create games with them."];
+    
+    [fbLabel setFont:[UIFont systemFontOfSize:11.0]];
+    [fbLabel setTextColor: [UIColor whiteColor]];
+    [fbLabel setBackgroundColor:[UIColor clearColor]];
+    fbLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [fbLabel setFrame:CGRectMake(8, self.view.center.y, self.view.frame.size.width - 16, 40)];
+    [self.logInView addSubview:fbLabel];
+    
+    /*
     [[self.logInView.usernameField layer] setBorderColor:[[UIColor grayColor] CGColor]];
     [[self.logInView.passwordField layer] setBorderColor:[[UIColor grayColor] CGColor]];
     
@@ -96,14 +112,14 @@
     self.logInView.passwordField.frame = CGRectMake(self.logInView.passwordField.frame.origin.x, self.logInView.passwordField.frame.origin.y + 2.0, self.logInView.passwordField.frame.size.width, self.logInView.passwordField.frame.size.height);
     
     // Set frame for elements
-    /*   [self.logInView.dismissButton setFrame:CGRectMake(10.0f, 10.0f, 87.5f, 45.5f)];
+     [self.logInView.dismissButton setFrame:CGRectMake(10.0f, 10.0f, 87.5f, 45.5f)];
      [self.logInView.logo setFrame:CGRectMake(66.5f, 70.0f, 187.0f, 58.5f)];
-     [self.logInView.facebookButton setFrame:CGRectMake(35.0f, 287.0f, 120.0f, 40.0f)];
      [self.logInView.twitterButton setFrame:CGRectMake(35.0f+130.0f, 287.0f, 120.0f, 40.0f)];
      [self.logInView.signUpButton setFrame:CGRectMake(35.0f, 385.0f, 250.0f, 40.0f)];
      [self.logInView.usernameField setFrame:CGRectMake(35.0f, 145.0f, 250.0f, 50.0f)];
      [self.logInView.passwordField setFrame:CGRectMake(35.0f, 195.0f, 250.0f, 50.0f)];
-     [self.fieldsBackground setFrame:CGRectMake(35.0f, 145.0f, 250.0f, 100.0f)]; */
+     [self.fieldsBackground setFrame:CGRectMake(35.0f, 145.0f, 250.0f, 100.0f)];
+    */
 }
 
 - (void)didReceiveMemoryWarning

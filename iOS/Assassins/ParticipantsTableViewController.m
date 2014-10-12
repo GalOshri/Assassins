@@ -30,13 +30,25 @@
     
     self.gameNameLabel.text = [NSString stringWithString:self.game.name];
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
-    if (!self.game.isComplete)
-        self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
-    else
-        self.numActiveAssassinsLabel.text = @"Game completed";
-
     
     self.assassins = [AssassinsService getAssassinListFromGame:self.game];
+    
+    if (!self.game.isComplete)
+    {
+        for (Assassin *assassin in self.assassins)
+        {
+            if(!assassin.isAlive)
+                self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
+        }
+        self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+    }
+    else
+        self.numActiveAssassinsLabel.text = @"Game completed";
+    
+
+    
+    // remove table separators when not needed
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
 }
 
@@ -72,6 +84,7 @@
     // FIRE ZEH MISSILES!
     // I mean, assign cell items
     cell.username.text = currentAssassin.username;
+    cell.profilePicture.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"userSilhouette.png"]];
     cell.profilePicture.profileID = currentAssassin.fbId;
     cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     [[cell.profilePicture layer] setCornerRadius:cell.profilePicture.frame.size.width / 2];

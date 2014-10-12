@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UITextView *safeZones;
 
 @end
 
@@ -51,7 +52,12 @@
     
     self.friendList = [[NSMutableArray alloc] init];
     self.selectedFriends = [[NSMutableArray alloc] init];
-
+    
+    [self.safeZones.layer setBorderWidth:0.5];
+    [self.safeZones.layer setBorderColor:[UIColor grayColor].CGColor];
+    [self.safeZones.layer setCornerRadius:15];
+    self.safeZones.delegate = self;
+    // self.isEditing = NO; TODO if want to dismiss on tap view
 }
 
 - (IBAction)selectPlayers:(id)sender
@@ -105,7 +111,10 @@
     for(int i=0; i< [self.friendPickerController.selection count]; i++)
         [newGameParticipants addObject:[self.friendPickerController.selection[i] objectForKey:@"id"]];
     
-    Game *newGame = [AssassinsService createGame:self.gameNameField.text withUserIds:newGameParticipants];
+    if([self.safeZones.text isEqualToString:@"List Safe Zones separated by commas"])
+        self.safeZones.text = @"";
+    
+    Game *newGame = [AssassinsService createGame:self.gameNameField.text withSafeZones:self.safeZones.text withUserIds:newGameParticipants];
     
     [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
     
@@ -148,6 +157,31 @@
     [sender resignFirstResponder];
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    // get rid of text
+    if ([self.safeZones.text isEqualToString:@"List Safe Zones separated by commas"])
+        self.safeZones.text = @"";
+    
+    self.safeZones.backgroundColor = [[UIColor alloc] initWithWhite:0.0 alpha:0.5];
+}
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
+ replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        
+        self.safeZones.backgroundColor = [UIColor clearColor];
+        
+        if ([self.safeZones.text isEqualToString:@""])
+            self.safeZones.text = @"List Safe Zones separated by commas";
+        
+        // Return FALSE so that the final '\n' character doesn't get added
+        return FALSE;
+    }
+    // For any other character return TRUE so that the text gets added to the view
+    return TRUE;
+}
 
 @end

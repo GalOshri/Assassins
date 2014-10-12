@@ -47,12 +47,9 @@
             NSDictionary *completedContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:contractObject.objectId, @"contractId", nil];
             NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
             
-         
-            // send push notifiaction to target
-            //query to grab correct user
-            
             // should send to everyone! Grab all users
-            PFUser *game = contractObject[@"game"];
+            
+             PFUser *game = contractObject[@"game"];
             [game fetch];
             NSArray *gamePlayers = game[@"players"];
             
@@ -69,6 +66,7 @@
             [push setQuery:pushQuery];
             [push setData:data];
             [push sendPushInBackground];
+            
         }];
     }
 }
@@ -239,6 +237,12 @@
         [assassinArray addObject:assassin];
     }
     
+    // sort array
+    NSSortDescriptor *usernameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES];
+    assassinArray = [[assassinArray sortedArrayUsingDescriptors:@[usernameDescriptor]] mutableCopy];
+    
+
+    
     [PFObject fetchAll:contractArray];
     for (PFObject *contract in contractArray)
     {
@@ -405,9 +409,9 @@
 }
 */
 
-+ (Game *) createGame:(NSString *)gameName withUserIds:(NSMutableArray *)userIdArray
++ (Game *) createGame:(NSString *)gameName withSafeZones:(NSString *)safeZones withUserIds:(NSMutableArray *)userIdArray
 {
-    NSDictionary *createGameDict = [[NSDictionary alloc] initWithObjectsAndKeys: gameName, @"gameName", userIdArray, @"userList", nil];
+    NSDictionary *createGameDict = [[NSDictionary alloc] initWithObjectsAndKeys: gameName, @"gameName", safeZones, @"safeZones", userIdArray, @"userList", nil];
     
     PFObject *gameObject = [PFCloud callFunction:@"createGame" withParameters:createGameDict];
     

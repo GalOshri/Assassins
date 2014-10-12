@@ -42,7 +42,7 @@
 
 // + (FBProfilePictureView *)getUserProfilePic:(PFUser *)user;
 
-+ (Game *)createGame:(NSString *)gameName withUserIds:(NSMutableArray *)userIdArray;
++ (Game *)createGame:(NSString *)gameName withSafeZones:(NSString *)safeZones withUserIds:(NSMutableArray *)userIdArray;
 
 + (void)confirmAssassination:(NSString *)contractId;
 

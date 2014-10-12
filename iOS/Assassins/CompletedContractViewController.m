@@ -14,6 +14,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *markAsInvalid;
 @property (weak, nonatomic) IBOutlet UIView *bottomButtonContainer;
 
+@property (weak, nonatomic) IBOutlet UIButton *commentsButton;
+@property (weak, nonatomic) IBOutlet UITextField *addCommentField;
+@property (weak, nonatomic) IBOutlet UIButton *postComment;
+@property (weak, nonatomic) IBOutlet UIButton *dismissCommentView;
+@property (weak, nonatomic) IBOutlet UIView *commentView;
+@property (weak, nonatomic) IBOutlet UITableView *commentViewTable;
+
+@property(strong, nonatomic) NSMutableArray *commentsArray;
+
 @end
 
 @implementation CompletedContractViewController
@@ -23,6 +32,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.contractImage setImage:self.contract.image];
+    
+    // make sure to hide comments
+    [self.commentView setHidden:YES];
 }
 
 -(void)viewDidLayoutSubviews {
@@ -67,6 +79,16 @@
         }
     }
 
+}
+
+- (IBAction)showComments:(id)sender {
+    [self.commentView setHidden:NO];
+}
+
+- (IBAction)postComment:(id)sender {
+}
+
+- (IBAction)dismissCommentsView:(id)sender {
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

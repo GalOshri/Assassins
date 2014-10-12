@@ -20,6 +20,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 			var assassinName = oldContract.get("assassinName");
 			var assassinFbId = oldContract.get("assassinFbId");
 			var target = oldContract.get("target");
+			var nameOfEliminatedPlayer = oldContract.get("targetName");
 			var game = oldContract.get("game");
 
 			var targetContractQuery = new Parse.Query(Contract);
@@ -52,7 +53,35 @@ Parse.Cloud.define("completedContract", function(request, response) {
 						    game.set("winnerFbId", assassinFbId);
 							game.save();
 
-							// Not needed: var User = Parse.Object.extend("User");
+							var playersArray = game.get("players");
+
+							//increment everyone's lifetime games
+							var playersIdArray = [];
+							playersArray.forEach(function(player) 
+							{ 
+								playersIdArray.push(player.id);
+							});
+							
+							var userQuery = new Parse.Query(Parse.User);
+							userQuery.containedIn("objectId", playersIdArray);
+
+							userQuery.find(
+							{
+								success: function(results) 
+								{
+									Parse.Cloud.useMasterKey();
+									results.forEach(function(user) 
+									{
+										user.increment("lifetimeGames");
+										user.save();
+									});
+								},
+								error: function(error)
+								{ 
+									console.log("can't increment lifetimeGames");
+								}
+							});
+
 							var userQuery = new Parse.Query(Parse.User);
 							userQuery.each(function(user) {
 								user.increment("lifetimeGames");
@@ -67,7 +96,6 @@ Parse.Cloud.define("completedContract", function(request, response) {
 
 									winner.increment("lifetimeSnipes");
 									winner.save();
-									var playersArray = game.get("players");
 
 									var pushQuery = new Parse.Query(Parse.Installation);
 									pushQuery.containedIn('user', playersArray);
@@ -137,10 +165,49 @@ Parse.Cloud.define("completedContract", function(request, response) {
 								killer.save();
 							},
 							error: function(error) {
-								response.error("killer update lifetimeSnipes error: " + error.message);
+								console.log("killer update lifetimeSnipes error: " + error.message);
 							}
 
 						});	
+
+						// push notification
+						var GameObject = Parse.Object.extend("Game");
+			    		var gameObjectQuery= new Parse.Query(GameObject);
+
+						// not fahkin working
+						/*
+						gameObjectQuery.get(game.id, {
+							success: function(gameInQuestion) {
+								console.log("hi?");
+								var players = gameInQuestion.get("players");
+								console.log("length of players is " +players.length);
+								console.log("nameOfEliminatedPlayer is " + nameOfEliminatedPlayer);
+
+								// push here
+								var pushQueryToNotify = new Parse.Query(Parse.Installation);
+								pushQueryToNotify.containedIn('user', players);
+								 
+								Parse.Push.send({
+								  where: pushQueryToNotify, // Set our Installation query
+								  data: {
+								  	alert: nameOfEliminatedPlayer + " has been elininated!",
+								  	"gameId" : game.id
+								  	}
+								  },{
+								  success: function() {
+								    console.log("pushed to users about assassination");
+								  },
+								  error: function(error) {
+								    console.log("push error: " + error.message);
+								  }
+								});
+							},
+							error: function(error)
+							{ 
+								console.log("didn't push");
+							}
+						});
+						*/
 					}
 			    },
 			    error: function(error) {
@@ -154,16 +221,17 @@ Parse.Cloud.define("completedContract", function(request, response) {
 	});
 });
 
-
 // Create game. Parameters are: game Name, list of users
 Parse.Cloud.define("createGame", function(request, response) {
 	var gameName = request.params.gameName;
+	var safeZones = request.params.safeZones;
 
 	// Create game object
 	var Game = Parse.Object.extend("Game");
 	var game = new Game();
 
 	game.set("name", gameName);
+	game.set("safeZones", safeZones);
 	game.set("state", "Active");
 
 
