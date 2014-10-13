@@ -17,8 +17,6 @@
 
 
 @interface UserTableViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
-@property (strong, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
@@ -74,9 +72,6 @@
     PFUser *currentUser = [PFUser currentUser];
     
     
-    
-    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
-    self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d completed games",[currentUser[@"lifetimeGames"] intValue]];
     
     //[self.tableView reloadData];
     //[AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];

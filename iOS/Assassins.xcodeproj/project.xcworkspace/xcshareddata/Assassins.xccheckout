@@ -10,6 +10,8 @@
 	<string>Assassins</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3</key>
+		<string>https://github.com/GalOshri/Ripple.git</string>
 		<key>EDCF55C4AEB94A715B43550A29159AC8286408DD</key>
 		<string>https://github.com/GalOshri/Assassins.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>iOS/Assassins.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3</key>
+		<string>../../../../Ripple</string>
 		<key>EDCF55C4AEB94A715B43550A29159AC8286408DD</key>
 		<string>../../..</string>
 	</dict>
@@ -35,6 +39,14 @@
 			<string>EDCF55C4AEB94A715B43550A29159AC8286408DD</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Assassins</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Ripple</string>
 		</dict>
 	</array>
 </dict>

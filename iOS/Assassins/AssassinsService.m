@@ -10,6 +10,7 @@
 #import "Contract.h"
 #import "Assassin.h"
 #import "Game.h"
+#import "ContractComment.h"
 
 @implementation AssassinsService
 
@@ -517,7 +518,6 @@
 {
     // make query for current user to find number of pending snipes.
     // TODO: is this right?
-    PFUser *currentUser = [PFUser currentUser];
     PFQuery *userSnipeQuery = [PFUser query];
     [userSnipeQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
     
@@ -544,6 +544,43 @@
     }
     
     return contracts;
+}
+
++ (NSMutableArray *) getCommentsWithContract:(NSString *)contractId
+{
+    NSMutableArray *commentObjects = [[NSMutableArray alloc] init];
+    
+    // create query to Contract
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    [query whereKey:@"contractId" equalTo:[PFObject objectWithoutDataWithClassName:@"Contract" objectId:contractId]];
+    [query orderByAscending:@"createdAt"];
+    
+    // create comments
+    NSArray *objects = [query findObjects];
+    
+    for(PFObject *comment in objects)
+    {
+        ContractComment *newComment = [[ContractComment alloc] init];
+        newComment.commentCreator = comment[@"creatorName"];
+        newComment.commentText = comment[@"text"];
+        newComment.dateCreated = comment[@"createdAt"];
+        
+        // add to array
+        [commentObjects addObject:newComment];
+    }
+
+    return commentObjects;
+}
+
++ (void)addComment:(NSString *)comment withContractId:(NSString *)contractId
+{
+    PFObject *commentToAdd = [PFObject objectWithClassName:@"Comment"];
+    commentToAdd[@"contractId"] = [PFObject objectWithoutDataWithClassName:@"Contract" objectId:contractId];
+    commentToAdd[@"creator"] = [PFObject objectWithoutDataWithClassName:@"_User" objectId:[PFUser currentUser].objectId];
+    commentToAdd[@"creatorName"] = [PFUser currentUser].username;
+    commentToAdd[@"text"] = comment;
+    
+    [commentToAdd saveInBackground];
 }
 
 @end

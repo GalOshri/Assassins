@@ -59,4 +59,8 @@
 
 + (Contract *) getContractFromContractObject:(PFObject *)contractObject;
 
++ (NSMutableArray *) getCommentsWithContract:(NSString *)contractId;
+
++ (void) addComment:(NSString *)comment withContractId:(NSString *)contractId;
+
 @end

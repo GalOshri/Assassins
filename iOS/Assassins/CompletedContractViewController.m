@@ -7,7 +7,9 @@
 //
 
 #import "CompletedContractViewController.h"
+#import "CommentTableViewCell.h"
 #import "AssassinsService.h"
+#import "ContractComment.h"
 #import <Parse/Parse.h>
 
 @interface CompletedContractViewController ()
@@ -33,8 +35,19 @@
     // Do any additional setup after loading the view.
     [self.contractImage setImage:self.contract.image];
     
-    // make sure to hide comments
+    // make sure to hide comment view
+    [[self.commentView layer] setCornerRadius:5.0];
+    [[self.commentView layer] setMasksToBounds:YES];
     [self.commentView setHidden:YES];
+    
+    // set table items
+    self.commentViewTable.delegate = self;
+    self.commentViewTable.dataSource = self;
+    self.addCommentField.delegate = self;
+    
+    // get comments and set correct number
+    self.commentsArray = [AssassinsService getCommentsWithContract:self.contract.contractId];
+    [self.commentsButton setTitle:[NSString stringWithFormat:@"%lu comments", (unsigned long)[self.commentsArray count]] forState:UIControlStateNormal];
 }
 
 -(void)viewDidLayoutSubviews {
@@ -53,7 +66,6 @@
     // only show invalid snipe if it is a contract you are target
     if (![[PFUser currentUser].username isEqualToString:self.contract.targetName]) {
         [self.markAsInvalid setHidden:YES];
-        [self.bottomButtonContainer setHidden:YES];
     }
     
     // you are part of the game, the contract is in a pending state, and you need to validate/invalidate it
@@ -81,18 +93,85 @@
 
 }
 
-- (IBAction)showComments:(id)sender {
+- (IBAction)showComments:(id)sender
+{
     [self.commentView setHidden:NO];
 }
 
-- (IBAction)postComment:(id)sender {
+- (IBAction)postComment:(id)sender
+{
+    // call assassins service to add to the database
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Add code here to do background processing
+        [AssassinsService addComment:self.addCommentField.text withContractId:self.contract.contractId];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // Add code here to update the UI/send notifications based on the results of the background processing
+            // append this to commentsArray and add to table
+            ContractComment *newComment = [[ContractComment alloc] init];
+            newComment.commentText = self.addCommentField.text;
+            newComment.commentCreator = [PFUser currentUser].username;
+            newComment.dateCreated = [NSDate date];
+            
+            NSLog(@"new date is %@", newComment.dateCreated);
+            
+            [self.commentsArray addObject:newComment];
+            [self.commentViewTable reloadData];
+         });
+    });
+
 }
 
-- (IBAction)dismissCommentsView:(id)sender {
+- (IBAction)dismissCommentsView:(id)sender
+{
+    [self.commentView setHidden:YES];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.commentsArray count];
+}
+
+- (CommentTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // set datasource
+    CommentTableViewCell *cell = (CommentTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"cellComment" forIndexPath:indexPath];
+    
+    // set comment
+    ContractComment *currentComment = [self.commentsArray objectAtIndex:indexPath.row];
+    
+    // set items in cell
+    cell.nameLabel.text = currentComment.commentCreator;
+    cell.commentTextView.text = currentComment.commentText;
+    
+    // date string manipulation
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a MMM-dd" options:0 locale:[NSLocale currentLocale]]];
+    NSString *theTime = [dateFormatter stringFromDate:currentComment.dateCreated];
+    
+    cell.commentDate.text = theTime;
+
+    return cell;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{    
+    [self.view endEditing:YES];
+    [self.addCommentField resignFirstResponder];
+    return YES;
+    
 }
 
 @end

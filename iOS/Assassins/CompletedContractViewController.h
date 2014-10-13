@@ -10,7 +10,7 @@
 #import "Contract.h"
 #import "Game.h"
 
-@interface CompletedContractViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface CompletedContractViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *contractImage;
