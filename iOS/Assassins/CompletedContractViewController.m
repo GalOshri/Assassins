@@ -26,7 +26,9 @@
 @property(strong, nonatomic) NSMutableArray *commentsArray;
 @property BOOL postOrNah;
 @property BOOL keyboardOrNah;
+@property BOOL isEditingOrNah;
 @property float originalCommentViewLocation;
+
 
 @end
 
@@ -203,6 +205,14 @@
         [UIView animateWithDuration:0.5 animations:^{
             [self.commentView setFrame:CGRectMake(self.commentView.frame.origin.x, kKeyBoardFrame.origin.y-self.commentView.frame.size.height - 10, self.commentView.frame.size.width, self.commentView.frame.size.height)];
         }];
+        
+        self.isEditingOrNah = YES;
+        
+        //call selector to dismiss keyboard code if it is present
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEventOnView:)];
+        [tapRecognizer setNumberOfTapsRequired:1];
+        [tapRecognizer setDelegate:self];
+        [self.view addGestureRecognizer:tapRecognizer];
     }
     // if there is no longer a keyboard, move back to original location
     else
@@ -210,6 +220,19 @@
         [UIView animateWithDuration:0.5 animations:^{
             [self.commentView setFrame:CGRectMake(self.commentView.frame.origin.x, self.originalCommentViewLocation, self.commentView.frame.size.width, self.commentView.frame.size.height)];
         }];
+    }
+}
+
+- (void)touchEventOnView: (id) sender
+{
+    if (self.isEditingOrNah) {
+        self.isEditingOrNah = NO;
+        
+        [self.view endEditing:YES];
+        
+        // remove gesture
+        UITapGestureRecognizer *gestureRecognizer = sender;
+        [self.view removeGestureRecognizer:gestureRecognizer];
     }
 }
 

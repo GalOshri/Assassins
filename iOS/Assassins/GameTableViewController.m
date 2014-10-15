@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) Contract *currentContract;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 
 
@@ -75,45 +76,60 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
-
     self.gameNameLabel.text = self.game.name;
     
-    // call to AssassinsService to fill current contract
-    self.currentContract = [AssassinsService getContractForGame:self.game.gameId];
+    [self.activityIndicatorView startAnimating];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Add code here to do background processing
     
-    if (!self.game.isComplete)
-    {
-        if (self.currentContract)
-        {
-            self.currentTargetUsername.text = self.currentContract.targetName;
-            self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
-            self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-            [[self.currentTargetProfilePicture layer] setCornerRadius:5];
-            [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
-        }
-        else
-        {
-            self.currentTargetLabel.text = @"You were eliminated";
-            [self.currentTargetProfilePicture setHidden:YES];
-            self.currentTargetUsername.text = @"Game is not over";
+        // call to AssassinsService to fill current contract
+        self.currentContract = [AssassinsService getContractForGame:self.game.gameId];
+        
+        // call AssassinsService to fill list with events
+        self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
+    
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // Add code here to update the UI/send notifications based on the
+            // results of the background processing
+
+        
+            if (!self.game.isComplete)
+            {
+                if (self.currentContract)
+                {
+                    self.currentTargetUsername.text = self.currentContract.targetName;
+                    self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
+                    self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+                    [[self.currentTargetProfilePicture layer] setCornerRadius:5];
+                    [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
+                }
+                else
+                {
+                    self.currentTargetLabel.text = @"You were eliminated";
+                    [self.currentTargetProfilePicture setHidden:YES];
+                    self.currentTargetUsername.text = @"Game is not over";
+                    
+                }
+            }
+            else
+            {
+                self.currentTargetLabel.text = @"Game won by:";
+                self.currentTargetUsername.text = self.game.winnerName;
+                self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
+                self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+                [[self.currentTargetProfilePicture layer] setCornerRadius:5];
+                [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
+            }
             
-        }
-    }
-    else
-    {
-        self.currentTargetLabel.text = @"Game won by:";
-        self.currentTargetUsername.text = self.game.winnerName;
-        self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
-        self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-        [[self.currentTargetProfilePicture layer] setCornerRadius:5];
-        [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
-    }
-    
-    [[self.currentTargetProfilePicture layer] setCornerRadius: self.currentTargetProfilePicture.frame.size.width/2];
-    [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
-    
-    // call AssassinsService to fill list with events
-    self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
+            [[self.currentTargetProfilePicture layer] setCornerRadius: self.currentTargetProfilePicture.frame.size.width/2];
+            [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
+            
+            // reload data stop spinner
+            [self.tableView reloadData];
+            [self.activityIndicatorView stopAnimating];
+            [self.activityIndicatorView setHidden:YES];    
+        });
+    });
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
@@ -170,7 +186,13 @@
     [[cell.profilePicture layer] setMasksToBounds:YES];
     
     cell.contract = currentContract;
-
+    
+    // tweak UI if pending:
+    if ([currentContract.state isEqualToString:@"Pending"])
+    {
+        cell.headlineLabel.text = [NSString stringWithFormat:@"Pending Snipe of %@!", currentContract.targetName];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     return cell;
 }
 

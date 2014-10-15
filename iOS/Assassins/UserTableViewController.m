@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
 @property (strong, nonatomic) IBOutlet UIView *backgroundHeaderView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 
 
@@ -68,18 +69,12 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
     
-    self.games = [[AssassinsService getGameList:YES] mutableCopy];
-    PFUser *currentUser = [PFUser currentUser];
-    
-    
-    
-    //[self.tableView reloadData];
-    //[AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
-
     self.usernameLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    // remove table separators when not needed
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    // [AssassinsService populateUserGames:self.games];
-    // [AssassinsService populateCompletedContracts:self.completedContracts withGameId:@"Jr9NNIwOiO" withTable:self.tableView];
+    PFUser *currentUser = [PFUser currentUser];
     
     // set picture right he-ah
     self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
@@ -87,41 +82,35 @@
     [[self.profilePicture layer] setCornerRadius:self.profilePicture.frame.size.width/2];
     [[self.profilePicture layer] setMasksToBounds:YES];
     
-    UIImage *backgroundImg = nil;
-    
-    
-    for (NSObject *obj in [self.profilePicture subviews]) {
-        if ([obj isMemberOfClass:[UIImageView class]]) {
-            UIImageView *objImg = (UIImageView *)obj;
-            backgroundImg = objImg.image;
-            break;
-        }
-    }
-    
-    /* FBProfilePictureView *imageView = [[FBProfilePictureView alloc] init];
-    imageView.profileID= [NSString stringWithString:currentUser[@"facebookId"]];
-    self.backgroundHeaderView.pictureCropping = FBProfilePictureCroppingSquare;
-    [self.backgroundHeaderView setAlpha:0.6];
+    [self.activityIndicatorView startAnimating];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Add code here to do background processing
+        self.games = [[AssassinsService getGameList:YES] mutableCopy];
+        appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // Add code here to update the UI/send notifications based on the
+            // results of the background processing
+            
+            UIImage *backgroundImg = nil;
+            for (NSObject *obj in [self.profilePicture subviews]) {
+                if ([obj isMemberOfClass:[UIImageView class]]) {
+                    UIImageView *objImg = (UIImageView *)obj;
+                    backgroundImg = objImg.image;
+                    break;
+                }
+            }
 
-    [self.backgroundHeaderView addSubview:imageView ];
-    [self.backgroundHeaderView sendSubviewToBack:imageView ];
-    //self.backgroundHeaderView.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
-    //self.backgroundHeaderView.pictureCropping = FBProfilePictureCroppingSquare;
-    //[self.backgroundHeaderView setAlpha:0.6];
-    */
-    
-    // Change table separators
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    
-    // unhide pending contracts button if necessary
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
-    
-    if (appDelegate.numberPendingSnipe > 0)
-        [self.pendingContractsButton setHidden:NO];
-
-    // remove table separators when not needed
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+            // unhide pending contracts button if necessary
+            if (appDelegate.numberPendingSnipe > 0)
+                [self.pendingContractsButton setHidden:NO];
+            
+            // reload data stop spinner
+            [self.tableView reloadData];
+            [self.activityIndicatorView stopAnimating];
+            [self.activityIndicatorView setHidden:YES];
+        });
+    });
 }
 
 - (void) viewDidAppear:(BOOL)animated

@@ -79,9 +79,11 @@
     NSMutableArray *contractArray = [[NSMutableArray alloc] init];
     
     // Get all completed contracts for this game
+    // AND PENDING!
     PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contract"];
     [queryContracts whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
-    [queryContracts whereKey:@"state" equalTo:@"Completed"];
+
+    [queryContracts whereKey:@"state" containedIn:@[@"Completed", @"Pending"]];
     
     NSArray *contractObjects = [queryContracts findObjects];
     

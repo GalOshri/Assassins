@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) NSArray *assassins;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -31,24 +32,37 @@
     self.gameNameLabel.text = [NSString stringWithString:self.game.name];
     self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
     
-    self.assassins = [AssassinsService getAssassinListFromGame:self.game];
-    
-    if (!self.game.isComplete)
-    {
-        for (Assassin *assassin in self.assassins)
-        {
-            if(!assassin.isAlive)
-                self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
-        }
-        self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
-    }
-    else
-        self.numActiveAssassinsLabel.text = @"Game completed";
-    
-
-    
     // remove table separators when not needed
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    
+    [self.activityIndicatorView startAnimating];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Add code here to do background processing
+        self.assassins = [AssassinsService getAssassinListFromGame:self.game];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // Add code here to update the UI/send notifications based on the
+            // results of the background processing
+            
+            if (!self.game.isComplete)
+            {
+                for (Assassin *assassin in self.assassins)
+                {
+                    if(!assassin.isAlive)
+                        self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
+                }
+                self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+            }
+            else
+                self.numActiveAssassinsLabel.text = @"Game completed";
+            
+            // reload data stop spinner
+            [self.tableView reloadData];
+            [self.activityIndicatorView stopAnimating];
+            [self.activityIndicatorView setHidden:YES];
+        });
+    });
     
 }
 
