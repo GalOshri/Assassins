@@ -55,7 +55,7 @@
     // set responder for keyboard
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardFrameDidChange:)
-                                                 name:UIKeyboardWillChangeFrameNotification object:nil];
+                                                 name:UIKeyboardDidChangeFrameNotification object:nil];
     self.keyboardOrNah = NO;
     self.originalCommentViewLocation = self.commentView.frame.origin.y;
 }
