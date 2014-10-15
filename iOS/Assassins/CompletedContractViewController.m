@@ -24,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *commentViewTable;
 
 @property(strong, nonatomic) NSMutableArray *commentsArray;
+@property BOOL postOrNah;
+@property BOOL keyboardOrNah;
+@property float originalCommentViewLocation;
 
 @end
 
@@ -48,6 +51,13 @@
     // get comments and set correct number
     self.commentsArray = [AssassinsService getCommentsWithContract:self.contract.contractId];
     [self.commentsButton setTitle:[NSString stringWithFormat:@"%lu comments", (unsigned long)[self.commentsArray count]] forState:UIControlStateNormal];
+    
+    // set responder for keyboard
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardFrameDidChange:)
+                                                 name:UIKeyboardWillChangeFrameNotification object:nil];
+    self.keyboardOrNah = NO;
+    self.originalCommentViewLocation = self.commentView.frame.origin.y;
 }
 
 -(void)viewDidLayoutSubviews {
@@ -103,20 +113,27 @@
     // call assassins service to add to the database
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Add code here to do background processing
-        [AssassinsService addComment:self.addCommentField.text withContractId:self.contract.contractId];
+        self.postOrNah = [AssassinsService addComment:self.addCommentField.text withContractId:self.contract.contractId];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            // Add code here to update the UI/send notifications based on the results of the background processing
-            // append this to commentsArray and add to table
-            ContractComment *newComment = [[ContractComment alloc] init];
-            newComment.commentText = self.addCommentField.text;
-            newComment.commentCreator = [PFUser currentUser].username;
-            newComment.dateCreated = [NSDate date];
-            
-            NSLog(@"new date is %@", newComment.dateCreated);
-            
-            [self.commentsArray addObject:newComment];
-            [self.commentViewTable reloadData];
+            if (self.postOrNah)
+            {
+                // Add code here to update the UI/send notifications based on the results of the background processing
+                // append this to commentsArray and add to table
+                ContractComment *newComment = [[ContractComment alloc] init];
+                newComment.commentText = self.addCommentField.text;
+                newComment.commentCreator = [PFUser currentUser].username;
+                newComment.dateCreated = [NSDate date];
+                
+                NSLog(@"new date is %@", newComment.dateCreated);
+                
+                // reset table, empty text box, incrmeent number of comment button
+                self.addCommentField.text = @"";
+                [self.commentsArray addObject:newComment];
+                [self.commentsButton setTitle:[NSString stringWithFormat:@"%lu comments", (unsigned long)[self.commentsArray count]] forState:UIControlStateNormal];
+                [self.commentViewTable reloadData];
+                
+            }
          });
     });
 
@@ -171,7 +188,29 @@
     [self.view endEditing:YES];
     [self.addCommentField resignFirstResponder];
     return YES;
+}
+
+- (void)keyboardFrameDidChange:(NSNotification*)notification
+{
+    self.keyboardOrNah = !self.keyboardOrNah;
     
+    NSDictionary* info = [notification userInfo];
+    CGRect kKeyBoardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // if there is now a keyboard
+    if (self.keyboardOrNah)
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.commentView setFrame:CGRectMake(self.commentView.frame.origin.x, kKeyBoardFrame.origin.y-self.commentView.frame.size.height - 10, self.commentView.frame.size.width, self.commentView.frame.size.height)];
+        }];
+    }
+    // if there is no longer a keyboard, move back to original location
+    else
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.commentView setFrame:CGRectMake(self.commentView.frame.origin.x, self.originalCommentViewLocation, self.commentView.frame.size.width, self.commentView.frame.size.height)];
+        }];
+    }
 }
 
 @end

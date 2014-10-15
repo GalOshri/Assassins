@@ -572,15 +572,25 @@
     return commentObjects;
 }
 
-+ (void)addComment:(NSString *)comment withContractId:(NSString *)contractId
++ (BOOL)addComment:(NSString *)comment withContractId:(NSString *)contractId
 {
-    PFObject *commentToAdd = [PFObject objectWithClassName:@"Comment"];
-    commentToAdd[@"contractId"] = [PFObject objectWithoutDataWithClassName:@"Contract" objectId:contractId];
-    commentToAdd[@"creator"] = [PFObject objectWithoutDataWithClassName:@"_User" objectId:[PFUser currentUser].objectId];
-    commentToAdd[@"creatorName"] = [PFUser currentUser].username;
-    commentToAdd[@"text"] = comment;
+    // perform checks to see if we post
+    if ([comment isEqualToString:@""] || [comment isEqualToString:@" "]) {
+        return false;
+    }
     
-    [commentToAdd saveInBackground];
+    else
+    {
+        PFObject *commentToAdd = [PFObject objectWithClassName:@"Comment"];
+        commentToAdd[@"contractId"] = [PFObject objectWithoutDataWithClassName:@"Contract" objectId:contractId];
+        commentToAdd[@"creator"] = [PFObject objectWithoutDataWithClassName:@"_User" objectId:[PFUser currentUser].objectId];
+        commentToAdd[@"creatorName"] = [PFUser currentUser].username;
+        commentToAdd[@"text"] = comment;
+        
+        [commentToAdd saveInBackground];
+        
+        return true;
+    }
 }
 
 @end
