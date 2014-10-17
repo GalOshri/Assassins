@@ -146,9 +146,9 @@
     [self.commentView setHidden:YES];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
+- (BOOL)prefersStatusBarHidden
 {
-    return UIStatusBarStyleLightContent;
+    return YES;
 }
 
 #pragma mark - Table view data source

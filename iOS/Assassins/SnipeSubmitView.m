@@ -57,9 +57,9 @@
     
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
+- (BOOL)prefersStatusBarHidden
 {
-    return UIStatusBarStyleLightContent;
+    return YES;
 }
 
 #pragma mark - Commenting on image

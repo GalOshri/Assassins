@@ -202,8 +202,9 @@ CGFloat scale;
     [self presentViewController:logInViewController animated:YES completion:NULL];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 #pragma mark - Picture Methods

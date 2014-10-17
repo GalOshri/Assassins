@@ -71,7 +71,8 @@
     
     self.usernameLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    // remove table separators when not needed
+    
+    //  table work
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     PFUser *currentUser = [PFUser currentUser];
@@ -164,29 +165,34 @@
     }
     else
     {
-        // grab current contract to fill in data
-        cell.currentContract = [AssassinsService getContractForGame:cell.game.gameId];
-        
-        // if current contract exists
-        if (cell.currentContract)
-        {
-            NSArray *nameArray = [cell.currentContract.targetName componentsSeparatedByString:@" "];
-            NSString *firstName = nameArray[0];
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // Add code here to do background processing
 
-            cell.detailLabel.text = [NSString stringWithFormat:@"Your target: %@", firstName];
-            cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
-            cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
-            [[cell.targetProfilePic layer] setCornerRadius:5];
-            [[cell.targetProfilePic layer] setMasksToBounds:YES];
-        }
-        
-        // no contract exists. You were eliminated.
-        else
-        {
-            cell.detailLabel.text = @"You were eliminated";
-            [cell.targetProfilePic setHidden:YES];
-        }
+            // grab current contract to fill in data
+            cell.currentContract = [AssassinsService getContractForGame:cell.game.gameId];
+            
+            dispatch_async( dispatch_get_main_queue(), ^{
+                // Add code here to update the UI/send notifications based on the
+                // results of the background processing
 
+                // if current contract exists
+                if ([cell.currentContract.state isEqualToString:@"Active"])
+                {
+                    NSArray *nameArray = [cell.currentContract.targetName componentsSeparatedByString:@" "];
+                    NSString *firstName = nameArray[0];
+
+                    cell.detailLabel.text = [NSString stringWithFormat:@"Your target: %@", firstName];
+                    cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
+                    cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
+                    [[cell.targetProfilePic layer] setCornerRadius:5];
+                    [[cell.targetProfilePic layer] setMasksToBounds:YES];
+                }
+                else if([cell.currentContract.state isEqualToString:@"Pending"])
+                    cell.detailLabel.text = [NSString stringWithFormat:@"Your snipe is pending!"];
+                else
+                    cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
+            });
+        });
     }
 
     return cell;
@@ -195,7 +201,7 @@
 -(void) tableView:(UITableView *)tableView willDisplayCell:(GameCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([cell.targetProfilePic isHidden]) {
         // move text over
-        [cell.detailLabel setFrame:CGRectMake(cell.targetProfilePic.frame.origin.x, cell.targetProfilePic.frame.origin.y, cell.detailLabel.frame.size.width, cell.detailLabel.frame.size.height)];
+        // [cell.detailLabel setFrame:CGRectMake(cell.targetProfilePic.frame.origin.x, cell.targetProfilePic.frame.origin.y, cell.detailLabel.frame.size.width, cell.detailLabel.frame.size.height)];
     }
 }
 

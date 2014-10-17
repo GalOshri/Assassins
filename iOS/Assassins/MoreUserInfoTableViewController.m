@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @property (strong, nonatomic) NSMutableArray *games;
 
@@ -56,8 +57,6 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
     
-    self.games = [[AssassinsService getGameList:NO] mutableCopy];
-
     PFUser *currentUser = [PFUser currentUser];
     self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
     self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d completed games",[currentUser[@"lifetimeGames"] intValue]];
@@ -68,9 +67,25 @@
     self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     [[self.profilePicture layer] setCornerRadius:self.profilePicture.frame.size.width/2];
     [[self.profilePicture layer] setMasksToBounds:YES];
-
+    
     // remove table separators when not needed
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    [self.activityIndicatorView startAnimating];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Add code here to do background processing
+        self.games = [[AssassinsService getGameList:NO] mutableCopy];
+
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // Add code here to update the UI/send notifications based on the
+            // results of the background processing
+            
+            // reload data stop spinner
+            [self.tableView reloadData];
+            [self.activityIndicatorView stopAnimating];
+            [self.activityIndicatorView setHidden:YES];
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning

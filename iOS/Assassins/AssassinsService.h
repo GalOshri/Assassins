@@ -20,6 +20,7 @@
 
 // called in GameTableViewController
 + (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId;
++ (NSMutableArray *)getPendingContractsForGame:(NSString *)gameId;
 
 // TODO: DON'T USE THIS WITHOUT FIXING GAME ID STUFF - not used for anything now
 // + (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray;

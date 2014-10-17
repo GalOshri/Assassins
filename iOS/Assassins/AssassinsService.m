@@ -83,7 +83,29 @@
     PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contract"];
     [queryContracts whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
 
-    [queryContracts whereKey:@"state" containedIn:@[@"Completed", @"Pending"]];
+    [queryContracts whereKey:@"state" equalTo:@"Completed"];
+    
+    NSArray *contractObjects = [queryContracts findObjects];
+    
+    for (PFObject *contractObject in contractObjects)
+    {
+        Contract *contract = [self getContractFromContractObject:contractObject];
+        
+        [contractArray addObject:contract];
+    }
+    return contractArray;
+}
+
++ (NSMutableArray *)getPendingContractsForGame:(NSString *)gameId;
+{
+    NSMutableArray *contractArray = [[NSMutableArray alloc] init];
+    
+    // Get all completed contracts for this game
+    // AND PENDING!
+    PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contract"];
+    [queryContracts whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
+    
+    [queryContracts whereKey:@"state" equalTo:@"Pending"];
     
     NSArray *contractObjects = [queryContracts findObjects];
     
@@ -272,19 +294,42 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     [query whereKey:@"assassin" equalTo:[PFUser currentUser]];
-    [query whereKey:@"state" containedIn:@[@"Active", @"Pending"]];
+    [query whereKey:@"state" equalTo:@"Active"];
     [query whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
     
     // Retrieve the object by id
     PFObject *contractObject = [query getFirstObject];
     
+    // if user is active in game
     if (contractObject)
     {
         Contract *contract = [self getContractFromContractObject:contractObject];
         return contract;
     }
+    
+    // if user is pending or dead
     else
-        return nil;
+    {
+        PFQuery *query1 = [PFQuery queryWithClassName:@"Contract"];
+        [query1 whereKey:@"target" equalTo:[PFUser currentUser]];
+        [query1 whereKey:@"state" equalTo:@"Pending"];
+        [query1 whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
+        
+        // Retrieve the object by id
+        PFObject *contractObject1 = [query1 getFirstObject];
+        
+        if (contractObject1)
+        {
+            Contract *contract = [self getContractFromContractObject:contractObject1];
+            return contract;
+        }
+        
+        // if nothing, user is dead
+        else
+        {
+            return nil;
+        }
+    }
 }
 
 

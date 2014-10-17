@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @property (strong, nonatomic) NSMutableArray *pendingContracts;
 
@@ -79,16 +80,30 @@
     {
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
-        // get pending snipes for user!
-        self.pendingContracts = [[AssassinsService getPendingSnipes] mutableCopy];
-        
         PFUser *currentUser = [PFUser currentUser];
         self.usernameLabel.text = currentUser.username;
-        
+
         self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
         self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
         [[self.profilePicture layer] setCornerRadius:self.profilePicture.frame.size.width / 2];
         [[self.profilePicture layer] setMasksToBounds:YES];\
+        
+        // get pending snipes for user!
+        [self.activityIndicatorView startAnimating];
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // Add code here to do background processing
+            self.pendingContracts = [[AssassinsService getPendingSnipes] mutableCopy];
+        
+            dispatch_async( dispatch_get_main_queue(), ^{
+                // Add code here to update the UI/send notifications based on the
+                // results of the background processing
+                
+                // reload data stop spinner
+                [self.tableView reloadData];
+                [self.activityIndicatorView stopAnimating];
+                [self.activityIndicatorView setHidden:YES];
+            });
+        });
     }
 }
 
@@ -125,9 +140,10 @@
     Contract *currentContract = [self.pendingContracts objectAtIndex:[indexPath row]];
     
     // time altercation
-    NSArray *timeArray = [[NSString stringWithFormat:@"%@", currentContract.time] componentsSeparatedByString:@"+"];
-    NSString *time = [timeArray objectAtIndex:0];
-    cell.pendingDateLabel.text = time;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a MMM-dd" options:0 locale:[NSLocale currentLocale]]];
+    NSString *theTime = [dateFormatter stringFromDate:currentContract.time];
+    cell.pendingDateLabel.text = theTime;
     
     NSArray *nameArray = [currentContract.targetName componentsSeparatedByString:@" "];
     NSString *firstName = nameArray[0];
