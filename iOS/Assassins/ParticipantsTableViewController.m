@@ -98,7 +98,6 @@
     // FIRE ZEH MISSILES!
     // I mean, assign cell items
     cell.username.text = currentAssassin.username;
-    cell.profilePicture.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"userSilhouette.png"]];
     cell.profilePicture.profileID = currentAssassin.fbId;
     cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
     [[cell.profilePicture layer] setCornerRadius:cell.profilePicture.frame.size.width / 2];

@@ -222,21 +222,22 @@
 
 - (AssassinationEventCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AssassinationEventCell *cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
     
     // set contract based on section
     Contract *currentContract;
-    
+    AssassinationEventCell *cell;
     if (self.is2SectionsOrNah)
     {
         if(indexPath.section == 0)
         {
             currentContract = [self.pendingContracts objectAtIndex:indexPath.row];
+            cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"PendingCell" forIndexPath:indexPath];
         }
         
         else
         {
             currentContract = [self.completedContracts objectAtIndex:indexPath.row];
+            cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
         }
             
     }
@@ -247,11 +248,13 @@
         if (self.isCompletedOrNah)
         {
             currentContract = [self.completedContracts objectAtIndex:indexPath.row];
+            cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
         }
         
         else
         {
             currentContract = [self.pendingContracts objectAtIndex:indexPath.row];
+            cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"PendingCell" forIndexPath:indexPath];
         }
     }
     
