@@ -12,28 +12,30 @@
 #import "AssassinationEventCell.h"
 #import "ParticipantsTableViewController.h"
 #import "CompletedContractViewController.h"
+#import "VerifySnipeViewController.h"
 #import "Game.h"
 
 
 @interface GameTableViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *gameImage;
+// @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
 @property (strong, nonatomic) IBOutlet UILabel *gameNameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *currentTargetProfilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetLabel;
-
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
-
-@property (strong, nonatomic) Contract *currentContract;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+
+@property (strong, nonatomic) Contract *currentContract;
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) NSMutableArray *pendingContracts;
 @property BOOL is2SectionsOrNah;
 @property BOOL isCompletedOrNah;
+
 
 @end
 
@@ -61,6 +63,24 @@
             ccvc.game = self.game;
         }
     }
+    
+    if ([segue.identifier isEqualToString:@"SegueToSnipeVerify"]) {
+        if ([segue.destinationViewController isKindOfClass:[VerifySnipeViewController class]])
+        {
+            /*if (self.goToContract)
+            {
+                VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
+                vsvc.contract = self.goToContract;
+            }
+            
+            else
+            {*/
+            VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
+            AssassinationEventCell *cell = (AssassinationEventCell *)sender;
+            vsvc.contract = cell.contract;
+            //}
+        }
+    }
 }
 
 - (void)viewDidLoad
@@ -74,8 +94,9 @@
     [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
 
     //  table work
+    [self.tableView setDataSource:self];
+    [self.tableView setDelegate:self];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     
     [self.activityIndicatorView startAnimating];
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -116,8 +137,6 @@
                 self.currentTargetUsername.text = self.game.winnerName;
                 self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
                 self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-                [[self.currentTargetProfilePicture layer] setCornerRadius:5];
-                [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
             }
             
             // reload data stop spinner
@@ -128,17 +147,18 @@
     });
 }
 
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+/*
+ - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
    // self.
 }
+*/
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
 }
-
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -288,6 +308,30 @@
         cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been eliminated", currentContract.targetName];
     }
     return cell;
+}
+
+/*
+-(void) tableView:(UITableView *)tableView willDisplayCell:(AssassinationEventCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // set contract based on section
+    Contract *currentContract;
+    if (self.is2SectionsOrNah)
+    {
+        if(indexPath.section == 0)
+            currentContract = [self.pendingContracts objectAtIndex:indexPath.row];
+        
+        else
+            currentContract = [self.completedContracts objectAtIndex:indexPath.row];
+    }
+    
+    [cell.snipeImagePreview setFrame:CGRectMake(cell.snipeImagePreview.frame.origin.x, cell.snipeImagePreview.frame.origin.y, currentContract.image.size.width/3.5f, currentContract.image.size.height/3.5f)];
+    NSLog(@"width of image is %f", currentContract.image.size.width);
+}
+*/
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 264.0;
 }
 
 @end

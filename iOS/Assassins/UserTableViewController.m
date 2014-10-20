@@ -20,9 +20,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
-@property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
+// @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
 @property (strong, nonatomic) IBOutlet UIView *backgroundHeaderView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 
 
@@ -43,10 +44,10 @@
             
             self.goToGame = cgvc.createdGame;
             [self.games addObject:self.goToGame];
-            [self.tableView reloadData];
-            
         }
     }
+    
+    [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -70,9 +71,11 @@
     [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
     
     self.usernameLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    // AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     //  table work
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     PFUser *currentUser = [PFUser currentUser];
@@ -87,7 +90,7 @@
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Add code here to do background processing
         self.games = [[AssassinsService getGameList:YES] mutableCopy];
-        appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
+        // appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
         
         dispatch_async( dispatch_get_main_queue(), ^{
             // Add code here to update the UI/send notifications based on the
@@ -103,8 +106,8 @@
             }
 
             // unhide pending contracts button if necessary
-            if (appDelegate.numberPendingSnipe > 0)
-                [self.pendingContractsButton setHidden:NO];
+            //if (appDelegate.numberPendingSnipe > 0)
+                //[self.pendingContractsButton setHidden:NO];
             
             // reload data stop spinner
             [self.tableView reloadData];
@@ -126,16 +129,18 @@
 
     }
     
-    if (self.goToPendingNotifcations) {
+/*    if (self.goToPendingNotifcations) {
         self.goToPendingNotifcations = NO;
         [self performSegueWithIdentifier:@"userTableToPendingSnipes" sender:self];
     }
+*/
 }
+ 
 
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+/*- (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
-}
+}*/
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -153,15 +158,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Game *currentGame = [self.games objectAtIndex:indexPath.row];
-    GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
-    cell.gameNameLabel.text = currentGame.name;
-    cell.game = currentGame;
     
-    if (currentGame.isComplete)
+    GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
+    cell.game = [self.games objectAtIndex:indexPath.row];
+    cell.gameNameLabel.text = cell.game.name;
+    
+    if (cell.game.isComplete)
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Won by %@", currentGame.winnerName];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Won by %@", cell.game.winnerName];
     }
     else
     {
@@ -174,7 +179,9 @@
             dispatch_async( dispatch_get_main_queue(), ^{
                 // Add code here to update the UI/send notifications based on the
                 // results of the background processing
-
+                if([cell.game.numberPendingContracts integerValue] > 0)
+                    cell.accessoryType = UITableViewCellAccessoryDetailButton;
+                
                 // if current contract exists
                 if ([cell.currentContract.state isEqualToString:@"Active"])
                 {
@@ -191,6 +198,7 @@
                     cell.detailLabel.text = [NSString stringWithFormat:@"Your snipe is pending!"];
                 else
                     cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
+            
             });
         });
     }
@@ -198,11 +206,16 @@
     return cell;
 }
 
--(void) tableView:(UITableView *)tableView willDisplayCell:(GameCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+/*-(void) tableView:(UITableView *)tableView willDisplayCell:(GameCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([cell.targetProfilePic isHidden]) {
         // move text over
         // [cell.detailLabel setFrame:CGRectMake(cell.targetProfilePic.frame.origin.x, cell.targetProfilePic.frame.origin.y, cell.detailLabel.frame.size.width, cell.detailLabel.frame.size.height)];
     }
+}*/
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 94;
 }
 
 

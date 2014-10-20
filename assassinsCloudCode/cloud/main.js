@@ -233,6 +233,7 @@ Parse.Cloud.define("createGame", function(request, response) {
 	game.set("name", gameName);
 	game.set("safeZones", safeZones);
 	game.set("state", "Active");
+	game.set("numberPendingSnipes", 0);
 
 
 	// Parse list of users (not sure if we can pass up user objects or just a list of IDs)
@@ -389,6 +390,10 @@ Parse.Cloud.define("startPendingContractProcess", function(request, response) {
 	gameQuery.get(gameId, {
 		success: function(game) {
 			assassins = game.get("players");
+
+			// increment and save number of pending snipes
+			game.increment("numberPendingSnipes");
+			game.save();
 
 		},
 		error: function(error)
@@ -706,14 +711,15 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 
 			    Parse.Object.saveAll(saveContractArray,{
 				    success: function(list) {
-				      response.success("ok" ); 
+				      console.log("ok" ); 
 				    },
 				    error: function(error) {
 				      // An error occurred while saving one of the objects.
-				      response.error("failure on saving list " + error.code + " " + error.message);
+				      console.log("failure on saving list " + error.code + " " + error.message);
 				    },
 				});
-			}).then(function(){
+
+				// start doing things for push notifications and game
 				Parse.Cloud.useMasterKey();
 
 				// for all users involved, remove contractId from snipesToVerify
@@ -723,6 +729,10 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 
 				gameQueryRemoveSnipe.get(gameId, {
 					success: function(game) {
+						// decrement number of pending snipes
+						game.increment("numberPendingSnipes", -1);
+						game.save();
+
 						usersToRemovePendingSnipe = game.get("players");
 						var userIdsToRemovePendingSnipe = [];
 

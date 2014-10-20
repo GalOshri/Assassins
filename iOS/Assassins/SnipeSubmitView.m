@@ -124,7 +124,12 @@
            
             //show alert to pick which contract to submit snipe to
             for (Contract *contract in self.submitContracts)
-                [pickContract addButtonWithTitle:contract.targetName];
+            {
+                NSArray *nameArray = [contract.targetName componentsSeparatedByString:@" "];
+                NSString *firstName = nameArray[0];
+                
+                [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in game: %@", firstName, contract.gameName]];
+            }
             
             [pickContract show];
         }

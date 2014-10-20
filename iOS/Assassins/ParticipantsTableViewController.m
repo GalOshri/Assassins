@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) NSArray *assassins;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UITextView *safeZoneTextView;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end
 
@@ -55,12 +57,20 @@
                 self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
             }
             else
-                self.numActiveAssassinsLabel.text = @"Game completed";
+                self.numActiveAssassinsLabel.text = @"game over";
             
             // reload data stop spinner
             [self.tableView reloadData];
             [self.activityIndicatorView stopAnimating];
             [self.activityIndicatorView setHidden:YES];
+            
+            // set game safe zones
+            if (self.game.safeZones == nil || [self.game.safeZones isEqualToString:@""])
+                self.safeZoneTextView.text = @"none were set!";
+            else
+                self.safeZoneTextView.text = self.game.safeZones;
+            
+            self.safeZoneTextView.textColor = [UIColor whiteColor];
         });
     });
     

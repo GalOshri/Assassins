@@ -162,7 +162,9 @@ CGFloat scale;
     {
         [self showLogInAndSignUpView];
     }
-    else
+    
+    /*
+     else
     {
         // check to see if have snipe pending
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -174,6 +176,7 @@ CGFloat scale;
             NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
         }
     }
+    */
     
     if (self.goToGameId)
     {

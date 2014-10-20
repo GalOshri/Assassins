@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "Contract.h"
 
-@interface VerifySnipeViewController : UIViewController
+@interface VerifySnipeViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) Contract *contract;
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImage;

@@ -107,7 +107,10 @@
 
 - (IBAction)showComments:(id)sender
 {
-    [self.commentView setHidden:NO];
+    if ([self.commentView isHidden])
+        [self.commentView setHidden:NO];
+    else
+        [self.commentView setHidden:YES];
 }
 
 - (IBAction)postComment:(id)sender

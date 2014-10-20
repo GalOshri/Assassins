@@ -17,7 +17,9 @@
 @property (strong, nonatomic) NSArray *assassins;
 @property (strong, nonatomic) NSArray *contracts;
 @property BOOL isComplete;
+@property (strong, nonatomic) NSNumber *numberPendingContracts;
 @property (strong, nonatomic) NSString *winnerName;
 @property (strong, nonatomic) NSString *winnerFbId;
+@property (strong, nonatomic) NSString *safeZones;
 
 @end

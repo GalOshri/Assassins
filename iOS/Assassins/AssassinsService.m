@@ -50,7 +50,7 @@
             
             // should send to everyone! Grab all users
             
-             PFUser *game = contractObject[@"game"];
+            PFUser *game = contractObject[@"game"];
             [game fetch];
             NSArray *gamePlayers = game[@"players"];
             
@@ -481,6 +481,8 @@
     game.numberOfAssassinsAlive = [NSNumber numberWithInt:numAliveAssassins];
     game.assassins = gameObject[@"players"];
     game.contracts = gameObject[@"contracts"];
+    game.numberPendingContracts = gameObject[@"numberPendingSnipes"];
+    game.safeZones = gameObject[@"safeZones"];
     
     if ([gameObject[@"state"] isEqualToString:@"Completed"])
     {
@@ -513,8 +515,9 @@
     contract.targetName = contractObject[@"targetName"];
     contract.targetFbId = contractObject[@"targetFbId"];
     PFObject *game = contractObject[@"game"];
-    // [game fetchIfNeeded];
+    [game fetchIfNeeded];
     contract.gameId = game.objectId;
+    contract.gameName = game[@"name"];
     
     if (([contract.state isEqualToString:@"Completed"]) || ([contract.state isEqualToString:@"Pending"]))
     {

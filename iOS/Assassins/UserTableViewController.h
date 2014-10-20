@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #include "Game.h"
 
-@interface UserTableViewController : UITableViewController
+@interface UserTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) Game *goToGame;
 @property BOOL goToPendingNotifcations;
