@@ -175,12 +175,13 @@ Parse.Cloud.define("completedContract", function(request, response) {
 			    		var gameObjectQuery= new Parse.Query(GameObject);
 
 						// not fahkin working
-						/*
+						console.log("do we even get to set gameObjectQuery? game.id is " + game.id);
+
 						gameObjectQuery.get(game.id, {
 							success: function(gameInQuestion) {
 								console.log("hi?");
 								var players = gameInQuestion.get("players");
-								console.log("length of players is " +players.length);
+								console.log("length of players is " + players.length);
 								console.log("nameOfEliminatedPlayer is " + nameOfEliminatedPlayer);
 
 								// push here
@@ -190,7 +191,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 								Parse.Push.send({
 								  where: pushQueryToNotify, // Set our Installation query
 								  data: {
-								  	alert: nameOfEliminatedPlayer + " has been elininated!",
+								  	alert: nameOfEliminatedPlayer + " has been eliminated!",
 								  	"gameId" : game.id
 								  	}
 								  },{
@@ -207,7 +208,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 								console.log("didn't push");
 							}
 						});
-						*/
+						
 					}
 			    },
 			    error: function(error) {

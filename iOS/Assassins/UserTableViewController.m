@@ -59,6 +59,7 @@
             GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;
             GameCell *cell = (GameCell *)sender;
             gtvc.game = cell.game;
+            gtvc.currentContract = cell.currentContract;
         }
     }
 }
@@ -123,10 +124,20 @@
     {
         GameCell *createdGameCell = [[GameCell alloc] init];
         createdGameCell.game = self.goToGame;
-        self.goToGame = nil;
-        [self.tableView reloadData];
-        [self performSegueWithIdentifier:@"SegueToGameView" sender:createdGameCell];
+        
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // Add code here to do background processing
 
+            // if don't have self.currentContract, you just created game. Go get
+            createdGameCell.currentContract = [AssassinsService getContractForGame:self.goToGame.gameId];
+            
+            dispatch_async( dispatch_get_main_queue(), ^{
+                // perform segue, reload data, and then set goToGame to nil.
+                [self.tableView reloadData];
+                [self performSegueWithIdentifier:@"SegueToGameView" sender:createdGameCell];
+                self.goToGame = nil;
+            });
+        });
     }
     
 /*    if (self.goToPendingNotifcations) {
@@ -179,11 +190,30 @@
             dispatch_async( dispatch_get_main_queue(), ^{
                 // Add code here to update the UI/send notifications based on the
                 // results of the background processing
+                
+                // if there is a pending snipe, it takes precedent over showing your target
                 if([cell.game.numberPendingContracts integerValue] > 0)
-                    cell.accessoryType = UITableViewCellAccessoryDetailButton;
+                {
+                    // set image to pending img
+                    for (NSObject *obj in [cell.targetProfilePic subviews]) {
+                        if ([obj isMemberOfClass:[UIImageView class]]) {
+                            UIImageView *objImg = (UIImageView *)obj;
+                            objImg.image = [UIImage imageNamed:@"pending.png"];
+                            break;
+                        }
+                    }
+
+                    // if the pending snipe is of you snipe
+                    if([cell.currentContract.state isEqualToString:@"Pending"])
+                        cell.detailLabel.text = [NSString stringWithFormat:@"there is a pending snipe of you"];
+                    
+                    // pending snipe is someone else's
+                    else
+                        cell.detailLabel.text = [NSString stringWithFormat:@"help validate pending snipes"];
+                }
                 
                 // if current contract exists
-                if ([cell.currentContract.state isEqualToString:@"Active"])
+                else if ([cell.currentContract.state isEqualToString:@"Active"])
                 {
                     NSArray *nameArray = [cell.currentContract.targetName componentsSeparatedByString:@" "];
                     NSString *firstName = nameArray[0];
@@ -191,14 +221,16 @@
                     cell.detailLabel.text = [NSString stringWithFormat:@"Your target: %@", firstName];
                     cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
                     cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
-                    [[cell.targetProfilePic layer] setCornerRadius:5];
-                    [[cell.targetProfilePic layer] setMasksToBounds:YES];
+                    
                 }
-                else if([cell.currentContract.state isEqualToString:@"Pending"])
-                    cell.detailLabel.text = [NSString stringWithFormat:@"Your snipe is pending!"];
+                
                 else
                     cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
             
+                // style and unhie target prof pic; hidden by defailt.
+                [[cell.targetProfilePic layer] setCornerRadius:5];
+                [[cell.targetProfilePic layer] setMasksToBounds:YES];
+                [cell.targetProfilePic setHidden:NO];
             });
         });
     }
@@ -213,9 +245,9 @@
     }
 }*/
 
--(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 94;
+    return 94.0;
 }
 
 

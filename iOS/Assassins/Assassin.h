@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *userId;
 @property (strong, nonatomic) NSString *fbId;
 @property BOOL isAlive;
+@property BOOL isPending;
 @property int numberOfSnipes;
 
 

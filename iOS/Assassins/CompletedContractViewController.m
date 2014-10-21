@@ -51,8 +51,16 @@
     self.addCommentField.delegate = self;
     
     // get comments and set correct number
-    self.commentsArray = [AssassinsService getCommentsWithContract:self.contract.contractId];
-    [self.commentsButton setTitle:[NSString stringWithFormat:@"%lu comments", (unsigned long)[self.commentsArray count]] forState:UIControlStateNormal];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.commentsArray = [AssassinsService getCommentsWithContract:self.contract.contractId];
+    
+        dispatch_async( dispatch_get_main_queue(), ^{
+            [self.commentsButton setTitle:[NSString stringWithFormat:@"%lu comments", (unsigned long)[self.commentsArray count]] forState:UIControlStateNormal];
+
+            // reload data stop spinner
+            [self.commentViewTable reloadData];
+        });
+    });
     
     // set responder for keyboard
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -99,7 +107,9 @@
     {
         if (buttonIndex == 1) {
             // call AssassinsService method
-            [AssassinsService startPendingContractProcess:self.contract withGame:self.game];
+            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [AssassinsService startPendingContractProcess:self.contract withGame:self.game];
+            });
         }
     }
 

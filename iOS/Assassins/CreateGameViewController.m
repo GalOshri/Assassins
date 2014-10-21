@@ -114,10 +114,13 @@
     if([self.safeZones.text isEqualToString:@"List Safe Zones separated by commas"])
         self.safeZones.text = @"";
     
-    Game *newGame = [AssassinsService createGame:self.gameNameField.text withSafeZones:self.safeZones.text withUserIds:newGameParticipants];
-    
-    [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
-    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        Game *newGame = [AssassinsService createGame:self.gameNameField.text withSafeZones:self.safeZones.text withUserIds:newGameParticipants];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
+        });
+    });
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

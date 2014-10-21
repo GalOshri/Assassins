@@ -70,10 +70,21 @@
             else
                 self.safeZoneTextView.text = self.game.safeZones;
             
-            self.safeZoneTextView.textColor = [UIColor whiteColor];
+            self.safeZoneTextView.textColor = [UIColor lightGrayColor];
         });
     });
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
+    // change height of textview and headerview. Other objects are auto layouted
+    CGSize textviewSize = [self.safeZoneTextView sizeThatFits:CGSizeMake(self.safeZoneTextView.frame.size.width, FLT_MAX)];
+    CGFloat heightDifference = self.safeZoneTextView.frame.size.height - textviewSize.height;
+    
+    self.safeZoneTextView.frame = CGRectMake(self.safeZoneTextView.frame.origin.x, self.safeZoneTextView.frame.origin.y, self.safeZoneTextView.frame.size.width, textviewSize.height);
+    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height - heightDifference);
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
@@ -81,7 +92,8 @@
     self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 
@@ -121,10 +133,18 @@
             cell.isAliveLabel.text = @"Alive";
     }
     else {
-        cell.isAliveLabel.text = @"Neutralized";
-        [cell.username setAlpha:0.5];
-        [cell.profilePicture setAlpha:0.5];
-        [cell.isAliveLabel setAlpha:0.5];
+        if (currentAssassin.isPending) {
+            cell.isAliveLabel.text = @"Pending";
+        }
+        
+        else
+        {
+            cell.isAliveLabel.text = @"Neutralized";
+        
+            [cell.username setAlpha:0.5];
+            [cell.profilePicture setAlpha:0.5];
+            [cell.isAliveLabel setAlpha:0.5];
+        }
     }
     
     return cell;

@@ -49,11 +49,20 @@
             NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
             
             // should send to everyone! Grab all users
-            
             PFUser *game = contractObject[@"game"];
             [game fetch];
             NSArray *gamePlayers = game[@"players"];
             
+            /*
+            NSMutableArray *playerObjects;
+             for (PFUser *player in gamePlayers)
+            {
+                PFUser *tempUser= [[PFUser alloc] init];
+                [tempUser setObjectId:player.objectId];
+                [playerObjects addObject:tempUser];
+            }
+            */
+            /*
             PFQuery *pushQuery = [PFInstallation query];
             [pushQuery whereKey:@"user" containedIn:gamePlayers];
             
@@ -67,7 +76,7 @@
             [push setQuery:pushQuery];
             [push setData:data];
             [push sendPushInBackground];
-            
+            */
         }];
     }
 }
@@ -118,134 +127,13 @@
     return contractArray;
 }
 
-// TODO: DON"T USE THIS WITHOUT FIXING THE GAMEID STUFF
-/*+ (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray
-{
-    
-    NSMutableArray *contractArray = [[NSMutableArray alloc] init];
-    
-    // Get all completed contracts for this game
-    PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contract"];
-    NSMutableArray *gameArray = [[NSMutableArray alloc] init];
-   // [PFObject objectWithoutDataWithClassName:@"Game" objectId:@"1zEcyElZ80"]
-    [queryContracts whereKey:@"game" containedIn:gameIdArray];
-    [queryContracts whereKey:@"state" equalTo:@"Completed"];
-    
-    NSArray *contractObjects = [queryContracts findObjects];
-    
-    for (PFObject *contractObject in contractObjects)
-    {
-        Contract *contract = [[Contract alloc] init];
-        
-        contract.contractId = contractObject.objectId;
-        contract.time = [NSDate date];
-        //contract.image = [UIImage imageNamed:@"cameraIconSmaill.png"];
-        
-        PFFile *imageFile = contractObject[@"image"];
-        
-        NSData *imageData = [imageFile getData];
-        contract.image = [UIImage imageWithData:imageData];
-        
-        PFUser *assassin = contractObject[@"assassin"];
-        [assassin fetch];
-        contract.assassinName = assassin.username;
-        contract.assassinFbId = assassin[@"facebookId"];
-        PFUser *target = contractObject[@"target"];
-        [target fetch];
-        contract.targetName = target.username;
-        contract.targetFbId = target[@"facebookId"];
-        contract.comment = contractObject[@"comment"];
-        
-        [contractArray addObject:contract];
-    }
-    return contractArray;
-    
-}
- */
-
-/*
-+ (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId
-{
-    BOOL DEBUGAL = YES;
- 
-    [assassinArray removeAllObjects];
- 
-    if (DEBUGAL)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            Assassin *assassin = [[Assassin alloc] init];
-            
-            assassin.username = @"Galileo";
-            assassin.userId = @"Galilei";
-            assassin.isAlive = YES;
-            assassin.numberOfSnipes = i;
-            
-            [assassinArray addObject:assassin];
-        }
-        //[tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-        return;
-    }
-    
-    // Get all contracts for this game
-    PFQuery *queryContracts = [PFQuery queryWithClassName:@"Contracts"];
-    [queryContracts whereKey:@"gameId" equalTo:gameId];
-    
-    //NSMutableArray *assassinUsers = [[NSMutableArray alloc] init];
-    //NSMutableArray *deadAssassinUsers = [[NSMutableArray alloc] init];
-    NSMutableSet *existingUserIds = [[NSMutableSet alloc] init];
-    
-    [queryContracts findObjectsInBackgroundWithBlock:^(NSArray *contracts, NSError *error)
-     {
-         if (!error)
-         {
-             // Compile a list of all users
-             for (PFObject *contractObject in contracts)
-             {
-                 PFUser *assassinUser = contractObject[@"assassin"];
-                 
-                 if (![existingUserIds containsObject:assassinUser.objectId])
-                 {
-                     Assassin *assassin = [[Assassin alloc] init];
-                     
-                     assassin.username = assassinUser.username;
-                     assassin.userId = assassinUser.objectId;
-                     assassin.isAlive = YES;
-                     assassin.numberOfSnipes = 4;
-                     
-                     [assassinArray addObject:assassin];
-                     
-                     [existingUserIds addObject:assassinUser.objectId];
-                 }
-             }
-             
-             for (PFObject *contractObject in contracts)
-             {
-                 if ([contractObject[@"state"] isEqualToString:@"Completed"])
-                 {
-                     PFUser *assassinUser = contractObject[@"target"];
-                     for (Assassin *assassin in assassinArray)
-                     {
-                         
-                         if ([assassin.userId isEqualToString:assassinUser.objectId])
-                         {
-                             assassin.isAlive = NO;
-                         }
-                     }
-                 }
-      f       }
-         }
-     }];
-    
-}
- */
-
 + (NSArray *)getAssassinListFromGame:(Game *)game
 {
     NSMutableArray *assassinArray = [[NSMutableArray alloc] init];
     
     NSArray *userArray = game.assassins;
-    NSArray *contractArray = game.contracts;
+    // NSArray *contractArray = game.contracts;
+    NSMutableSet *uniqueIds = [[NSMutableSet alloc] init];
     
     [PFUser fetchAll:userArray];
     
@@ -257,8 +145,11 @@
         assassin.userId = user.objectId;
         assassin.fbId = user[@"facebookId"];
         assassin.isAlive = YES;
+        assassin.isPending = NO;
         assassin.numberOfSnipes = (int) user[@"lifetimeSnipes"];
         
+        // put all players into a set and array to sort
+        [uniqueIds addObject:assassin.userId];
         [assassinArray addObject:assassin];
     }
     
@@ -266,26 +157,41 @@
     NSSortDescriptor *usernameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES];
     assassinArray = [[assassinArray sortedArrayUsingDescriptors:@[usernameDescriptor]] mutableCopy];
     
+    // grab all contracts for a game
+    PFQuery *contractQuery = [PFQuery queryWithClassName:@"Contract"];
+    
+    [contractQuery whereKey:@"game" equalTo:[PFObject objectWithoutDataWithClassName:@"Game" objectId:game.gameId]];
+    [contractQuery orderByDescending:@"createdAt"];
 
     
-    [PFObject fetchAll:contractArray];
+
+    NSArray *contractArray = [contractQuery findObjects];
+    
     for (PFObject *contract in contractArray)
     {
-        if ([contract[@"state"] isEqualToString:@"Completed"])
-        {
+        PFObject *target = contract[@"target"];
+        if ([uniqueIds containsObject:target.objectId]) {
+            // change assassin to correct state
             for (Assassin *assassin in assassinArray)
             {
-                PFUser *target = contract[@"target"];
                 if ([assassin.userId isEqualToString:target.objectId])
                 {
-                    assassin.isAlive = NO;
+                    if ([contract[@"state"] isEqualToString:@"Completed"])
+                        assassin.isAlive = NO;
+                    
+                    if ([contract[@"state"] isEqualToString:@"Pending"])
+                    {
+                        assassin.isPending = YES;
+                        assassin.isAlive = NO;
+                    }
                 }
             }
+            
+            // remove the object to not conflict
+            [uniqueIds removeObject:target.objectId];
         }
     }
-    
 
-    
     return assassinArray;
 }
 
@@ -301,7 +207,7 @@
     PFObject *contractObject = [query getFirstObject];
     
     // if user is active in game
-    if (contractObject)
+    if (contractObject != nil)
     {
         Contract *contract = [self getContractFromContractObject:contractObject];
         return contract;
@@ -564,7 +470,8 @@
     NSString *responseString = [PFCloud callFunction:@"startPendingContractProcess" withParameters:pendingContractDict];
 }
 
-+ (int)getNumberOfPendingSnipes
+/*
+ + (int)getNumberOfPendingSnipes
 {
     // make query for current user to find number of pending snipes.
     // TODO: is this right?
@@ -576,6 +483,7 @@
     
     return [snipesToVerify count];
 }
+*/
 
 + (NSMutableArray *)getContractArray
 {

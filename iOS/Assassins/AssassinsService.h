@@ -20,6 +20,7 @@
 
 // called in GameTableViewController
 + (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId;
+
 + (NSMutableArray *)getPendingContractsForGame:(NSString *)gameId;
 
 // TODO: DON'T USE THIS WITHOUT FIXING GAME ID STUFF - not used for anything now
@@ -51,7 +52,7 @@
 
 + (void)startPendingContractProcess: (Contract *)contract withGame:(Game *)game;
 
-+ (int)getNumberOfPendingSnipes;
+// + (int)getNumberOfPendingSnipes;
 
 + (void)removeSnipeToVerify:(NSString *)contractId;
 

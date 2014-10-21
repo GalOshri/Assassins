@@ -29,8 +29,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-
-@property (strong, nonatomic) Contract *currentContract;
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) NSMutableArray *pendingContracts;
 @property BOOL is2SectionsOrNah;
@@ -101,9 +99,6 @@
     [self.activityIndicatorView startAnimating];
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Add code here to do background processing
-    
-        // call to AssassinsService to fill current contract
-        self.currentContract = [AssassinsService getContractForGame:self.game.gameId];
         
         // call AssassinsService to fill lists with events
         self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
@@ -116,13 +111,29 @@
         
             if (!self.game.isComplete)
             {
-                if (self.currentContract)
+                if ([self.currentContract.state isEqualToString:@"Active"])
                 {
                     self.currentTargetUsername.text = self.currentContract.targetName;
                     self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
                     self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
                     self.currentTargetLabel.text = @"your current target:";
                 }
+                
+                else if ([self.currentContract.state isEqualToString:@"Pending"])
+                {
+                    self.currentTargetUsername.text = @"sit tight...";
+                    self.currentTargetLabel.text = @"your status is pending";
+                    
+                    // put pending icon
+                    for (NSObject *obj in [self.currentTargetProfilePicture subviews]) {
+                        if ([obj isMemberOfClass:[UIImageView class]]) {
+                            UIImageView *objImg = (UIImageView *)obj;
+                            objImg.image = [UIImage imageNamed:@"pending.png"];
+                            break;
+                        }
+                    }
+                }
+                
                 else
                 {
                     self.currentTargetLabel.text = @"you were eliminated";
@@ -138,6 +149,9 @@
                 self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
                 self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
             }
+            
+            // hidden by default; unhide
+            [self.currentTargetProfilePicture setHidden:NO];
             
             // reload data stop spinner
             [self.tableView reloadData];
@@ -329,7 +343,7 @@
 }
 */
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 264.0;
 }

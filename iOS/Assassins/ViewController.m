@@ -60,7 +60,7 @@ CGFloat scale;
             
             
             //###### apply cropping to image ##### //
-            
+
             // scale image to be correct size
             CGSize size = CGSizeMake(self.view.frame.size.height * 1/cameraAspectRatio, self.view.frame.size.height);
             UIImage *resizedImage = [chosenImage resizedImage:size interpolationQuality:kCGInterpolationDefault];

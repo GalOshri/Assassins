@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
+#import "Contract.h"
 
 @interface GameTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) Game *game;
+@property (strong, nonatomic) Contract *currentContract;
 
 @end
