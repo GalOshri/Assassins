@@ -5,6 +5,8 @@
 // 
 */
 
+var MAX_HOURS_PENDING_SNIPES = 24;
+
 
 Parse.Cloud.define("completedContract", function(request, response) {
 	var contractId = request.params.contractId;
@@ -174,15 +176,14 @@ Parse.Cloud.define("completedContract", function(request, response) {
 						var GameObject = Parse.Object.extend("Game");
 			    		var gameObjectQuery= new Parse.Query(GameObject);
 
-						// not fahkin working
-						console.log("do we even get to set gameObjectQuery? game.id is " + game.id);
+						// console.log("do we even get to set gameObjectQuery? game.id is " + game.id);
 
 						gameObjectQuery.get(game.id, {
 							success: function(gameInQuestion) {
 								console.log("hi?");
 								var players = gameInQuestion.get("players");
-								console.log("length of players is " + players.length);
-								console.log("nameOfEliminatedPlayer is " + nameOfEliminatedPlayer);
+								// console.log("length of players is " + players.length);
+								// console.log("nameOfEliminatedPlayer is " + nameOfEliminatedPlayer);
 
 								// push here
 								var pushQueryToNotify = new Parse.Query(Parse.Installation);
@@ -191,7 +192,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 								Parse.Push.send({
 								  where: pushQueryToNotify, // Set our Installation query
 								  data: {
-								  	alert: nameOfEliminatedPlayer + " has been eliminated!",
+								  	alert: nameOfEliminatedPlayer + " has been eliminated from game: " + gameInQuestion.get("name"),
 								  	"gameId" : game.id
 								  	}
 								  },{
@@ -785,6 +786,83 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 				});
 			});
 		}
+	});
+});
+
+Parse.Cloud.job("invalidateExpiredPendingSnipes", function(request, status) 
+{
+	//current time
+	var currentDate = Date.now();
+
+	// query for all pending snipes
+	var Contract = Parse.Object.extend("Contract");
+	var contractQuery = new Parse.Query(Contract);
+
+	contractQuery.each(function(pendingContract)
+	{
+		if(pendingContract.get("state") == "Pending")
+		{
+			var snipeTime = pendingContract.get("snipeTime");
+			console.log("objectId is " + pendingContract.id);
+			console.log("snipeTime is " + snipeTime);
+
+			var deltaTime = currentDate - snipeTime;
+			console.log("deltaTime is " + deltaTime + ". That's days  = " + deltaTime/3600000);
+
+			// if more than 24 hours invalidate
+			if(deltaTime / (1000*60*60) > MAX_HOURS_PENDING_SNIPES)
+			{
+				pendingContract.set("state", "Completed");
+
+				var game = pendingContract.get("game");
+				// send push notification
+				var GameObject = Parse.Object.extend("Game");
+	    		var gameObjectQuery= new Parse.Query(GameObject);
+
+				console.log("do we even get to set gameObjectQuery? game.id is " + game.id);
+
+				gameObjectQuery.get(game.id, {
+					success: function(gameInQuestion) {
+						console.log("hi?");
+						var players = gameInQuestion.get("players");
+						console.log("length of players is " + players.length);
+						console.log("nameOfEliminatedPlayer is " + pendingContract.get("targetName"));
+
+						// push here
+						var pushQueryToNotify = new Parse.Query(Parse.Installation);
+						pushQueryToNotify.containedIn('user', players);
+						 
+						Parse.Push.send({
+						  where: pushQueryToNotify, // Set our Installation query
+						  data: {
+						  	alert: pendingContract.get("targetName") + " has been eliminated from game: " + gameInQuestion.get("name"),
+						  	"gameId" : game.id
+						  	}
+						  },{
+						  success: function() {
+						    console.log("pushed to users about assassination");
+						  },
+						  error: function(error) {
+						    console.log("push error: " + error.message);
+						  }
+						});
+					},
+					error: function(error)
+					{ 
+						console.log("didn't push");
+					}
+				});
+			}
+		}
+
+		return pendingContract.save();
+	}).then(function() 
+	{
+		// Set the job's success status
+    	status.success("pending snipes cleaned successfully.");
+	}, function(error) {
+		// Set the job's error status
+	    status.error("Uh oh, something went wrong.");
 	});
 });
 

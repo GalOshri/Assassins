@@ -48,12 +48,15 @@
             NSDictionary *completedContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:contractObject.objectId, @"contractId", nil];
             NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
             
-            // should send to everyone! Grab all users
-            PFUser *game = contractObject[@"game"];
-            [game fetch];
-            NSArray *gamePlayers = game[@"players"];
             
-            /*
+            /*****
+             //server side!
+             // should send to everyone! Grab all users
+             PFUser *game = contractObject[@"game"];
+             [game fetch];
+             NSArray *gamePlayers = game[@"players"];
+            
+    
             NSMutableArray *playerObjects;
              for (PFUser *player in gamePlayers)
             {
@@ -76,7 +79,7 @@
             [push setQuery:pushQuery];
             [push setData:data];
             [push sendPushInBackground];
-            */
+            ****/
         }];
     }
 }
