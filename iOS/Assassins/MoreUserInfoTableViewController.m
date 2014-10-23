@@ -15,12 +15,19 @@
 @interface MoreUserInfoTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *backgroundHeaderView;
-@property (weak, nonatomic) IBOutlet UIView *statusBarView;
-@property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UIButton *statusBarBack;
+@property (weak, nonatomic) IBOutlet UILabel *statusBarUsernameLabel;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+/*
+ @property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
+ @property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
+ */
 
 @property (strong, nonatomic) NSMutableArray *games;
 
@@ -28,6 +35,7 @@
 
 @implementation MoreUserInfoTableViewController
 
+/*
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -36,6 +44,7 @@
     }
     return self;
 }
+*/
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -54,14 +63,16 @@
 {
     [super viewDidLoad];
     
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
+    [self.statusBarView setAlpha:0.0];
     
     PFUser *currentUser = [PFUser currentUser];
-    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
-    self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d completed games",[currentUser[@"lifetimeGames"] intValue]];
-    
-    self.usernameLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
+    self.usernameLabel.text = [NSString stringWithFormat:@"%@", currentUser.username];
+    self.statusBarUsernameLabel.text = [NSString stringWithFormat:@"%@", currentUser.username];
     
     self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
     self.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
@@ -134,13 +145,35 @@
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 94.0;
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
+    // make status bar change color and add name
+    if (scrollView.contentOffset.y <= 100.0)
+        [self.statusBarView setAlpha:0.0];
+    
+    else if (scrollView.contentOffset.y >= 100.0 && scrollView.contentOffset.y <= 115)
+    {
+        [self.statusBarView setAlpha: 0.0 + (scrollView.contentOffset.y - 100.0) / 15.50];
+        [self.statusBarUsernameLabel setHidden:YES];
+        [self.statusBarBack setHidden:YES];
+    }
+    
+    else
+    {
+        [self.statusBarView setAlpha:1.0];
+        [self.statusBarUsernameLabel setHidden:NO];
+        [self.statusBarBack setHidden:NO];
+    }
+    NSLog(@"%f, alpha is %f",scrollView.contentOffset.y, self.statusBarView.alpha);
 }
 
 @end

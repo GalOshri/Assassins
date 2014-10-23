@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoreUserInfoTableViewController : UITableViewController
+@interface MoreUserInfoTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end

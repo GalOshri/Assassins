@@ -20,12 +20,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
-// @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
 @property (strong, nonatomic) IBOutlet UIView *backgroundHeaderView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusBarUsernameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *statusBarCameraIcon;
 
-
+// @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
 
 @property (strong, nonatomic) NSMutableArray *games;
 @property (strong, nonatomic) NSMutableArray *completedContracts;
@@ -69,17 +72,22 @@
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.statusBarView setAlpha:0.0];
     [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
     
-    self.usernameLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
+    // set items from pfuser currentuser
+    PFUser *currentUser = [PFUser currentUser];
+    self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
+    self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d completed games",[currentUser[@"lifetimeGames"] intValue]];
+    self.usernameLabel.text = [NSString stringWithFormat:@"%@", currentUser.username];
+    self.statusBarUsernameLabel.text = [NSString stringWithFormat:@"%@", currentUser.username];
+    
     // AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     //  table work
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-    PFUser *currentUser = [PFUser currentUser];
     
     // set picture right he-ah
     self.profilePicture.profileID = [NSString stringWithString:currentUser[@"facebookId"]];
@@ -147,10 +155,28 @@
 */
 }
 
-/*- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
-}*/
+    // make status bar change color and add name
+    if (scrollView.contentOffset.y <= 100.0)
+        [self.statusBarView setAlpha:0.0];
+    
+    else if (scrollView.contentOffset.y >= 100.0 && scrollView.contentOffset.y <= 115)
+    {
+        [self.statusBarView setAlpha: 0.0 + (scrollView.contentOffset.y - 100.0) / 15.50];
+        [self.statusBarUsernameLabel setHidden:YES];
+        [self.statusBarCameraIcon setHidden:YES];
+    }
+    
+    else
+    {
+        [self.statusBarView setAlpha:1.0];
+        [self.statusBarUsernameLabel setHidden:NO];
+        [self.statusBarCameraIcon setHidden:NO];
+    }
+    
+    // NSLog(@"%f",scrollView.contentOffset.y);
+}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -227,7 +253,7 @@
                     cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
             
                 // style and unhie target prof pic; hidden by defailt.
-                [[cell.targetProfilePic layer] setCornerRadius:5];
+                [[cell.targetProfilePic layer] setCornerRadius:cell.targetProfilePic.frame.size.width/2];
                 [[cell.targetProfilePic layer] setMasksToBounds:YES];
                 [cell.targetProfilePic setHidden:NO];
             });
