@@ -16,7 +16,7 @@
 		<string>https://github.com/GalOshri/Assassins.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>iOS/Assassins.xcodeproj/project.xcworkspace</string>
+	<string>iOS/Assassins.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3</key>

@@ -807,7 +807,7 @@ Parse.Cloud.job("invalidateExpiredPendingSnipes", function(request, status)
 			console.log("snipeTime is " + snipeTime);
 
 			var deltaTime = currentDate - snipeTime;
-			console.log("deltaTime is " + deltaTime + ". That's days  = " + deltaTime/3600000);
+			console.log("deltaTime is " + deltaTime + ". That's hours  = " + deltaTime/3600000);
 
 			// if more than 24 hours invalidate
 			if(deltaTime / (1000*60*60) > MAX_HOURS_PENDING_SNIPES)
