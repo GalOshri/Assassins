@@ -64,6 +64,7 @@
 		DAAB9A3119EB094300FC4A14 /* AssassinsSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A2F19EB094300FC4A14 /* AssassinsSignUpView.m */; };
 		DAAB9A4219EB613600FC4A14 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A4119EB613600FC4A14 /* CommentTableViewCell.m */; };
 		DAAB9A4519EB65EB00FC4A14 /* ContractComment.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A4419EB65EB00FC4A14 /* ContractComment.m */; };
+		DAD082FA19FAD9CA00B66DB7 /* SafeZoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */; };
 		DAD0DD331988DC840075E69D /* cameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD321988DC840075E69D /* cameraButton.png */; };
 		DAD0DD351988DF0C0075E69D /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD341988DF0C0075E69D /* menu.png */; };
 		DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD361988E0BF0075E69D /* noFlash.png */; };
@@ -173,6 +174,8 @@
 		DAAB9A4119EB613600FC4A14 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		DAAB9A4319EB65EB00FC4A14 /* ContractComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractComment.h; sourceTree = "<group>"; };
 		DAAB9A4419EB65EB00FC4A14 /* ContractComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractComment.m; sourceTree = "<group>"; };
+		DAD082F819FAD9CA00B66DB7 /* SafeZoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeZoneTableViewCell.h; sourceTree = "<group>"; };
+		DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeZoneTableViewCell.m; sourceTree = "<group>"; };
 		DAD0DD321988DC840075E69D /* cameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraButton.png; sourceTree = "<group>"; };
 		DAD0DD341988DF0C0075E69D /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		DAD0DD361988E0BF0075E69D /* noFlash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noFlash.png; sourceTree = "<group>"; };
@@ -477,6 +480,8 @@
 				DAD0DD67198F75E30075E69D /* GameTableViewController.m */,
 				DAD0DD6B198F783A0075E69D /* AssassinationEventCell.h */,
 				DAD0DD6C198F783A0075E69D /* AssassinationEventCell.m */,
+				DAD082F819FAD9CA00B66DB7 /* SafeZoneTableViewCell.h */,
+				DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */,
 				DAA7D03D199E548800656414 /* Completed Contract Image  */,
 				DAD0DD80199324120075E69D /* Participant Page */,
 			);
@@ -665,6 +670,7 @@
 				DAD0DD7F199324090075E69D /* ParticipantTableViewCell.m in Sources */,
 				DAD0DD7919931C110075E69D /* Assassin.m in Sources */,
 				DAA7D0391998AA4C00656414 /* PendingContractsTableViewCell.m in Sources */,
+				DAD082FA19FAD9CA00B66DB7 /* SafeZoneTableViewCell.m in Sources */,
 				DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */,
 				DA42AB6D19A605F100356E7A /* CreateGameViewController.m in Sources */,
 				DAA7D033199892D600656414 /* PendingContractsTableViewController.m in Sources */,

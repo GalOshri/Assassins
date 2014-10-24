@@ -14,7 +14,9 @@
 #import "CompletedContractViewController.h"
 #import "VerifySnipeViewController.h"
 #import "Game.h"
-
+#import "Assassin.h"
+#import "ParticipantTableViewCell.h"
+#import "SafeZoneTableViewCell.h"
 
 @interface GameTableViewController ()
 
@@ -23,14 +25,19 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *currentTargetProfilePicture;
-@property (weak, nonatomic) IBOutlet UILabel *currentTargetLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *statusBarUsernameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *statusBarBackArrow;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+
+// @property (weak, nonatomic) IBOutlet UILabel *currentTargetLabel;
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) NSMutableArray *pendingContracts;
+@property (strong, nonatomic) NSArray *assassins;
 @property BOOL is2SectionsOrNah;
 @property BOOL isCompletedOrNah;
 
@@ -85,6 +92,8 @@
 {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.statusBarView setAlpha:0.0];
+    self.statusBarUsernameLabel.text = self.game.name;
     [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
     self.gameNameLabel.text = self.game.name;
 
@@ -108,21 +117,24 @@
             // Add code here to update the UI/send notifications based on the
             // results of the background processing
 
-        
             if (!self.game.isComplete)
             {
                 if ([self.currentContract.state isEqualToString:@"Active"])
                 {
-                    self.currentTargetUsername.text = self.currentContract.targetName;
+                    NSArray *nameArray = [self.currentContract.targetName componentsSeparatedByString:@" "];
+                    NSString *firstName = nameArray[0];
+                    
+                    self.currentTargetUsername.text = [NSString stringWithFormat:@"current target: %@", firstName];
+                    
                     self.currentTargetProfilePicture.profileID = self.currentContract.targetFbId;
                     self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-                    self.currentTargetLabel.text = @"your current target:";
+                    // self.currentTargetLabel.text = @"your current target:";
                 }
                 
                 else if ([self.currentContract.state isEqualToString:@"Pending"])
                 {
-                    self.currentTargetUsername.text = @"sit tight...";
-                    self.currentTargetLabel.text = @"your status is pending";
+                    // self.currentTargetUsername.text = @"sit tight...";
+                    self.currentTargetUsername.text = @"your status is pending";
                     
                     // put pending icon
                     for (NSObject *obj in [self.currentTargetProfilePicture subviews]) {
@@ -136,16 +148,20 @@
                 
                 else
                 {
-                    self.currentTargetLabel.text = @"you were eliminated";
+                    // self.currentTargetLabel.text = @"you were eliminated";
                     [self.currentTargetProfilePicture setHidden:YES];
-                    self.currentTargetUsername.text = @"game is not over";
+                    self.currentTargetUsername.text = @"you were eliminated";
                     
                 }
             }
+            
             else
             {
-                self.currentTargetLabel.text = @"Game won by:";
-                self.currentTargetUsername.text = self.game.winnerName;
+                NSArray *nameArray = [self.game.winnerName componentsSeparatedByString:@" "];
+                NSString *firstName = nameArray[0];
+                
+                // self.currentTargetLabel.text = @"Game won by:";
+                self.currentTargetUsername.text = [NSString stringWithFormat:@"game won by %@", firstName];
                 self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
                 self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
             }
@@ -156,18 +172,116 @@
             // reload data stop spinner
             [self.tableView reloadData];
             [self.activityIndicatorView stopAnimating];
-            [self.activityIndicatorView setHidden:YES];    
+            [self.activityIndicatorView setHidden:YES];
         });
     });
 }
 
-/*
  - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.statusBarView.frame = CGRectMake(0, scrollView.contentOffset.y, self.statusBarView.frame.size.width, self.statusBarView.frame.size.height);
-   // self.
+    // make status bar change color and add name
+    if (scrollView.contentOffset.y <= 40.0)
+        [self.statusBarView setAlpha:0.0];
+    
+    else if (scrollView.contentOffset.y >= 40.0 && scrollView.contentOffset.y <= 65)
+    {
+        [self.statusBarView setAlpha: 0.0 + (scrollView.contentOffset.y - 40) / 17];
+        [self.statusBarUsernameLabel setHidden:YES];
+        [self.statusBarBackArrow setHidden:YES];
+    }
+    
+    else
+    {
+        [self.statusBarView setAlpha:1.0];
+        [self.statusBarUsernameLabel setHidden:NO];
+        [self.statusBarBackArrow setHidden:NO];
+    }
+    NSLog(@"%f, alpha is %f",scrollView.contentOffset.y, self.statusBarView.alpha);
+
 }
-*/
+
+
+/*
+ - (void)viewWillAppear:(BOOL)animated
+ {
+ [super viewWillAppear:animated];
+ 
+ // change height of textview and headerview. Other objects are auto layouted
+ CGSize textviewSize = [self.safeZoneTextView sizeThatFits:CGSizeMake(self.safeZoneTextView.frame.size.width, FLT_MAX)];
+ CGFloat heightDifference = self.safeZoneTextView.frame.size.height - textviewSize.height;
+ 
+ self.safeZoneTextView.frame = CGRectMake(self.safeZoneTextView.frame.origin.x, self.safeZoneTextView.frame.origin.y, self.safeZoneTextView.frame.size.width, textviewSize.height);
+ self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height - heightDifference);
+ }
+ */
+
+- (IBAction)segmentChanged:(UISegmentedControl *)sender {
+    switch (self.segmentControl.selectedSegmentIndex)
+    {
+        // events
+        case 0:
+            // data
+            [self.activityIndicatorView startAnimating];
+            [self.tableView reloadData];
+            [self.activityIndicatorView stopAnimating];
+            
+            break;
+        
+        // players
+        case 1:
+            // if players array empty, fill
+            if ([self.assassins count] == 0)
+            {
+                // set activity indicator
+                [self.activityIndicatorView setHidden:NO];
+                [self.activityIndicatorView startAnimating];
+                
+                dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    // Add code here to do background processing
+                    self.assassins = [AssassinsService getAssassinListFromGame:self.game];
+                    
+                    dispatch_async( dispatch_get_main_queue(), ^{
+                        // Add code here to update the UI/send notifications based on the
+                        // results of the background processing
+                        
+                        if (!self.game.isComplete)
+                        {
+                            for (Assassin *assassin in self.assassins)
+                            {
+                                if(!assassin.isAlive)
+                                    self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
+                            }
+                            // self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+                        }
+                        // else
+                            // self.numActiveAssassinsLabel.text = @"game over";
+                        
+                        // reload data stop spinner
+                        [self.tableView reloadData];
+                        [self.activityIndicatorView stopAnimating];
+                        [self.activityIndicatorView setHidden:YES];
+                    });
+                });
+            }
+            
+            // reload data stop spinner
+            [self.tableView reloadData];
+            [self.activityIndicatorView stopAnimating];
+            [self.activityIndicatorView setHidden:YES];
+            
+            break;
+            
+        case 2:
+            // set activity indicator
+            [self.activityIndicatorView setHidden:NO];
+            [self.activityIndicatorView startAnimating];
+            [self.tableView reloadData];
+            [self.activityIndicatorView setHidden:YES];
+            
+        default:
+            break;
+    }
+}
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -177,46 +291,54 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ([self.pendingContracts count] > 0 && [self.completedContracts count] > 0)
-        return 2;
-    else
-        return 1;
+    if (self.segmentControl.selectedSegmentIndex == 0)
+    {
+        if ([self.pendingContracts count] > 0 && [self.completedContracts count] > 0)
+            return 2;
+        else
+            return 1;
+    }
+    
+    return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;
     
-    if (tableView.numberOfSections == 2)
+    if (self.segmentControl.selectedSegmentIndex == 0)
     {
-        self.is2SectionsOrNah = YES;
+        if (tableView.numberOfSections == 2)
+        {
+            self.is2SectionsOrNah = YES;
+            
+            switch (section)
+            {
+                case 0:
+                    sectionName = @"Pending Snipes";
+                    break;
+                case 1:
+                    sectionName = @"Completed Snipes";
+                    break;
+                default:
+                    sectionName = @"";
+                    break;
+            }
+        }
         
-        switch (section)
-        {
-            case 0:
-                sectionName = @"Pending Snipes";
-                break;
-            case 1:
-                sectionName = @"Completed Snipes";
-                break;
-            default:
-                sectionName = @"";
-                break;
-        }
-    }
-    
-    else
-    {
-        self.is2SectionsOrNah = NO;
-        if([self.completedContracts count] > 0)
-        {
-            sectionName = @"Completed Snipes";
-            self.isCompletedOrNah = YES;
-        }
         else
         {
-            sectionName= @"Pending Snipes";
-            self.isCompletedOrNah = NO;
+            self.is2SectionsOrNah = NO;
+            if([self.completedContracts count] > 0)
+            {
+                sectionName = @"Completed Snipes";
+                self.isCompletedOrNah = YES;
+            }
+            else
+            {
+                sectionName= @"Pending Snipes";
+                self.isCompletedOrNah = NO;
+            }
         }
     }
     
@@ -227,101 +349,167 @@
 {
     NSInteger number;
     
-    if (self.is2SectionsOrNah)
+    if (self.segmentControl.selectedSegmentIndex == 0)
     {
-        switch (section)
+        if (self.is2SectionsOrNah)
         {
-            case 0:
-                number = [self.pendingContracts count];
-                break;
-            case 1:
-                number = [self.completedContracts count];
-                break;
-            default:
-                number = 0;
-                break;
+            switch (section)
+            {
+                case 0:
+                    number = [self.pendingContracts count];
+                    break;
+                case 1:
+                    number = [self.completedContracts count];
+                    break;
+                default:
+                    number = 0;
+                    break;
+            }
+        }
+        
+        else // 1 section
+        {
+            if(self.isCompletedOrNah)
+                    number = [self.completedContracts count];
+                else
+                    number = [self.pendingContracts count];
         }
     }
     
-    else // 1 section
-    {
-        if(self.isCompletedOrNah)
-                number = [self.completedContracts count];
-            else
-                number = [self.pendingContracts count];
-    }
+    else if (self.segmentControl.selectedSegmentIndex == 1)
+        number = [self.assassins count];
+    
+    else
+        number = 1;
     
     return number;
 }
 
-- (AssassinationEventCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     // set contract based on section
-    Contract *currentContract;
-    AssassinationEventCell *cell;
-    if (self.is2SectionsOrNah)
+    if (self.segmentControl.selectedSegmentIndex == 0)
     {
-        if(indexPath.section == 0)
-        {
-            currentContract = [self.pendingContracts objectAtIndex:indexPath.row];
-            cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"PendingCell" forIndexPath:indexPath];
-        }
+        Contract *currentContract;
+        AssassinationEventCell *cell;
         
-        else
+        if (self.is2SectionsOrNah)
         {
-            currentContract = [self.completedContracts objectAtIndex:indexPath.row];
-            cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
-        }
+            if(indexPath.section == 0)
+            {
+                currentContract = [self.pendingContracts objectAtIndex:indexPath.row];
+                cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"PendingCell" forIndexPath:indexPath];
+            }
             
-    }
-    
-    // only 1 section
-    else
-    {
-        if (self.isCompletedOrNah)
-        {
-            currentContract = [self.completedContracts objectAtIndex:indexPath.row];
-            cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
+            else
+            {
+                currentContract = [self.completedContracts objectAtIndex:indexPath.row];
+                cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
+            }
+            
         }
+        
+        // only 1 section
+        else
+        {
+            if (self.isCompletedOrNah)
+            {
+                currentContract = [self.completedContracts objectAtIndex:indexPath.row];
+                cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"ContractCell" forIndexPath:indexPath];
+            }
+            
+            else
+            {
+                currentContract = [self.pendingContracts objectAtIndex:indexPath.row];
+                cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"PendingCell" forIndexPath:indexPath];
+            }
+        }
+        
+        // time altercation
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a MMM-dd" options:0 locale:[NSLocale currentLocale]]];
+        NSString *theTime = [dateFormatter stringFromDate:currentContract.time];
+        cell.timeLabel.text = theTime;
+        
+        cell.commentLabel.text = currentContract.comment;
+        
+        // tweak aesthetics of images
+        [cell.snipeImagePreview setImage:currentContract.image];
+        [[cell.snipeImagePreview layer] setCornerRadius:5];
+        [[cell.snipeImagePreview layer] setMasksToBounds:YES];
+        
+        cell.profilePicture.profileID = currentContract.targetFbId;
+        cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+        [[cell.profilePicture layer] setCornerRadius:cell.profilePicture.frame.size.width/2];
+        [[cell.profilePicture layer] setMasksToBounds:YES];
+        
+        cell.contract = currentContract;
+        
+        // tweak UI if pending:
+        if ([currentContract.state isEqualToString:@"Pending"])
+            cell.headlineLabel.text = [NSString stringWithFormat:@"Pending Snipe of %@!", currentContract.targetName];
         
         else
         {
-            currentContract = [self.pendingContracts objectAtIndex:indexPath.row];
-            cell = (AssassinationEventCell *) [tableView dequeueReusableCellWithIdentifier:@"PendingCell" forIndexPath:indexPath];
+            // set items in cell
+            cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been eliminated", currentContract.targetName];
         }
+        
+        return cell;
     }
     
-    // time altercation
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a MMM-dd" options:0 locale:[NSLocale currentLocale]]];
-    NSString *theTime = [dateFormatter stringFromDate:currentContract.time];
-    cell.timeLabel.text = theTime;
-    
-    cell.commentLabel.text = currentContract.comment;
-    
-    // tweak aesthetics of images
-    [cell.snipeImagePreview setImage:currentContract.image];
-    [[cell.snipeImagePreview layer] setCornerRadius:5];
-    [[cell.snipeImagePreview layer] setMasksToBounds:YES];
-    
-    cell.profilePicture.profileID = currentContract.targetFbId;
-    cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
-    [[cell.profilePicture layer] setCornerRadius:cell.profilePicture.frame.size.width/2];
-    [[cell.profilePicture layer] setMasksToBounds:YES];
-    
-    cell.contract = currentContract;
-    
-    // tweak UI if pending:
-    if ([currentContract.state isEqualToString:@"Pending"])
-        cell.headlineLabel.text = [NSString stringWithFormat:@"Pending Snipe of %@!", currentContract.targetName];
+    else if (self.segmentControl.selectedSegmentIndex == 1)
+    {
+        ParticipantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"assassinCell" forIndexPath:indexPath];
+        Assassin *currentAssassin = [self.assassins objectAtIndex: [indexPath row]];
+        
+        // FIRE ZEH MISSILES!
+        // I mean, assign cell items
+        cell.username.text = currentAssassin.username;
+        cell.profilePicture.profileID = currentAssassin.fbId;
+        cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;
+        [[cell.profilePicture layer] setCornerRadius:cell.profilePicture.frame.size.width / 2];
+        [[cell.profilePicture layer] setMasksToBounds:YES];
+        
+        if (currentAssassin.isAlive)
+        {
+            if (self.game.isComplete)
+                cell.isAliveLabel.text = @"Winner";
+            else
+                cell.isAliveLabel.text = @"Alive";
+        }
+        else {
+            if (currentAssassin.isPending) {
+                cell.isAliveLabel.text = @"Pending";
+            }
+            
+            else
+            {
+                cell.isAliveLabel.text = @"Neutralized";
+                
+                [cell.username setAlpha:0.5];
+                [cell.profilePicture setAlpha:0.5];
+                [cell.isAliveLabel setAlpha:0.5];
+            }
+        }
+        
+        return cell;
+    }
     
     else
     {
-        // set items in cell
-        cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been eliminated", currentContract.targetName];
+        SafeZoneTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SafeZoneCell" forIndexPath:indexPath];
+        
+        // set game safe zones
+        if (self.game.safeZones == nil || [self.game.safeZones isEqualToString:@""])
+            cell.safeZoneTextView.text = @"none were set!";
+        else
+            cell.safeZoneTextView.text = self.game.safeZones;
+        
+        cell.safeZoneTextView.textColor = [UIColor blackColor];
+        
+        return cell;
     }
-    return cell;
 }
 
 /*
@@ -345,7 +533,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 264.0;
+    if (self.segmentControl.selectedSegmentIndex == 0) {
+        return 264.0;
+    }
+    
+    else if (self.segmentControl.selectedSegmentIndex == 1)
+        return 83.0;
+    
+    else
+        return 300;
 }
 
 @end

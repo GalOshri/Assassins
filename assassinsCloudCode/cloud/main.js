@@ -825,6 +825,10 @@ Parse.Cloud.job("invalidateExpiredPendingSnipes", function(request, status)
 					success: function(gameInQuestion) {
 						console.log("hi?");
 						var players = gameInQuestion.get("players");
+
+						// decrement number of pending contracts in games
+						gameInQuestion.increment("numberPendingSnipes", -1);
+						
 						console.log("length of players is " + players.length);
 						console.log("nameOfEliminatedPlayer is " + pendingContract.get("targetName"));
 

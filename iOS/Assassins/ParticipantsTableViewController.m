@@ -13,13 +13,12 @@
 
 @interface ParticipantsTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *gameImage;
 @property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (strong, nonatomic) NSArray *assassins;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-@property (weak, nonatomic) IBOutlet UITextView *safeZoneTextView;
+
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end
@@ -63,28 +62,8 @@
             [self.tableView reloadData];
             [self.activityIndicatorView stopAnimating];
             [self.activityIndicatorView setHidden:YES];
-            
-            // set game safe zones
-            if (self.game.safeZones == nil || [self.game.safeZones isEqualToString:@""])
-                self.safeZoneTextView.text = @"none were set!";
-            else
-                self.safeZoneTextView.text = self.game.safeZones;
-            
-            self.safeZoneTextView.textColor = [UIColor lightGrayColor];
         });
     });
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // change height of textview and headerview. Other objects are auto layouted
-    CGSize textviewSize = [self.safeZoneTextView sizeThatFits:CGSizeMake(self.safeZoneTextView.frame.size.width, FLT_MAX)];
-    CGFloat heightDifference = self.safeZoneTextView.frame.size.height - textviewSize.height;
-    
-    self.safeZoneTextView.frame = CGRectMake(self.safeZoneTextView.frame.origin.x, self.safeZoneTextView.frame.origin.y, self.safeZoneTextView.frame.size.width, textviewSize.height);
-    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height - heightDifference);
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
