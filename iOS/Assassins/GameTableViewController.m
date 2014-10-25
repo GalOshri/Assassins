@@ -32,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusBarUsernameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *statusBarBackArrow;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+@property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
 
 // @property (weak, nonatomic) IBOutlet UILabel *currentTargetLabel;
 
@@ -112,11 +114,16 @@
         // call AssassinsService to fill lists with events
         self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
         self.pendingContracts = [AssassinsService getPendingContractsForGame:self.game.gameId];
+        self.assassins = [AssassinsService getAssassinListFromGame:self.game];
     
         dispatch_async( dispatch_get_main_queue(), ^{
             // Add code here to update the UI/send notifications based on the
             // results of the background processing
-
+            
+            // number of assassins
+            self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
+            
+            // set strings for current target and assassins alive, depending on state of game
             if (!self.game.isComplete)
             {
                 if ([self.currentContract.state isEqualToString:@"Active"])
@@ -153,6 +160,14 @@
                     self.currentTargetUsername.text = @"you were eliminated";
                     
                 }
+                
+                // set strings for number alive and number of players
+                for (Assassin *assassin in self.assassins)
+                {
+                    if(!assassin.isAlive)
+                        self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
+                }
+                self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
             }
             
             else
@@ -161,6 +176,7 @@
                 NSString *firstName = nameArray[0];
                 
                 // self.currentTargetLabel.text = @"Game won by:";
+                self.numActiveAssassinsLabel.text = @"game over";
                 self.currentTargetUsername.text = [NSString stringWithFormat:@"game won by %@", firstName];
                 self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
                 self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
@@ -196,22 +212,13 @@
         [self.statusBarUsernameLabel setHidden:NO];
         [self.statusBarBackArrow setHidden:NO];
     }
-    NSLog(@"%f, alpha is %f",scrollView.contentOffset.y, self.statusBarView.alpha);
-
 }
 
 
 /*
  - (void)viewWillAppear:(BOOL)animated
  {
- [super viewWillAppear:animated];
- 
- // change height of textview and headerview. Other objects are auto layouted
- CGSize textviewSize = [self.safeZoneTextView sizeThatFits:CGSizeMake(self.safeZoneTextView.frame.size.width, FLT_MAX)];
- CGFloat heightDifference = self.safeZoneTextView.frame.size.height - textviewSize.height;
- 
- self.safeZoneTextView.frame = CGRectMake(self.safeZoneTextView.frame.origin.x, self.safeZoneTextView.frame.origin.y, self.safeZoneTextView.frame.size.width, textviewSize.height);
- self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height - heightDifference);
+
  }
  */
 
@@ -221,10 +228,7 @@
         // events
         case 0:
             // data
-            [self.activityIndicatorView startAnimating];
             [self.tableView reloadData];
-            [self.activityIndicatorView stopAnimating];
-            
             break;
         
         // players
@@ -236,32 +240,22 @@
                 [self.activityIndicatorView setHidden:NO];
                 [self.activityIndicatorView startAnimating];
                 
-                dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    // Add code here to do background processing
-                    self.assassins = [AssassinsService getAssassinListFromGame:self.game];
-                    
-                    dispatch_async( dispatch_get_main_queue(), ^{
-                        // Add code here to update the UI/send notifications based on the
-                        // results of the background processing
-                        
-                        if (!self.game.isComplete)
-                        {
-                            for (Assassin *assassin in self.assassins)
-                            {
-                                if(!assassin.isAlive)
-                                    self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
-                            }
-                            // self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
-                        }
-                        // else
-                            // self.numActiveAssassinsLabel.text = @"game over";
-                        
-                        // reload data stop spinner
-                        [self.tableView reloadData];
-                        [self.activityIndicatorView stopAnimating];
-                        [self.activityIndicatorView setHidden:YES];
-                    });
-                });
+                if (!self.game.isComplete)
+                {
+                    for (Assassin *assassin in self.assassins)
+                    {
+                        if(!assassin.isAlive)
+                            self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
+                    }
+                    // self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+                }
+                // else
+                    // self.numActiveAssassinsLabel.text = @"game over";
+                
+                // reload data stop spinner
+                [self.tableView reloadData];
+                [self.activityIndicatorView stopAnimating];
+                [self.activityIndicatorView setHidden:YES];
             }
             
             // reload data stop spinner
@@ -507,6 +501,20 @@
             cell.safeZoneTextView.text = self.game.safeZones;
         
         cell.safeZoneTextView.textColor = [UIColor blackColor];
+        
+        // change height of textview and headerview. Other objects are auto layouted
+        [cell.safeZoneTextView sizeToFit];
+        
+        CGSize textFrameSize = [cell.safeZoneTextView.text sizeWithAttributes: @{NSFontAttributeName:[UIFont systemFontOfSize:15.0f]}];
+        
+        cell.safeZoneTextView.frame = CGRectMake(cell.safeZoneTextView.frame.origin.x, cell.safeZoneTextView.frame.origin.y, cell.frame.size.width, textFrameSize.height);
+        
+        /*
+         NSLog(@"size of textframesize height is %f", textFrameSize.height);
+        [cell.safeZoneTextView.layer setBorderWidth:0.75];
+        [cell.safeZoneTextView.layer setBorderColor:[UIColor grayColor].CGColor];
+        [cell.safeZoneTextView.layer setCornerRadius:15];
+        */
         
         return cell;
     }
