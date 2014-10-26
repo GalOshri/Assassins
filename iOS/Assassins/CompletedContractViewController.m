@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *dismissCommentView;
 @property (weak, nonatomic) IBOutlet UIView *commentView;
 @property (weak, nonatomic) IBOutlet UITableView *commentViewTable;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentViewBottomConstraint;
 
 @property(strong, nonatomic) NSMutableArray *commentsArray;
 @property BOOL postOrNah;
@@ -65,9 +66,10 @@
     // set responder for keyboard
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardFrameDidChange:)
-                                                 name:UIKeyboardDidChangeFrameNotification object:nil];
+                                                 name:UIKeyboardWillChangeFrameNotification object:nil];
     self.keyboardOrNah = NO;
     self.originalCommentViewLocation = self.commentView.frame.origin.y;
+    NSLog(@"%f", self.originalCommentViewLocation);
 }
 
 -(void)viewDidLayoutSubviews {
@@ -215,8 +217,9 @@
     // if there is now a keyboard
     if (self.keyboardOrNah)
     {
+        self.commentViewBottomConstraint.constant = kKeyBoardFrame.size.height + 10 - self.bottomButtonContainer.frame.size.height;
         [UIView animateWithDuration:0.5 animations:^{
-            [self.commentView setFrame:CGRectMake(self.commentView.frame.origin.x, kKeyBoardFrame.origin.y-self.commentView.frame.size.height - 10, self.commentView.frame.size.width, self.commentView.frame.size.height)];
+            [self.view layoutIfNeeded];
         }];
         
         self.isEditingOrNah = YES;
@@ -230,9 +233,12 @@
     // if there is no longer a keyboard, move back to original location
     else
     {
+        self.commentViewBottomConstraint.constant = 10;
         [UIView animateWithDuration:0.5 animations:^{
-            [self.commentView setFrame:CGRectMake(self.commentView.frame.origin.x, self.originalCommentViewLocation, self.commentView.frame.size.width, self.commentView.frame.size.height)];
+            [self.view layoutIfNeeded];
         }];
+        
+        NSLog(@"%f", self.commentView.frame.origin.y);
     }
 }
 

@@ -902,16 +902,6 @@
                                             <action selector="showComments:" destination="Tsj-uF-E4u" eventType="touchUpInside" id="ERU-1T-R3J"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJK-OE-P5l">
-                                        <rect key="frame" x="8" y="1" width="116" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Mark as Invalid">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="initiateReviewProcess:" destination="Tsj-uF-E4u" eventType="touchUpInside" id="yQh-Jw-PBM"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -938,7 +928,7 @@
                                     <segue destination="9xW-Vj-wXb" kind="unwind" unwindAction="unwindToGameView:" id="VP6-sJ-F4e"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Zs-86-teq">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Zs-86-teq">
                                 <rect key="frame" x="8" y="140" width="304" height="379"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdB-FY-kte">
@@ -1010,18 +1000,35 @@
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="379" id="5Ug-72-Bjp"/>
+                                    <constraint firstAttribute="width" constant="304" id="HkI-Bk-BkG"/>
+                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJK-OE-P5l">
+                                <rect key="frame" x="8" y="528" width="116" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Mark as Invalid">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="initiateReviewProcess:" destination="Tsj-uF-E4u" eventType="touchUpInside" id="yQh-Jw-PBM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="gvD-DM-NpW" secondAttribute="bottom" id="8IS-tq-8lq"/>
+                            <constraint firstAttribute="centerX" secondItem="3Zs-86-teq" secondAttribute="centerX" id="luL-TL-q29"/>
+                            <constraint firstItem="gvD-DM-NpW" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="bottom" constant="8" id="y6H-du-We3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addCommentField" destination="oa4-Lc-dHG" id="kIT-JY-IBf"/>
                         <outlet property="bottomButtonContainer" destination="gvD-DM-NpW" id="ulR-Vq-s0r"/>
                         <outlet property="commentView" destination="3Zs-86-teq" id="qyX-F5-piU"/>
+                        <outlet property="commentViewBottomConstraint" destination="y6H-du-We3" id="7UD-bT-EGC"/>
                         <outlet property="commentViewTable" destination="r8h-ta-3Ij" id="XSx-5G-UL0"/>
                         <outlet property="commentsButton" destination="3PE-Uo-F2I" id="dOv-ht-vel"/>
                         <outlet property="contractComment" destination="dsb-w8-7if" id="ech-Ap-aEB"/>
