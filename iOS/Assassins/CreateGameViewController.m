@@ -52,6 +52,7 @@
     //Do any additional setup after loading the view.
     
     [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mysteryManBckgnd"]]];
+    [self.safeZonesView setBackgroundColor:[UIColor whiteColor]];
     
     self.friendList = [[NSMutableArray alloc] init];
     self.selectedFriends = [[NSMutableArray alloc] init];
@@ -182,7 +183,6 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    NSLog(@"textviewdidbeginediting");
     self.keyboardOrNah = YES;
     
     // get rid of text
