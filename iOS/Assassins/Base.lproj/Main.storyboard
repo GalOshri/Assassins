@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15" y="-353"/>
+            <point key="canvasLocation" x="-73" y="-1096"/>
         </scene>
         <!--Create Game View Controller-->
         <scene sceneID="g85-Rp-4Ad">
@@ -241,7 +241,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="477" y="-1856"/>
+            <point key="canvasLocation" x="477" y="-1904"/>
         </scene>
         <!--User Table View Controller-->
         <scene sceneID="pgR-4R-yDP">
@@ -504,7 +504,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bg0-LC-dfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="F61-Id-P89" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="477" y="-353"/>
+            <point key="canvasLocation" x="1722" y="-353"/>
         </scene>
         <!--h-->
         <scene sceneID="yJZ-4X-pgf">
@@ -768,7 +768,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMC-9K-W8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1zH-iF-qft" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="477" y="359"/>
+            <point key="canvasLocation" x="471" y="-353"/>
         </scene>
         <!--More User Info Table View Controller-->
         <scene sceneID="v8D-BM-MvG">
@@ -785,6 +785,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="k6P-jb-tUU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="6Zp-kQ-Wir"/>
+                                </constraints>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="u5e-Go-u5E">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -882,6 +885,11 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y1O-IH-lmy" firstAttribute="top" secondItem="k6P-jb-tUU" secondAttribute="bottom" id="HuE-iM-j7a"/>
+                            <constraint firstAttribute="centerX" secondItem="k6P-jb-tUU" secondAttribute="centerX" id="Qxz-fZ-hLS"/>
+                            <constraint firstItem="k6P-jb-tUU" firstAttribute="top" secondItem="dha-Cq-Fzz" secondAttribute="topMargin" id="hzN-3V-lum"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="sBq-km-D3K" id="nPE-2f-lfk"/>
@@ -930,10 +938,6 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="AY3-z5-ss4"/>
-                                    <constraint firstAttribute="height" constant="41" id="ZH6-Be-2Ny"/>
-                                </constraints>
                             </view>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type to comment" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dsb-w8-7if">
                                 <rect key="frame" x="0.0" y="102" width="320" height="30"/>
@@ -1045,16 +1049,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="gvD-DM-NpW" secondAttribute="bottom" id="8IS-tq-8lq"/>
+                            <constraint firstItem="gvD-DM-NpW" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leadingMargin" constant="-16" id="8uo-X0-Qvk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gvD-DM-NpW" secondAttribute="trailing" constant="-16" id="Oho-so-MxZ"/>
+                            <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="gvD-DM-NpW" secondAttribute="bottom" id="ee3-RA-mfY"/>
                             <constraint firstAttribute="centerX" secondItem="3Zs-86-teq" secondAttribute="centerX" id="luL-TL-q29"/>
-                            <constraint firstItem="gvD-DM-NpW" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="bottom" constant="8" id="y6H-du-We3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addCommentField" destination="oa4-Lc-dHG" id="kIT-JY-IBf"/>
                         <outlet property="bottomButtonContainer" destination="gvD-DM-NpW" id="ulR-Vq-s0r"/>
                         <outlet property="commentView" destination="3Zs-86-teq" id="qyX-F5-piU"/>
-                        <outlet property="commentViewBottomConstraint" destination="y6H-du-We3" id="7UD-bT-EGC"/>
                         <outlet property="commentViewTable" destination="r8h-ta-3Ij" id="XSx-5G-UL0"/>
                         <outlet property="commentsButton" destination="3PE-Uo-F2I" id="dOv-ht-vel"/>
                         <outlet property="contractComment" destination="dsb-w8-7if" id="ech-Ap-aEB"/>
@@ -1082,7 +1086,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mzz-EB-Sdn">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="570"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="GgO-5W-em0">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
@@ -1434,8 +1438,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6Zd-Av-Fzy"/>
-        <segue reference="giA-9X-WfV"/>
+        <segue reference="o4v-XD-yUY"/>
+        <segue reference="FcK-z9-NuM"/>
         <segue reference="5uJ-ta-YY5"/>
     </inferredMetricsTieBreakers>
 </document>

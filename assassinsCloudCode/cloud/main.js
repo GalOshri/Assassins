@@ -53,7 +53,6 @@ Parse.Cloud.define("completedContract", function(request, response) {
 						    game.set("winner", assassin);
 						    game.set("winnerName", assassinName);
 						    game.set("winnerFbId", assassinFbId);
-						    game.increment("numberPendingSnipes", -1);
 							game.save();
 
 							var playersArray = game.get("players");
@@ -504,8 +503,8 @@ Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
 
 			var game = pendingContract.get("game");
 			var players = game.get("players");
-			game.increment("numberPendingSnipes", -1);
-			game.save();
+			// game.increment("numberPendingSnipes", -1);
+			// game.save();
 
 			if(currentDate > endDate)
 			{
@@ -559,7 +558,7 @@ Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
 					Parse.Cloud.run("checkContracts", {"assassinId": assassinId, "gameId":gameId, "userIdToInsert":targetId, "originalContractId":contractId});
 				}
 			}
-
+			game.save();
 			pendingContract.save();
 			response.success("ohhi");
 		},
@@ -788,6 +787,13 @@ Parse.Cloud.define("checkContracts", function(request, response) {
 					}
 				});
 			});
+		}
+
+
+		// we didn't bring back to life...
+		else
+		{
+
 		}
 	});
 });

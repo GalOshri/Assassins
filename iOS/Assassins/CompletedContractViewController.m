@@ -69,7 +69,6 @@
                                                  name:UIKeyboardWillChangeFrameNotification object:nil];
     self.keyboardOrNah = NO;
     self.originalCommentViewLocation = self.commentView.frame.origin.y;
-    NSLog(@"%f", self.originalCommentViewLocation);
 }
 
 -(void)viewDidLayoutSubviews {
@@ -141,8 +140,6 @@
                 newComment.commentText = self.addCommentField.text;
                 newComment.commentCreator = [PFUser currentUser].username;
                 newComment.dateCreated = [NSDate date];
-                
-                NSLog(@"new date is %@", newComment.dateCreated);
                 
                 // reset table, empty text box, incrmeent number of comment button
                 self.addCommentField.text = @"";
@@ -237,8 +234,6 @@
         [UIView animateWithDuration:0.5 animations:^{
             [self.view layoutIfNeeded];
         }];
-        
-        NSLog(@"%f", self.commentView.frame.origin.y);
     }
 }
 
