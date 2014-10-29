@@ -96,7 +96,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.statusBarView setAlpha:0.0];
     self.statusBarUsernameLabel.text = self.game.name;
-    [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
+    //[self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
     self.gameNameLabel.text = self.game.name;
 
     [[self.currentTargetProfilePicture layer] setCornerRadius: self.currentTargetProfilePicture.frame.size.width/2];
@@ -147,7 +147,7 @@
                     for (NSObject *obj in [self.currentTargetProfilePicture subviews]) {
                         if ([obj isMemberOfClass:[UIImageView class]]) {
                             UIImageView *objImg = (UIImageView *)obj;
-                            objImg.image = [UIImage imageNamed:@"pending.png"];
+                            objImg.image = [UIImage imageNamed:@"userSilhouettePending.png"];
                             break;
                         }
                     }
@@ -159,6 +159,14 @@
                     [self.currentTargetProfilePicture setHidden:YES];
                     self.currentTargetUsername.text = @"you were eliminated";
                     
+                    // put dead icon
+                    for (NSObject *obj in [self.currentTargetProfilePicture subviews]) {
+                        if ([obj isMemberOfClass:[UIImageView class]]) {
+                            UIImageView *objImg = (UIImageView *)obj;
+                            objImg.image = [UIImage imageNamed:@"userSilhouetteDead.png"];
+                            break;
+                        }
+                    }
                 }
                 
                 // set strings for number alive and number of players
@@ -213,14 +221,6 @@
         [self.statusBarBackArrow setHidden:NO];
     }
 }
-
-
-/*
- - (void)viewWillAppear:(BOOL)animated
- {
-
- }
- */
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender {
     switch (self.segmentControl.selectedSegmentIndex)
@@ -419,6 +419,9 @@
             }
         }
         
+        // set profileID to nil so that we don't display FB image from previous cell
+        cell.profilePicture.profileID = nil;
+        
         // time altercation
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"hh:mm a MMM-dd" options:0 locale:[NSLocale currentLocale]]];
@@ -457,8 +460,7 @@
         ParticipantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"assassinCell" forIndexPath:indexPath];
         Assassin *currentAssassin = [self.assassins objectAtIndex: [indexPath row]];
         
-        // FIRE ZEH MISSILES!
-        // I mean, assign cell items
+        // assign cell items
         cell.username.text = currentAssassin.username;
         cell.profilePicture.profileID = currentAssassin.fbId;
         cell.profilePicture.pictureCropping = FBProfilePictureCroppingSquare;

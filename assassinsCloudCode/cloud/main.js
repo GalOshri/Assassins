@@ -53,6 +53,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 						    game.set("winner", assassin);
 						    game.set("winnerName", assassinName);
 						    game.set("winnerFbId", assassinFbId);
+						    game.increment("numberPendingSnipes", -1);
 							game.save();
 
 							var playersArray = game.get("players");
@@ -105,7 +106,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 									Parse.Push.send({
 									  where: pushQuery, // Set our Installation query
 									  data: {
-									  	alert: winner.get("username") + " just won the game!",
+									  	alert: winner.get("username") + " just won game \""+ game.get("name") +"\"!",
 									  	"gameId" : game.id
 									  }
 									}, {
@@ -503,13 +504,15 @@ Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
 
 			var game = pendingContract.get("game");
 			var players = game.get("players");
+			game.increment("numberPendingSnipes", -1);
+			game.save();
 
 			if(currentDate > endDate)
 			{
 				// change state from pending to complete
 				pendingContract.set("state", "Completed");
 				console.log("currentdate is " + currentDate + " and endDate is " + endDate);
-
+				game.increment("numberPendingSnipes", -1);
 				//send push notification that snipe was not overturned. 
 				var pushQuery = new Parse.Query(Parse.Installation);
 				pushQuery.containedIn('user', players);

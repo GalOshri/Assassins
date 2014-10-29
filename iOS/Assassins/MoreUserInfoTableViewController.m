@@ -123,6 +123,10 @@
 {
     Game *currentGame = [self.games objectAtIndex:indexPath.row];
     GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
+    
+    // set profileID to nil so that we don't display FB image from previous cell
+    cell.targetProfilePic.profileID = nil;
+    
     cell.gameNameLabel.text = currentGame.name;
     cell.game = currentGame;
     
@@ -138,7 +142,7 @@
         // set picture to winner
         cell.targetProfilePic.profileID = cell.game.winnerFbId;
         cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
-        [[cell.targetProfilePic  layer] setCornerRadius:5];
+        [[cell.targetProfilePic  layer] setCornerRadius:cell.targetProfilePic.frame.size.width/2];
         [[cell.targetProfilePic layer] setMasksToBounds:YES];
     }
 

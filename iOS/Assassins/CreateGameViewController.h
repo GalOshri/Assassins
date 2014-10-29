@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "Game.h"
 
-@interface CreateGameViewController : UIViewController <FBFriendPickerDelegate, UITextFieldDelegate, UITextViewDelegate>
+@interface CreateGameViewController : UIViewController <FBFriendPickerDelegate, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) Game *createdGame;
 

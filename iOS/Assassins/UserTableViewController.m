@@ -210,7 +210,8 @@
             // Add code here to do background processing
 
             // grab current contract to fill in data
-            cell.currentContract = [AssassinsService getContractForGame:cell.game.gameId];
+            if (cell.currentContract == nil)
+                cell.currentContract = [AssassinsService getContractForGame:cell.game.gameId];
             
             dispatch_async( dispatch_get_main_queue(), ^{
                 // Add code here to update the UI/send notifications based on the
@@ -223,7 +224,7 @@
                     for (NSObject *obj in [cell.targetProfilePic subviews]) {
                         if ([obj isMemberOfClass:[UIImageView class]]) {
                             UIImageView *objImg = (UIImageView *)obj;
-                            objImg.image = [UIImage imageNamed:@"pending.png"];
+                            objImg.image = [UIImage imageNamed:@"userSilhouettePending.png"];
                             break;
                         }
                     }
@@ -249,8 +250,20 @@
                     
                 }
                 
+                //  you h ave been eliminated
                 else
+                {
                     cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
+                    
+                    // set image to pending img
+                    for (NSObject *obj in [cell.targetProfilePic subviews]) {
+                        if ([obj isMemberOfClass:[UIImageView class]]) {
+                            UIImageView *objImg = (UIImageView *)obj;
+                            objImg.image = [UIImage imageNamed:@"userSilhouetteDead.png"];
+                            break;
+                        }
+                    }
+                }
             
                 // style and unhie target prof pic; hidden by defailt.
                 [[cell.targetProfilePic layer] setCornerRadius:cell.targetProfilePic.frame.size.width/2];
@@ -272,7 +285,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 94.0;
+    return 110.0;
 }
 
 

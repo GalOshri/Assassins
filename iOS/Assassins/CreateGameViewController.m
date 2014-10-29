@@ -13,12 +13,15 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *gameNameField;
 @property (weak, nonatomic) IBOutlet UITextView *selectedPlayersTextView;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UITextView *safeZones;
+@property (weak, nonatomic) IBOutlet UIView *safeZonesView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeZoneViewBottomConstraint;
 
 @property (strong, nonatomic) NSMutableArray *friendList;
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
-@property (weak, nonatomic) IBOutlet UIView *headerView;
-@property (weak, nonatomic) IBOutlet UITextView *safeZones;
+@property BOOL keyboardOrNah;
 
 @end
 
@@ -57,7 +60,15 @@
     [self.safeZones.layer setBorderColor:[UIColor grayColor].CGColor];
     [self.safeZones.layer setCornerRadius:15];
     self.safeZones.delegate = self;
-    // self.isEditing = NO; TODO if want to dismiss on tap view
+    
+    self.gameNameField.delegate = self;
+    self.safeZones.delegate = self;
+    
+    // set responder for keyboard and bool for safe zones
+    self.keyboardOrNah = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardFrameDidChange:)
+                                                 name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (IBAction)selectPlayers:(id)sender
@@ -156,35 +167,104 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //call selector to dismiss keyboard code if it is present
+    UITapGestureRecognizer *tapRecognizerTextField = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEventOnView:)];
+    [tapRecognizerTextField setNumberOfTapsRequired:1];
+    [tapRecognizerTextField setDelegate:self];
+    [self.view addGestureRecognizer:tapRecognizerTextField];
+}
+
 - (IBAction)textFieldFinish:(id)sender {
     [sender resignFirstResponder];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
+    NSLog(@"textviewdidbeginediting");
+    self.keyboardOrNah = YES;
+    
     // get rid of text
     if ([self.safeZones.text isEqualToString:@"List Safe Zones separated by commas"])
-        self.safeZones.text = @"";
+    {    self.safeZones.text = @"";
+        self.safeZones.textColor = [UIColor blackColor];
+    }
     
-    self.safeZones.backgroundColor = [[UIColor alloc] initWithWhite:0.0 alpha:0.5];
+    //call selector to dismiss keyboard code if it is present
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEventOnView:)];
+    [tapRecognizer setNumberOfTapsRequired:1];
+    [tapRecognizer setDelegate:self];
+    [self.view addGestureRecognizer:tapRecognizer];
+    
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
  replacementText:(NSString *)text
 {
-    if ([text isEqualToString:@"\n"]) {
+    if ([text isEqualToString:@"\n"])
+    {
         [textView resignFirstResponder];
         
-        self.safeZones.backgroundColor = [UIColor clearColor];
-        
-        if ([self.safeZones.text isEqualToString:@""])
+        if ([self.safeZones.text isEqualToString:@""] || [self.safeZones.text isEqualToString:@" "])
+        {
             self.safeZones.text = @"List Safe Zones separated by commas";
+            self.safeZones.textColor = [UIColor grayColor];
+        }
         
+        self.keyboardOrNah = NO;
         // Return FALSE so that the final '\n' character doesn't get added
         return FALSE;
     }
     // For any other character return TRUE so that the text gets added to the view
     return TRUE;
+}
+
+- (void)touchEventOnView: (id) sender
+{
+    //[self endEditing];
+    // remove gesture
+    UITapGestureRecognizer *gestureRecognizer = sender;
+    [self.view removeGestureRecognizer:gestureRecognizer];
+
+    [self.view endEditing:YES];
+    
+    if ([self.safeZones.text isEqualToString:@""] || [self.safeZones.text isEqualToString:@" "])
+    {
+        self.safeZones.text = @"List Safe Zones separated by commas";
+        self.safeZones.textColor = [UIColor grayColor];
+    }
+    
+    // reset logic
+    self.keyboardOrNah = NO;
+    
+    // NSCharacterSet *uniqueCharacters = [NSCharacterSet characterSetWithCharactersInString:self.rippleTextView.text];
+    // NSLog(@"number of characters is %@", uniqueCharacters);
+}
+
+- (void)keyboardFrameDidChange:(NSNotification*)notification
+{
+    NSDictionary* info = [notification userInfo];
+    CGRect kKeyBoardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    
+    if (self.keyboardOrNah && [self.safeZones isFirstResponder])
+    {
+        self.safeZoneViewBottomConstraint.constant = 18;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }
+    
+    else if ([self.safeZones isFirstResponder])
+    {
+        self.safeZoneViewBottomConstraint.constant = kKeyBoardFrame.size.height;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }
+    
+    self.keyboardOrNah = !self.keyboardOrNah;
 }
 
 @end

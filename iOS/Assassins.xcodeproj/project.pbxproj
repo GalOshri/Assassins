@@ -38,32 +38,28 @@
 		0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */; };
 		0DBF67131992101B00AFF5F8 /* Contract.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67121992101B00AFF5F8 /* Contract.m */; };
 		0DBF67161998542C00AFF5F8 /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67151998542C00AFF5F8 /* GameCell.m */; };
-		DA20DEA919D751330057C00F /* moreMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = DA20DEA819D751330057C00F /* moreMenu.png */; };
 		DA20DEAC19D752FF0057C00F /* MoreUserInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA20DEAB19D752FF0057C00F /* MoreUserInfoTableViewController.m */; };
 		DA28DE9E19C5061C0015BE4C /* backArrowNoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DA28DE9D19C5061C0015BE4C /* backArrowNoBackground.png */; };
 		DA28DEA019C509A50015BE4C /* menuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DA28DE9F19C509A50015BE4C /* menuBackground.png */; };
 		DA42AB6D19A605F100356E7A /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42AB6C19A605F100356E7A /* CreateGameViewController.m */; };
-		DA57C43619B3C1E8006431E7 /* snipeNotificationNone.png in Resources */ = {isa = PBXBuildFile; fileRef = DA57C43519B3C1E8006431E7 /* snipeNotificationNone.png */; };
 		DA8DF85B19D78639000F9412 /* scopeBckgnd.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8DF85A19D78639000F9412 /* scopeBckgnd.png */; };
 		DA8DF85D19D78B4E000F9412 /* spyBckgnd.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8DF85C19D78B4E000F9412 /* spyBckgnd.png */; };
 		DA8DF85F19D78CC5000F9412 /* cameraIconButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8DF85E19D78CC5000F9412 /* cameraIconButton.png */; };
 		DA8DF86119D79071000F9412 /* mysteryManBckgnd.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8DF86019D79071000F9412 /* mysteryManBckgnd.png */; };
-		DA9567FB19F6DD98006AFE7D /* pending.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9567FA19F6DD98006AFE7D /* pending.png */; };
 		DAA08C4019E58784007B089E /* assassinsSignIn.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA08C3F19E58784007B089E /* assassinsSignIn.png */; };
 		DAA08C4419E594B6007B089E /* assassinsLogoSignIn.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA08C4319E594B6007B089E /* assassinsLogoSignIn.png */; };
 		DAA08C4619E74596007B089E /* userSilhouette.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA08C4519E74596007B089E /* userSilhouette.png */; };
 		DAA7D033199892D600656414 /* PendingContractsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D032199892D600656414 /* PendingContractsTableViewController.m */; };
 		DAA7D0391998AA4C00656414 /* PendingContractsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */; };
 		DAA7D03C199E546B00656414 /* CompletedContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D03B199E546B00656414 /* CompletedContractViewController.m */; };
-		DAA7D03F199F5FCB00656414 /* settingGear.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA7D03E199F5FCB00656414 /* settingGear.png */; };
-		DAA7D04119A49C9E00656414 /* gameImg.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA7D04019A49C9E00656414 /* gameImg.png */; };
 		DAA7D04319A49FA800656414 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA7D04219A49FA800656414 /* users.png */; };
 		DAA7D04519A4A09F00656414 /* usersDark.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA7D04419A4A09F00656414 /* usersDark.png */; };
-		DAA7D04719A4B08400656414 /* snipeNotification.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA7D04619A4B08400656414 /* snipeNotification.png */; };
 		DAAB9A3019EB094300FC4A14 /* AssassinsLogInView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A2D19EB094300FC4A14 /* AssassinsLogInView.m */; };
 		DAAB9A3119EB094300FC4A14 /* AssassinsSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A2F19EB094300FC4A14 /* AssassinsSignUpView.m */; };
 		DAAB9A4219EB613600FC4A14 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A4119EB613600FC4A14 /* CommentTableViewCell.m */; };
 		DAAB9A4519EB65EB00FC4A14 /* ContractComment.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A4419EB65EB00FC4A14 /* ContractComment.m */; };
+		DAAD9C3819FF1D67006DF466 /* userSilhouetteDead.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAD9C3719FF1D67006DF466 /* userSilhouetteDead.png */; };
+		DAAD9C3C1A0014F1006DF466 /* userSilhouettePending.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAD9C3B1A0014F1006DF466 /* userSilhouettePending.png */; };
 		DAD082FA19FAD9CA00B66DB7 /* SafeZoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */; };
 		DAD0DD331988DC840075E69D /* cameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD321988DC840075E69D /* cameraButton.png */; };
 		DAD0DD351988DF0C0075E69D /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD341988DF0C0075E69D /* menu.png */; };
@@ -139,19 +135,16 @@
 		0DBF67121992101B00AFF5F8 /* Contract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contract.m; sourceTree = "<group>"; };
 		0DBF67141998542C00AFF5F8 /* GameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCell.h; sourceTree = "<group>"; };
 		0DBF67151998542C00AFF5F8 /* GameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCell.m; sourceTree = "<group>"; };
-		DA20DEA819D751330057C00F /* moreMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moreMenu.png; sourceTree = "<group>"; };
 		DA20DEAA19D752FF0057C00F /* MoreUserInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreUserInfoTableViewController.h; sourceTree = "<group>"; };
 		DA20DEAB19D752FF0057C00F /* MoreUserInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreUserInfoTableViewController.m; sourceTree = "<group>"; };
 		DA28DE9D19C5061C0015BE4C /* backArrowNoBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrowNoBackground.png; sourceTree = "<group>"; };
 		DA28DE9F19C509A50015BE4C /* menuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBackground.png; sourceTree = "<group>"; };
 		DA42AB6B19A605F100356E7A /* CreateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
 		DA42AB6C19A605F100356E7A /* CreateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
-		DA57C43519B3C1E8006431E7 /* snipeNotificationNone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snipeNotificationNone.png; sourceTree = "<group>"; };
 		DA8DF85A19D78639000F9412 /* scopeBckgnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scopeBckgnd.png; sourceTree = "<group>"; };
 		DA8DF85C19D78B4E000F9412 /* spyBckgnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spyBckgnd.png; sourceTree = "<group>"; };
 		DA8DF85E19D78CC5000F9412 /* cameraIconButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIconButton.png; sourceTree = "<group>"; };
 		DA8DF86019D79071000F9412 /* mysteryManBckgnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mysteryManBckgnd.png; sourceTree = "<group>"; };
-		DA9567FA19F6DD98006AFE7D /* pending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pending.png; sourceTree = "<group>"; };
 		DAA08C3F19E58784007B089E /* assassinsSignIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assassinsSignIn.png; sourceTree = "<group>"; };
 		DAA08C4319E594B6007B089E /* assassinsLogoSignIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assassinsLogoSignIn.png; sourceTree = "<group>"; };
 		DAA08C4519E74596007B089E /* userSilhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userSilhouette.png; sourceTree = "<group>"; };
@@ -161,11 +154,8 @@
 		DAA7D0381998AA4C00656414 /* PendingContractsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PendingContractsTableViewCell.m; path = ../PendingContractsTableViewCell.m; sourceTree = "<group>"; };
 		DAA7D03A199E546B00656414 /* CompletedContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedContractViewController.h; sourceTree = "<group>"; };
 		DAA7D03B199E546B00656414 /* CompletedContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedContractViewController.m; sourceTree = "<group>"; };
-		DAA7D03E199F5FCB00656414 /* settingGear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingGear.png; sourceTree = "<group>"; };
-		DAA7D04019A49C9E00656414 /* gameImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameImg.png; sourceTree = "<group>"; };
 		DAA7D04219A49FA800656414 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
 		DAA7D04419A4A09F00656414 /* usersDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usersDark.png; sourceTree = "<group>"; };
-		DAA7D04619A4B08400656414 /* snipeNotification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snipeNotification.png; sourceTree = "<group>"; };
 		DAAB9A2C19EB094300FC4A14 /* AssassinsLogInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssassinsLogInView.h; path = ../../../Ripple/iOS/Ripple/AssassinsLogInView.h; sourceTree = "<group>"; };
 		DAAB9A2D19EB094300FC4A14 /* AssassinsLogInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssassinsLogInView.m; path = ../../../Ripple/iOS/Ripple/AssassinsLogInView.m; sourceTree = "<group>"; };
 		DAAB9A2E19EB094300FC4A14 /* AssassinsSignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssassinsSignUpView.h; path = ../../../Ripple/iOS/Ripple/AssassinsSignUpView.h; sourceTree = "<group>"; };
@@ -174,6 +164,8 @@
 		DAAB9A4119EB613600FC4A14 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		DAAB9A4319EB65EB00FC4A14 /* ContractComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractComment.h; sourceTree = "<group>"; };
 		DAAB9A4419EB65EB00FC4A14 /* ContractComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractComment.m; sourceTree = "<group>"; };
+		DAAD9C3719FF1D67006DF466 /* userSilhouetteDead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userSilhouetteDead.png; sourceTree = "<group>"; };
+		DAAD9C3B1A0014F1006DF466 /* userSilhouettePending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userSilhouettePending.png; sourceTree = "<group>"; };
 		DAD082F819FAD9CA00B66DB7 /* SafeZoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeZoneTableViewCell.h; sourceTree = "<group>"; };
 		DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeZoneTableViewCell.m; sourceTree = "<group>"; };
 		DAD0DD321988DC840075E69D /* cameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraButton.png; sourceTree = "<group>"; };
@@ -250,7 +242,8 @@
 		0D277D0B198EE318002362C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				DA9567FA19F6DD98006AFE7D /* pending.png */,
+				DAAD9C3B1A0014F1006DF466 /* userSilhouettePending.png */,
+				DAAD9C3719FF1D67006DF466 /* userSilhouetteDead.png */,
 				DAA08C4519E74596007B089E /* userSilhouette.png */,
 				DAA08C4319E594B6007B089E /* assassinsLogoSignIn.png */,
 				DAA08C3F19E58784007B089E /* assassinsSignIn.png */,
@@ -258,15 +251,10 @@
 				DA8DF85E19D78CC5000F9412 /* cameraIconButton.png */,
 				DA8DF85C19D78B4E000F9412 /* spyBckgnd.png */,
 				DA8DF85A19D78639000F9412 /* scopeBckgnd.png */,
-				DA20DEA819D751330057C00F /* moreMenu.png */,
 				DA28DE9F19C509A50015BE4C /* menuBackground.png */,
 				DA28DE9D19C5061C0015BE4C /* backArrowNoBackground.png */,
-				DA57C43519B3C1E8006431E7 /* snipeNotificationNone.png */,
-				DAA7D04619A4B08400656414 /* snipeNotification.png */,
 				DAA7D04419A4A09F00656414 /* usersDark.png */,
 				DAA7D04219A49FA800656414 /* users.png */,
-				DAA7D04019A49C9E00656414 /* gameImg.png */,
-				DAA7D03E199F5FCB00656414 /* settingGear.png */,
 				DAD0DD69198F77770075E69D /* line.png */,
 				DAD0DD62198F38710075E69D /* cameraIcon.png */,
 				DAD0DD60198F00270075E69D /* flipCamera.png */,
@@ -606,23 +594,21 @@
 				DAA08C4019E58784007B089E /* assassinsSignIn.png in Resources */,
 				DAD0DD61198F00270075E69D /* flipCamera.png in Resources */,
 				DA8DF85B19D78639000F9412 /* scopeBckgnd.png in Resources */,
-				DAA7D04719A4B08400656414 /* snipeNotification.png in Resources */,
-				DA20DEA919D751330057C00F /* moreMenu.png in Resources */,
 				DA8DF86119D79071000F9412 /* mysteryManBckgnd.png in Resources */,
 				DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */,
 				DAD0DD351988DF0C0075E69D /* menu.png in Resources */,
 				DAD0DD6A198F77770075E69D /* line.png in Resources */,
+				DAAD9C3C1A0014F1006DF466 /* userSilhouettePending.png in Resources */,
 				DAD0DD3D198B74BF0075E69D /* flash.png in Resources */,
 				DAD0DD63198F38710075E69D /* cameraIcon.png in Resources */,
 				0D52C4B3197E284A00E5E5B9 /* Images.xcassets in Resources */,
 				DA28DE9E19C5061C0015BE4C /* backArrowNoBackground.png in Resources */,
+				DAAD9C3819FF1D67006DF466 /* userSilhouetteDead.png in Resources */,
 				DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */,
 				DA8DF85D19D78B4E000F9412 /* spyBckgnd.png in Resources */,
 				DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */,
 				DAD0DD65198F59730075E69D /* cameraIconSmall.png in Resources */,
 				DAA08C4619E74596007B089E /* userSilhouette.png in Resources */,
-				DA9567FB19F6DD98006AFE7D /* pending.png in Resources */,
-				DAA7D04119A49C9E00656414 /* gameImg.png in Resources */,
 				DA8DF85F19D78CC5000F9412 /* cameraIconButton.png in Resources */,
 				DAA7D04519A4A09F00656414 /* usersDark.png in Resources */,
 				DAA08C4419E594B6007B089E /* assassinsLogoSignIn.png in Resources */,
@@ -630,8 +616,6 @@
 				0D52C4AE197E284A00E5E5B9 /* Main.storyboard in Resources */,
 				DA28DEA019C509A50015BE4C /* menuBackground.png in Resources */,
 				DAA7D04319A49FA800656414 /* users.png in Resources */,
-				DAA7D03F199F5FCB00656414 /* settingGear.png in Resources */,
-				DA57C43619B3C1E8006431E7 /* snipeNotificationNone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
