@@ -108,9 +108,9 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.activityIndicatorView startAnimating];
+    
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // Add code here to do background processing
-        
+    // Add code here to do background processing
         // call AssassinsService to fill lists with events
         self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
         self.pendingContracts = [AssassinsService getPendingContractsForGame:self.game.gameId];
@@ -173,7 +173,7 @@
                 for (Assassin *assassin in self.assassins)
                 {
                     if(!assassin.isAlive)
-                        self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
+                        self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassins intValue] - 1)];
                 }
                 self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
             }

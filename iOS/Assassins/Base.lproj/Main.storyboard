@@ -389,6 +389,10 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6fc-Ls-zJF" firstAttribute="top" secondItem="rEZ-zC-r7K" secondAttribute="topMargin" id="4TH-qz-pM2"/>
+                            <constraint firstItem="GeJ-Rf-UR0" firstAttribute="top" secondItem="6fc-Ls-zJF" secondAttribute="bottom" id="96R-Xg-uVq"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="t6g-33-kth" id="0Vy-Si-qge"/>
@@ -1052,7 +1056,6 @@
                             <constraint firstItem="gvD-DM-NpW" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leadingMargin" constant="-16" id="8uo-X0-Qvk"/>
                             <constraint firstItem="gvD-DM-NpW" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="bottom" constant="8" id="IzY-El-AvJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gvD-DM-NpW" secondAttribute="trailing" constant="-16" id="Oho-so-MxZ"/>
-                            <constraint firstItem="3Zs-86-teq" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leadingMargin" constant="-8" id="d1C-mH-Ier"/>
                             <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="gvD-DM-NpW" secondAttribute="bottom" id="ee3-RA-mfY"/>
                             <constraint firstAttribute="centerX" secondItem="3Zs-86-teq" secondAttribute="centerX" id="luL-TL-q29"/>
                         </constraints>

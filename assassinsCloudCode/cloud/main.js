@@ -558,6 +558,8 @@ Parse.Cloud.define("checkInvalidatedSnipe", function(request, response) {
 					Parse.Cloud.run("checkContracts", {"assassinId": assassinId, "gameId":gameId, "userIdToInsert":targetId, "originalContractId":contractId});
 				}
 			}
+
+			//save items
 			game.save();
 			pendingContract.save();
 			response.success("ohhi");
@@ -837,7 +839,7 @@ Parse.Cloud.job("invalidateExpiredPendingSnipes", function(request, status)
 
 						// decrement number of pending contracts in games
 						gameInQuestion.increment("numberPendingSnipes", -1);
-						
+						gameInQuestion.save();
 						console.log("length of players is " + players.length);
 						console.log("nameOfEliminatedPlayer is " + pendingContract.get("targetName"));
 
