@@ -1050,7 +1050,9 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="gvD-DM-NpW" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leadingMargin" constant="-16" id="8uo-X0-Qvk"/>
+                            <constraint firstItem="gvD-DM-NpW" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="bottom" constant="8" id="IzY-El-AvJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gvD-DM-NpW" secondAttribute="trailing" constant="-16" id="Oho-so-MxZ"/>
+                            <constraint firstItem="3Zs-86-teq" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leadingMargin" constant="-8" id="d1C-mH-Ier"/>
                             <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="gvD-DM-NpW" secondAttribute="bottom" id="ee3-RA-mfY"/>
                             <constraint firstAttribute="centerX" secondItem="3Zs-86-teq" secondAttribute="centerX" id="luL-TL-q29"/>
                         </constraints>
@@ -1059,6 +1061,7 @@
                         <outlet property="addCommentField" destination="oa4-Lc-dHG" id="kIT-JY-IBf"/>
                         <outlet property="bottomButtonContainer" destination="gvD-DM-NpW" id="ulR-Vq-s0r"/>
                         <outlet property="commentView" destination="3Zs-86-teq" id="qyX-F5-piU"/>
+                        <outlet property="commentViewBottomConstraint" destination="IzY-El-AvJ" id="VTe-C2-Oys"/>
                         <outlet property="commentViewTable" destination="r8h-ta-3Ij" id="XSx-5G-UL0"/>
                         <outlet property="commentsButton" destination="3PE-Uo-F2I" id="dOv-ht-vel"/>
                         <outlet property="contractComment" destination="dsb-w8-7if" id="ech-Ap-aEB"/>
