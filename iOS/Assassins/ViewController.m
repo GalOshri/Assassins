@@ -314,7 +314,7 @@ CGFloat scale;
                     currentUser[@"username"] = userData[@"name"];
                     currentUser[@"lifetimeSnipes"] = [NSNumber numberWithInt:0];
                     currentUser[@"lifetimeGames"] = [NSNumber numberWithInt:0];
-                    currentUser[@"snipesToVerify"] = [NSArray arrayWithObjects:nil];
+                    //currentUser[@"snipesToVerify"] = [NSArray arrayWithObjects:nil];
                     [currentUser save];
 
                 }

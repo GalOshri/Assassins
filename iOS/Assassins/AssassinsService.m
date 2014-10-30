@@ -306,6 +306,7 @@
     return pendingSnipes;
 }
 
+/*
 + (int)checkPendingSnipes
 {
     if ([PFUser currentUser])
@@ -331,7 +332,7 @@
 
 }
 
-/*
+
 + (UIImage *)getUserProfilePic:(PFUser *)user
 {
     if (user[@"facebookId"] == nil)

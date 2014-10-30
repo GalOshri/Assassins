@@ -659,6 +659,10 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Fve-cv-Qj4" firstAttribute="top" secondItem="uII-Fl-Spg" secondAttribute="bottom" id="9jZ-Jx-RQw"/>
+                            <constraint firstItem="Fve-cv-Qj4" firstAttribute="top" secondItem="uII-Fl-Spg" secondAttribute="bottom" id="LcE-jZ-G69"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="addCommentField" destination="SyR-Zw-7iB" id="Tkv-6b-mUk"/>
@@ -1056,7 +1060,11 @@
                             <constraint firstItem="gvD-DM-NpW" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leadingMargin" constant="-16" id="8uo-X0-Qvk"/>
                             <constraint firstItem="gvD-DM-NpW" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="bottom" constant="8" id="IzY-El-AvJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gvD-DM-NpW" secondAttribute="trailing" constant="-16" id="Oho-so-MxZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nzP-cj-N98" secondAttribute="trailing" constant="-16" id="bRZ-k3-F98"/>
                             <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="gvD-DM-NpW" secondAttribute="bottom" id="ee3-RA-mfY"/>
+                            <constraint firstItem="nzP-cj-N98" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leadingMargin" constant="-16" id="esS-dh-pdi"/>
+                            <constraint firstItem="nzP-cj-N98" firstAttribute="top" secondItem="ghN-kX-Bdu" secondAttribute="topMargin" id="f8w-ij-63E"/>
+                            <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="nzP-cj-N98" secondAttribute="bottom" id="jW6-54-6Gy"/>
                             <constraint firstAttribute="centerX" secondItem="3Zs-86-teq" secondAttribute="centerX" id="luL-TL-q29"/>
                         </constraints>
                     </view>

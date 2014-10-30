@@ -403,7 +403,7 @@ Parse.Cloud.define("startPendingContractProcess", function(request, response) {
 			console.log("Error: " + error.code + " " + error.message);
 		}
 	}).then(function() {
-		
+		/*
 		var userList = new Parse.Query(Parse.User);
 
 	    for(var i=0; i< assassins.length; i++)
@@ -426,7 +426,7 @@ Parse.Cloud.define("startPendingContractProcess", function(request, response) {
 			}
 		});
 
-	}).then(function() {
+	}).then(function() {*/
 
 
 		// mark contract as pending
