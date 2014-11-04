@@ -6,16 +6,18 @@
 //  Copyright (c) 2014 Kefi. All rights reserved.
 //
 
-#import "GameTableViewController.h"
-#import "AssassinsService.h"
 #import "Contract.h"
-#import "AssassinationEventCell.h"
-#import "CompletedContractViewController.h"
-#import "VerifySnipeViewController.h"
 #import "Game.h"
 #import "Assassin.h"
+
+#import "CompletedContractViewController.h"
+#import "VerifySnipeViewController.h"
+#import "GameTableViewController.h"
+#import "AssassinsService.h"
+
 #import "ParticipantTableViewCell.h"
 #import "SafeZoneTableViewCell.h"
+#import "AssassinationEventCell.h"
 
 @interface GameTableViewController ()
 

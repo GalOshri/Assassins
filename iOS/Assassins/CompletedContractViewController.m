@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Kefi. All rights reserved.
 //
 
-#import "CompletedContractViewController.h"
-#import "CommentTableViewCell.h"
 #import "AssassinsService.h"
 #import "ContractComment.h"
-#import <Parse/Parse.h>
+
+#import "CompletedContractViewController.h"
+#import "CommentTableViewCell.h"
 
 @interface CompletedContractViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *markAsInvalid;
