@@ -92,7 +92,7 @@
         [self.activityIndicatorView startAnimating];
         dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             // Add code here to do background processing
-            self.pendingContracts = [[AssassinsService getPendingSnipes] mutableCopy];
+            //self.pendingContracts = [[AssassinsService getPendingSnipes] mutableCopy];
         
             dispatch_async( dispatch_get_main_queue(), ^{
                 // Add code here to update the UI/send notifications based on the

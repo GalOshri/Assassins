@@ -177,7 +177,6 @@
         [self.statusBarUsernameLabel setHidden:NO];
         [self.statusBarBack setHidden:NO];
     }
-    NSLog(@"%f, alpha is %f",scrollView.contentOffset.y, self.statusBarView.alpha);
 }
 
 @end

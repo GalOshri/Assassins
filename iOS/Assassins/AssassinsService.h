@@ -38,9 +38,9 @@
 
 + (Game *) getGameWithId:(NSString *)gameId;
 
-+ (NSArray *)getPendingSnipes;
+// + (NSArray *)getPendingSnipes;
 
-+ (int)checkPendingSnipes;
+// + (int)checkPendingSnipes;
 
 // + (FBProfilePictureView *)getUserProfilePic:(PFUser *)user;
 
@@ -54,7 +54,7 @@
 
 // + (int)getNumberOfPendingSnipes;
 
-+ (void)removeSnipeToVerify:(NSString *)contractId;
+// + (void)removeSnipeToVerify:(NSString *)contractId;
 
 // Get array of Contract objects
 + (NSMutableArray *)getContractArray;

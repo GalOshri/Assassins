@@ -278,6 +278,7 @@
     return game;
 }
 
+/*
 + (NSArray *)getPendingSnipes;
 {
     NSMutableArray *pendingSnipes = [[NSMutableArray alloc] init];
@@ -306,7 +307,7 @@
     return pendingSnipes;
 }
 
-/*
+
 + (int)checkPendingSnipes
 {
     if ([PFUser currentUser])

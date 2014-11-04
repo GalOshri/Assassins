@@ -14,6 +14,7 @@
 #import "GameCell.h"
 #import "GameTableViewController.h"
 #import "CreateGameViewController.h"
+#import "Contract.h"
 
 
 @interface UserTableViewController ()
@@ -31,7 +32,8 @@
 // @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
 
 @property (strong, nonatomic) NSMutableArray *games;
-@property (strong, nonatomic) NSMutableArray *completedContracts;
+@property (strong, nonatomic) NSMutableArray *cellContracts;
+@property (strong, nonatomic) NSCache *cellCache;
 
 @end
 
@@ -95,11 +97,26 @@
     [[self.profilePicture layer] setCornerRadius:self.profilePicture.frame.size.width/2];
     [[self.profilePicture layer] setMasksToBounds:YES];
     
+    // initiate self.cellContracts
+    self.cellContracts = [[NSMutableArray alloc] init];
+    
     [self.activityIndicatorView startAnimating];
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Add code here to do background processing
         self.games = [[AssassinsService getGameList:YES] mutableCopy];
-        // appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
+        
+        // get all currentContracts for game Id's
+        for(Game *currentGame in self.games)
+        {
+            Contract *currentContract = [AssassinsService getContractForGame:currentGame.gameId];
+            if (currentContract != nil)
+                [self.cellContracts addObject:currentContract];
+            else
+            {
+                Contract *emptyContract = [[Contract alloc] init];
+                [self.cellContracts addObject:emptyContract];
+            }
+        }
         
         dispatch_async( dispatch_get_main_queue(), ^{
             // Add code here to update the UI/send notifications based on the
@@ -196,92 +213,84 @@
 {
     
     GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
+    
     cell.game = [self.games objectAtIndex:indexPath.row];
     cell.gameNameLabel.text = cell.game.name;
     
-    if (cell.game.isComplete)
+    // grab current contract to fill in data
+    cell.currentContract = [self.cellContracts objectAtIndex:indexPath.row];
+
+    // if there is a pending snipe, it takes precedent over showing your target
+    if([cell.game.numberPendingContracts integerValue] > 0)
     {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Won by %@", cell.game.winnerName];
+        // set image to pending img
+        for (NSObject *obj in [cell.targetProfilePic subviews]) {
+            if ([obj isMemberOfClass:[UIImageView class]]) {
+                UIImageView *objImg = (UIImageView *)obj;
+                objImg.image = [UIImage imageNamed:@"userSilhouettePending.png"];
+                break;
+            }
+        }
+
+        // if the pending snipe is of you snipe
+        if([cell.currentContract.state isEqualToString:@"Pending"])
+            cell.detailLabel.text = [NSString stringWithFormat:@"there is a pending snipe of you"];
+        
+        // pending snipe is someone else's
+        else
+            cell.detailLabel.text = [NSString stringWithFormat:@"help validate pending snipes"];
     }
+    
+    // if current contract exists
+    else if ([cell.currentContract.state isEqualToString:@"Active"])
+    {
+        NSArray *nameArray = [cell.currentContract.targetName componentsSeparatedByString:@" "];
+        NSString *firstName = nameArray[0];
+        cell.detailLabel.text = [NSString stringWithFormat:@"Your target: %@", firstName];
+        
+        // see if picture is in Cache
+        NSString *photoId = [NSString stringWithFormat:@"%@", cell.currentContract.targetFbId];
+        FBProfilePictureView *fbProfilePic = [self.cellCache objectForKey:photoId];
+
+        if (fbProfilePic)
+        {
+            cell.targetProfilePic = fbProfilePic;
+        }
+        
+        // if not, find and assign
+        else
+        {
+            cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
+            cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
+            
+            [self.cellCache setObject:cell.targetProfilePic forKey:[NSString stringWithFormat:@"%@", cell.currentContract.targetFbId]];
+        }
+        
+    }
+    
+    //  you have been eliminated
     else
     {
-        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            // Add code here to do background processing
-
-            // grab current contract to fill in data
-            if (cell.currentContract == nil)
-                cell.currentContract = [AssassinsService getContractForGame:cell.game.gameId];
-            
-            dispatch_async( dispatch_get_main_queue(), ^{
-                // Add code here to update the UI/send notifications based on the
-                // results of the background processing
-                
-                // if there is a pending snipe, it takes precedent over showing your target
-                if([cell.game.numberPendingContracts integerValue] > 0)
-                {
-                    // set image to pending img
-                    for (NSObject *obj in [cell.targetProfilePic subviews]) {
-                        if ([obj isMemberOfClass:[UIImageView class]]) {
-                            UIImageView *objImg = (UIImageView *)obj;
-                            objImg.image = [UIImage imageNamed:@"userSilhouettePending.png"];
-                            break;
-                        }
-                    }
-
-                    // if the pending snipe is of you snipe
-                    if([cell.currentContract.state isEqualToString:@"Pending"])
-                        cell.detailLabel.text = [NSString stringWithFormat:@"there is a pending snipe of you"];
-                    
-                    // pending snipe is someone else's
-                    else
-                        cell.detailLabel.text = [NSString stringWithFormat:@"help validate pending snipes"];
-                }
-                
-                // if current contract exists
-                else if ([cell.currentContract.state isEqualToString:@"Active"])
-                {
-                    NSArray *nameArray = [cell.currentContract.targetName componentsSeparatedByString:@" "];
-                    NSString *firstName = nameArray[0];
-
-                    cell.detailLabel.text = [NSString stringWithFormat:@"Your target: %@", firstName];
-                    cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
-                    cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
-                    
-                }
-                
-                //  you h ave been eliminated
-                else
-                {
-                    cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
-                    
-                    // set image to pending img
-                    for (NSObject *obj in [cell.targetProfilePic subviews]) {
-                        if ([obj isMemberOfClass:[UIImageView class]]) {
-                            UIImageView *objImg = (UIImageView *)obj;
-                            objImg.image = [UIImage imageNamed:@"userSilhouetteDead.png"];
-                            break;
-                        }
-                    }
-                }
-            
-                // style and unhie target prof pic; hidden by defailt.
-                [[cell.targetProfilePic layer] setCornerRadius:cell.targetProfilePic.frame.size.width/2];
-                [[cell.targetProfilePic layer] setMasksToBounds:YES];
-                [cell.targetProfilePic setHidden:NO];
-            });
-        });
+        cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
+        
+        // set image to pending img
+        for (NSObject *obj in [cell.targetProfilePic subviews]) {
+            if ([obj isMemberOfClass:[UIImageView class]]) {
+                UIImageView *objImg = (UIImageView *)obj;
+                objImg.image = [UIImage imageNamed:@"userSilhouetteDead.png"];
+                break;
+            }
+        }
     }
 
+    // style and unhie target prof pic; hidden by defailt.
+    [[cell.targetProfilePic layer] setCornerRadius:cell.targetProfilePic.frame.size.width/2];
+    [[cell.targetProfilePic layer] setMasksToBounds:YES];
+    [cell.targetProfilePic setHidden:NO];
+    
     return cell;
 }
 
-/*-(void) tableView:(UITableView *)tableView willDisplayCell:(GameCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([cell.targetProfilePic isHidden]) {
-        // move text over
-        // [cell.detailLabel setFrame:CGRectMake(cell.targetProfilePic.frame.origin.x, cell.targetProfilePic.frame.origin.y, cell.detailLabel.frame.size.width, cell.detailLabel.frame.size.height)];
-    }
-}*/
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
