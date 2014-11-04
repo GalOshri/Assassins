@@ -259,55 +259,50 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="fqu-b9-9Fk">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="t6g-33-kth">
-                                            <rect key="frame" x="150" y="222" width="20" height="20"/>
-                                        </activityIndicatorView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USh-46-V5t">
-                                            <rect key="frame" x="215" y="218" width="97" height="38"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="Past Games">
-                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="7QM-jb-8Zw" kind="modal" id="kjj-NP-P8d"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65W-0O-oeG">
-                                            <rect key="frame" x="8" y="151" width="304" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-EG-r3w" customClass="FBProfilePictureView">
-                                            <rect key="frame" x="110" y="46" width="100" height="100"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkF-Ov-wc5">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="t6g-33-kth">
+                                                    <rect key="frame" x="150" y="206" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65W-0O-oeG">
+                                                    <rect key="frame" x="8" y="140" width="304" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGw-z4-ilb">
+                                                    <rect key="frame" x="262" y="97" width="50" height="38"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <state key="normal" title="+ Game">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="TbO-PD-dIe" kind="modal" id="4xf-IG-9Sa"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total hits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQc-jW-vnl">
+                                                    <rect key="frame" x="70" y="169" width="180" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.78402024872448983" green="0.78402024872448983" blue="0.78402024872448983" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kH8-wR-SFR">
+                                                    <rect key="frame" x="70" y="182" width="180" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.78402024872448983" green="0.78402024872448983" blue="0.78402024872448983" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-EG-r3w" customClass="FBProfilePictureView">
+                                                    <rect key="frame" x="110" y="40" width="100" height="100"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGw-z4-ilb">
-                                            <rect key="frame" x="8" y="218" width="80" height="38"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="Create Game">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="TbO-PD-dIe" kind="modal" id="4xf-IG-9Sa"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total hits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQc-jW-vnl">
-                                            <rect key="frame" x="70" y="179" width="180" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.78402024872448983" green="0.78402024872448983" blue="0.78402024872448983" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kH8-wR-SFR">
-                                            <rect key="frame" x="70" y="194" width="180" height="22"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.78402024872448983" green="0.78402024872448983" blue="0.78402024872448983" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1y-Nq-FQ8">
                                             <rect key="frame" x="13" y="89" width="52" height="54"/>
                                             <state key="normal" image="cameraIconButton.png">
@@ -317,8 +312,18 @@
                                                 <segue destination="tV1-aE-yf0" kind="unwind" unwindAction="unwindToCamera:" id="eah-2b-omc"/>
                                             </connections>
                                         </button>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O0w-IQ-SDg">
+                                            <rect key="frame" x="8" y="233" width="304" height="29"/>
+                                            <segments>
+                                                <segment title="Current Games"/>
+                                                <segment title="Past Games"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentControlChanged:" destination="ReM-Ox-LBW" eventType="valueChanged" id="PPu-Y6-1wd"/>
+                                            </connections>
+                                        </segmentedControl>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.96267139670000001" green="0.96267139670000001" blue="0.96267139670000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userGames" rowHeight="120" id="Uoy-Bv-umN" customClass="GameCell">
@@ -329,12 +334,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fj-oX-7yZ">
-                                                    <rect key="frame" x="8" y="10" width="304" height="21"/>
+                                                    <rect key="frame" x="11" y="10" width="304" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-fK-VEq" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="8" y="45" width="60" height="60"/>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-fK-VEq" customClass="FBProfilePictureView">
+                                                    <rect key="frame" x="11" y="45" width="60" height="60"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWl-ev-Szn">
@@ -344,7 +349,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSN-VG-z3Y">
-                                                    <rect key="frame" x="74" y="64" width="240" height="21"/>
+                                                    <rect key="frame" x="81" y="64" width="240" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -400,10 +405,11 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="t6g-33-kth" id="0Vy-Si-qge"/>
-                        <outlet property="backgroundHeaderView" destination="fqu-b9-9Fk" id="dyU-mm-hZU"/>
+                        <outlet property="backgroundHeaderView" destination="wkF-Ov-wc5" id="bNr-ZK-C8m"/>
                         <outlet property="lifetimeGamesLabel" destination="kH8-wR-SFR" id="y5c-b9-3pJ"/>
                         <outlet property="lifetimeSnipesLabel" destination="RQc-jW-vnl" id="MZJ-V9-DvP"/>
                         <outlet property="profilePicture" destination="hTB-EG-r3w" id="kTD-hV-JYL"/>
+                        <outlet property="segmentControl" destination="O0w-IQ-SDg" id="vsx-A1-pgn"/>
                         <outlet property="statusBarCameraIcon" destination="Iqd-tM-B5Y" id="Jy7-Dq-uQk"/>
                         <outlet property="statusBarUsernameLabel" destination="iE9-pt-QuS" id="zZg-cd-wAv"/>
                         <outlet property="statusBarView" destination="OFZ-jH-Q9w" id="B0S-48-TT3"/>
@@ -415,104 +421,6 @@
                 <exit id="tV1-aE-yf0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="477" y="-1098"/>
-        </scene>
-        <!--Pending Contracts Table View Controller-->
-        <scene sceneID="oCu-z1-QgJ">
-            <objects>
-                <tableViewController storyboardIdentifier="PendingContractsView" id="1q2-cU-T8P" customClass="PendingContractsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="tKX-oV-q70">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="IFh-42-kun">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="208"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pending Snipes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5V-em-GYT">
-                                    <rect key="frame" x="100" y="65" width="121" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ud9-zY-2pB">
-                                    <rect key="frame" x="20" y="36" width="280" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GT8-wt-QzA" customClass="FBProfilePictureView">
-                                    <rect key="frame" x="120" y="94" width="80" height="80"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                </view>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zka-tx-GqS">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                    <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
-                                </view>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="K8y-cH-GI4">
-                                    <rect key="frame" x="150" y="180" width="20" height="20"/>
-                                </activityIndicatorView>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-te-kwP">
-                                    <rect key="frame" x="25" y="114" width="40" height="40"/>
-                                    <state key="normal" title="Button" image="backArrow.png">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <segue destination="F61-Id-P89" kind="unwind" unwindAction="unwindToUserPage:" id="rdu-Au-cMt"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" red="0.14574697066326525" green="0.14574697066326525" blue="0.14574697066326525" alpha="1" colorSpace="calibratedRGB"/>
-                        </view>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pendingSnipeCell" rowHeight="88" id="Rgq-1k-55m" customClass="PendingContractsTableViewCell">
-                                <rect key="frame" x="0.0" y="209" width="320" height="88"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rgq-1k-55m" id="on3-Hl-V5a">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXW-Kn-euE">
-                                            <rect key="frame" x="86" y="20" width="226" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGT-Ye-f4c">
-                                            <rect key="frame" x="86" y="39" width="226" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.49724968110000001" green="0.49724968110000001" blue="0.49724968110000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="alq-RL-ETE" customClass="FBProfilePictureView">
-                                            <rect key="frame" x="18" y="14" width="60" height="60"/>
-                                        </view>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="pendingDateLabel" destination="zGT-Ye-f4c" id="8WW-q1-TkJ"/>
-                                    <outlet property="pendingLabel" destination="sXW-Kn-euE" id="VLw-bT-DiF"/>
-                                    <outlet property="profilePicture" destination="alq-RL-ETE" id="elv-0N-5R5"/>
-                                    <segue destination="rDc-Xy-AAS" kind="modal" identifier="SegueToSnipeVerify" id="wAT-bD-Jtr"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="1q2-cU-T8P" id="QU0-Ls-hNG"/>
-                            <outlet property="delegate" destination="1q2-cU-T8P" id="qsi-K4-PGh"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="dPj-QA-XFP"/>
-                    <connections>
-                        <outlet property="activityIndicatorView" destination="K8y-cH-GI4" id="kxR-sy-lTE"/>
-                        <outlet property="profilePicture" destination="GT8-wt-QzA" id="sl3-l1-yQl"/>
-                        <outlet property="statusBarView" destination="Zka-tx-GqS" id="hAC-SG-zDA"/>
-                        <outlet property="usernameLabel" destination="ud9-zY-2pB" id="JeI-hb-MSj"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bg0-LC-dfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="F61-Id-P89" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1722" y="-353"/>
         </scene>
         <!--h-->
         <scene sceneID="yJZ-4X-pgf">
@@ -786,144 +694,6 @@
             </objects>
             <point key="canvasLocation" x="471" y="-353"/>
         </scene>
-        <!--More User Info Table View Controller-->
-        <scene sceneID="v8D-BM-MvG">
-            <objects>
-                <viewController id="7QM-jb-8Zw" customClass="MoreUserInfoTableViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="e5Z-8V-yUG"/>
-                        <viewControllerLayoutGuide type="bottom" id="y1O-IH-lmy"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dha-Cq-Fzz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="k6P-jb-tUU">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="6Zp-kQ-Wir"/>
-                                </constraints>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="u5e-Go-u5E">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bee-uR-Tm8" customClass="FBProfilePictureView">
-                                            <rect key="frame" x="110" y="46" width="100" height="100"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="sBq-km-D3K">
-                                            <rect key="frame" x="150" y="222" width="20" height="20"/>
-                                        </activityIndicatorView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdA-dQ-rCk">
-                                            <rect key="frame" x="8" y="151" width="304" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Past Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaH-xN-cE7">
-                                            <rect key="frame" x="113" y="179" width="94" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lR-R4-7OP">
-                                            <rect key="frame" x="8" y="100" width="50" height="50"/>
-                                            <state key="normal" image="backArrowNoBackground.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="TC5-v4-q4j" kind="unwind" unwindAction="unwindToUserPage:" id="hDb-Of-AkH"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </view>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userGames" rowHeight="94" id="4TQ-2l-TFh" customClass="GameCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4TQ-2l-TFh" id="4SZ-O2-elQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiD-yO-xzz">
-                                                    <rect key="frame" x="8" y="10" width="304" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyg-OH-SAd" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="8" y="39" width="45" height="45"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCa-4a-h94">
-                                                    <rect key="frame" x="61" y="52" width="205" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="detailLabel" destination="mCa-4a-h94" id="Krp-XI-VxA"/>
-                                            <outlet property="gameNameLabel" destination="UiD-yO-xzz" id="t5j-cD-hnI"/>
-                                            <outlet property="targetProfilePic" destination="qyg-OH-SAd" id="XeP-nk-LtH"/>
-                                            <segue destination="Gaf-7l-evq" kind="modal" identifier="SegueToGameView" id="giA-9X-WfV"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0h-CV-buP">
-                                <rect key="frame" x="0.0" y="20" width="320" height="40"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xc-hp-zsP">
-                                        <rect key="frame" x="50" y="11" width="220" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Osn-2E-eTW">
-                                        <rect key="frame" x="8" y="2" width="40" height="40"/>
-                                        <state key="normal" image="backArrowNoBackground.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="TC5-v4-q4j" kind="unwind" unwindAction="unwindToUserPage:" id="ZF5-dK-ObM"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.1176458865" green="0.1176458865" blue="0.1176458865" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-jq-ngn">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                <color key="backgroundColor" red="0.1176458865" green="0.1176458865" blue="0.1176458865" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="y1O-IH-lmy" firstAttribute="top" secondItem="k6P-jb-tUU" secondAttribute="bottom" id="HuE-iM-j7a"/>
-                            <constraint firstAttribute="centerX" secondItem="k6P-jb-tUU" secondAttribute="centerX" id="Qxz-fZ-hLS"/>
-                            <constraint firstItem="k6P-jb-tUU" firstAttribute="top" secondItem="dha-Cq-Fzz" secondAttribute="topMargin" id="hzN-3V-lum"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="activityIndicatorView" destination="sBq-km-D3K" id="nPE-2f-lfk"/>
-                        <outlet property="backButton" destination="3lR-R4-7OP" id="6UI-Wc-ag2"/>
-                        <outlet property="backgroundHeaderView" destination="u5e-Go-u5E" id="sOC-RU-rhm"/>
-                        <outlet property="profilePicture" destination="bee-uR-Tm8" id="gSI-5P-FdR"/>
-                        <outlet property="statusBarBack" destination="Osn-2E-eTW" id="g0x-jO-CGA"/>
-                        <outlet property="statusBarUsernameLabel" destination="7xc-hp-zsP" id="tJm-sr-DIA"/>
-                        <outlet property="statusBarView" destination="Q0h-CV-buP" id="XI4-8J-j77"/>
-                        <outlet property="tableView" destination="k6P-jb-tUU" id="gJW-gr-vi3"/>
-                        <outlet property="usernameLabel" destination="LdA-dQ-rCk" id="3an-vh-ohR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Acu-yC-6nf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="TC5-v4-q4j" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1109" y="-1904"/>
-        </scene>
         <!--Completed Contract View Controller-->
         <scene sceneID="T1j-OW-lbb">
             <objects>
@@ -1096,7 +866,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfQ-z4-bBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9xW-Vj-wXb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1722" y="-1904"/>
+            <point key="canvasLocation" x="1109" y="-1904"/>
         </scene>
         <!--Game Table View Controller-->
         <scene sceneID="eS9-KP-hOX">
@@ -1370,79 +1140,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rph-MV-Qeq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6d3-Iu-grd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1119" y="-1097"/>
-        </scene>
-        <!--Participants-->
-        <scene sceneID="Vsq-Jt-js4">
-            <objects>
-                <tableViewController id="E9h-nv-kuU" customClass="ParticipantsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="83" sectionHeaderHeight="22" sectionFooterHeight="22" id="0Ff-gN-rLu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="Qzu-sL-zih">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="193"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Name Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5l-6v-2PG">
-                                    <rect key="frame" x="20" y="35" width="280" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3K-Gt-IeD">
-                                    <rect key="frame" x="1" y="85" width="42" height="42"/>
-                                    <state key="normal" image="backArrowNoBackground.png">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <segue destination="ha3-9d-0bd" kind="unwind" unwindAction="unwindToGameView:" id="dN6-l2-ZJM"/>
-                                    </connections>
-                                </button>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YYb-ub-pQY">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                    <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
-                                </view>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Kji-VP-D3P">
-                                    <rect key="frame" x="150" y="149" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="llP-yI-NMS"/>
-                                        <constraint firstAttribute="width" constant="20" id="y4M-qN-aCH"/>
-                                    </constraints>
-                                </activityIndicatorView>
-                            </subviews>
-                            <color key="backgroundColor" red="0.14574697070000001" green="0.14574697070000001" blue="0.14574697070000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="centerX" secondItem="Kji-VP-D3P" secondAttribute="centerX" id="mm1-00-oGN"/>
-                                <constraint firstAttribute="bottom" secondItem="Kji-VP-D3P" secondAttribute="bottom" constant="24" id="oGA-Z9-AgK"/>
-                            </constraints>
-                        </view>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="E9h-nv-kuU" id="Rcu-tI-YTY"/>
-                            <outlet property="delegate" destination="E9h-nv-kuU" id="DXx-r0-8C4"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Participants" id="hqA-iB-tfg">
-                        <barButtonItem key="rightBarButtonItem" image="cameraIconSmall.png" id="C5W-nL-VW7">
-                            <connections>
-                                <segue destination="ha3-9d-0bd" kind="unwind" unwindAction="unwindToCamera:" id="PUI-cd-mb1"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="activityIndicatorView" destination="Kji-VP-D3P" id="tpb-lQ-tNZ"/>
-                        <outlet property="gameNameLabel" destination="D5l-6v-2PG" id="pUF-11-gdd"/>
-                        <outlet property="headerView" destination="Qzu-sL-zih" id="aRH-hh-Yxp"/>
-                        <outlet property="statusBarView" destination="YYb-ub-pQY" id="HGu-WK-anp"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1PZ-dk-XGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="ha3-9d-0bd" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1722" y="-1096"/>
+            <point key="canvasLocation" x="1109" y="-1096"/>
         </scene>
     </scenes>
     <resources>
@@ -1450,7 +1148,6 @@
         <image name="backArrowNoBackground.png" width="700" height="700"/>
         <image name="cameraButton.png" width="120" height="120"/>
         <image name="cameraIconButton.png" width="300" height="300"/>
-        <image name="cameraIconSmall.png" width="28" height="28"/>
         <image name="flipCamera.png" width="300" height="300"/>
         <image name="menuBackground.png" width="400" height="400"/>
         <image name="noFlash.png" width="300" height="300"/>
@@ -1463,8 +1160,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5uJ-ta-YY5"/>
-        <segue reference="o4v-XD-yUY"/>
         <segue reference="FcK-z9-NuM"/>
     </inferredMetricsTieBreakers>
 </document>

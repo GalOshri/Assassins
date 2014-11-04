@@ -28,12 +28,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusBarUsernameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *statusBarCameraIcon;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+
 
 // @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
 
 @property (strong, nonatomic) NSMutableArray *games;
+@property (strong, nonatomic) NSMutableArray *pastGames;
 @property (strong, nonatomic) NSMutableArray *cellContracts;
-@property (strong, nonatomic) NSCache *cellCache;
+// @property (strong, nonatomic) NSCache *cellCache;
 
 @end
 
@@ -84,8 +87,6 @@
     self.usernameLabel.text = [NSString stringWithFormat:@"%@", currentUser.username];
     self.statusBarUsernameLabel.text = [NSString stringWithFormat:@"%@", currentUser.username];
     
-    // AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
     //  table work
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
@@ -97,8 +98,10 @@
     [[self.profilePicture layer] setCornerRadius:self.profilePicture.frame.size.width/2];
     [[self.profilePicture layer] setMasksToBounds:YES];
     
-    // initiate self.cellContracts
+    // initiate self.cellContracts, pastGames, and cellCach
     self.cellContracts = [[NSMutableArray alloc] init];
+    self.pastGames = [[NSMutableArray alloc] init];
+    // self.cellCache = [[NSCache alloc] init];
     
     [self.activityIndicatorView startAnimating];
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -131,10 +134,6 @@
                 }
             }
 
-            // unhide pending contracts button if necessary
-            //if (appDelegate.numberPendingSnipe > 0)
-                //[self.pendingContractsButton setHidden:NO];
-            
             // reload data stop spinner
             [self.tableView reloadData];
             [self.activityIndicatorView stopAnimating];
@@ -195,17 +194,68 @@
     // NSLog(@"%f",scrollView.contentOffset.y);
 }
 
+
+- (IBAction)segmentControlChanged:(id)sender {
+    switch (self.segmentControl.selectedSegmentIndex)
+    {
+        // current games
+        case 0:
+            // merely reload data
+            [self.tableView reloadData];
+            break;
+            
+        // past games
+        case 1:
+            [self.activityIndicatorView setHidden:NO];
+            [self.activityIndicatorView startAnimating];
+            
+            // if players array empty, fill
+            if ([self.pastGames count] == 0)
+            {
+
+                dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    // Add code here to do background processing
+                    self.pastGames = [[AssassinsService getGameList:NO] mutableCopy];
+                    
+                    dispatch_async( dispatch_get_main_queue(), ^{
+                        // Add code here to update the UI/send notifications based on the
+                        // results of the background processing
+                        
+                        // reload data stop spinner
+                        [self.tableView reloadData];
+                        [self.activityIndicatorView stopAnimating];
+                        [self.activityIndicatorView setHidden:YES];
+                    });
+                });
+            }
+            
+            else
+            {
+                // reload data stop spinner
+                [self.tableView reloadData];
+                [self.activityIndicatorView stopAnimating];
+                [self.activityIndicatorView setHidden:YES];
+            }
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+            
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    // Change to 2 if we want events
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.games count];
+    if (self.segmentControl.selectedSegmentIndex == 0)
+        return [self.games count];
+    else
+        return [self.pastGames count];
 }
 
 
@@ -214,80 +264,117 @@
     
     GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
     
-    cell.game = [self.games objectAtIndex:indexPath.row];
-    cell.gameNameLabel.text = cell.game.name;
-    
-    // grab current contract to fill in data
-    cell.currentContract = [self.cellContracts objectAtIndex:indexPath.row];
-
-    // if there is a pending snipe, it takes precedent over showing your target
-    if([cell.game.numberPendingContracts integerValue] > 0)
+    if (self.segmentControl.selectedSegmentIndex == 0)
     {
-        // set image to pending img
-        for (NSObject *obj in [cell.targetProfilePic subviews]) {
-            if ([obj isMemberOfClass:[UIImageView class]]) {
-                UIImageView *objImg = (UIImageView *)obj;
-                objImg.image = [UIImage imageNamed:@"userSilhouettePending.png"];
-                break;
+        cell.game = [self.games objectAtIndex:indexPath.row];
+        cell.gameNameLabel.text = cell.game.name;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        // grab current contract to fill in data
+        cell.currentContract = [self.cellContracts objectAtIndex:indexPath.row];
+
+        // if there is a pending snipe, it takes precedent over showing your target
+        if([cell.game.numberPendingContracts integerValue] > 0)
+        {
+            // set image to pending img
+            for (NSObject *obj in [cell.targetProfilePic subviews]) {
+                if ([obj isMemberOfClass:[UIImageView class]]) {
+                    UIImageView *objImg = (UIImageView *)obj;
+                    objImg.image = [UIImage imageNamed:@"userSilhouettePending.png"];
+                    break;
+                }
             }
-        }
 
-        // if the pending snipe is of you snipe
-        if([cell.currentContract.state isEqualToString:@"Pending"])
-            cell.detailLabel.text = [NSString stringWithFormat:@"there is a pending snipe of you"];
-        
-        // pending snipe is someone else's
-        else
-            cell.detailLabel.text = [NSString stringWithFormat:@"help validate pending snipes"];
-    }
-    
-    // if current contract exists
-    else if ([cell.currentContract.state isEqualToString:@"Active"])
-    {
-        NSArray *nameArray = [cell.currentContract.targetName componentsSeparatedByString:@" "];
-        NSString *firstName = nameArray[0];
-        cell.detailLabel.text = [NSString stringWithFormat:@"Your target: %@", firstName];
-        
-        // see if picture is in Cache
-        NSString *photoId = [NSString stringWithFormat:@"%@", cell.currentContract.targetFbId];
-        FBProfilePictureView *fbProfilePic = [self.cellCache objectForKey:photoId];
-
-        if (fbProfilePic)
-        {
-            cell.targetProfilePic = fbProfilePic;
+            // if the pending snipe is of you snipe
+            if([cell.currentContract.state isEqualToString:@"Pending"])
+                cell.detailLabel.text = [NSString stringWithFormat:@"there is a pending snipe of you"];
+            
+            // pending snipe is someone else's
+            else
+                cell.detailLabel.text = [NSString stringWithFormat:@"help validate pending snipes"];
         }
         
-        // if not, find and assign
-        else
+        // if current contract exists
+        else if ([cell.currentContract.state isEqualToString:@"Active"])
         {
+            NSArray *nameArray = [cell.currentContract.targetName componentsSeparatedByString:@" "];
+            NSString *firstName = nameArray[0];
+            cell.detailLabel.text = [NSString stringWithFormat:@"Your target: %@", firstName];
+            
             cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
             cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
             
-            [self.cellCache setObject:cell.targetProfilePic forKey:[NSString stringWithFormat:@"%@", cell.currentContract.targetFbId]];
+            // see if picture is in Cache
+            //NSString *photoId = [NSString stringWithFormat:@"%@", cell.currentContract.targetFbId];
+           // NSData *fbProfilePic = [self.cellCache objectForKey:photoId];
+
+            /*if (currentGame.currentTargetPic != nil)
+            {
+                for (NSObject *obj in [cell.targetProfilePic subviews]) {
+                    if ([obj isMemberOfClass:[UIImageView class]]) {
+                        UIImageView *objImg = (UIImageView *)obj;
+                        objImg.image = [ UIImage imageWithData:cell.game.currentTargetPic];
+                        break;
+                    }
+                }
+            }
+            
+                // Attempt at storing as cache...FAILED
+                 for (NSObject *obj in [cell.targetProfilePic subviews]) {
+                    if ([obj isMemberOfClass:[UIImageView class]]) {
+                        UIImageView *objImg = (UIImageView *)obj;
+                        
+                         NSData *imgData = UIImagePNGRepresentation(objImg.image);
+                        // [self.cellCache setObject:imgData forKey:[NSString stringWithFormat:@"%@", cell.currentContract.targetFbId]];
+                        currentGame.currentTargetPic = imgData;
+                        
+                        break;
+                    }
+                }
+                */
         }
         
-    }
-    
-    //  you have been eliminated
-    else
-    {
-        cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
-        
-        // set image to pending img
-        for (NSObject *obj in [cell.targetProfilePic subviews]) {
-            if ([obj isMemberOfClass:[UIImageView class]]) {
-                UIImageView *objImg = (UIImageView *)obj;
-                objImg.image = [UIImage imageNamed:@"userSilhouetteDead.png"];
-                break;
+        //  you have been eliminated
+        else
+        {
+            cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
+            
+            // set image to pending img
+            for (NSObject *obj in [cell.targetProfilePic subviews]) {
+                if ([obj isMemberOfClass:[UIImageView class]]) {
+                    UIImageView *objImg = (UIImageView *)obj;
+                    objImg.image = [UIImage imageNamed:@"userSilhouetteDead.png"];
+                    break;
+                }
             }
         }
     }
-
+    
+    else
+    {
+        
+        cell.game = [self.pastGames objectAtIndex:indexPath.row];
+        cell.gameNameLabel.text = cell.game.name;
+        
+        // Configure the cell...
+        if (cell.game.isComplete)
+        {
+            NSArray *nameArray = [cell.game.winnerName componentsSeparatedByString:@" "];
+            NSString *firstName = nameArray[0];
+            
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.detailLabel.text = [NSString stringWithFormat:@"Won by %@", firstName];
+            
+            cell.targetProfilePic.profileID = cell.game.winnerFbId;
+            cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
+        }
+    }
+    
     // style and unhie target prof pic; hidden by defailt.
     [[cell.targetProfilePic layer] setCornerRadius:cell.targetProfilePic.frame.size.width/2];
     [[cell.targetProfilePic layer] setMasksToBounds:YES];
-    [cell.targetProfilePic setHidden:NO];
-    
+    //[cell.targetProfilePic setHidden:NO];
+
     return cell;
 }
 

@@ -258,10 +258,13 @@
                 [self.activityIndicatorView setHidden:YES];
             }
             
-            // reload data stop spinner
-            [self.tableView reloadData];
-            [self.activityIndicatorView stopAnimating];
-            [self.activityIndicatorView setHidden:YES];
+            else
+            {
+                // reload data stop spinner
+                [self.tableView reloadData];
+                [self.activityIndicatorView stopAnimating];
+                [self.activityIndicatorView setHidden:YES];
+            }
             
             break;
             
