@@ -10,7 +10,6 @@
 #import "AssassinsService.h"
 #import "Contract.h"
 #import "AssassinationEventCell.h"
-#import "ParticipantsTableViewController.h"
 #import "CompletedContractViewController.h"
 #import "VerifySnipeViewController.h"
 #import "Game.h"
@@ -53,14 +52,6 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"SegueToParticipants"]) {
-        if ([segue.destinationViewController isKindOfClass:[ParticipantsTableViewController class]])
-        {
-            ParticipantsTableViewController *ptvc = (ParticipantsTableViewController *)segue.destinationViewController;
-            ptvc.game = self.game;
-        }
-    }
-    
     if ([segue.identifier isEqualToString:@"CompletedImageViewSegue"]) {
         if ([segue.destinationViewController isKindOfClass:[CompletedContractViewController class]])
         {
