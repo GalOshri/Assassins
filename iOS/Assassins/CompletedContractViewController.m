@@ -134,7 +134,6 @@
         dispatch_async( dispatch_get_main_queue(), ^{
             if (self.postOrNah)
             {
-                // Add code here to update the UI/send notifications based on the results of the background processing
                 // append this to commentsArray and add to table
                 ContractComment *newComment = [[ContractComment alloc] init];
                 newComment.commentText = self.addCommentField.text;

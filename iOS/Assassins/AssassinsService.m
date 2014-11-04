@@ -47,39 +47,6 @@
             // NOPENDING --------------------------------------------*************************************
             NSDictionary *completedContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:contractObject.objectId, @"contractId", nil];
             NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
-            
-            
-            /*****
-             //server side!
-             // should send to everyone! Grab all users
-             PFUser *game = contractObject[@"game"];
-             [game fetch];
-             NSArray *gamePlayers = game[@"players"];
-            
-    
-            NSMutableArray *playerObjects;
-             for (PFUser *player in gamePlayers)
-            {
-                PFUser *tempUser= [[PFUser alloc] init];
-                [tempUser setObjectId:player.objectId];
-                [playerObjects addObject:tempUser];
-            }
-            */
-            /*
-            PFQuery *pushQuery = [PFInstallation query];
-            [pushQuery whereKey:@"user" containedIn:gamePlayers];
-            
-            // Send push notification to query
-            NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSString stringWithFormat:@"%@ has been eliminated!", contract.targetName], @"alert",
-                                  contractObject.objectId, @"contractId", contract.gameId, @"gameId",
-                                  nil];
-            
-            PFPush *push = [[PFPush alloc] init];
-            [push setQuery:pushQuery];
-            [push setData:data];
-            [push sendPushInBackground];
-            ****/
         }];
     }
 }
@@ -108,6 +75,7 @@
     return contractArray;
 }
 
+
 + (NSMutableArray *)getPendingContractsForGame:(NSString *)gameId;
 {
     NSMutableArray *contractArray = [[NSMutableArray alloc] init];
@@ -129,6 +97,7 @@
     }
     return contractArray;
 }
+
 
 + (NSArray *)getAssassinListFromGame:(Game *)game
 {
@@ -242,6 +211,32 @@
 }
 
 
++ (NSMutableDictionary *)getContractsForGames: (NSMutableArray *)gameIds
+{
+    NSMutableArray *arrayOfGames = [[NSMutableArray alloc] init];
+    NSMutableDictionary *cellContracts = [[NSMutableDictionary alloc] init];
+    
+    for (NSString *gameId in gameIds)
+        [arrayOfGames addObject:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
+         
+    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
+    [query whereKey:@"assassin" equalTo:[PFUser currentUser]];
+    [query whereKey:@"state" equalTo:@"Active"];
+    [query whereKey:@"game" containedIn:arrayOfGames];
+    
+    // fetch, and order in the same order as gameIds
+    NSArray *contracts = [query findObjects];
+    
+    for (PFObject *contractObject in contracts)
+    {
+        Contract *contract = [self getContractFromContractObject:contractObject];
+        [cellContracts setObject:contract forKey:contract.gameId];
+    }
+    
+    return cellContracts;
+}
+
+
 + (NSArray *)getGameList:(BOOL)getCurrentGamesOrNah
 {
     NSMutableArray *gameList = [[NSMutableArray alloc] init];
@@ -268,6 +263,7 @@
     return gameList;
 }
 
+
 + (Game *) getGameWithId:(NSString *)gameId
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Game"];
@@ -278,95 +274,6 @@
     return game;
 }
 
-/*
-+ (NSArray *)getPendingSnipes;
-{
-    NSMutableArray *pendingSnipes = [[NSMutableArray alloc] init];
-    
-    // make query for current user to find pending snipes.
-    PFQuery *userSnipeQuery = [PFUser query];
-    [userSnipeQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-    
-    PFObject *user = [userSnipeQuery getFirstObject];
-    NSArray *userPendingSnipes = [user objectForKey:@"snipesToVerify"];
-    
-    PFQuery *findContracts = [PFQuery queryWithClassName:@"Contract"];
-    [findContracts whereKey:@"objectId" containedIn:userPendingSnipes];
-    
-    NSArray *contractObjects = [findContracts findObjects];
-    
-    for (PFObject *contractObject in contractObjects)
-    {
-        Contract *contract = [self getContractFromContractObject:contractObject];
-        
-        if ([contract.targetFbId isEqualToString:[user objectForKey:@"facebookId"]])
-            [pendingSnipes insertObject:contract atIndex:0];
-        else
-            [pendingSnipes addObject:contract];
-    }
-    return pendingSnipes;
-}
-
-
-+ (int)checkPendingSnipes
-{
-    if ([PFUser currentUser])
-    {
-        PFUser *currentUser = [PFUser currentUser];
-        return (int)currentUser[@"snipesToVerify"];
-    }
-    else
-        return 0;
-}
-
-+ (void) removeSnipeToVerify:(NSString *)contractId
-{
-    // get user
-    PFQuery *userQuery = [PFUser query];
-    [userQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-    PFObject *currentUser = [userQuery getFirstObject];
-    
-    // remove object and save
-    [currentUser removeObjectsInArray:@[contractId] forKey:@"snipesToVerify"];
-    [currentUser save];
-    
-
-}
-
-
-+ (UIImage *)getUserProfilePic:(PFUser *)user
-{
-    if (user[@"facebookId"] == nil)
-        return [[UIImage alloc] initWithContentsOfFile:@"snipeCircle.png"];
-    
-    NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", user[@"facebookId"]]];
-    
-    
-    // Asynchornous image loading
-    NSURLSession *session = [NSURLSession sharedSession];
-    //UIActivityIndicatorView *spotlightSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    //spotlightSpinner.center = CGPointMake(frame.origin.x + (frame.size.width / 2.0), frame.origin.y + (frame.size.height / 2.0));
-    //[self.spotlightView addSubview:spotlightSpinner];
-    //[spotlightSpinner startAnimating];
-    [[session dataTaskWithURL:[NSURL URLWithString: pictureURL]
-            completionHandler:^(NSData *data,
-                                NSURLResponse *response,
-                                NSError *error) {
-                
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    
-                    UIImage *img = [[UIImage alloc] initWithData:data];
-                    
-                    return img;
-                }];
-            }] resume];
- 
-    
-    UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:pictureURL]];
-    return image;
-
-}
-*/
 
 + (Game *) createGame:(NSString *)gameName withSafeZones:(NSString *)safeZones withUserIds:(NSMutableArray *)userIdArray
 {
@@ -410,6 +317,25 @@
     return game;
 }
 
++ (NSMutableArray *) getGameNamesFromGames: (NSMutableArray *)gameIds forContracts:(NSMutableArray *)contracts
+{
+    // make call to games
+    PFQuery *query = [PFQuery queryWithClassName:@"Game"];
+    [query whereKey:@"objectId" containedIn:gameIds];
+    
+    NSArray *gameList = [query findObjects];
+    
+    for (PFObject *game in gameList)
+    {
+        // get index number of game Id, then append to contract
+        int indexOfGame = (int)[gameIds indexOfObject:game.objectId];
+        Contract *currentContract = contracts[indexOfGame];
+        currentContract.gameName = game[@"name"];
+    }
+    
+    return contracts;
+}
+
 + (Contract *) getContractFromContractObject:(PFObject *)contractObject
 {
     Contract *contract = [[Contract alloc] init];
@@ -425,11 +351,11 @@
 
     contract.targetName = contractObject[@"targetName"];
     contract.targetFbId = contractObject[@"targetFbId"];
-    PFObject *game = contractObject[@"game"];
-    [game fetchIfNeeded];
-    contract.gameId = game.objectId;
-    contract.gameName = game[@"name"];
     
+    PFObject *game = contractObject[@"game"];
+    contract.gameId = game.objectId;
+    
+    // assign image, or nah
     if (([contract.state isEqualToString:@"Completed"]) || ([contract.state isEqualToString:@"Pending"]))
     {
         PFFile *imageFile = contractObject[@"image"];
@@ -457,10 +383,12 @@
     return contract;
 }
 
+
 + (void)confirmAssassination:(NSString *)contractId
 {
 
 }
+
 
 + (void)declineAssassination:(NSString *)contractId withGameId:(NSString *)gameId
 {
@@ -469,26 +397,13 @@
     NSString *responseString = [PFCloud callFunction:@"checkInvalidatedSnipe" withParameters:declineSnipeDict];
 }
 
+
 + (void)startPendingContractProcess:(Contract *)contract withGame:(Game *)game
 {
     NSDictionary *pendingContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:game.gameId, @"gameId", contract.contractId, @"contractId",contract.targetName, @"targetName", nil];
     NSString *responseString = [PFCloud callFunction:@"startPendingContractProcess" withParameters:pendingContractDict];
 }
 
-/*
- + (int)getNumberOfPendingSnipes
-{
-    // make query for current user to find number of pending snipes.
-    // TODO: is this right?
-    PFQuery *userSnipeQuery = [PFUser query];
-    [userSnipeQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-    
-    PFObject *user = [userSnipeQuery getFirstObject];
-    NSArray *snipesToVerify = [user objectForKey:@"snipesToVerify"];
-    
-    return [snipesToVerify count];
-}
-*/
 
 + (NSMutableArray *)getContractArray
 {
@@ -497,17 +412,26 @@
     [query whereKey:@"state" containedIn:@[@"Active", @"Pending"]];
     
     NSArray *contractObjects = [query findObjects];
+    
+    // declare needed arrays
+    NSMutableArray *gameIds = [[NSMutableArray alloc] init];
     NSMutableArray *contracts = [[NSMutableArray alloc] init];
     
     for (PFObject *contractObject in contractObjects)
     {
+        PFObject *game = contractObject[@"game"];
+        [gameIds addObject:game.objectId];
         Contract *contract = [self getContractFromContractObject:contractObject];
-        
         [contracts addObject:contract];
     }
     
+    // get game Names
+    contracts = [self getGameNamesFromGames:gameIds forContracts:contracts];
+    
+    
     return contracts;
 }
+
 
 + (NSMutableArray *) getCommentsWithContract:(NSString *)contractId
 {
@@ -535,6 +459,7 @@
     return commentObjects;
 }
 
+
 + (BOOL)addComment:(NSString *)comment withContractId:(NSString *)contractId
 {
     // perform checks to see if we post
@@ -557,3 +482,110 @@
 }
 
 @end
+
+
+
+/*
+ + (NSArray *)getPendingSnipes;
+ {
+ NSMutableArray *pendingSnipes = [[NSMutableArray alloc] init];
+ 
+ // make query for current user to find pending snipes.
+ PFQuery *userSnipeQuery = [PFUser query];
+ [userSnipeQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+ 
+ PFObject *user = [userSnipeQuery getFirstObject];
+ NSArray *userPendingSnipes = [user objectForKey:@"snipesToVerify"];
+ 
+ PFQuery *findContracts = [PFQuery queryWithClassName:@"Contract"];
+ [findContracts whereKey:@"objectId" containedIn:userPendingSnipes];
+ 
+ NSArray *contractObjects = [findContracts findObjects];
+ 
+ for (PFObject *contractObject in contractObjects)
+ {
+ Contract *contract = [self getContractFromContractObject:contractObject];
+ 
+ if ([contract.targetFbId isEqualToString:[user objectForKey:@"facebookId"]])
+ [pendingSnipes insertObject:contract atIndex:0];
+ else
+ [pendingSnipes addObject:contract];
+ }
+ return pendingSnipes;
+ }
+ 
+ 
+ + (int)checkPendingSnipes
+ {
+ if ([PFUser currentUser])
+ {
+ PFUser *currentUser = [PFUser currentUser];
+ return (int)currentUser[@"snipesToVerify"];
+ }
+ else
+ return 0;
+ }
+ 
+ + (void) removeSnipeToVerify:(NSString *)contractId
+ {
+ // get user
+ PFQuery *userQuery = [PFUser query];
+ [userQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+ PFObject *currentUser = [userQuery getFirstObject];
+ 
+ // remove object and save
+ [currentUser removeObjectsInArray:@[contractId] forKey:@"snipesToVerify"];
+ [currentUser save];
+ 
+ 
+ }
+ 
+ 
+ + (UIImage *)getUserProfilePic:(PFUser *)user
+ {
+ if (user[@"facebookId"] == nil)
+ return [[UIImage alloc] initWithContentsOfFile:@"snipeCircle.png"];
+ 
+ NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", user[@"facebookId"]]];
+ 
+ 
+ // Asynchornous image loading
+ NSURLSession *session = [NSURLSession sharedSession];
+ //UIActivityIndicatorView *spotlightSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+ //spotlightSpinner.center = CGPointMake(frame.origin.x + (frame.size.width / 2.0), frame.origin.y + (frame.size.height / 2.0));
+ //[self.spotlightView addSubview:spotlightSpinner];
+ //[spotlightSpinner startAnimating];
+ [[session dataTaskWithURL:[NSURL URLWithString: pictureURL]
+ completionHandler:^(NSData *data,
+ NSURLResponse *response,
+ NSError *error) {
+ 
+ [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+ 
+ UIImage *img = [[UIImage alloc] initWithData:data];
+ 
+ return img;
+ }];
+ }] resume];
+ 
+ 
+ UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:pictureURL]];
+ return image;
+ 
+ }
+ 
+ + (int)getNumberOfPendingSnipes
+ {
+ // make query for current user to find number of pending snipes.
+ // TODO: is this right?
+ PFQuery *userSnipeQuery = [PFUser query];
+ [userSnipeQuery whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+ 
+ PFObject *user = [userSnipeQuery getFirstObject];
+ NSArray *snipesToVerify = [user objectForKey:@"snipesToVerify"];
+ 
+ return [snipesToVerify count];
+ }
+ 
+ */
+

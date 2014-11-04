@@ -35,7 +35,7 @@
 
 @property (strong, nonatomic) NSMutableArray *games;
 @property (strong, nonatomic) NSMutableArray *pastGames;
-@property (strong, nonatomic) NSMutableArray *cellContracts;
+@property (strong, nonatomic) NSMutableDictionary *cellContracts;
 // @property (strong, nonatomic) NSCache *cellCache;
 
 @end
@@ -99,27 +99,23 @@
     [[self.profilePicture layer] setMasksToBounds:YES];
     
     // initiate self.cellContracts, pastGames, and cellCach
-    self.cellContracts = [[NSMutableArray alloc] init];
+    self.cellContracts = [[NSMutableDictionary alloc] init];
     self.pastGames = [[NSMutableArray alloc] init];
-    // self.cellCache = [[NSCache alloc] init];
+    NSMutableArray *gameIdsForCurrentGames = [[NSMutableArray alloc] init];
     
+    
+    // get objects for current games
     [self.activityIndicatorView startAnimating];
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Add code here to do background processing
         self.games = [[AssassinsService getGameList:YES] mutableCopy];
         
-        // get all currentContracts for game Id's
         for(Game *currentGame in self.games)
         {
-            Contract *currentContract = [AssassinsService getContractForGame:currentGame.gameId];
-            if (currentContract != nil)
-                [self.cellContracts addObject:currentContract];
-            else
-            {
-                Contract *emptyContract = [[Contract alloc] init];
-                [self.cellContracts addObject:emptyContract];
-            }
+            [gameIdsForCurrentGames addObject: currentGame.gameId];
         }
+        
+        self.cellContracts = [AssassinsService getContractsForGames:gameIdsForCurrentGames];
         
         dispatch_async( dispatch_get_main_queue(), ^{
             // Add code here to update the UI/send notifications based on the
@@ -136,10 +132,28 @@
 
             // reload data stop spinner
             [self.tableView reloadData];
+            // [self.activityIndicatorView stopAnimating];
+            [self.activityIndicatorView setHidden:YES];
+        });
+    });
+    
+    
+    // get objects for past games
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Add code here to do background processing
+        self.pastGames = [[AssassinsService getGameList:NO] mutableCopy];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // Add code here to update the UI/send notifications based on the
+            // results of the background processing
+            
+            // reload data stop spinner
+            [self.tableView reloadData];
             [self.activityIndicatorView stopAnimating];
             [self.activityIndicatorView setHidden:YES];
         });
     });
+
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -163,12 +177,6 @@
             });
         });
     }
-    
-/*    if (self.goToPendingNotifcations) {
-        self.goToPendingNotifcations = NO;
-        [self performSegueWithIdentifier:@"userTableToPendingSnipes" sender:self];
-    }
-*/
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
@@ -209,33 +217,13 @@
             [self.activityIndicatorView setHidden:NO];
             [self.activityIndicatorView startAnimating];
             
-            // if players array empty, fill
-            if ([self.pastGames count] == 0)
-            {
-
-                dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    // Add code here to do background processing
-                    self.pastGames = [[AssassinsService getGameList:NO] mutableCopy];
-                    
-                    dispatch_async( dispatch_get_main_queue(), ^{
-                        // Add code here to update the UI/send notifications based on the
-                        // results of the background processing
-                        
-                        // reload data stop spinner
-                        [self.tableView reloadData];
-                        [self.activityIndicatorView stopAnimating];
-                        [self.activityIndicatorView setHidden:YES];
-                    });
-                });
-            }
-            
-            else
-            {
+          
                 // reload data stop spinner
                 [self.tableView reloadData];
                 [self.activityIndicatorView stopAnimating];
                 [self.activityIndicatorView setHidden:YES];
-            }
+            
+            [self.activityIndicatorView stopAnimating];
             
             break;
             
@@ -263,6 +251,8 @@
 {
     
     GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
+    cell.targetProfilePic.profileID = nil;
+    //[cell.targetProfilePic setHidden:YES];
     
     if (self.segmentControl.selectedSegmentIndex == 0)
     {
@@ -271,7 +261,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         
         // grab current contract to fill in data
-        cell.currentContract = [self.cellContracts objectAtIndex:indexPath.row];
+        cell.currentContract = [self.cellContracts objectForKey:cell.game.gameId];
 
         // if there is a pending snipe, it takes precedent over showing your target
         if([cell.game.numberPendingContracts integerValue] > 0)
@@ -350,9 +340,9 @@
         }
     }
     
+    // we are looking at past games (and thus completed games)
     else
     {
-        
         cell.game = [self.pastGames objectAtIndex:indexPath.row];
         cell.gameNameLabel.text = cell.game.name;
         
@@ -373,7 +363,7 @@
     // style and unhie target prof pic; hidden by defailt.
     [[cell.targetProfilePic layer] setCornerRadius:cell.targetProfilePic.frame.size.width/2];
     [[cell.targetProfilePic layer] setMasksToBounds:YES];
-    //[cell.targetProfilePic setHidden:NO];
+    [cell.targetProfilePic setHidden:NO];
 
     return cell;
 }

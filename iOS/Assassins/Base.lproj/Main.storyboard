@@ -226,7 +226,6 @@
                         <outlet property="safeZonesView" destination="w5p-Rg-8w8" id="IqU-F3-BMJ"/>
                         <outlet property="searchDisplayController" destination="8v8-cf-T25" id="KLV-av-98H"/>
                         <outlet property="selectedPlayersTextView" destination="2id-Xu-yRC" id="bqd-Mx-7Fl"/>
-                        <segue destination="1Zf-50-VA1" kind="unwind" identifier="UnwindOnCreate" unwindAction="unwindToUserPage:" id="VUa-k9-5Hx"/>
                         <segue destination="ReM-Ox-LBW" kind="modal" identifier="UnwindOnCreate" id="6Zd-Av-Fzy"/>
                     </connections>
                 </viewController>
@@ -265,18 +264,27 @@
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkF-Ov-wc5">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1y-Nq-FQ8">
+                                                    <rect key="frame" x="8" y="67" width="52" height="54"/>
+                                                    <state key="normal" image="cameraIconButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="tV1-aE-yf0" kind="unwind" unwindAction="unwindToCamera:" id="eah-2b-omc"/>
+                                                    </connections>
+                                                </button>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="t6g-33-kth">
                                                     <rect key="frame" x="150" y="206" width="20" height="20"/>
                                                 </activityIndicatorView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65W-0O-oeG">
-                                                    <rect key="frame" x="8" y="140" width="304" height="30"/>
+                                                    <rect key="frame" x="8" y="143" width="304" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGw-z4-ilb">
-                                                    <rect key="frame" x="262" y="97" width="50" height="38"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <rect key="frame" x="255" y="75" width="57" height="38"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal" title="+ Game">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -285,13 +293,13 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total hits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQc-jW-vnl">
-                                                    <rect key="frame" x="70" y="169" width="180" height="20"/>
+                                                    <rect key="frame" x="70" y="171" width="180" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.78402024872448983" green="0.78402024872448983" blue="0.78402024872448983" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 total games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kH8-wR-SFR">
-                                                    <rect key="frame" x="70" y="182" width="180" height="22"/>
+                                                    <rect key="frame" x="70" y="184" width="180" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.78402024872448983" green="0.78402024872448983" blue="0.78402024872448983" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -303,17 +311,8 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1y-Nq-FQ8">
-                                            <rect key="frame" x="13" y="89" width="52" height="54"/>
-                                            <state key="normal" image="cameraIconButton.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="tV1-aE-yf0" kind="unwind" unwindAction="unwindToCamera:" id="eah-2b-omc"/>
-                                            </connections>
-                                        </button>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O0w-IQ-SDg">
-                                            <rect key="frame" x="8" y="233" width="304" height="29"/>
+                                            <rect key="frame" x="8" y="232" width="304" height="29"/>
                                             <segments>
                                                 <segment title="Current Games"/>
                                                 <segment title="Past Games"/>
@@ -664,6 +663,9 @@
                                 </segments>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </segmentedControl>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Egx-2Z-5CT">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -683,6 +685,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Egx-2Z-5CT" id="XGi-xZ-yMs"/>
                         <outlet property="commentField" destination="00Q-O2-Xrt" id="pxo-jw-e0W"/>
                         <outlet property="snipeImageView" destination="mVZ-Ld-7MD" id="K7e-VK-hQ9"/>
                         <outlet property="snipeToggle" destination="95t-Av-2iq" id="FTJ-Bm-AUI"/>
@@ -1160,6 +1163,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FcK-z9-NuM"/>
+        <segue reference="6Zd-Av-Fzy"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *snipeToggle;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @property (strong, nonatomic) NSMutableArray *submitContracts;
 
 
@@ -28,13 +30,8 @@
  {
      if ([segue.identifier isEqualToString:@"UnwindToCameraAfterSnipe"])
      {
-         /* if ([segue.destinationViewController isKindOfClass:[ViewController class]])
-         {
-             
-         } */
-         //self.isSnipeSubmitted = NO; // NOPENDING
+         
      }
-     
  }
 
 - (void)viewDidLoad
@@ -50,11 +47,7 @@
     [tapRecognizer setDelegate:self];
     [self.snipeImageView addGestureRecognizer:tapRecognizer];
     
-    //self.isSnipeSubmitted = NO;
-    
-    
-
-    
+    [self.activityIndicator setHidden:YES];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -62,8 +55,8 @@
     return YES;
 }
 
-#pragma mark - Commenting on image
 
+#pragma mark - Commenting on image
 - (void) clickEventOnImage:(UITapGestureRecognizer *)sender {
     //deal with showing/hiding textField
     
@@ -105,43 +98,52 @@
 }
 
 #pragma mark - Submit Assassination
-
 - (IBAction)submitAssassination:(UIButton *)sender {
     if ([self.snipeToggle selectedSegmentIndex] == 0)
     {
-        // grab list of related contracts
-        self.submitContracts = [AssassinsService getContractArray];
-        
-        if ([self.submitContracts count] == 0) {
-            UIAlertView *noContract = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"You are currently not in a game, and have no target. Create a game with friends to play!" delegate:self cancelButtonTitle:@"ok, shya breh!" otherButtonTitles:nil];
+        [self.activityIndicator setHidden:NO];
+        [self.activityIndicator startAnimating];
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // grab list of related contracts
+            if (!self.submitContracts)
+                self.submitContracts = [AssassinsService getContractArray];
             
-            [noContract show];
-        }
-        
-        else if ([self.submitContracts count] > 1)
-        {
-            UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
-           
-            //show alert to pick which contract to submit snipe to
-            for (Contract *contract in self.submitContracts)
-            {
-                NSArray *nameArray = [contract.targetName componentsSeparatedByString:@" "];
-                NSString *firstName = nameArray[0];
+            dispatch_async( dispatch_get_main_queue(), ^{
+                if ([self.submitContracts count] == 0) {
+                    UIAlertView *noContract = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"You are currently not in a game, and have no target. Create a game with friends to play!" delegate:self cancelButtonTitle:@"ok, shya breh!" otherButtonTitles:nil];
+                    
+                    [noContract show];
+                }
                 
-                [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in game: %@", firstName, contract.gameName]];
-            }
-            
-            [pickContract show];
-        }
-        
-        else
-        {
-            // only 1 contract!
-            Contract *selectedContract = self.submitContracts[0];
-            [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
-            
-            [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
-        }
+                else if ([self.submitContracts count] > 1)
+                {
+                    UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
+                   
+                    //show alert to pick which contract to submit snipe to
+                    for (Contract *contract in self.submitContracts)
+                    {
+                        NSArray *nameArray = [contract.targetName componentsSeparatedByString:@" "];
+                        NSString *firstName = nameArray[0];
+                        
+                        [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in game: %@", firstName, contract.gameName]];
+                    }
+                    
+                    [pickContract show];
+                }
+                
+                else
+                {
+                    // only 1 contract!
+                    Contract *selectedContract = self.submitContracts[0];
+                    [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
+                    
+                    [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
+                }
+                
+                [self.activityIndicator setHidden:YES];
+                [self.activityIndicator stopAnimating];
+            });
+        });
             
     }
     
@@ -169,18 +171,6 @@
             
             
             [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
-            
-            /*
-            // perform segue
-            UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            GameTableViewController* gtvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"gameTableView"];
-            
-            Game *game = [AssassinsService getGameWithId:self.selectedGameId];
-            gtvc.game = game;
-            
-            [gtvc setModalPresentationStyle:UIModalPresentationFullScreen];
-            [self presentViewController:gtvc animated:YES completion:nil];
-             */
         }
     }
 }

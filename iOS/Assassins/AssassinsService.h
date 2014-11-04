@@ -20,49 +20,38 @@
 
 // called in GameTableViewController
 + (NSMutableArray *)getCompletedContractsForGame:(NSString *)gameId;
-
 + (NSMutableArray *)getPendingContractsForGame:(NSString *)gameId;
 
-// TODO: DON'T USE THIS WITHOUT FIXING GAME ID STUFF - not used for anything now
-// + (NSArray *)getCompletedContractsForGames:(NSArray *)gameIdArray;
-
+// called in UserTableViewController
 + (Contract *)getContractForGame:(NSString *)gameId;
++ (NSMutableDictionary *)getContractsForGames: (NSMutableArray *)gameIds;
 
 // called in ParticipantsTableViewController
-//+ (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId;
-
 + (NSArray *)getAssassinListFromGame:(Game *)game;
 
-// called in UserTableViewController.
+// called in SnipeSubmitView
 + (NSArray *)getGameList:(BOOL)getCurrentGamesOrNah;
-
 + (Game *) getGameWithId:(NSString *)gameId;
 
-// + (NSArray *)getPendingSnipes;
-
-// + (int)checkPendingSnipes;
-
-// + (FBProfilePictureView *)getUserProfilePic:(PFUser *)user;
-
+// called in createGameViewController
 + (Game *)createGame:(NSString *)gameName withSafeZones:(NSString *)safeZones withUserIds:(NSMutableArray *)userIdArray;
 
 + (void)confirmAssassination:(NSString *)contractId;
-
 + (void)declineAssassination:(NSString *)contractId withGameId: (NSString *)gameId;
-
 + (void)startPendingContractProcess: (Contract *)contract withGame:(Game *)game;
-
-// + (int)getNumberOfPendingSnipes;
-
-// + (void)removeSnipeToVerify:(NSString *)contractId;
 
 // Get array of Contract objects
 + (NSMutableArray *)getContractArray;
-
 + (Contract *) getContractFromContractObject:(PFObject *)contractObject;
-
 + (NSMutableArray *) getCommentsWithContract:(NSString *)contractId;
-
 + (BOOL) addComment:(NSString *)comment withContractId:(NSString *)contractId;
 
 @end
+
+
+//+ (void)populateAssassinList:(NSMutableArray *)assassinArray withGameId:(NSString *)gameId;
+// + (NSArray *)getPendingSnipes;
+// + (int)checkPendingSnipes;
+// + (FBProfilePictureView *)getUserProfilePic:(PFUser *)user;
+// + (int)getNumberOfPendingSnipes;
+// + (void)removeSnipeToVerify:(NSString *)contractId;

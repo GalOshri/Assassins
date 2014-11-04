@@ -74,18 +74,10 @@
     if ([segue.identifier isEqualToString:@"SegueToSnipeVerify"]) {
         if ([segue.destinationViewController isKindOfClass:[VerifySnipeViewController class]])
         {
-            /*if (self.goToContract)
-            {
-                VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
-                vsvc.contract = self.goToContract;
-            }
-            
-            else
-            {*/
             VerifySnipeViewController *vsvc = (VerifySnipeViewController *)segue.destinationViewController;
             AssassinationEventCell *cell = (AssassinationEventCell *)sender;
             vsvc.contract = cell.contract;
-            //}
+
         }
     }
 }
@@ -247,10 +239,8 @@
                         if(!assassin.isAlive)
                             self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
                     }
-                    // self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+
                 }
-                // else
-                    // self.numActiveAssassinsLabel.text = @"game over";
                 
                 // reload data stop spinner
                 [self.tableView reloadData];
@@ -513,13 +503,6 @@
         CGSize textFrameSize = [cell.safeZoneTextView.text sizeWithAttributes: @{NSFontAttributeName:[UIFont systemFontOfSize:15.0f]}];
         
         cell.safeZoneTextView.frame = CGRectMake(cell.safeZoneTextView.frame.origin.x, cell.safeZoneTextView.frame.origin.y, cell.frame.size.width, textFrameSize.height);
-        
-        /*
-         NSLog(@"size of textframesize height is %f", textFrameSize.height);
-        [cell.safeZoneTextView.layer setBorderWidth:0.75];
-        [cell.safeZoneTextView.layer setBorderColor:[UIColor grayColor].CGColor];
-        [cell.safeZoneTextView.layer setCornerRadius:15];
-        */
         
         return cell;
     }
