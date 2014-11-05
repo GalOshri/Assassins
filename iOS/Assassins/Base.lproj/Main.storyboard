@@ -350,7 +350,7 @@
                                             </constraints>
                                         </view>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O0w-IQ-SDg">
-                                            <rect key="frame" x="8" y="232" width="304" height="29"/>
+                                            <rect key="frame" x="60" y="232" width="200" height="29"/>
                                             <segments>
                                                 <segment title="Current Games"/>
                                                 <segment title="Past Games"/>
@@ -972,7 +972,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="irm-Qo-I9m">
-                                            <rect key="frame" x="10" y="212" width="300" height="29"/>
+                                            <rect key="frame" x="10" y="215" width="300" height="29"/>
                                             <segments>
                                                 <segment title="Events"/>
                                                 <segment title="Players"/>
