@@ -330,7 +330,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NE3-5r-omB">
-                                                    <rect key="frame" x="0.0" y="-500" width="320" height="522"/>
+                                                    <rect key="frame" x="0.0" y="-600" width="320" height="622"/>
                                                     <color key="backgroundColor" red="0.1176458865" green="0.1176458865" blue="0.1176458865" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                             </subviews>
@@ -1026,7 +1026,7 @@
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0j-Ra-uiC">
-                                                    <rect key="frame" x="0.0" y="-500" width="320" height="522"/>
+                                                    <rect key="frame" x="0.0" y="-600" width="320" height="622"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
