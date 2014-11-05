@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-Assassins-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Assassins-Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Assassins-DBFBProfilePictureView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Assassins-Facebook-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Assassins.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0A5078C880D771D0BA358901</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C9C4D75C6F8EA441EDDE5BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>59DCB832DB17174D0149AF24</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D1796D9366EBDBE062BC1DD2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F7D41F40E8AA1EE43A9684F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

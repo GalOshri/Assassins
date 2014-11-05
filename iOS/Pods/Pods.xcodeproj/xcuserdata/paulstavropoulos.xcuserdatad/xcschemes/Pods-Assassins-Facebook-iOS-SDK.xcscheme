@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-               BuildableName = "Assassins.app"
-               BlueprintName = "Assassins"
-               ReferencedContainer = "container:Assassins.xcodeproj">
+               BlueprintIdentifier = "0A5078C880D771D0BA358901"
+               BuildableName = "libPods-Assassins-Facebook-iOS-SDK.a"
+               BlueprintName = "Pods-Assassins-Facebook-iOS-SDK"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D52C4B7197E284A00E5E5B9"
-               BuildableName = "AssassinsTests.xctest"
-               BlueprintName = "AssassinsTests"
-               ReferencedContainer = "container:Assassins.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-            BuildableName = "Assassins.app"
-            BlueprintName = "Assassins"
-            ReferencedContainer = "container:Assassins.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -58,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-            BuildableName = "Assassins.app"
-            BlueprintName = "Assassins"
-            ReferencedContainer = "container:Assassins.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -76,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-            BuildableName = "Assassins.app"
-            BlueprintName = "Assassins"
-            ReferencedContainer = "container:Assassins.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

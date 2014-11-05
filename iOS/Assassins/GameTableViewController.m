@@ -470,7 +470,7 @@
             
             else
             {
-                cell.isAliveLabel.text = @"Neutralized";
+                cell.isAliveLabel.text = @"Eliminated";
                 
                 [cell.username setAlpha:0.5];
                 [cell.profilePicture setAlpha:0.5];
