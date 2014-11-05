@@ -329,6 +329,10 @@
                                                         <constraint firstAttribute="height" constant="100" id="V4v-Kt-5kv"/>
                                                     </constraints>
                                                 </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NE3-5r-omB">
+                                                    <rect key="frame" x="0.0" y="-500" width="320" height="522"/>
+                                                    <color key="backgroundColor" red="0.1176458865" green="0.1176458865" blue="0.1176458865" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -997,7 +1001,6 @@
                                                     <rect key="frame" x="150" y="176" width="20" height="20"/>
                                                 </activityIndicatorView>
                                                 <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m19-xX-jge" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="41" y="141" width="60" height="60"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ra-Zj-BWv">
@@ -1022,6 +1025,10 @@
                                                         <segue destination="6d3-Iu-grd" kind="unwind" unwindAction="unwindToUserPage:" id="AX9-hf-yiX"/>
                                                     </connections>
                                                 </button>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0j-Ra-uiC">
+                                                    <rect key="frame" x="0.0" y="-500" width="320" height="522"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.16483976403061229" green="0.16483976403061229" blue="0.16483976403061229" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
