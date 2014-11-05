@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSString *winnerName;
 @property (strong, nonatomic) NSString *winnerFbId;
 @property (strong, nonatomic) NSString *safeZones;
-@property (strong, nonatomic) UIImage *currentTargetPic;
+// @property (strong, nonatomic) NSData *currentTargetPic;
+
 
 @end

@@ -330,7 +330,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NE3-5r-omB">
-                                                    <rect key="frame" x="0.0" y="-500" width="320" height="522"/>
+                                                    <rect key="frame" x="0.0" y="-600" width="320" height="622"/>
                                                     <color key="backgroundColor" red="0.1176458865" green="0.1176458865" blue="0.1176458865" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                             </subviews>
@@ -350,7 +350,7 @@
                                             </constraints>
                                         </view>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O0w-IQ-SDg">
-                                            <rect key="frame" x="58" y="232" width="204" height="29"/>
+                                            <rect key="frame" x="8" y="232" width="304" height="29"/>
                                             <segments>
                                                 <segment title="Current Games"/>
                                                 <segment title="Past Games"/>
@@ -971,6 +971,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="irm-Qo-I9m">
+                                            <rect key="frame" x="10" y="212" width="300" height="29"/>
+                                            <segments>
+                                                <segment title="Events"/>
+                                                <segment title="Players"/>
+                                                <segment title="Safe Zones"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentChanged:" destination="Gaf-7l-evq" eventType="valueChanged" id="Z23-d6-Fu3"/>
+                                            </connections>
+                                        </segmentedControl>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKh-jz-5tg">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
                                             <subviews>
@@ -989,6 +1000,9 @@
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="byz-kO-WD5">
                                                     <rect key="frame" x="150" y="176" width="20" height="20"/>
                                                 </activityIndicatorView>
+                                                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m19-xX-jge" customClass="FBProfilePictureView">
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ra-Zj-BWv">
                                                     <rect key="frame" x="27" y="101" width="120" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -1012,27 +1026,12 @@
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0j-Ra-uiC">
-                                                    <rect key="frame" x="0.0" y="-500" width="320" height="522"/>
+                                                    <rect key="frame" x="0.0" y="-600" width="320" height="622"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m19-xX-jge" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="41" y="143" width="55" height="55"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.16483976403061229" green="0.16483976403061229" blue="0.16483976403061229" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="irm-Qo-I9m">
-                                            <rect key="frame" x="35" y="212" width="250" height="29"/>
-                                            <segments>
-                                                <segment title="Events"/>
-                                                <segment title="Players"/>
-                                                <segment title="Safe Zones"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="segmentChanged:" destination="Gaf-7l-evq" eventType="valueChanged" id="Z23-d6-Fu3"/>
-                                            </connections>
-                                        </segmentedControl>
                                     </subviews>
                                     <color key="backgroundColor" red="0.96267139668367352" green="0.96267139668367352" blue="0.96267139668367352" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>

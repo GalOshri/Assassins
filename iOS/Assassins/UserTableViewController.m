@@ -36,7 +36,7 @@
 @property (strong, nonatomic) NSMutableArray *games;
 @property (strong, nonatomic) NSMutableArray *pastGames;
 @property (strong, nonatomic) NSMutableDictionary *cellContracts;
-@property (strong, nonatomic) NSCache *cellCache;
+// @property (strong, nonatomic) NSCache *cellCache;
 
 @end
 
@@ -153,9 +153,7 @@
             [self.activityIndicatorView setHidden:YES];
         });
     });
-    
-    // initiate cellCache
-    self.cellCache = [[NSCache alloc] init];
+
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -253,14 +251,12 @@
 {
     
     GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
-
-    // initialize dbfbprofpicview
-    
+    cell.targetProfilePic.profileID = nil;
+    //[cell.targetProfilePic setHidden:YES];
     
     if (self.segmentControl.selectedSegmentIndex == 0)
     {
         cell.game = [self.games objectAtIndex:indexPath.row];
-        Game *currentGame = [self.games objectAtIndex:indexPath.row];
         cell.gameNameLabel.text = cell.game.name;
         cell.accessoryType = UITableViewCellAccessoryNone;
         
@@ -295,33 +291,37 @@
             NSString *firstName = nameArray[0];
             cell.detailLabel.text = [NSString stringWithFormat:@"Your target: %@", firstName];
             
-            if (currentGame.currentTargetPic != nil)
+            cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
+            cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
+            
+            // see if picture is in Cache
+            //NSString *photoId = [NSString stringWithFormat:@"%@", cell.currentContract.targetFbId];
+           // NSData *fbProfilePic = [self.cellCache objectForKey:photoId];
+
+            /*if (currentGame.currentTargetPic != nil)
             {
                 for (NSObject *obj in [cell.targetProfilePic subviews]) {
                     if ([obj isMemberOfClass:[UIImageView class]]) {
                         UIImageView *objImg = (UIImageView *)obj;
-                        objImg.image = currentGame.currentTargetPic;
+                        objImg.image = [ UIImage imageWithData:cell.game.currentTargetPic];
                         break;
                     }
                 }
             }
-            else
-            {
-                cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
-                cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
-
-                 // Attempt at storing as cache...FAILED
+            
+                // Attempt at storing as cache...FAILED
                  for (NSObject *obj in [cell.targetProfilePic subviews]) {
                     if ([obj isMemberOfClass:[UIImageView class]]) {
                         UIImageView *objImg = (UIImageView *)obj;
                         
-                        // [self.cellCache setObject:imgData forKey:[NSString stringWithFormat:@"%@", currentGame.currentContract.targetFbId]];
-                        //currentGame.currentTargetPic = objImg.image;
+                         NSData *imgData = UIImagePNGRepresentation(objImg.image);
+                        // [self.cellCache setObject:imgData forKey:[NSString stringWithFormat:@"%@", cell.currentContract.targetFbId]];
+                        currentGame.currentTargetPic = imgData;
                         
                         break;
                     }
                 }
-            }
+                */
         }
         
         //  you have been eliminated

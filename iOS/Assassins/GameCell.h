@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Game.h"
 #import "Contract.h"
-#import <QuartzCore/QuartzCore.h>
-//#import <DBFBProfilePictureView/DBFBProfilePictureView.h>
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface GameCell : UITableViewCell
