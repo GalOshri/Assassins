@@ -51,7 +51,7 @@
     [super viewDidLoad];
     //Do any additional setup after loading the view.
     
-    [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mysteryManBckgnd"]]];
+    [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mysteryManBckgnd.png"]]];
     [self.safeZonesView setBackgroundColor:[UIColor whiteColor]];
     
     self.friendList = [[NSMutableArray alloc] init];

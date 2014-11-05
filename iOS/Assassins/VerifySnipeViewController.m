@@ -126,7 +126,15 @@
 - (IBAction)showComments:(id)sender
 {
     if ([self.commentView isHidden])
+    {
+        // show comments, and create way to dismiss by tap on img
         [self.commentView setHidden:NO];
+        
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissCommentsView:)];
+        [tapRecognizer setNumberOfTapsRequired:1];
+        [tapRecognizer setDelegate:self];
+        [self.snipeImage addGestureRecognizer:tapRecognizer];
+    }
     else
         [self.commentView setHidden:YES];
 }
@@ -165,6 +173,17 @@
 - (IBAction)dismissCommentsView:(id)sender
 {
     [self.commentView setHidden:YES];
+    
+    if ([sender isMemberOfClass:[UITapGestureRecognizer class]])
+    {
+        // remove gesture
+        UITapGestureRecognizer *gestureRecognizer = sender;
+        [self.snipeImage removeGestureRecognizer:gestureRecognizer];
+        [self.view endEditing:YES];
+    }
+
+    
+    
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -233,7 +252,7 @@
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEventOnView:)];
         [tapRecognizer setNumberOfTapsRequired:1];
         [tapRecognizer setDelegate:self];
-        [self.view addGestureRecognizer:tapRecognizer];
+        [self.commentView addGestureRecognizer:tapRecognizer];
     }
     // if there is no longer a keyboard, move back to original location
     else

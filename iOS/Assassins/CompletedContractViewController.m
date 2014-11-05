@@ -119,7 +119,15 @@
 - (IBAction)showComments:(id)sender
 {
     if ([self.commentView isHidden])
+    {
+        // show comments, and create way to dismiss by tap on img
         [self.commentView setHidden:NO];
+        
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissCommentsView:)];
+        [tapRecognizer setNumberOfTapsRequired:1];
+        [tapRecognizer setDelegate:self];
+        [self.contractImage addGestureRecognizer:tapRecognizer];
+    }
     else
         [self.commentView setHidden:YES];
 }
@@ -152,9 +160,64 @@
 
 }
 
+
+- (void)keyboardFrameDidChange:(NSNotification*)notification
+{
+    self.keyboardOrNah = !self.keyboardOrNah;
+    
+    NSDictionary* info = [notification userInfo];
+    CGRect kKeyBoardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // if there is now a keyboard
+    if (self.keyboardOrNah)
+    {
+        self.commentViewBottomConstraint.constant = kKeyBoardFrame.size.height + 10 - self.bottomButtonContainer.frame.size.height;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+        
+        self.isEditingOrNah = YES;
+        
+        //call selector to dismiss keyboard code if it is present
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEventOnView:)];
+        [tapRecognizer setNumberOfTapsRequired:1];
+        [tapRecognizer setDelegate:self];
+        [self.commentView addGestureRecognizer:tapRecognizer];
+    }
+    // if there is no longer a keyboard, move back to original location
+    else
+    {
+        self.commentViewBottomConstraint.constant = 10;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
+
+- (void)touchEventOnView: (id) sender
+{
+    if (self.isEditingOrNah) {
+        self.isEditingOrNah = NO;
+        
+        [self.view endEditing:YES];
+        
+        // remove gesture
+        UITapGestureRecognizer *gestureRecognizer = sender;
+        [self.view removeGestureRecognizer:gestureRecognizer];
+    }
+}
+
 - (IBAction)dismissCommentsView:(id)sender
 {
     [self.commentView setHidden:YES];
+    
+    if ([sender isMemberOfClass:[UITapGestureRecognizer class]])
+    {
+        // remove gesture
+        UITapGestureRecognizer *gestureRecognizer = sender;
+        [self.contractImage removeGestureRecognizer:gestureRecognizer];
+        [self.view endEditing:YES];
+    }
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -167,7 +230,6 @@
 {
     return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -201,52 +263,6 @@
     [self.view endEditing:YES];
     [self.addCommentField resignFirstResponder];
     return YES;
-}
-
-- (void)keyboardFrameDidChange:(NSNotification*)notification
-{
-    self.keyboardOrNah = !self.keyboardOrNah;
-    
-    NSDictionary* info = [notification userInfo];
-    CGRect kKeyBoardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    // if there is now a keyboard
-    if (self.keyboardOrNah)
-    {
-        self.commentViewBottomConstraint.constant = kKeyBoardFrame.size.height + 10 - self.bottomButtonContainer.frame.size.height;
-        [UIView animateWithDuration:0.5 animations:^{
-            [self.view layoutIfNeeded];
-        }];
-        
-        self.isEditingOrNah = YES;
-        
-        //call selector to dismiss keyboard code if it is present
-        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEventOnView:)];
-        [tapRecognizer setNumberOfTapsRequired:1];
-        [tapRecognizer setDelegate:self];
-        [self.view addGestureRecognizer:tapRecognizer];
-    }
-    // if there is no longer a keyboard, move back to original location
-    else
-    {
-        self.commentViewBottomConstraint.constant = 10;
-        [UIView animateWithDuration:0.5 animations:^{
-            [self.view layoutIfNeeded];
-        }];
-    }
-}
-
-- (void)touchEventOnView: (id) sender
-{
-    if (self.isEditingOrNah) {
-        self.isEditingOrNah = NO;
-        
-        [self.view endEditing:YES];
-        
-        // remove gesture
-        UITapGestureRecognizer *gestureRecognizer = sender;
-        [self.view removeGestureRecognizer:gestureRecognizer];
-    }
 }
 
 @end

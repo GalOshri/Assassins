@@ -81,7 +81,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.statusBarView setAlpha:0.0];
     self.statusBarUsernameLabel.text = self.game.name;
-    //[self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
+    [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
     self.gameNameLabel.text = self.game.name;
 
     [[self.currentTargetProfilePicture layer] setCornerRadius: self.currentTargetProfilePicture.frame.size.width/2];
@@ -438,6 +438,8 @@
             cell.headlineLabel.text = [NSString stringWithFormat:@"%@ has been eliminated", currentContract.targetName];
         }
         
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        
         return cell;
     }
     
@@ -445,6 +447,7 @@
     {
         ParticipantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"assassinCell" forIndexPath:indexPath];
         Assassin *currentAssassin = [self.assassins objectAtIndex: [indexPath row]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         // assign cell items
         cell.username.text = currentAssassin.username;
@@ -481,6 +484,7 @@
     else
     {
         SafeZoneTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SafeZoneCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         // set game safe zones
         if (self.game.safeZones == nil || [self.game.safeZones isEqualToString:@""])
@@ -499,6 +503,12 @@
         
         return cell;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // deselect the row
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*
