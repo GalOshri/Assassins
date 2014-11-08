@@ -49,8 +49,6 @@
 		DAA08C4019E58784007B089E /* assassinsSignIn.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA08C3F19E58784007B089E /* assassinsSignIn.png */; };
 		DAA08C4419E594B6007B089E /* assassinsLogoSignIn.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA08C4319E594B6007B089E /* assassinsLogoSignIn.png */; };
 		DAA7D03C199E546B00656414 /* CompletedContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA7D03B199E546B00656414 /* CompletedContractViewController.m */; };
-		DAAB9A3019EB094300FC4A14 /* AssassinsLogInView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A2D19EB094300FC4A14 /* AssassinsLogInView.m */; };
-		DAAB9A3119EB094300FC4A14 /* AssassinsSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A2F19EB094300FC4A14 /* AssassinsSignUpView.m */; };
 		DAAB9A4219EB613600FC4A14 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A4119EB613600FC4A14 /* CommentTableViewCell.m */; };
 		DAAB9A4519EB65EB00FC4A14 /* ContractComment.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A4419EB65EB00FC4A14 /* ContractComment.m */; };
 		DAAD9C3819FF1D67006DF466 /* userSilhouetteDead.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAD9C3719FF1D67006DF466 /* userSilhouetteDead.png */; };
@@ -73,6 +71,8 @@
 		DAD0DD7919931C110075E69D /* Assassin.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD7819931C110075E69D /* Assassin.m */; };
 		DAD0DD83199359360075E69D /* UserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD82199359360075E69D /* UserTableViewController.m */; };
 		DAD0DD8719935D020075E69D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD8619935D020075E69D /* Game.m */; };
+		DAE13D571A0D3C53005D59DE /* AssassinsLogInView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE13D561A0D3C53005D59DE /* AssassinsLogInView.m */; };
+		DAE13D5B1A0D3C79005D59DE /* AssassinsSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE13D5A1A0D3C79005D59DE /* AssassinsSignUpView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,10 +140,6 @@
 		DAA08C4319E594B6007B089E /* assassinsLogoSignIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assassinsLogoSignIn.png; sourceTree = "<group>"; };
 		DAA7D03A199E546B00656414 /* CompletedContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedContractViewController.h; sourceTree = "<group>"; };
 		DAA7D03B199E546B00656414 /* CompletedContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedContractViewController.m; sourceTree = "<group>"; };
-		DAAB9A2C19EB094300FC4A14 /* AssassinsLogInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssassinsLogInView.h; path = ../../../Ripple/iOS/Ripple/AssassinsLogInView.h; sourceTree = "<group>"; };
-		DAAB9A2D19EB094300FC4A14 /* AssassinsLogInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssassinsLogInView.m; path = ../../../Ripple/iOS/Ripple/AssassinsLogInView.m; sourceTree = "<group>"; };
-		DAAB9A2E19EB094300FC4A14 /* AssassinsSignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssassinsSignUpView.h; path = ../../../Ripple/iOS/Ripple/AssassinsSignUpView.h; sourceTree = "<group>"; };
-		DAAB9A2F19EB094300FC4A14 /* AssassinsSignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssassinsSignUpView.m; path = ../../../Ripple/iOS/Ripple/AssassinsSignUpView.m; sourceTree = "<group>"; };
 		DAAB9A4019EB613600FC4A14 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		DAAB9A4119EB613600FC4A14 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		DAAB9A4319EB65EB00FC4A14 /* ContractComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractComment.h; sourceTree = "<group>"; };
@@ -178,6 +174,10 @@
 		DAD0DD82199359360075E69D /* UserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewController.m; sourceTree = "<group>"; };
 		DAD0DD8519935D020075E69D /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Assassins/Game.h; sourceTree = "<group>"; };
 		DAD0DD8619935D020075E69D /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Assassins/Game.m; sourceTree = "<group>"; };
+		DAE13D561A0D3C53005D59DE /* AssassinsLogInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssassinsLogInView.m; sourceTree = "<group>"; };
+		DAE13D581A0D3C69005D59DE /* AssassinsLogInView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssassinsLogInView.h; sourceTree = "<group>"; };
+		DAE13D591A0D3C79005D59DE /* AssassinsSignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssassinsSignUpView.h; sourceTree = "<group>"; };
+		DAE13D5A1A0D3C79005D59DE /* AssassinsSignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssassinsSignUpView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,10 +377,10 @@
 		0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */ = {
 			isa = PBXGroup;
 			children = (
-				DAAB9A2C19EB094300FC4A14 /* AssassinsLogInView.h */,
-				DAAB9A2D19EB094300FC4A14 /* AssassinsLogInView.m */,
-				DAAB9A2E19EB094300FC4A14 /* AssassinsSignUpView.h */,
-				DAAB9A2F19EB094300FC4A14 /* AssassinsSignUpView.m */,
+				DAE13D581A0D3C69005D59DE /* AssassinsLogInView.h */,
+				DAE13D561A0D3C53005D59DE /* AssassinsLogInView.m */,
+				DAE13D591A0D3C79005D59DE /* AssassinsSignUpView.h */,
+				DAE13D5A1A0D3C79005D59DE /* AssassinsSignUpView.m */,
 			);
 			name = "Log In and Sign Up";
 			sourceTree = "<group>";
@@ -583,13 +583,12 @@
 				DAD0DD6D198F783A0075E69D /* AssassinationEventCell.m in Sources */,
 				DAAB9A4219EB613600FC4A14 /* CommentTableViewCell.m in Sources */,
 				0DBF67131992101B00AFF5F8 /* Contract.m in Sources */,
-				DAAB9A3019EB094300FC4A14 /* AssassinsLogInView.m in Sources */,
 				0D52C4B1197E284A00E5E5B9 /* ViewController.m in Sources */,
 				0D52C4AB197E284A00E5E5B9 /* AppDelegate.m in Sources */,
 				DAD0DD83199359360075E69D /* UserTableViewController.m in Sources */,
+				DAE13D571A0D3C53005D59DE /* AssassinsLogInView.m in Sources */,
 				DAD0DD5D198EFB6E0075E69D /* UIImage+Alpha.m in Sources */,
 				DAD0DD5E198EFB6E0075E69D /* UIImage+Resize.m in Sources */,
-				DAAB9A3119EB094300FC4A14 /* AssassinsSignUpView.m in Sources */,
 				DAD0DD5F198EFB6E0075E69D /* UIImage+RoundedCorner.m in Sources */,
 				DAD0DD8719935D020075E69D /* Game.m in Sources */,
 				0DBF67161998542C00AFF5F8 /* GameCell.m in Sources */,
@@ -602,6 +601,7 @@
 				DAAB9A4519EB65EB00FC4A14 /* ContractComment.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
 				DA25AA591A098F04006BE177 /* ParticipantTableViewCell.m in Sources */,
+				DAE13D5B1A0D3C79005D59DE /* AssassinsSignUpView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

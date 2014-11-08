@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *dismissCommentView;
 @property (weak, nonatomic) IBOutlet UIView *commentView;
 @property (weak, nonatomic) IBOutlet UITableView *commentViewTable;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentViewBottomConstraint;
 
 @property(strong, nonatomic) NSMutableArray *commentsArray;
 @property BOOL postOrNah;
@@ -69,13 +70,21 @@
     self.addCommentField.delegate = self;
     
     // get comments and set correct number
-    self.commentsArray = [AssassinsService getCommentsWithContract:self.contract.contractId];
-    [self.commentsButton setTitle:[NSString stringWithFormat:@"%lu comments", (unsigned long)[self.commentsArray count]] forState:UIControlStateNormal];
-    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.commentsArray = [AssassinsService getCommentsWithContract:self.contract.contractId];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            [self.commentsButton setTitle:[NSString stringWithFormat:@"%lu comments", (unsigned long)[self.commentsArray count]] forState:UIControlStateNormal];
+            
+            // reload data stop spinner
+            [self.commentViewTable reloadData];
+        });
+    });
+
     // set responder for keyboard
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardFrameDidChange:)
-                                                 name:UIKeyboardDidChangeFrameNotification object:nil];
+                                                 name:UIKeyboardWillChangeFrameNotification object:nil];
     self.keyboardOrNah = NO;
     self.originalCommentViewLocation = self.commentView.frame.origin.y;
 }
@@ -181,9 +190,6 @@
         [self.snipeImage removeGestureRecognizer:gestureRecognizer];
         [self.view endEditing:YES];
     }
-
-    
-    
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -242,8 +248,9 @@
     // if there is now a keyboard
     if (self.keyboardOrNah)
     {
+        self.commentViewBottomConstraint.constant = kKeyBoardFrame.size.height + 10 - self.verifyBackground.frame.size.height;
         [UIView animateWithDuration:0.5 animations:^{
-            [self.commentView setFrame:CGRectMake(self.commentView.frame.origin.x, kKeyBoardFrame.origin.y-self.commentView.frame.size.height - 10, self.commentView.frame.size.width, self.commentView.frame.size.height)];
+            [self.view layoutIfNeeded];
         }];
         
         self.isEditingOrNah = YES;
@@ -257,8 +264,9 @@
     // if there is no longer a keyboard, move back to original location
     else
     {
+        self.commentViewBottomConstraint.constant = 8;
         [UIView animateWithDuration:0.5 animations:^{
-            [self.commentView setFrame:CGRectMake(self.commentView.frame.origin.x, self.originalCommentViewLocation, self.commentView.frame.size.width, self.commentView.frame.size.height)];
+            [self.view layoutIfNeeded];
         }];
     }
 }

@@ -34,8 +34,10 @@
     [self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"assassinsSignIn.png"]]];
     [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"assassinsLogoSignIn.png"]]];
     CGPoint currentCenter = CGPointMake(self.logInView.logo.center.x-30 , self.logInView.logo.center.y);
-    self.logInView.logo.frame = CGRectMake(self.logInView.logo.frame.origin.x, self.logInView.logo.frame.origin.y, 120,120);
+    self.logInView.logo.frame = CGRectMake(self.logInView.logo.frame.origin.x, self.logInView.logo.frame.origin.y, 80,80);
     self.logInView.logo.center = currentCenter;
+    [[self.logInView.logo layer] setCornerRadius:15.0];
+    [[self.logInView.logo layer] setMasksToBounds:YES];
     
     /*
     [self.logInView.facebookButton setImage:nil forState:UIControlStateNormal];
