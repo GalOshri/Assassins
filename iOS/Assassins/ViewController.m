@@ -163,21 +163,6 @@ CGFloat scale;
         [self showLogInAndSignUpView];
     }
     
-    /*
-     else
-    {
-        // check to see if have snipe pending
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        appDelegate.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
-        
-        if (appDelegate.numberPendingSnipe > 0)
-        {
-            [self.snipeNotificationButton setHidden:NO];
-            NSTimer *pendingNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(pendingNotificationAnimation) userInfo:nil repeats:YES];
-        }
-    }
-    */
-    
     if (self.goToGameId)
     {
         self.sendToPendingSnipe = YES;

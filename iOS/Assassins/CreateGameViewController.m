@@ -237,9 +237,6 @@
     
     // reset logic
     self.keyboardOrNah = NO;
-    
-    // NSCharacterSet *uniqueCharacters = [NSCharacterSet characterSetWithCharactersInString:self.rippleTextView.text];
-    // NSLog(@"number of characters is %@", uniqueCharacters);
 }
 
 - (void)keyboardFrameDidChange:(NSNotification*)notification
