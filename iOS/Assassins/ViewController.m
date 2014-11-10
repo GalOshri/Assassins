@@ -106,6 +106,7 @@ CGFloat scale;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     if (!self.hasLoadedCamera)
     {
         self.hasLoadedCamera = YES;
@@ -160,6 +161,16 @@ CGFloat scale;
     // Log in / sign up if no user signed in
     if (![PFUser currentUser])
     {
+        NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+        NSNumber *isTutorialDone = [userData objectForKey:@"isTutorialDone"];
+        
+        if ([isTutorialDone boolValue])
+            [self showLogInAndSignUpView];
+        else
+        {
+            [self performSegueWithIdentifier:@"SegueToTutorialView" sender:nil];
+        }
+
         [self showLogInAndSignUpView];
     }
     

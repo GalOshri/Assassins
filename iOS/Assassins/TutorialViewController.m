@@ -55,11 +55,6 @@
     }
     
     self.tutorialScrollView.contentSize = CGSizeMake(self.tutorialScrollView.frame.size.width * self.images.count, self.tutorialScrollView.frame.size.height);
-    
-    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-    [userData setObject:[NSNumber numberWithBool:YES] forKey:@"isTutorialDone"];
-    [userData synchronize];
-    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
@@ -68,10 +63,14 @@
     int page = floor((self.tutorialScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.pageControl.currentPage = page;
     
-    if (page == 3)
+    if (page == 2)
+    {
         self.endTutorialButton.hidden = NO;
-    else
-        self.endTutorialButton.hidden = YES;
+        NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+        [userData setObject:[NSNumber numberWithBool:YES] forKey:@"isTutorialDone"];
+        [userData synchronize];
+
+    }
 }
 
 
