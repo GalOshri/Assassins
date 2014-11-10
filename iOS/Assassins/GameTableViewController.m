@@ -414,6 +414,8 @@
         NSString *theTime = [dateFormatter stringFromDate:currentContract.time];
         cell.timeLabel.text = theTime;
         
+        cell.commentLabel.text = currentContract.comment;
+        
         // tweak aesthetics of images
         [cell.snipeImagePreview setImage:currentContract.image];
         [[cell.snipeImagePreview layer] setCornerRadius:5];

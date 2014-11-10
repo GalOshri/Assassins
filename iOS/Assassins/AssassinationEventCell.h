@@ -16,11 +16,11 @@
 @property (weak, nonatomic) IBOutlet UITextView *headlineLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *snipeImagePreview;
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
+@property float commentLabelPosition;
 @property (strong, nonatomic) Contract *contract;
 
 @end
 
 // @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
-//@property float commentLabelPosition;

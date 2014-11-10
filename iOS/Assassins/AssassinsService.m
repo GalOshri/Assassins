@@ -47,7 +47,6 @@
             // NOPENDING --------------------------------------------*************************************
             NSDictionary *completedContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:contractObject.objectId, @"contractId", nil];
             NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
-            NSLog(@"%@", responseString);
         }];
     }
 }
@@ -396,7 +395,6 @@
     // call cloud code to add username to array of invalidateVoters, check if it has been overturned, and clean function if not
     NSDictionary *declineSnipeDict = [[NSDictionary alloc] initWithObjectsAndKeys:gameId, @"gameId", contractId, @"contractId", [PFUser currentUser].objectId, @"userId", nil];
     NSString *responseString = [PFCloud callFunction:@"checkInvalidatedSnipe" withParameters:declineSnipeDict];
-    NSLog(@"%@", responseString);
 }
 
 
@@ -404,7 +402,6 @@
 {
     NSDictionary *pendingContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:game.gameId, @"gameId", contract.contractId, @"contractId",contract.targetName, @"targetName", nil];
     NSString *responseString = [PFCloud callFunction:@"startPendingContractProcess" withParameters:pendingContractDict];
-    NSLog(@"%@", responseString);
 }
 
 
