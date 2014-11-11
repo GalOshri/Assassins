@@ -93,7 +93,7 @@
         return;
     }
     
-    if (self.friendPickerController == nil)
+    if ([self.friendList count] <= 0)
     {
         // Create friend picker, and get data loaded into it.
         self.friendPickerController = [[FBFriendPickerViewController alloc] init];
@@ -103,8 +103,9 @@
         self.friendPickerController.delegate = self;
     }
     
+    // else, keep previous selection
+    [self.friendPickerController setSelection: self.friendList];
     [self.friendPickerController loadData];
-    [self.friendPickerController clearSelection];
     
     UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:self.friendPickerController];
     //[nc setNavigationBarHidden:YES];
@@ -115,24 +116,28 @@
 
 - (IBAction)createGame:(id)sender
 {
-    // create array of facebook ID
-    NSMutableArray *newGameParticipants = [[NSMutableArray alloc] init];
+    if ([self.friendList count] > 0)
+    {
+    
+        // create array of facebook ID
+        NSMutableArray *newGameParticipants = [[NSMutableArray alloc] init];
 
-    [newGameParticipants addObject:[[PFUser currentUser] objectForKey:@"facebookId"]];
-    
-    for(int i=0; i< [self.friendPickerController.selection count]; i++)
-        [newGameParticipants addObject:[self.friendPickerController.selection[i] objectForKey:@"id"]];
-    
-    if([self.safeZones.text isEqualToString:@"List Safe Zones separated by commas"])
-        self.safeZones.text = @"";
-    
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        Game *newGame = [AssassinsService createGame:self.gameNameField.text withSafeZones:self.safeZones.text withUserIds:newGameParticipants];
+        [newGameParticipants addObject:[[PFUser currentUser] objectForKey:@"facebookId"]];
         
-        dispatch_async( dispatch_get_main_queue(), ^{
-            [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
+        for(int i=0; i< [self.friendList count]; i++)
+            [newGameParticipants addObject:[self.friendPickerController.selection[i] objectForKey:@"id"]];
+        
+        if([self.safeZones.text isEqualToString:@"List Safe Zones separated by commas"])
+            self.safeZones.text = @"";
+        
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            Game *newGame = [AssassinsService createGame:self.gameNameField.text withSafeZones:self.safeZones.text withUserIds:newGameParticipants];
+            
+            dispatch_async( dispatch_get_main_queue(), ^{
+                [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
+            });
         });
-    });
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -141,29 +146,39 @@
 
 # pragma mark - Friend picker work
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
-    NSMutableString *text = [[NSMutableString alloc] init];
-    [text appendString:@"Participants:\n\n"];
+    NSMutableString *text = [[NSMutableString alloc] initWithString:@""];
     
     // we pick up the users from the selection, and create a string that we use to update the text view
     for (id<FBGraphUser> user in self.friendPickerController.selection)
     {
-        if (![text isEqualToString:@"Participants:\n\n"])
+        if (![self.selectedFriends containsObject:user])
         {
-            [text appendString:@", "];
+            if ([self.selectedPlayersTextView.text isEqualToString:@"no friends selected"] && [text isEqualToString:@""])
+                text = [NSMutableString stringWithFormat:@"%@",user.name];
+            else
+            {
+                [text appendString:@", "];
+                [text appendString:user.name];
+            }
+            
+            [self.selectedFriends addObject:user];
         }
-        [text appendString:user.name];
     }
     
-    [self fillTextBoxAndDismiss:text.length > 0 ? text : @"No friends selected"];
+    [self fillTextBoxAndDismiss:text];
 }
+
 
 - (void)facebookViewControllerCancelWasPressed:(id)sender
 {
-    [self fillTextBoxAndDismiss:@"No friends selected"];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)fillTextBoxAndDismiss:(NSString *)text {
-    self.selectedPlayersTextView.text = text;
+    if ([self.selectedPlayersTextView.text isEqualToString:@"no friends selected"])
+        self.selectedPlayersTextView.text = text;
+    else
+        self.selectedPlayersTextView.text = [NSString stringWithFormat:@"%@%@", self.selectedPlayersTextView.text, text];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
