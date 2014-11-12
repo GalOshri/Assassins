@@ -280,9 +280,9 @@
                             <constraint firstAttribute="centerX" secondItem="led-3f-Arb" secondAttribute="centerX" id="76o-ll-4cs"/>
                             <constraint firstAttribute="centerX" secondItem="w5p-Rg-8w8" secondAttribute="centerX" id="9Sc-vo-bDD"/>
                             <constraint firstItem="DK9-0T-6K8" firstAttribute="top" secondItem="w5p-Rg-8w8" secondAttribute="bottom" constant="18" id="DsT-wr-KHh"/>
+                            <constraint firstItem="led-3f-Arb" firstAttribute="top" secondItem="6np-FZ-ceT" secondAttribute="top" id="EEI-Sz-iT0"/>
                             <constraint firstAttribute="centerX" secondItem="2id-Xu-yRC" secondAttribute="centerX" id="Sb8-QX-RDI"/>
                             <constraint firstItem="2id-Xu-yRC" firstAttribute="top" secondItem="led-3f-Arb" secondAttribute="bottom" constant="61" id="YaB-aT-E06"/>
-                            <constraint firstItem="led-3f-Arb" firstAttribute="top" secondItem="6np-FZ-ceT" secondAttribute="topMargin" id="b84-Nn-2OH"/>
                             <constraint firstItem="5OD-2E-A0Y" firstAttribute="leading" secondItem="6np-FZ-ceT" secondAttribute="leadingMargin" constant="4" id="cqB-K0-Q4V"/>
                             <constraint firstItem="5OD-2E-A0Y" firstAttribute="top" secondItem="led-3f-Arb" secondAttribute="bottom" constant="37" id="zMT-76-dCr"/>
                         </constraints>

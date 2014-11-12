@@ -11,6 +11,7 @@
 #import "PendingContractsTableViewController.h"
 #import "AssassinsService.h"
 #import "ViewController.h"
+#import "AGPushNoteView.h"
 
 @implementation AppDelegate
 
@@ -89,19 +90,35 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    [PFPush handlePush:userInfo];
+    UIApplicationState state = [UIApplication sharedApplication].applicationState;
     
-    if ([userInfo valueForKey:@"contractId"] != nil) {
-        // someone wants to verify snipe
-        NSString *contractId = [userInfo objectForKey:@"contractId"];
-        [self presentSnipeVerificationView:contractId];
+    if (state != UIApplicationStateActive)
+    {
+        [PFPush handlePush:userInfo];
+        
+        if ([userInfo valueForKey:@"contractId"] != nil) {
+            // someone wants to verify snipe
+            NSString *contractId = [userInfo objectForKey:@"contractId"];
+            [self presentSnipeVerificationView:contractId];
+        }
+        
+        else
+        {
+            // game was won
+            NSString *gameId = [userInfo objectForKey:@"gameId"];
+            [self presentCameraView:gameId];
+        }
+
     }
     
+    // app is active, we send a local event
     else
     {
-        // game was won
-        NSString *gameId = [userInfo objectForKey:@"gameId"];
-        [self presentCameraView:gameId];
+        NSDictionary *message = [userInfo objectForKey:@"aps"];
+        [AGPushNoteView showWithNotificationMessage:message[@"alert"]];
+        //AGPushNoteView setMessageAction:^(NSString *message) {
+        
+        //}
     }
 }
 

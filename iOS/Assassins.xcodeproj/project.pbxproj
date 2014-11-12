@@ -54,6 +54,8 @@
 		DAAB9A4519EB65EB00FC4A14 /* ContractComment.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9A4419EB65EB00FC4A14 /* ContractComment.m */; };
 		DAAD9C3819FF1D67006DF466 /* userSilhouetteDead.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAD9C3719FF1D67006DF466 /* userSilhouetteDead.png */; };
 		DAAD9C3C1A0014F1006DF466 /* userSilhouettePending.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAD9C3B1A0014F1006DF466 /* userSilhouettePending.png */; };
+		DAADCE0E1A141B83008177EE /* AGPushNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADCE0C1A141B83008177EE /* AGPushNoteView.m */; };
+		DAADCE0F1A141B83008177EE /* AGPushNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAADCE0D1A141B83008177EE /* AGPushNoteView.xib */; };
 		DAD082FA19FAD9CA00B66DB7 /* SafeZoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */; };
 		DAD0DD331988DC840075E69D /* cameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD321988DC840075E69D /* cameraButton.png */; };
 		DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD361988E0BF0075E69D /* noFlash.png */; };
@@ -149,6 +151,9 @@
 		DAAB9A4419EB65EB00FC4A14 /* ContractComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractComment.m; sourceTree = "<group>"; };
 		DAAD9C3719FF1D67006DF466 /* userSilhouetteDead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userSilhouetteDead.png; sourceTree = "<group>"; };
 		DAAD9C3B1A0014F1006DF466 /* userSilhouettePending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userSilhouettePending.png; sourceTree = "<group>"; };
+		DAADCE0B1A141B83008177EE /* AGPushNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPushNoteView.h; path = AGPushNote/AGPushNoteView.h; sourceTree = "<group>"; };
+		DAADCE0C1A141B83008177EE /* AGPushNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPushNoteView.m; path = AGPushNote/AGPushNoteView.m; sourceTree = "<group>"; };
+		DAADCE0D1A141B83008177EE /* AGPushNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AGPushNoteView.xib; path = AGPushNote/AGPushNoteView.xib; sourceTree = "<group>"; };
 		DAD082F819FAD9CA00B66DB7 /* SafeZoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeZoneTableViewCell.h; sourceTree = "<group>"; };
 		DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeZoneTableViewCell.m; sourceTree = "<group>"; };
 		DAD0DD321988DC840075E69D /* cameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraButton.png; sourceTree = "<group>"; };
@@ -307,6 +312,7 @@
 				0D277D0C198EE32E002362C6 /* Service */,
 				0DBF67101992100200AFF5F8 /* Models */,
 				0D277D0B198EE318002362C6 /* Images */,
+				DAADCE0A1A141B6A008177EE /* local notifications */,
 				0D52C4B2197E284A00E5E5B9 /* Images.xcassets */,
 				0D52C4A1197E284A00E5E5B9 /* Supporting Files */,
 			);
@@ -435,6 +441,16 @@
 			name = "Completed Contract Image ";
 			sourceTree = "<group>";
 		};
+		DAADCE0A1A141B6A008177EE /* local notifications */ = {
+			isa = PBXGroup;
+			children = (
+				DAADCE0B1A141B83008177EE /* AGPushNoteView.h */,
+				DAADCE0C1A141B83008177EE /* AGPushNoteView.m */,
+				DAADCE0D1A141B83008177EE /* AGPushNoteView.xib */,
+			);
+			name = "local notifications";
+			sourceTree = "<group>";
+		};
 		DAD0DD6E198F78420075E69D /* Game Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,6 +574,7 @@
 				DAAD9C3819FF1D67006DF466 /* userSilhouetteDead.png in Resources */,
 				DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */,
 				DA8DF85D19D78B4E000F9412 /* spyBckgnd.png in Resources */,
+				DAADCE0F1A141B83008177EE /* AGPushNoteView.xib in Resources */,
 				DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */,
 				DAD0DD65198F59730075E69D /* cameraIconSmall.png in Resources */,
 				DA8DF85F19D78CC5000F9412 /* cameraIconButton.png in Resources */,
@@ -601,6 +618,7 @@
 				0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */,
 				DAD0DD7919931C110075E69D /* Assassin.m in Sources */,
 				DAD082FA19FAD9CA00B66DB7 /* SafeZoneTableViewCell.m in Sources */,
+				DAADCE0E1A141B83008177EE /* AGPushNoteView.m in Sources */,
 				DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */,
 				DA42AB6D19A605F100356E7A /* CreateGameViewController.m in Sources */,
 				DAD0DD75199092800075E69D /* VerifySnipeViewController.m in Sources */,

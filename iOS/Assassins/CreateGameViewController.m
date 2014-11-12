@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIView *safeZonesView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeZoneViewBottomConstraint;
 
-@property (strong, nonatomic) NSMutableArray *friendList;
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
 @property BOOL keyboardOrNah;
@@ -54,7 +53,6 @@
     [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mysteryManBckgnd.png"]]];
     [self.safeZonesView setBackgroundColor:[UIColor whiteColor]];
     
-    self.friendList = [[NSMutableArray alloc] init];
     self.selectedFriends = [[NSMutableArray alloc] init];
     
     [self.safeZones.layer setBorderWidth:0.5];
@@ -93,7 +91,7 @@
         return;
     }
     
-    if ([self.friendList count] <= 0)
+    if ([self.selectedFriends count] <= 0)
     {
         // Create friend picker, and get data loaded into it.
         self.friendPickerController = [[FBFriendPickerViewController alloc] init];
@@ -104,7 +102,7 @@
     }
     
     // else, keep previous selection
-    [self.friendPickerController setSelection: self.friendList];
+    [self.friendPickerController setSelection: self.selectedFriends];
     [self.friendPickerController loadData];
     
     UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:self.friendPickerController];
@@ -116,7 +114,7 @@
 
 - (IBAction)createGame:(id)sender
 {
-    if ([self.friendList count] > 0)
+    if ([self.selectedFriends count] > 0)
     {
     
         // create array of facebook ID
@@ -124,7 +122,7 @@
 
         [newGameParticipants addObject:[[PFUser currentUser] objectForKey:@"facebookId"]];
         
-        for(int i=0; i< [self.friendList count]; i++)
+        for(int i=0; i< [self.selectedFriends count]; i++)
             [newGameParticipants addObject:[self.friendPickerController.selection[i] objectForKey:@"id"]];
         
         if([self.safeZones.text isEqualToString:@"List Safe Zones separated by commas"])
