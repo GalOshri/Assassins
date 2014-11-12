@@ -92,7 +92,7 @@
     
     UIApplicationState state = [UIApplication sharedApplication].applicationState;
     
-    if (state != UIApplicationStateActive)
+    if (state != UIApplicationStateActive || state != UIApplicationStateInactive)
     {
         [PFPush handlePush:userInfo];
         
