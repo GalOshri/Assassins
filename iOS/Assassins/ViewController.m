@@ -58,11 +58,8 @@ CGFloat scale;
             SnipeSubmitView *ssv = (SnipeSubmitView *)segue.destinationViewController;
             UIImage *chosenImage = (UIImage *)sender;
             
-            
-            //###### apply cropping to image ##### //
-
             // scale image to be correct size
-            CGSize size = CGSizeMake(self.view.frame.size.height * 1/cameraAspectRatio, self.view.frame.size.height);
+            CGSize size = CGSizeMake(self.view.frame.size.height *3 / 4, self.view.frame.size.height);
             UIImage *resizedImage = [chosenImage resizedImage:size interpolationQuality:kCGInterpolationDefault];
             
             // crop image correctly
@@ -123,7 +120,7 @@ CGFloat scale;
         picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         self.flashMode = NO;
         
-        //math to resize to size of phone
+        //math to resize camera view to size of phone
         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
         BOOL landscape = (orientation == UIInterfaceOrientationPortrait);
         
@@ -133,7 +130,7 @@ CGFloat scale;
             cameraAspectRatio = 4.0f/3.0f;
             CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
             scale = screenBounds.height / camViewHeight;
-            
+            NSLog(@"scale is %f", scale);
             picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
             picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
             

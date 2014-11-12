@@ -13,8 +13,9 @@
 @interface SnipeSubmitView ()
 
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *snipeToggle;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *snipeImageHeightConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *snipeImageWidthConstraint;
 
 @property (strong, nonatomic) NSMutableArray *submitContracts;
 
@@ -39,6 +40,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.snipeImageView.image = self.snipeImage;
+    //self.snipeImageHeightConstraint.constant = self.snipeImage.size.height;
+    //self.snipeImageWidthConstraint.constant = self.snipeImage.size.width;
+    [self.view layoutIfNeeded];
+    NSLog(@"width:%f, height:%f, screen widht:%f, screen height: %f with x coord:%f", self.snipeImage.size.width, self.snipeImage.size.height,self.view.frame.size.width, self.view.frame.size.height, self.snipeImageView.frame.origin.y);
+    
     [self.commentField setHidden:YES];
     
     // set touch events for snipeImageView
@@ -99,61 +105,49 @@
 
 #pragma mark - Submit Assassination
 - (IBAction)submitAssassination:(UIButton *)sender {
-    if ([self.snipeToggle selectedSegmentIndex] == 0)
-    {
-        [self.activityIndicator setHidden:NO];
-        [self.activityIndicator startAnimating];
-        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            // grab list of related contracts
-            if (!self.submitContracts)
-                self.submitContracts = [AssassinsService getContractArray];
+    [self.activityIndicator setHidden:NO];
+    [self.activityIndicator startAnimating];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // grab list of related contracts
+        if (!self.submitContracts)
+            self.submitContracts = [AssassinsService getContractArray];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            if ([self.submitContracts count] == 0) {
+                UIAlertView *noContract = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"You are currently not in a game, and have no target. Create a game with friends to play!" delegate:self cancelButtonTitle:@"ok, shya breh!" otherButtonTitles:nil];
+                
+                [noContract show];
+            }
             
-            dispatch_async( dispatch_get_main_queue(), ^{
-                if ([self.submitContracts count] == 0) {
-                    UIAlertView *noContract = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"You are currently not in a game, and have no target. Create a game with friends to play!" delegate:self cancelButtonTitle:@"ok, shya breh!" otherButtonTitles:nil];
-                    
-                    [noContract show];
-                }
-                
-                else if ([self.submitContracts count] > 1)
+            else if ([self.submitContracts count] > 1)
+            {
+                UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
+               
+                //show alert to pick which contract to submit snipe to
+                for (Contract *contract in self.submitContracts)
                 {
-                    UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
-                   
-                    //show alert to pick which contract to submit snipe to
-                    for (Contract *contract in self.submitContracts)
-                    {
-                        NSArray *nameArray = [contract.targetName componentsSeparatedByString:@" "];
-                        NSString *firstName = nameArray[0];
-                        
-                        [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in game: %@", firstName, contract.gameName]];
-                    }
+                    NSArray *nameArray = [contract.targetName componentsSeparatedByString:@" "];
+                    NSString *firstName = nameArray[0];
                     
-                    [pickContract show];
+                    [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in game: %@", firstName, contract.gameName]];
                 }
                 
-                else
-                {
-                    // only 1 contract!
-                    Contract *selectedContract = self.submitContracts[0];
-                    [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
-                    
-                    [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
-                }
+                [pickContract show];
+            }
+            
+            else
+            {
+                // only 1 contract!
+                Contract *selectedContract = self.submitContracts[0];
+                [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
                 
-                [self.activityIndicator setHidden:YES];
-                [self.activityIndicator stopAnimating];
-            });
+                [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
+            }
+            
+            [self.activityIndicator setHidden:YES];
+            [self.activityIndicator stopAnimating];
         });
-            
-    }
-    
-    else
-    {
-        // show UI alert for now
-        UIAlertView *defenseAlert = [[UIAlertView alloc] initWithTitle:@"The best defense is a strong offense" message:@"This feature is coming soon!" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
-        defenseAlert.alertViewStyle = UIAlertViewStyleDefault;
-        [defenseAlert show];
-    }
+    });
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
