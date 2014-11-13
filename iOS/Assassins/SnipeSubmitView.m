@@ -43,7 +43,7 @@
     //self.snipeImageHeightConstraint.constant = self.snipeImage.size.height;
     //self.snipeImageWidthConstraint.constant = self.snipeImage.size.width;
     [self.view layoutIfNeeded];
-    NSLog(@"width:%f, height:%f, screen widht:%f, screen height: %f with x coord:%f", self.snipeImage.size.width, self.snipeImage.size.height,self.view.frame.size.width, self.view.frame.size.height, self.snipeImageView.frame.origin.y);
+    //NSLog(@"width:%f, height:%f, screen widht:%f, screen height: %f with x coord:%f", self.snipeImage.size.width, self.snipeImage.size.height,self.view.frame.size.width, self.view.frame.size.height, self.snipeImageView.frame.origin.y);
     
     [self.commentField setHidden:YES];
     

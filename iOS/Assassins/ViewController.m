@@ -130,7 +130,7 @@ CGFloat scale;
             cameraAspectRatio = 4.0f/3.0f;
             CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
             scale = screenBounds.height / camViewHeight;
-            NSLog(@"scale is %f", scale);
+            //NSLog(@"scale is %f", scale);
             picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
             picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
             

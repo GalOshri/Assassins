@@ -97,7 +97,7 @@
     if (!inForefground)
     {
         [PFPush handlePush:userInfo];
-        // events: game created, someone sniped, someone contests, someoneone wins, someone brought back to life --> ALL GO TO GAME VIEW
+        /*// events: game created, someone sniped, someone contests, someoneone wins, someone brought back to life --> ALL GO TO GAME VIEW
         if ([userInfo valueForKey:@"contractId"] != nil) {
             // someone wants to verify snipe
             NSString *contractId = [userInfo objectForKey:@"contractId"];
@@ -110,7 +110,7 @@
             NSString *gameId = [userInfo objectForKey:@"gameId"];
             [self presentCameraView:gameId];
         }
-
+        */
     }
     
     // app is active, we send a local event

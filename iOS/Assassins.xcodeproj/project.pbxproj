@@ -312,7 +312,7 @@
 				0D277D0C198EE32E002362C6 /* Service */,
 				0DBF67101992100200AFF5F8 /* Models */,
 				0D277D0B198EE318002362C6 /* Images */,
-				DAADCE0A1A141B6A008177EE /* local notifications */,
+				DAADCE0A1A141B6A008177EE /* Local Notifications */,
 				0D52C4B2197E284A00E5E5B9 /* Images.xcassets */,
 				0D52C4A1197E284A00E5E5B9 /* Supporting Files */,
 			);
@@ -441,14 +441,14 @@
 			name = "Completed Contract Image ";
 			sourceTree = "<group>";
 		};
-		DAADCE0A1A141B6A008177EE /* local notifications */ = {
+		DAADCE0A1A141B6A008177EE /* Local Notifications */ = {
 			isa = PBXGroup;
 			children = (
 				DAADCE0B1A141B83008177EE /* AGPushNoteView.h */,
 				DAADCE0C1A141B83008177EE /* AGPushNoteView.m */,
 				DAADCE0D1A141B83008177EE /* AGPushNoteView.xib */,
 			);
-			name = "local notifications";
+			name = "Local Notifications";
 			sourceTree = "<group>";
 		};
 		DAD0DD6E198F78420075E69D /* Game Page */ = {
