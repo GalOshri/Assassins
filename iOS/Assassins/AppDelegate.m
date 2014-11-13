@@ -18,7 +18,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
     [Parse setApplicationId:@"VFGeqNO5kWHeylYJa7veoVIiBr77ER337hnJdfdm"
                   clientKey:@"zfTN95pYukQlNMQy2jKEF51DtiIkV2wUce3E903F"];
     
@@ -90,16 +89,19 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    UIApplicationState state = [UIApplication sharedApplication].applicationState;
+    BOOL inForefground = NO;
+
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive || [[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive)
+        inForefground = YES;
     
-    if (state != UIApplicationStateActive || state != UIApplicationStateInactive)
+    if (!inForefground)
     {
         [PFPush handlePush:userInfo];
-        
+        // events: game created, someone sniped, someone contests, someoneone wins, someone brought back to life --> ALL GO TO GAME VIEW
         if ([userInfo valueForKey:@"contractId"] != nil) {
             // someone wants to verify snipe
             NSString *contractId = [userInfo objectForKey:@"contractId"];
-            [self presentSnipeVerificationView:contractId];
+           // [self presentSnipeVerificationView:contractId];
         }
         
         else

@@ -889,8 +889,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvD-DM-NpW">
                                 <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3PE-Uo-F2I">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3PE-Uo-F2I">
                                         <rect key="frame" x="218" y="1" width="94" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="94" id="NSd-Xc-Wfs"/>
+                                            <constraint firstAttribute="height" constant="39" id="ebP-1E-1Ux"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -902,7 +906,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3PE-Uo-F2I" secondAttribute="trailing" constant="8" id="2Cg-Ge-t0b"/>
                                     <constraint firstAttribute="height" constant="41" id="7F1-jX-ZUI"/>
+                                    <constraint firstAttribute="bottom" secondItem="3PE-Uo-F2I" secondAttribute="bottom" constant="1" id="tAD-hO-AS9"/>
                                 </constraints>
                             </view>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type to comment" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dsb-w8-7if">
@@ -1005,8 +1011,12 @@
                                     <constraint firstAttribute="width" constant="304" id="HkI-Bk-BkG"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJK-OE-P5l">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJK-OE-P5l">
                                 <rect key="frame" x="8" y="528" width="116" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="cht-P8-6h6"/>
+                                    <constraint firstAttribute="height" constant="39" id="yOm-ea-ufZ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Mark as Invalid">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1026,6 +1036,8 @@
                             <constraint firstItem="gvD-DM-NpW" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="bottom" constant="8" id="IzY-El-AvJ"/>
                             <constraint firstAttribute="trailing" secondItem="nzP-cj-N98" secondAttribute="trailing" id="MnL-zl-jMr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gvD-DM-NpW" secondAttribute="trailing" constant="-16" id="Oho-so-MxZ"/>
+                            <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="wJK-OE-P5l" secondAttribute="bottom" constant="1" id="QmH-ZP-01j"/>
+                            <constraint firstItem="wJK-OE-P5l" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leading" constant="8" id="UYa-lT-df4"/>
                             <constraint firstItem="rtJ-mA-sKB" firstAttribute="top" secondItem="0jo-39-4NE" secondAttribute="bottom" id="cmE-bs-9pI"/>
                             <constraint firstItem="rtJ-mA-sKB" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leading" constant="8" id="cq9-9U-lIP"/>
                             <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="gvD-DM-NpW" secondAttribute="bottom" id="ee3-RA-mfY"/>
