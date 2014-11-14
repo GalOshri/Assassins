@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
 
 // @property (weak, nonatomic) IBOutlet UILabel *currentTargetLabel;
 
@@ -43,7 +44,7 @@
 @property (strong, nonatomic) NSArray *assassins;
 @property BOOL is2SectionsOrNah;
 @property BOOL isCompletedOrNah;
-
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -92,15 +93,110 @@
     [self.tableView setDelegate:self];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    [self updateGameItems];
+    
+    // set up table refreshing
+    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    tableViewController.tableView = self.tableView;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(updateGameItems) forControlEvents:UIControlEventValueChanged];
+    tableViewController.refreshControl = self.refreshControl;
+}
+
+ - (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // make status bar change color and add name
+    if (scrollView.contentOffset.y <= 40.0)
+        [self.statusBarView setAlpha:0.0];
+    
+    else if (scrollView.contentOffset.y >= 40.0 && scrollView.contentOffset.y <= 65)
+    {
+        [self.statusBarView setAlpha: 0.0 + (scrollView.contentOffset.y - 40) / 17];
+        [self.statusBarUsernameLabel setHidden:YES];
+        [self.statusBarBackArrow setHidden:YES];
+    }
+    
+    else
+    {
+        [self.statusBarView setAlpha:1.0];
+        [self.statusBarUsernameLabel setHidden:NO];
+        [self.statusBarBackArrow setHidden:NO];
+    }
+}
+
+- (IBAction)segmentChanged:(UISegmentedControl *)sender {
+    switch (self.segmentControl.selectedSegmentIndex)
+    {
+        // events
+        case 0:
+            // data
+            [self.tableView reloadData];
+            break;
+        
+        // players
+        case 1:
+            // if players array empty, fill
+            if ([self.assassins count] == 0)
+            {
+                // set activity indicator
+                [self.activityIndicatorView setHidden:NO];
+                [self.activityIndicatorView startAnimating];
+                
+                if (!self.game.isComplete)
+                {
+                    for (Assassin *assassin in self.assassins)
+                    {
+                        if(!assassin.isAlive)
+                            self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
+                    }
+
+                }
+                
+                // reload data stop spinner
+                [self.tableView reloadData];
+                [self.activityIndicatorView stopAnimating];
+                [self.activityIndicatorView setHidden:YES];
+            }
+            
+            else
+            {
+                // reload data stop spinner
+                [self.tableView reloadData];
+                [self.activityIndicatorView stopAnimating];
+                [self.activityIndicatorView setHidden:YES];
+            }
+            
+            break;
+            
+        case 2:
+            // set activity indicator
+            [self.activityIndicatorView setHidden:NO];
+            [self.activityIndicatorView startAnimating];
+            [self.tableView reloadData];
+            [self.activityIndicatorView setHidden:YES];
+            
+        default:
+            break;
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+- (void)updateGameItems
+{
     [self.activityIndicatorView startAnimating];
     
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // Add code here to do background processing
+        // Add code here to do background processing
         // call AssassinsService to fill lists with events
         self.completedContracts = [AssassinsService getCompletedContractsForGame:self.game.gameId];
         self.pendingContracts = [AssassinsService getPendingContractsForGame:self.game.gameId];
         self.assassins = [AssassinsService getAssassinListFromGame:self.game];
-    
+        
         dispatch_async( dispatch_get_main_queue(), ^{
             // Add code here to update the UI/send notifications based on the
             // results of the background processing
@@ -184,88 +280,12 @@
             [self.activityIndicatorView setHidden:YES];
         });
     });
-}
-
- - (void) scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    // make status bar change color and add name
-    if (scrollView.contentOffset.y <= 40.0)
-        [self.statusBarView setAlpha:0.0];
     
-    else if (scrollView.contentOffset.y >= 40.0 && scrollView.contentOffset.y <= 65)
-    {
-        [self.statusBarView setAlpha: 0.0 + (scrollView.contentOffset.y - 40) / 17];
-        [self.statusBarUsernameLabel setHidden:YES];
-        [self.statusBarBackArrow setHidden:YES];
-    }
-    
-    else
-    {
-        [self.statusBarView setAlpha:1.0];
-        [self.statusBarUsernameLabel setHidden:NO];
-        [self.statusBarBackArrow setHidden:NO];
-    }
-}
+    // update constraints and end refreshing
+    [self.refreshControl endRefreshing];
+    self.tableViewTopConstraint = 0;
+    [self.view layoutIfNeeded];
 
-- (IBAction)segmentChanged:(UISegmentedControl *)sender {
-    switch (self.segmentControl.selectedSegmentIndex)
-    {
-        // events
-        case 0:
-            // data
-            [self.tableView reloadData];
-            break;
-        
-        // players
-        case 1:
-            // if players array empty, fill
-            if ([self.assassins count] == 0)
-            {
-                // set activity indicator
-                [self.activityIndicatorView setHidden:NO];
-                [self.activityIndicatorView startAnimating];
-                
-                if (!self.game.isComplete)
-                {
-                    for (Assassin *assassin in self.assassins)
-                    {
-                        if(!assassin.isAlive)
-                            self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassinsAlive intValue] - 1)];
-                    }
-
-                }
-                
-                // reload data stop spinner
-                [self.tableView reloadData];
-                [self.activityIndicatorView stopAnimating];
-                [self.activityIndicatorView setHidden:YES];
-            }
-            
-            else
-            {
-                // reload data stop spinner
-                [self.tableView reloadData];
-                [self.activityIndicatorView stopAnimating];
-                [self.activityIndicatorView setHidden:YES];
-            }
-            
-            break;
-            
-        case 2:
-            // set activity indicator
-            [self.activityIndicatorView setHidden:NO];
-            [self.activityIndicatorView startAnimating];
-            [self.tableView reloadData];
-            [self.activityIndicatorView setHidden:YES];
-            
-        default:
-            break;
-    }
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Table view data source
