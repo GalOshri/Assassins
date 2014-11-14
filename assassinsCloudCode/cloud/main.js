@@ -238,11 +238,6 @@ Parse.Cloud.define("createGame", function(request, response) {
 	game.set("numberPendingSnipes", 0);
 
 
-	// Parse list of users (not sure if we can pass up user objects or just a list of IDs)
-
-	// TODO: go from facebook ID to parse ID
-	// create Promises
-
 	var userList = request.params.userList;
 	var userObjectPointerList = [];
 	var userObjectList = []
@@ -268,28 +263,6 @@ Parse.Cloud.define("createGame", function(request, response) {
 			});
 		}
 
-		// send a push notification to all people in game
-		var pushQuery = new Parse.Query(Parse.Installation);
-		pushQuery.containedIn('user', userObjectPointerList);
-		 
-		Parse.Push.send({
-		  where: pushQuery, // Set our Installation query
-		  data: {
-		  	alert: "You are now an assassin in the game: " + gameName,
-			"gameId" : game.id
-		  	}
-		  },
-			{
-		  		success: function()
-		  		{
-		  			console.log("we pushed game creation");
-		  		},
-		  		error: function(error)
-		  		{
-		  			console.log("oh-oh game creation: " + respose.code + " " + response.error);
-		  		}
-		  	}
-		);
 		return promise;
 
 	}).then(function() {
@@ -367,6 +340,29 @@ Parse.Cloud.define("createGame", function(request, response) {
 			    	}
 			    });
 			}
+
+			// send a push notification to all people in game
+			var pushQuery = new Parse.Query(Parse.Installation);
+			pushQuery.containedIn('user', userObjectPointerList);
+			 
+			Parse.Push.send({
+			  where: pushQuery, // Set our Installation query
+			  data: {
+			  	alert: "You are now an assassin in the game: " + gameName,
+				"gameId" : game.id
+			  	}
+			  },
+				{
+			  		success: function()
+			  		{
+			  			console.log("we pushed game creation");
+			  		},
+			  		error: function(error)
+			  		{
+			  			console.log("oh-oh game creation: " + respose.code + " " + response.error);
+			  		}
+			  	}
+			);
 		  },
 		  error: function(game, error) {
 		    // Execute any logic that should take place if the save fails.

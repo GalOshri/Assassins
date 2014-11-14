@@ -114,7 +114,22 @@
 
 - (IBAction)createGame:(id)sender
 {
-    if ([self.selectedFriends count] > 0)
+
+    if ([self.selectedFriends count] <= 0)
+    {
+        UIAlertView *incomplete = [[UIAlertView alloc] initWithTitle:@"choose friends to play with!" message:@"please select at least 1 friend to play an assassins game with" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        
+        [incomplete show];
+    }
+
+    else if ([self.gameNameField.text length] <=0)
+    {
+        UIAlertView *noGameName = [[UIAlertView alloc] initWithTitle:@"create a game title" message:@"come up with a name for your game!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        
+        [noGameName show];
+    }
+    
+    else
     {
     
         // create array of facebook ID
@@ -144,14 +159,12 @@
 
 # pragma mark - Friend picker work
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
+    [self.selectedFriends removeAllObjects];
     NSMutableString *text = [[NSMutableString alloc] initWithString:@""];
-    
     // we pick up the users from the selection, and create a string that we use to update the text view
     for (id<FBGraphUser> user in self.friendPickerController.selection)
     {
-        if (![self.selectedFriends containsObject:user])
-        {
-            if ([self.selectedPlayersTextView.text isEqualToString:@"no friends selected"] && [text isEqualToString:@""])
+            if ([text isEqualToString:@""])
                 text = [NSMutableString stringWithFormat:@"%@",user.name];
             else
             {
@@ -160,7 +173,6 @@
             }
             
             [self.selectedFriends addObject:user];
-        }
     }
     
     [self fillTextBoxAndDismiss:text];
@@ -173,10 +185,10 @@
 }
 
 - (void)fillTextBoxAndDismiss:(NSString *)text {
-    if ([self.selectedPlayersTextView.text isEqualToString:@"no friends selected"])
+    if (![text isEqualToString:@""])
         self.selectedPlayersTextView.text = text;
     else
-        self.selectedPlayersTextView.text = [NSString stringWithFormat:@"%@%@", self.selectedPlayersTextView.text, text];
+        self.selectedPlayersTextView.text = @"no friends selected";
     
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

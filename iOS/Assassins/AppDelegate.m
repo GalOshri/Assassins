@@ -91,7 +91,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    BOOL inForefground = NO;
+    //BOOL inForefground = NO;
 
     /*if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive || [[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive)
         inForefground = YES;
@@ -130,18 +130,23 @@
 - (void)presentCameraView:(NSString *)gameId
 {
     UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ViewController *presentingVC = [[UIApplication sharedApplication] keyWindow].rootViewController;
-    ViewController* vc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    ViewController *pvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    UIViewController * vc = self.window.rootViewController;
+    //vc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    /*
     if (presentingVC.presentedViewController)
     {
         [presentingVC.presentedViewController presentViewController:vc animated:YES completion:nil];
     }
     
     else
-        [presentingVC presentViewController:vc animated:YES completion:nil];
-    vc.goToGameId = gameId;
-    [self.window.rootViewController presentViewController:vc animated:NO completion:NULL];
+        [presentingVC presentViewController:vc animated:YES completion:nil];*/
+    
+    pvc.goToGameId = gameId;
+    
+    vc = pvc;
+    [self.window makeKeyAndVisible];
     
 }
 

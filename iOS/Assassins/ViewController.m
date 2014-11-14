@@ -180,11 +180,11 @@ CGFloat scale;
         [self showLogInAndSignUpView];
     }
     
-    /*if (self.goToGameId)
+    if (self.goToGameId)
     {
         // self.sendToPendingSnipe = YES;
         [self performSegueWithIdentifier:@"SegueToUserView" sender:self]; // NOPENDING
-    }*/
+    }
 }
 
 - (void)showLogInAndSignUpView
