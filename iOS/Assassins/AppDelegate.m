@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-#import "PendingContractsTableViewController.h"
 #import "AssassinsService.h"
 #import "ViewController.h"
 #import "AGPushNoteView.h"
@@ -76,6 +75,9 @@
     // self.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
     */
     }
+    
+    self.isInForeground = YES;
+    
     return YES;
 }
 
@@ -91,26 +93,27 @@
     
     BOOL inForefground = NO;
 
-    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive || [[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive)
+    /*if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive || [[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive)
         inForefground = YES;
+    */
     
-    if (!inForefground)
+    if (!self.isInForeground)
     {
         [PFPush handlePush:userInfo];
-        /*// events: game created, someone sniped, someone contests, someoneone wins, someone brought back to life --> ALL GO TO GAME VIEW
+        /*// events: game created, someone sniped, someone contests, someoneone wins, someone brought back to life
+        //  --> ALL GO TO GAME VIEW
         if ([userInfo valueForKey:@"contractId"] != nil) {
             // someone wants to verify snipe
             NSString *contractId = [userInfo objectForKey:@"contractId"];
-           // [self presentSnipeVerificationView:contractId];
-        }
+           // [self 
+         */
         
-        else
+        if ([userInfo valueForKey:@"gameId"] != nil)
         {
             // game was won
             NSString *gameId = [userInfo objectForKey:@"gameId"];
             [self presentCameraView:gameId];
         }
-        */
     }
     
     // app is active, we send a local event
@@ -124,24 +127,19 @@
     }
 }
 
-- (void)presentSnipeVerificationView:(NSString *)contractId
-{
-    PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
-    PFObject *contractObject = [query getObjectWithId:contractId];
-    
-    Contract *contract = [AssassinsService getContractFromContractObject:contractObject];
-    
-    UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PendingContractsTableViewController* pctvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"PendingContractsView"];
-    pctvc.goToContract = contract;
-    [self.window.rootViewController presentViewController:pctvc animated:YES completion:NULL];
-}
-
 - (void)presentCameraView:(NSString *)gameId
 {
-    
-     UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController *presentingVC = [[UIApplication sharedApplication] keyWindow].rootViewController;
     ViewController* vc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    
+    if (presentingVC.presentedViewController)
+    {
+        [presentingVC.presentedViewController presentViewController:vc animated:YES completion:nil];
+    }
+    
+    else
+        [presentingVC presentViewController:vc animated:YES completion:nil];
     vc.goToGameId = gameId;
     [self.window.rootViewController presentViewController:vc animated:NO completion:NULL];
     
@@ -162,7 +160,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    self.isInForeground = NO;
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -170,7 +169,9 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    // self.isInForeground = YES;
 }
+
 
 
 - (void)applicationWillTerminate:(UIApplication *)application

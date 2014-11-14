@@ -275,7 +275,8 @@ Parse.Cloud.define("createGame", function(request, response) {
 		Parse.Push.send({
 		  where: pushQuery, // Set our Installation query
 		  data: {
-		  	alert: "You are now an assassin in the game: " + gameName
+		  	alert: "You are now an assassin in the game: " + gameName,
+			"gameId" : game.id
 		  	}
 		  },
 			{
@@ -455,7 +456,7 @@ Parse.Cloud.define("startPendingContractProcess", function(request, response) {
 		  where: pushQuery, // Set our Installation query
 		  data: {
 		  	alert: targetName + " challenges a snipe! Help confirm",
-		  	"contractId" : contractId
+		  	"gameId" : gameId
 		  	}
 		  },
 			{

@@ -20,6 +20,7 @@
 @interface UserTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
+@property (weak, nonatomic) IBOutlet UIView *statusBarBackground;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 @property (strong, nonatomic) IBOutlet UIView *backgroundHeaderView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
@@ -29,14 +30,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusBarUsernameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *statusBarCameraIcon;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
 
-
-// @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
 
 @property (strong, nonatomic) NSMutableArray *games;
 @property (strong, nonatomic) NSMutableArray *pastGames;
 @property (strong, nonatomic) NSMutableDictionary *cellContracts;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+
 // @property (strong, nonatomic) NSCache *cellCache;
+// @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
 
 @end
 
@@ -101,59 +104,17 @@
     // initiate self.cellContracts, pastGames, and cellCach
     self.cellContracts = [[NSMutableDictionary alloc] init];
     self.pastGames = [[NSMutableArray alloc] init];
-    NSMutableArray *gameIdsForCurrentGames = [[NSMutableArray alloc] init];
     
+    // update tables
+    [self updateTables];
     
-    // get objects for current games
-    [self.activityIndicatorView startAnimating];
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // Add code here to do background processing
-        self.games = [[AssassinsService getGameList:YES] mutableCopy];
-        
-        for(Game *currentGame in self.games)
-        {
-            [gameIdsForCurrentGames addObject: currentGame.gameId];
-        }
-        
-        self.cellContracts = [AssassinsService getContractsForGames:gameIdsForCurrentGames];
-        
-        dispatch_async( dispatch_get_main_queue(), ^{
-            // Add code here to update the UI/send notifications based on the
-            // results of the background processing
-            
-            UIImage *backgroundImg = nil;
-            for (NSObject *obj in [self.profilePicture subviews]) {
-                if ([obj isMemberOfClass:[UIImageView class]]) {
-                    UIImageView *objImg = (UIImageView *)obj;
-                    backgroundImg = objImg.image;
-                    break;
-                }
-            }
-
-            // reload data stop spinner
-            [self.tableView reloadData];
-            // [self.activityIndicatorView stopAnimating];
-            [self.activityIndicatorView setHidden:YES];
-        });
-    });
+    // set up table refreshing
+    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    tableViewController.tableView = self.tableView;
     
-    
-    // get objects for past games
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // Add code here to do background processing
-        self.pastGames = [[AssassinsService getGameList:NO] mutableCopy];
-        
-        dispatch_async( dispatch_get_main_queue(), ^{
-            // Add code here to update the UI/send notifications based on the
-            // results of the background processing
-            
-            // reload data stop spinner
-            [self.tableView reloadData];
-            [self.activityIndicatorView stopAnimating];
-            [self.activityIndicatorView setHidden:YES];
-        });
-    });
-
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(updateTables) forControlEvents:UIControlEventValueChanged];
+    tableViewController.refreshControl = self.refreshControl;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -198,8 +159,6 @@
         [self.statusBarUsernameLabel setHidden:NO];
         [self.statusBarCameraIcon setHidden:NO];
     }
-    
-    // NSLog(@"%f",scrollView.contentOffset.y);
 }
 
 
@@ -231,7 +190,67 @@
             break;
     }
 }
+
+- (void) updateTables
+{
+    NSMutableArray *gameIdsForCurrentGames = [[NSMutableArray alloc] init];
+    
+    // get objects for current games
+    [self.activityIndicatorView startAnimating];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Add code here to do background processing
+        self.games = [[AssassinsService getGameList:YES] mutableCopy];
+        
+        for(Game *currentGame in self.games)
+        {
+            [gameIdsForCurrentGames addObject: currentGame.gameId];
+        }
+        
+        self.cellContracts = [AssassinsService getContractsForGames:gameIdsForCurrentGames];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // Add code here to update the UI/send notifications based on the
+            // results of the background processing
             
+            UIImage *backgroundImg = nil;
+            for (NSObject *obj in [self.profilePicture subviews]) {
+                if ([obj isMemberOfClass:[UIImageView class]]) {
+                    UIImageView *objImg = (UIImageView *)obj;
+                    backgroundImg = objImg.image;
+                    break;
+                }
+            }
+            
+            // reload data stop spinner
+            [self.tableView reloadData];
+            // [self.activityIndicatorView stopAnimating];
+            [self.activityIndicatorView setHidden:YES];
+        });
+    });
+    
+    
+    // get objects for past games
+    [self.activityIndicatorView startAnimating];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Add code here to do background processing
+        self.pastGames = [[AssassinsService getGameList:NO] mutableCopy];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // Add code here to update the UI/send notifications based on the
+            // results of the background processing
+            
+            // reload data stop spinner
+            [self.tableView reloadData];
+            [self.activityIndicatorView stopAnimating];
+            [self.activityIndicatorView setHidden:YES];
+        });
+    });
+    
+    [self.refreshControl endRefreshing];
+    self.tableViewTopConstraint = 0;
+    [self.view layoutIfNeeded];
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

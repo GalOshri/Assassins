@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *flipCamera;
 @property (weak, nonatomic) IBOutlet UIButton *snipeNotificationButton;
 @property BOOL flashMode;
-@property BOOL sendToPendingSnipe;
+@property BOOL sendToGame;
 @property BOOL hasLoadedCamera;
 
 
@@ -81,15 +81,24 @@ CGFloat scale;
             
                 UserTableViewController *utvc = (UserTableViewController *)segue.destinationViewController;
                 
-                Game *selectedGame = [AssassinsService getGameWithId:self.goToGameId];
-                self.goToGameId = nil;
-                utvc.goToGame = selectedGame;
+                dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    // call AssassinsService to get game
+                    Game *selectedGame = [AssassinsService getGameWithId:self.goToGameId];
+                    
+                    dispatch_async( dispatch_get_main_queue(), ^{
+                        self.goToGameId = nil;
+                        utvc.goToGame = selectedGame;
+                    });
+                });
             }
             
-            if (self.sendToPendingSnipe) {
+            /*
+            if (self.sendToPendingSnipe) 
+            {
                 UserTableViewController *utvc = (UserTableViewController *)segue.destinationViewController;
                 utvc.goToPendingNotifcations = self.sendToPendingSnipe;
             }
+            */
         }
     }
 }
@@ -153,7 +162,7 @@ CGFloat scale;
         // noop
     }];
     
-    self.sendToPendingSnipe = NO;
+    // self.sendToPendingSnipe = NO;
     
     // Log in / sign up if no user signed in
     if (![PFUser currentUser])
@@ -171,11 +180,11 @@ CGFloat scale;
         [self showLogInAndSignUpView];
     }
     
-    if (self.goToGameId)
+    /*if (self.goToGameId)
     {
-        self.sendToPendingSnipe = YES;
+        // self.sendToPendingSnipe = YES;
         [self performSegueWithIdentifier:@"SegueToUserView" sender:self]; // NOPENDING
-    }
+    }*/
 }
 
 - (void)showLogInAndSignUpView
@@ -261,7 +270,7 @@ CGFloat scale;
 
 - (IBAction)segueToUserToPendingContracts:(id)sender
 {
-    self.sendToPendingSnipe = YES;
+    // self.sendToPendingSnipe = YES;
     [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
 }
 

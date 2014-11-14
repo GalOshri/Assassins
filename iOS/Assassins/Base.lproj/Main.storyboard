@@ -314,7 +314,7 @@
         <!--User Table View Controller-->
         <scene sceneID="pgR-4R-yDP">
             <objects>
-                <viewController id="ReM-Ox-LBW" customClass="UserTableViewController" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="ReM-Ox-LBW" customClass="UserTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ecj-es-ktv"/>
                         <viewControllerLayoutGuide type="bottom" id="GeJ-Rf-UR0"/>
@@ -323,8 +323,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="141" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6fc-Ls-zJF">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NE3-5r-omB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <color key="backgroundColor" red="0.1176458865" green="0.1176458865" blue="0.1176458865" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6fc-Ls-zJF">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="fqu-b9-9Fk">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
@@ -397,10 +401,6 @@
                                                         <constraint firstAttribute="height" constant="100" id="V4v-Kt-5kv"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NE3-5r-omB">
-                                                    <rect key="frame" x="0.0" y="-600" width="320" height="622"/>
-                                                    <color key="backgroundColor" red="0.1176458865" green="0.1176458865" blue="0.1176458865" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -452,14 +452,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-fK-VEq" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="11" y="45" width="60" height="60"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="4LP-Dv-cZJ"/>
-                                                        <constraint firstAttribute="width" constant="60" id="Tgj-a5-gZ4"/>
-                                                    </constraints>
-                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWl-ev-Szn">
                                                     <rect key="frame" x="8" y="30" width="256" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -475,6 +467,14 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-fK-VEq" customClass="FBProfilePictureView">
+                                                    <rect key="frame" x="11" y="45" width="60" height="60"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="4LP-Dv-cZJ"/>
+                                                        <constraint firstAttribute="width" constant="60" id="Tgj-a5-gZ4"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="rSN-VG-z3Y" secondAttribute="bottom" constant="26" id="2UT-Fx-t45"/>
@@ -534,15 +534,11 @@
                                     <constraint firstItem="iE9-pt-QuS" firstAttribute="top" secondItem="OFZ-jH-Q9w" secondAttribute="top" constant="11" id="laR-zx-jj7"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-5A-sL4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                <color key="backgroundColor" red="0.1176458865" green="0.1176458865" blue="0.1176458865" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="6fc-Ls-zJF" secondAttribute="centerX" id="3hN-x2-QE5"/>
-                            <constraint firstItem="6fc-Ls-zJF" firstAttribute="top" secondItem="rEZ-zC-r7K" secondAttribute="top" id="5h3-xa-5qS"/>
+                            <constraint firstItem="6fc-Ls-zJF" firstAttribute="top" secondItem="ecj-es-ktv" secondAttribute="bottom" id="Kg9-C7-D24"/>
                             <constraint firstAttribute="trailing" secondItem="6fc-Ls-zJF" secondAttribute="trailing" id="Nqo-XZ-Njj"/>
                             <constraint firstItem="6fc-Ls-zJF" firstAttribute="leading" secondItem="rEZ-zC-r7K" secondAttribute="leading" id="Y0h-uZ-tNX"/>
                             <constraint firstItem="OFZ-jH-Q9w" firstAttribute="top" secondItem="ecj-es-ktv" secondAttribute="bottom" id="eyH-F7-wxm"/>
@@ -551,6 +547,7 @@
                             <constraint firstItem="GeJ-Rf-UR0" firstAttribute="top" secondItem="6fc-Ls-zJF" secondAttribute="bottom" id="rAA-43-bWt"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="t6g-33-kth" id="0Vy-Si-qge"/>
                         <outlet property="backgroundHeaderView" destination="wkF-Ov-wc5" id="bNr-ZK-C8m"/>
@@ -558,10 +555,12 @@
                         <outlet property="lifetimeSnipesLabel" destination="RQc-jW-vnl" id="MZJ-V9-DvP"/>
                         <outlet property="profilePicture" destination="hTB-EG-r3w" id="kTD-hV-JYL"/>
                         <outlet property="segmentControl" destination="O0w-IQ-SDg" id="vsx-A1-pgn"/>
+                        <outlet property="statusBarBackground" destination="NE3-5r-omB" id="LeI-41-Ktv"/>
                         <outlet property="statusBarCameraIcon" destination="Iqd-tM-B5Y" id="Jy7-Dq-uQk"/>
                         <outlet property="statusBarUsernameLabel" destination="iE9-pt-QuS" id="zZg-cd-wAv"/>
                         <outlet property="statusBarView" destination="OFZ-jH-Q9w" id="B0S-48-TT3"/>
                         <outlet property="tableView" destination="6fc-Ls-zJF" id="gj8-NK-Zn7"/>
+                        <outlet property="tableViewTopConstraint" destination="eyH-F7-wxm" id="SNF-ks-WQD"/>
                         <outlet property="usernameLabel" destination="65W-0O-oeG" id="X2t-ZX-hR5"/>
                     </connections>
                 </viewController>
