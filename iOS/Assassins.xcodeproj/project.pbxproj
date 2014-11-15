@@ -57,8 +57,6 @@
 		DAADCE0E1A141B83008177EE /* AGPushNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADCE0C1A141B83008177EE /* AGPushNoteView.m */; };
 		DAADCE0F1A141B83008177EE /* AGPushNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAADCE0D1A141B83008177EE /* AGPushNoteView.xib */; };
 		DAADCE1F1A16EA7A008177EE /* tutorialPage1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DAADCE1E1A16EA7A008177EE /* tutorialPage1.jpg */; };
-		DAADCE211A16F5E7008177EE /* facebookLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADCE201A16F5E7008177EE /* facebookLogin.png */; };
-		DAADCE231A16F8EC008177EE /* userPageSnapshot.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADCE221A16F8EC008177EE /* userPageSnapshot.png */; };
 		DAD082FA19FAD9CA00B66DB7 /* SafeZoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */; };
 		DAD0DD331988DC840075E69D /* cameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD321988DC840075E69D /* cameraButton.png */; };
 		DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD361988E0BF0075E69D /* noFlash.png */; };
@@ -158,8 +156,6 @@
 		DAADCE0C1A141B83008177EE /* AGPushNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPushNoteView.m; path = AGPushNote/AGPushNoteView.m; sourceTree = "<group>"; };
 		DAADCE0D1A141B83008177EE /* AGPushNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AGPushNoteView.xib; path = AGPushNote/AGPushNoteView.xib; sourceTree = "<group>"; };
 		DAADCE1E1A16EA7A008177EE /* tutorialPage1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorialPage1.jpg; sourceTree = "<group>"; };
-		DAADCE201A16F5E7008177EE /* facebookLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookLogin.png; sourceTree = "<group>"; };
-		DAADCE221A16F8EC008177EE /* userPageSnapshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userPageSnapshot.png; sourceTree = "<group>"; };
 		DAD082F819FAD9CA00B66DB7 /* SafeZoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeZoneTableViewCell.h; sourceTree = "<group>"; };
 		DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeZoneTableViewCell.m; sourceTree = "<group>"; };
 		DAD0DD321988DC840075E69D /* cameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraButton.png; sourceTree = "<group>"; };
@@ -234,8 +230,6 @@
 		0D277D0B198EE318002362C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				DAADCE201A16F5E7008177EE /* facebookLogin.png */,
-				DAADCE221A16F8EC008177EE /* userPageSnapshot.png */,
 				DAADCE1E1A16EA7A008177EE /* tutorialPage1.jpg */,
 				DAAD9C3B1A0014F1006DF466 /* userSilhouettePending.png */,
 				DAAD9C3719FF1D67006DF466 /* userSilhouetteDead.png */,
@@ -581,11 +575,9 @@
 				0D52C4B3197E284A00E5E5B9 /* Images.xcassets in Resources */,
 				DA28DE9E19C5061C0015BE4C /* backArrowNoBackground.png in Resources */,
 				DAAD9C3819FF1D67006DF466 /* userSilhouetteDead.png in Resources */,
-				DAADCE231A16F8EC008177EE /* userPageSnapshot.png in Resources */,
 				DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */,
 				DA8DF85D19D78B4E000F9412 /* spyBckgnd.png in Resources */,
 				DAADCE0F1A141B83008177EE /* AGPushNoteView.xib in Resources */,
-				DAADCE211A16F5E7008177EE /* facebookLogin.png in Resources */,
 				DAD0DD39198A041A0075E69D /* snipeCircle.png in Resources */,
 				DAD0DD65198F59730075E69D /* cameraIconSmall.png in Resources */,
 				DA8DF85F19D78CC5000F9412 /* cameraIconButton.png in Resources */,
