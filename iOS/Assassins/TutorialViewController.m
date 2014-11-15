@@ -24,7 +24,7 @@
     
     self.tutorialScrollView.delegate = self;
     
-    self.images = @[@"spyBckgnd.png", @"spyBckgnd.png", @"spyBckgnd.png"];
+    self.images = @[@"tutorialPage1.jpg", @"spyBckgnd.png", @"spyBckgnd.png"];
     
     self.numTutorialImages = [self.images count];
     self.currentTutorialImage = 0;

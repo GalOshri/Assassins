@@ -113,23 +113,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-iy-piV">
-                                <rect key="frame" x="0.0" y="51" width="320" height="461"/>
-                            </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="9hN-Dh-xaE">
-                                <rect key="frame" x="141" y="502" width="39" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="PXK-kP-zkp"/>
-                                    <constraint firstAttribute="width" constant="39" id="Vc7-Bp-wUH"/>
-                                </constraints>
+                                <rect key="frame" x="141" y="10" width="39" height="37"/>
                                 <color key="pageIndicatorTintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="currentPageIndicatorTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUL-jS-AaR">
-                                <rect key="frame" x="137" y="530" width="46" height="30"/>
+                                <rect key="frame" x="137" y="536" width="46" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="3pl-JN-U9r"/>
-                                    <constraint firstAttribute="width" constant="46" id="CTF-nO-d9h"/>
+                                    <constraint firstAttribute="height" constant="30" id="fGl-fP-620"/>
+                                    <constraint firstAttribute="width" constant="46" id="yau-Nk-0Ty"/>
                                 </constraints>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,23 +131,20 @@
                                     <segue destination="Ceg-EU-L1a" kind="unwind" unwindAction="unwindToCamera:" id="6Lq-AF-Z3R"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Assassins Tutorial" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQ3-sw-Rhv">
-                                <rect key="frame" x="92" y="28" width="137" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-iy-piV">
+                                <rect key="frame" x="0.0" y="37" width="320" height="499"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="FUL-jS-AaR" secondAttribute="centerX" id="EX9-Od-HZZ"/>
-                            <constraint firstAttribute="centerX" secondItem="9hN-Dh-xaE" secondAttribute="centerX" constant="-0.5" id="EnJ-O8-10c"/>
-                            <constraint firstItem="OaT-iy-piV" firstAttribute="top" secondItem="6Qd-co-ZfI" secondAttribute="bottom" constant="31" id="L2k-Qs-7fn"/>
-                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="FUL-jS-AaR" secondAttribute="bottom" constant="8" id="QK7-ID-0vq"/>
-                            <constraint firstItem="OaT-iy-piV" firstAttribute="leading" secondItem="Bba-fy-sP1" secondAttribute="leading" id="VN9-ax-YmF"/>
-                            <constraint firstAttribute="trailing" secondItem="OaT-iy-piV" secondAttribute="trailing" id="fEI-3G-sCc"/>
-                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="9hN-Dh-xaE" secondAttribute="bottom" constant="29" id="gNo-ef-dhJ"/>
-                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="OaT-iy-piV" secondAttribute="bottom" constant="56" id="l1K-aD-ccy"/>
+                            <constraint firstAttribute="trailing" secondItem="OaT-iy-piV" secondAttribute="trailing" id="0QM-DW-gUf"/>
+                            <constraint firstItem="OaT-iy-piV" firstAttribute="top" secondItem="6Qd-co-ZfI" secondAttribute="bottom" constant="17" id="HkA-df-ehO"/>
+                            <constraint firstAttribute="centerX" secondItem="9hN-Dh-xaE" secondAttribute="centerX" constant="-0.5" id="IMV-b0-6B8"/>
+                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="OaT-iy-piV" secondAttribute="bottom" constant="32" id="Ldg-0K-mrh"/>
+                            <constraint firstItem="OaT-iy-piV" firstAttribute="leading" secondItem="Bba-fy-sP1" secondAttribute="leading" id="QZS-22-rBy"/>
+                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="FUL-jS-AaR" secondAttribute="bottom" constant="2" id="Tfr-kX-6Xq"/>
+                            <constraint firstItem="9hN-Dh-xaE" firstAttribute="top" secondItem="6Qd-co-ZfI" secondAttribute="bottom" constant="-10" id="b11-ft-25c"/>
+                            <constraint firstAttribute="centerX" secondItem="FUL-jS-AaR" secondAttribute="centerX" id="fEC-aw-fJv"/>
                         </constraints>
                     </view>
                     <connections>
