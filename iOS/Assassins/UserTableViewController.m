@@ -398,4 +398,29 @@
     return UIStatusBarStyleLightContent;
 }
 
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+        {
+            NSString *urlString = @"mailto:kefiapp@gmail.com?subject=Feedback%20On%20Assassins";
+            NSURL *url = [NSURL URLWithString:urlString];
+            [[UIApplication sharedApplication] openURL:url];
+            break;
+        }
+        case 1:
+            [self performSegueWithIdentifier:@"SegueToTermsOfService" sender:self];
+            break;
+        case 2:
+            [self performSegueWithIdentifier:@"SegueToPrivacyPolicy" sender:self];
+            break;
+        case 3:
+            NSLog(@"Cancel");
+        default:
+            break;
+            // terms of service, feedback, privacy policy,
+    }
+    
+}
+
 @end

@@ -36,6 +36,8 @@
 		0D52C4C4197E284A00E5E5B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D52C4C2197E284A00E5E5B9 /* InfoPlist.strings */; };
 		0D52C4C6197E284A00E5E5B9 /* AssassinsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D52C4C5197E284A00E5E5B9 /* AssassinsTests.m */; };
 		0DB855C21A107644008C824F /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB855C11A107644008C824F /* TutorialViewController.m */; };
+		0DB855CB1A1807A0008C824F /* TermsOfServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB855CA1A1807A0008C824F /* TermsOfServiceView.m */; };
+		0DB855CE1A1807B2008C824F /* PrivacyPolicyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB855CD1A1807B2008C824F /* PrivacyPolicyView.m */; };
 		0DB8EAC51980E8440040B435 /* SnipeSubmitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */; };
 		0DBF67131992101B00AFF5F8 /* Contract.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67121992101B00AFF5F8 /* Contract.m */; };
 		0DBF67161998542C00AFF5F8 /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF67151998542C00AFF5F8 /* GameCell.m */; };
@@ -126,6 +128,10 @@
 		0D52C4C5197E284A00E5E5B9 /* AssassinsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssassinsTests.m; sourceTree = "<group>"; };
 		0DB855C01A107644008C824F /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		0DB855C11A107644008C824F /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
+		0DB855C91A1807A0008C824F /* TermsOfServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOfServiceView.h; sourceTree = "<group>"; };
+		0DB855CA1A1807A0008C824F /* TermsOfServiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOfServiceView.m; sourceTree = "<group>"; };
+		0DB855CC1A1807B2008C824F /* PrivacyPolicyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyView.h; sourceTree = "<group>"; };
+		0DB855CD1A1807B2008C824F /* PrivacyPolicyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyView.m; sourceTree = "<group>"; };
 		0DB8EAC31980E8440040B435 /* SnipeSubmitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnipeSubmitView.h; sourceTree = "<group>"; };
 		0DB8EAC41980E8440040B435 /* SnipeSubmitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnipeSubmitView.m; sourceTree = "<group>"; };
 		0DBF67111992101B00AFF5F8 /* Contract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contract.h; sourceTree = "<group>"; };
@@ -309,6 +315,10 @@
 			isa = PBXGroup;
 			children = (
 				0D52C4AC197E284A00E5E5B9 /* Main.storyboard */,
+				0DB855C91A1807A0008C824F /* TermsOfServiceView.h */,
+				0DB855CA1A1807A0008C824F /* TermsOfServiceView.m */,
+				0DB855CC1A1807B2008C824F /* PrivacyPolicyView.h */,
+				0DB855CD1A1807B2008C824F /* PrivacyPolicyView.m */,
 				0D8B2C4F19B5236100552D11 /* Camera Page */,
 				0D8B2C5019B5237600552D11 /* Snipe Submit Page */,
 				DAD0DD84199359450075E69D /* User Page */,
@@ -610,6 +620,7 @@
 				DAAB9A4219EB613600FC4A14 /* CommentTableViewCell.m in Sources */,
 				0DB855C21A107644008C824F /* TutorialViewController.m in Sources */,
 				0DBF67131992101B00AFF5F8 /* Contract.m in Sources */,
+				0DB855CB1A1807A0008C824F /* TermsOfServiceView.m in Sources */,
 				0D52C4B1197E284A00E5E5B9 /* ViewController.m in Sources */,
 				0D52C4AB197E284A00E5E5B9 /* AppDelegate.m in Sources */,
 				DAD0DD83199359360075E69D /* UserTableViewController.m in Sources */,
@@ -626,6 +637,7 @@
 				DAD0DD68198F75E30075E69D /* GameTableViewController.m in Sources */,
 				DA42AB6D19A605F100356E7A /* CreateGameViewController.m in Sources */,
 				DAD0DD75199092800075E69D /* VerifySnipeViewController.m in Sources */,
+				0DB855CE1A1807B2008C824F /* PrivacyPolicyView.m in Sources */,
 				DAAB9A4519EB65EB00FC4A14 /* ContractComment.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
 				DA25AA591A098F04006BE177 /* ParticipantTableViewCell.m in Sources */,

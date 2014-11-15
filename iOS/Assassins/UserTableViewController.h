@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #include "Game.h"
 
-@interface UserTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface UserTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) Game *goToGame;
 //@property BOOL goToPendingNotifcations;
+
+-(IBAction)showActionSheet:(id)sender;
 
 @end
