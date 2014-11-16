@@ -75,7 +75,6 @@
     
     // backgrounds, imgs, and titles
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    self.navigationItem.title= self.game.name;
     [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
 
     [[self.currentTargetProfilePicture layer] setCornerRadius: self.currentTargetProfilePicture.frame.size.width/2];
@@ -102,6 +101,7 @@
     // unhide navigationbar
     [super viewWillAppear:YES];
     [[self navigationController] setNavigationBarHidden:NO];
+    self.navigationItem.title= self.game.name;
 }
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender {
