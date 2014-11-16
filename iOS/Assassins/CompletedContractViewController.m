@@ -38,6 +38,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // hide navigation controller
+    [[self navigationController] setNavigationBarHidden:YES];
     // Do any additional setup after loading the view.
     [self.contractImage setImage:self.contract.image];
     
