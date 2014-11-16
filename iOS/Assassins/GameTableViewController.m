@@ -22,22 +22,15 @@
 @interface GameTableViewController ()
 
 // @property (weak, nonatomic) IBOutlet UIImageView *gameImage;
-@property (strong, nonatomic) IBOutlet UILabel *gameNameLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *currentTargetUsername;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *currentTargetProfilePicture;
-@property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UILabel *statusBarUsernameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *statusBarBackArrow;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
-
-// @property (weak, nonatomic) IBOutlet UILabel *currentTargetLabel;
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) NSMutableArray *pendingContracts;
@@ -79,11 +72,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // backgrounds, imgs, and titles
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.statusBarView setAlpha:0.0];
-    self.statusBarUsernameLabel.text = self.game.name;
+    self.navigationItem.title= self.game.name;
     [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
-    self.gameNameLabel.text = self.game.name;
 
     [[self.currentTargetProfilePicture layer] setCornerRadius: self.currentTargetProfilePicture.frame.size.width/2];
     [[self.currentTargetProfilePicture layer] setMasksToBounds:YES];
@@ -102,27 +95,6 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(updateGameItems) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = self.refreshControl;
-}
-
- - (void) scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    // make status bar change color and add name
-    if (scrollView.contentOffset.y <= 40.0)
-        [self.statusBarView setAlpha:0.0];
-    
-    else if (scrollView.contentOffset.y >= 40.0 && scrollView.contentOffset.y <= 65)
-    {
-        [self.statusBarView setAlpha: 0.0 + (scrollView.contentOffset.y - 40) / 17];
-        [self.statusBarUsernameLabel setHidden:YES];
-        [self.statusBarBackArrow setHidden:YES];
-    }
-    
-    else
-    {
-        [self.statusBarView setAlpha:1.0];
-        [self.statusBarUsernameLabel setHidden:NO];
-        [self.statusBarBackArrow setHidden:NO];
-    }
 }
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender {
