@@ -18,7 +18,6 @@
 
 
 @interface UserTableViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 @property (strong, nonatomic) IBOutlet UIView *backgroundHeaderView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
@@ -26,8 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
-
-
 
 @property (strong, nonatomic) NSMutableArray *games;
 @property (strong, nonatomic) NSMutableArray *pastGames;
@@ -75,6 +72,11 @@
 {
     [super viewDidLoad];
     
+    // unhide navigationbar
+    [[self navigationController] setNavigationBarHidden:NO];
+    self.navigationItem.title = [PFUser currentUser].username;
+    
+    // background color/imgs
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
     
@@ -82,7 +84,6 @@
     PFUser *currentUser = [PFUser currentUser];
     self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
     self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d completed games",[currentUser[@"lifetimeGames"] intValue]];
-    self.usernameLabel.text = [NSString stringWithFormat:@"%@", currentUser.username];
     
     //  table work
     [self.tableView setDelegate:self];

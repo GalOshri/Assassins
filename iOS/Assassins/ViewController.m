@@ -140,7 +140,7 @@ CGFloat scale;
     }
     
     // hide view controller
-    self.navigationController.navigationBarHidden = YES;
+    [[self navigationController] setNavigationBarHidden:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
