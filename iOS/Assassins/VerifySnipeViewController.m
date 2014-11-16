@@ -89,6 +89,12 @@
     self.originalCommentViewLocation = self.commentView.frame.origin.y;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    // hide navigationbar
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:YES];
+}
 
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
