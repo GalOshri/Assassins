@@ -21,14 +21,12 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *flashImage;
-@property UIImagePickerController *picker;
 @property (weak, nonatomic) IBOutlet UIButton *flipCamera;
-@property (weak, nonatomic) IBOutlet UIButton *snipeNotificationButton;
+
 @property BOOL flashMode;
 @property BOOL sendToGame;
 @property BOOL hasLoadedCamera;
-
-
+@property UIImagePickerController *picker;
 
 @end
 
@@ -91,14 +89,6 @@ CGFloat scale;
                     });
                 });
             }
-            
-            /*
-            if (self.sendToPendingSnipe) 
-            {
-                UserTableViewController *utvc = (UserTableViewController *)segue.destinationViewController;
-                utvc.goToPendingNotifcations = self.sendToPendingSnipe;
-            }
-            */
         }
     }
 }
@@ -154,15 +144,9 @@ CGFloat scale;
 {
     [super viewDidAppear:animated];
     
-    // snipe NotificationButton set
-    [[self.snipeNotificationButton layer] setCornerRadius:5];
-    [[self.snipeNotificationButton layer] setMasksToBounds:YES];
-    
     [[PFUser currentUser] refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         // noop
     }];
-    
-    // self.sendToPendingSnipe = NO;
     
     // Log in / sign up if no user signed in
     if (![PFUser currentUser])
@@ -182,7 +166,6 @@ CGFloat scale;
     
     if (self.goToGameId)
     {
-        // self.sendToPendingSnipe = YES;
         [self performSegueWithIdentifier:@"SegueToUserView" sender:self]; // NOPENDING
     }
 }
@@ -249,23 +232,6 @@ CGFloat scale;
         [picker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
     else
         [picker setCameraDevice:UIImagePickerControllerCameraDeviceFront];
-}
-
-- (void)pendingNotificationAnimation
-{
-    // animate
-    if (self.snipeNotificationButton.alpha == 1.0)
-    {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.snipeNotificationButton.alpha = 0.5;
-        }];
-    }
-    else
-    {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.snipeNotificationButton.alpha = 1.0;
-        }];
-    }
 }
 
 - (IBAction)segueToUserToPendingContracts:(id)sender

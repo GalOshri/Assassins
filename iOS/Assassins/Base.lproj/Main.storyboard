@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -40,9 +40,6 @@
                                     <action selector="toggleFlash:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0YW-Sc-eDL"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snipeCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="edg-uN-ooc">
-                                <rect key="frame" x="69" y="55" width="182" height="182"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b41-ba-wSA">
                                 <rect key="frame" x="260" y="27" width="40" height="40"/>
                                 <state key="normal" title="Button" image="flipCamera.png">
@@ -65,19 +62,6 @@
                                     <segue destination="ReM-Ox-LBW" kind="modal" identifier="SegueToUserView" id="FcK-z9-NuM"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMc-9s-nkT">
-                                <rect key="frame" x="20" y="505" width="37" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="37" id="5vf-83-1zE"/>
-                                    <constraint firstAttribute="height" constant="37" id="NV3-Op-P3Q"/>
-                                </constraints>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="segueToUserToPendingContracts:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4ww-ir-u9R"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -85,14 +69,11 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="BIK-59-BWW" secondAttribute="bottom" constant="28" id="JIg-tN-cMw"/>
                             <constraint firstAttribute="centerX" secondItem="pPb-yx-dXl" secondAttribute="centerX" id="TY3-ge-Uek"/>
                             <constraint firstAttribute="trailing" secondItem="BIK-59-BWW" secondAttribute="trailing" constant="37" id="frP-ha-EBV"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="uMc-9s-nkT" secondAttribute="bottom" constant="26" id="gHx-a9-wm6"/>
-                            <constraint firstItem="uMc-9s-nkT" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="ich-eU-yjS"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="flashImage" destination="Ud0-LW-3p8" id="g4u-hw-FgO"/>
                         <outlet property="flipCamera" destination="b41-ba-wSA" id="A9F-lD-C2L"/>
-                        <outlet property="snipeNotificationButton" destination="uMc-9s-nkT" id="rSr-5A-YMi"/>
                         <segue destination="LuB-hi-AS8" kind="modal" identifier="SnipeSegue" animates="NO" id="j3W-7c-P2Q"/>
                         <segue destination="mRk-Gp-pGn" kind="modal" identifier="SegueToTutorialView" id="7iD-4S-13O"/>
                     </connections>
@@ -1444,7 +1425,6 @@
         <image name="flipCamera.png" width="300" height="300"/>
         <image name="menuBackground.png" width="400" height="400"/>
         <image name="noFlash.png" width="300" height="300"/>
-        <image name="snipeCircle.png" width="500" height="500"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
