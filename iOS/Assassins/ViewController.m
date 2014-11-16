@@ -138,6 +138,9 @@ CGFloat scale;
             [self.view sendSubviewToBack:picker.view];
         }
     }
+    
+    // hide view controller
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated

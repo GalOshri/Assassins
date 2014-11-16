@@ -19,18 +19,14 @@
 
 @interface UserTableViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UIView *statusBarView;
-@property (weak, nonatomic) IBOutlet UIView *statusBarBackground;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
 @property (strong, nonatomic) IBOutlet UIView *backgroundHeaderView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *statusBarUsernameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *statusBarCameraIcon;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
+
 
 
 @property (strong, nonatomic) NSMutableArray *games;
@@ -80,7 +76,6 @@
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.statusBarView setAlpha:0.0];
     [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
     
     // set items from pfuser currentuser
@@ -88,7 +83,6 @@
     self.lifetimeSnipesLabel.text = [NSString stringWithFormat:@"%d total assassinations", [currentUser[@"lifetimeSnipes"] intValue]];
     self.lifetimeGamesLabel.text = [NSString stringWithFormat:@"%d completed games",[currentUser[@"lifetimeGames"] intValue]];
     self.usernameLabel.text = [NSString stringWithFormat:@"%@", currentUser.username];
-    self.statusBarUsernameLabel.text = [NSString stringWithFormat:@"%@", currentUser.username];
     
     //  table work
     [self.tableView setDelegate:self];
@@ -139,28 +133,6 @@
         });
     }
 }
-
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    // make status bar change color and add name
-    if (scrollView.contentOffset.y <= 100.0)
-        [self.statusBarView setAlpha:0.0];
-    
-    else if (scrollView.contentOffset.y >= 100.0 && scrollView.contentOffset.y <= 115)
-    {
-        [self.statusBarView setAlpha: 0.0 + (scrollView.contentOffset.y - 100.0) / 15.50];
-        [self.statusBarUsernameLabel setHidden:YES];
-        [self.statusBarCameraIcon setHidden:YES];
-    }
-    
-    else
-    {
-        [self.statusBarView setAlpha:1.0];
-        [self.statusBarUsernameLabel setHidden:NO];
-        [self.statusBarCameraIcon setHidden:NO];
-    }
-}
-
 
 - (IBAction)segmentControlChanged:(id)sender {
     switch (self.segmentControl.selectedSegmentIndex)
@@ -247,7 +219,6 @@
     });
     
     [self.refreshControl endRefreshing];
-    self.tableViewTopConstraint = 0;
     [self.view layoutIfNeeded];
 }
 
