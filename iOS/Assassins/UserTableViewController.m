@@ -72,10 +72,6 @@
 {
     [super viewDidLoad];
     
-    // unhide navigationbar
-    [[self navigationController] setNavigationBarHidden:NO];
-    self.navigationItem.title = [PFUser currentUser].username;
-    
     // background color/imgs
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.backgroundHeaderView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"spyBckgnd.png"]]];
@@ -110,6 +106,15 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(updateTables) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = self.refreshControl;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    // unhide navigationbar
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:NO];
 }
 
 - (void) viewDidAppear:(BOOL)animated

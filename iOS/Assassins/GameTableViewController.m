@@ -97,6 +97,13 @@
     tableViewController.refreshControl = self.refreshControl;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    // unhide navigationbar
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:NO];
+}
+
 - (IBAction)segmentChanged:(UISegmentedControl *)sender {
     switch (self.segmentControl.selectedSegmentIndex)
     {

@@ -39,8 +39,6 @@
 {
     [super viewDidLoad];
     
-    // hide navigation controller
-    [[self navigationController] setNavigationBarHidden:YES];
     // Do any additional setup after loading the view.
     [self.contractImage setImage:self.contract.image];
     
@@ -72,6 +70,13 @@
                                                  name:UIKeyboardWillChangeFrameNotification object:nil];
     self.keyboardOrNah = NO;
     self.originalCommentViewLocation = self.commentView.frame.origin.y;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // hide navigationbar
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:YES];
 }
 
 -(void)viewDidLayoutSubviews {
