@@ -60,6 +60,7 @@
 		DAADCE0F1A141B83008177EE /* AGPushNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAADCE0D1A141B83008177EE /* AGPushNoteView.xib */; };
 		DAADCE1F1A16EA7A008177EE /* tutorialPage1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DAADCE1E1A16EA7A008177EE /* tutorialPage1.jpg */; };
 		DABFCC651A1867F5000A5BD3 /* settingGear.png in Resources */ = {isa = PBXBuildFile; fileRef = DABFCC641A1867F5000A5BD3 /* settingGear.png */; };
+		DABFCC671A1A6D95000A5BD3 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = DABFCC661A1A6D95000A5BD3 /* users.png */; };
 		DAD082FA19FAD9CA00B66DB7 /* SafeZoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */; };
 		DAD0DD331988DC840075E69D /* cameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD321988DC840075E69D /* cameraButton.png */; };
 		DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD0DD361988E0BF0075E69D /* noFlash.png */; };
@@ -164,6 +165,7 @@
 		DAADCE0D1A141B83008177EE /* AGPushNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AGPushNoteView.xib; path = AGPushNote/AGPushNoteView.xib; sourceTree = "<group>"; };
 		DAADCE1E1A16EA7A008177EE /* tutorialPage1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorialPage1.jpg; sourceTree = "<group>"; };
 		DABFCC641A1867F5000A5BD3 /* settingGear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingGear.png; sourceTree = "<group>"; };
+		DABFCC661A1A6D95000A5BD3 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
 		DAD082F819FAD9CA00B66DB7 /* SafeZoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeZoneTableViewCell.h; sourceTree = "<group>"; };
 		DAD082F919FAD9CA00B66DB7 /* SafeZoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeZoneTableViewCell.m; sourceTree = "<group>"; };
 		DAD0DD321988DC840075E69D /* cameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraButton.png; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				DA8DF85A19D78639000F9412 /* scopeBckgnd.png */,
 				DA28DE9F19C509A50015BE4C /* menuBackground.png */,
 				DA28DE9D19C5061C0015BE4C /* backArrowNoBackground.png */,
+				DABFCC661A1A6D95000A5BD3 /* users.png */,
 				DAD0DD62198F38710075E69D /* cameraIcon.png */,
 				DAD0DD60198F00270075E69D /* flipCamera.png */,
 				DAD0DD321988DC840075E69D /* cameraButton.png */,
@@ -599,6 +602,7 @@
 				DAA08C4419E594B6007B089E /* assassinsLogoSignIn.png in Resources */,
 				0D52C4A5197E284A00E5E5B9 /* InfoPlist.strings in Resources */,
 				0D52C4AE197E284A00E5E5B9 /* Main.storyboard in Resources */,
+				DABFCC671A1A6D95000A5BD3 /* users.png in Resources */,
 				DA28DEA019C509A50015BE4C /* menuBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

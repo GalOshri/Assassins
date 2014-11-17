@@ -1403,7 +1403,7 @@
         <image name="flipCamera.png" width="300" height="300"/>
         <image name="menuBackground.png" width="400" height="400"/>
         <image name="noFlash.png" width="300" height="300"/>
-        <image name="settingGear.png" width="50" height="50"/>
+        <image name="settingGear.png" width="900" height="900"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

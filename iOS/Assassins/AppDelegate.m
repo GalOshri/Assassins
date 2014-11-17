@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "AssassinsService.h"
 #import "ViewController.h"
+#import "GameTableViewController.h"
 #import "AGPushNoteView.h"
 
 @implementation AppDelegate
@@ -129,24 +130,15 @@
 
 - (void)presentCameraView:(NSString *)gameId
 {
-    UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    ViewController *pvc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    UIViewController * vc = self.window.rootViewController;
-    //vc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    /*
-    if (presentingVC.presentedViewController)
-    {
-        [presentingVC.presentedViewController presentViewController:vc animated:YES completion:nil];
-    }
+   // UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    else
-        [presentingVC presentViewController:vc animated:YES completion:nil];*/
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
     
-    pvc.goToGameId = gameId;
+    GameTableViewController *gameView = [[GameTableViewController alloc] init];
+    //gameView.game.gameId = gameId;
+
+    [navController pushViewController:gameView animated:YES];
     
-    vc = pvc;
-    [self.window makeKeyAndVisible];
     
 }
 
