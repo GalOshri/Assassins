@@ -246,6 +246,7 @@
                                         </state>
                                         <connections>
                                             <action selector="createGame:" destination="TbO-PD-dIe" eventType="touchUpInside" id="Du6-r9-cGX"/>
+                                            <segue destination="1Zf-50-VA1" kind="unwind" unwindAction="unwindToUserPage:" id="b7G-36-ndK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcV-qe-eu2">
@@ -565,11 +566,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Fve-cv-Qj4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wTw-FN-wx1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DIr-KF-nSc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type to comment" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OwV-Jl-oph">
                                 <rect key="frame" x="0.0" y="68" width="320" height="30"/>
@@ -578,7 +579,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9j-YwT">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9j-YwT">
                                 <rect key="frame" x="8" y="8" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="4lk-lU-GXX"/>
@@ -592,7 +593,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uII-Fl-Spg">
-                                <rect key="frame" x="0.0" y="407" width="320" height="97"/>
+                                <rect key="frame" x="0.0" y="471" width="320" height="97"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is this a valid snipe of NAME?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXl-Vm-CV0">
                                         <rect key="frame" x="8" y="38" width="304" height="21"/>
@@ -662,7 +663,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDs-Oy-QfE">
-                                <rect key="frame" x="8" y="20" width="304" height="379"/>
+                                <rect key="frame" x="8" y="84" width="304" height="379"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHB-RP-f3c">
                                         <rect key="frame" x="261" y="345" width="44" height="30"/>
@@ -895,14 +896,14 @@
                         <viewControllerLayoutGuide type="bottom" id="oWS-UN-mJD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ghN-kX-Bdu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nzP-cj-N98">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvD-DM-NpW">
-                                <rect key="frame" x="0.0" y="463" width="320" height="41"/>
+                                <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3PE-Uo-F2I">
                                         <rect key="frame" x="218" y="1" width="94" height="39"/>
@@ -936,7 +937,7 @@
                                     <action selector="dragCommentField:forEvent:" destination="LuB-hi-AS8" eventType="touchDragInside" id="pBO-hT-dUL"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtJ-mA-sKB">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtJ-mA-sKB">
                                 <rect key="frame" x="8" y="8" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="5Bp-fm-jyd"/>
@@ -950,7 +951,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Zs-86-teq">
-                                <rect key="frame" x="8" y="76" width="304" height="379"/>
+                                <rect key="frame" x="8" y="140" width="304" height="379"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdB-FY-kte">
                                         <rect key="frame" x="261" y="345" width="44" height="30"/>
@@ -1052,7 +1053,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJK-OE-P5l">
-                                <rect key="frame" x="8" y="464" width="116" height="39"/>
+                                <rect key="frame" x="8" y="528" width="116" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="116" id="cht-P8-6h6"/>
                                     <constraint firstAttribute="height" constant="39" id="yOm-ea-ufZ"/>
@@ -1114,10 +1115,10 @@
                         <viewControllerLayoutGuide type="bottom" id="Ev9-Y0-HJT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uoo-PT-rp1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mzz-EB-Sdn">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mzz-EB-Sdn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="GgO-5W-em0">
@@ -1411,6 +1412,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FcK-z9-NuM"/>
+        <segue reference="6Zd-Av-Fzy"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -147,7 +147,7 @@
             Game *newGame = [AssassinsService createGame:self.gameNameField.text withSafeZones:self.safeZones.text withUserIds:newGameParticipants];
             
             dispatch_async( dispatch_get_main_queue(), ^{
-                [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
+                //[self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
             });
         });
     }
