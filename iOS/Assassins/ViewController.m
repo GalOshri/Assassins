@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *flashImage;
 @property (weak, nonatomic) IBOutlet UIButton *flipCamera;
 
+@property (strong, nonatomic) Game *selectedGame;
 @property BOOL flashMode;
 @property BOOL sendToGame;
 @property BOOL hasLoadedCamera;
@@ -37,14 +38,6 @@ CGFloat scale;
 
 - (IBAction)unwindToCamera:(UIStoryboardSegue *)segue {
     
-    if ([segue.identifier isEqualToString:@"UnwindToCameraAfterSnipe"])
-    {
-        if ([segue.sourceViewController isKindOfClass:[SnipeSubmitView class]])
-        {
-            SnipeSubmitView *ssv = (SnipeSubmitView *)segue.sourceViewController;
-            self.goToGameId = ssv.selectedGameId;
-        }
-    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -73,20 +66,11 @@ CGFloat scale;
     {
         if ([segue.destinationViewController isKindOfClass:[UserTableViewController class]])
         {
-            if (self.goToGameId != nil)
+            if (self.selectedGame != nil)
             {
-            
                 UserTableViewController *utvc = (UserTableViewController *)segue.destinationViewController;
-                
-                dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    // call AssassinsService to get game
-                    Game *selectedGame = [AssassinsService getGameWithId:self.goToGameId];
-                    
-                    dispatch_async( dispatch_get_main_queue(), ^{
-                        self.goToGameId = nil;
-                        utvc.goToGame = selectedGame;
-                    });
-                });
+                utvc.goToGame = self.selectedGame;
+                self.selectedGame = nil;
             }
         }
     }
@@ -172,11 +156,20 @@ CGFloat scale;
 
 - (void)goToGame:(NSString *) gameId
 {
-    self.goToGameId = [[NSString alloc] init];
+
     if (gameId !=nil)
     {
-        self.goToGameId = gameId;
-        [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
+        self.selectedGame = [[Game alloc] init];
+
+        // perform parse call here
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // call AssassinsService to get game
+            self.selectedGame = [AssassinsService getGameWithId:gameId];
+            
+            dispatch_async( dispatch_get_main_queue(), ^{
+                [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
+            });
+        });
     }
 }
 
