@@ -12,7 +12,6 @@
 #import "AssassinsSignUpView.h"
 #import "UIImage+Resize.h"
 #import "VerifySnipeViewController.h"
-#import "GameTableViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "AssassinsService.h"
@@ -144,9 +143,6 @@ CGFloat scale;
     
     // hide view controller
     [[self navigationController] setNavigationBarHidden:YES];
-    
-    if (self.goToGameId)
-        [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -177,18 +173,11 @@ CGFloat scale;
 - (void)goToGame:(NSString *) gameId
 {
     self.goToGameId = [[NSString alloc] init];
-    // pass goToGameId to next page and segue
-    //NSDictionary *data = [notification userInfo];
     if (gameId !=nil)
     {
-       // if ([data objectForKey:@"goToGameId"])
-       // {
-            //NSString *idForGame = [data objectForKey:@"goToGameId"];
-            self.goToGameId = gameId;
-            [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
-        //}
+        self.goToGameId = gameId;
+        [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
     }
-    // [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark- login methods
@@ -254,12 +243,6 @@ CGFloat scale;
         [picker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
     else
         [picker setCameraDevice:UIImagePickerControllerCameraDeviceFront];
-}
-
-- (IBAction)segueToUserToPendingContracts:(id)sender
-{
-    // self.sendToPendingSnipe = YES;
-    [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
 }
 
 #pragma mark - User Identity Views

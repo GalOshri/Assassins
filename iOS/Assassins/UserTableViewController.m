@@ -106,9 +106,6 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(updateTables) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = self.refreshControl;
-    
-    //nsnotificationcenter
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToGame:) name:@"goToGame" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -231,22 +228,6 @@
     [self.refreshControl endRefreshing];
     [self.view layoutIfNeeded];
 }
-
-- (void)goToGame:(NSNotification *) notification
-{
-    //self.goToGameId = [[NSString alloc] init];
-    // pass goToGameId to next page and segue
-    NSDictionary *data = [notification userInfo];
-    if (data !=nil)
-    {
-        if ([data objectForKey:@"goToGameId"])
-        {
-            NSString *idForGame = [data objectForKey:@"goToGameId"];
-            //self.gotog = gameId;
-        }
-    }
-}
-
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
