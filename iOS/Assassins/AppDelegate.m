@@ -49,35 +49,18 @@
     
     
     // Deal with push notification
-    if (launchOptions != nil) {
-        /*
-         // Launched from push notification
-
+    if (launchOptions != nil)
+    {
         // Extract the notification data
         NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
         
-        if ([notificationPayload valueForKey:@"contractId"] != nil) {
-            // someone wants to verify snipe
-            NSString *contractId = [notificationPayload objectForKey:@"contractId"];
-            [self presentSnipeVerificationView:contractId];
-        }
-        
-        else
+        if ([notificationPayload valueForKey:@"gameId"] != nil)
         {
             // game was won
             NSString *gameId = [notificationPayload objectForKey:@"gameId"];
             [self presentCameraView:gameId];
         }
-
     }
-    
-    // find number of pending snipes
-    // self.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
-    */
-    }
-    
-    self.isInForeground = YES;
-    
     return YES;
 }
 
@@ -91,29 +74,14 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    //BOOL inForefground = NO;
-
-    /*if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive || [[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive)
-        inForefground = YES;
-    */
+    NSString *gameId = [userInfo objectForKey:@"gameId"];
     
     if (!self.isInForeground)
     {
         [PFPush handlePush:userInfo];
-        /*// events: game created, someone sniped, someone contests, someoneone wins, someone brought back to life
-        //  --> ALL GO TO GAME VIEW
-        if ([userInfo valueForKey:@"contractId"] != nil) {
-            // someone wants to verify snipe
-            NSString *contractId = [userInfo objectForKey:@"contractId"];
-           // [self 
-         */
         
         if ([userInfo valueForKey:@"gameId"] != nil)
-        {
-            // game was won
-            NSString *gameId = [userInfo objectForKey:@"gameId"];
             [self presentCameraView:gameId];
-        }
     }
     
     // app is active, we send a local event
@@ -121,9 +89,11 @@
     {
         NSDictionary *message = [userInfo objectForKey:@"aps"];
         [AGPushNoteView showWithNotificationMessage:message[@"alert"]];
-        //AGPushNoteView setMessageAction:^(NSString *message) {
+        [AGPushNoteView setMessageAction:^(NSString *message) {
+            // go to present camera view
+            [self presentCameraView:gameId];
+        }];
         
-        //}
     }
 }
 
@@ -143,6 +113,7 @@
 -(void)applicationDidBecomeActive:(UIApplication *)application
 {
     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+    self.isInForeground = YES;
 }
 
 
@@ -163,8 +134,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    // self.isInForeground = YES;
+    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background
 }
 
 
