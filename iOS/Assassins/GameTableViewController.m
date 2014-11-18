@@ -73,6 +73,10 @@
 {
     [super viewDidLoad];
     
+    // set up notification listener
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataFromPushNotification:) name:@"goToGame" object:nil];
+    
+    
     // backgrounds, imgs, and titles
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scopeBckgnd.png"]]];
@@ -266,6 +270,13 @@
     [self.view layoutIfNeeded];
 
 }
+
+- (void)dataFromPushNotification: (NSNotification *)notification
+{
+    // remove the object so we don't confuse shiett
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -10,7 +10,6 @@
 #import <Parse/Parse.h>
 #import "AssassinsService.h"
 #import "ViewController.h"
-#import "GameTableViewController.h"
 #import "AGPushNoteView.h"
 
 @implementation AppDelegate
@@ -45,36 +44,6 @@
         [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                          UIRemoteNotificationTypeAlert |
                                                          UIRemoteNotificationTypeSound)];
-    }
-
-    
-    
-    // Deal with push notification
-    if (launchOptions != nil) {
-        /*
-         // Launched from push notification
-
-        // Extract the notification data
-        NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-        
-        if ([notificationPayload valueForKey:@"contractId"] != nil) {
-            // someone wants to verify snipe
-            NSString *contractId = [notificationPayload objectForKey:@"contractId"];
-            [self presentSnipeVerificationView:contractId];
-        }
-        
-        else
-        {
-            // game was won
-            NSString *gameId = [notificationPayload objectForKey:@"gameId"];
-            [self presentCameraView:gameId];
-        }
-
-    }
-    
-    // find number of pending snipes
-    // self.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
-    */
     }
     
     self.isInForeground = YES;
@@ -130,16 +99,11 @@
 
 - (void)presentCameraView:(NSString *)gameId
 {
-   // UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //set up notification
+    NSDictionary *gameIdDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:gameId, @"goToGameId", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"goToGame" object:self userInfo:gameIdDictionary];
     
-    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-    
-    GameTableViewController *gameView = [[GameTableViewController alloc] init];
-    //gameView.game.gameId = gameId;
 
-    [navController pushViewController:gameView animated:YES];
-    
-    
 }
 
 -(void)applicationDidBecomeActive:(UIApplication *)application

@@ -1,4 +1,4 @@
-//
+ //
 //  ViewController.m
 //  Assassins
 //
@@ -95,6 +95,9 @@ CGFloat scale;
 
 - (void)viewDidLoad
 {
+    // listen for notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToGame:) name:@"goToGame" object:nil];
+    
     [super viewDidLoad];
     self.hasLoadedCamera = NO;
 }
@@ -166,13 +169,26 @@ CGFloat scale;
 
         [self showLogInAndSignUpView];
     }
-    
-    if (self.goToGameId)
-    {
-        [self performSegueWithIdentifier:@"SegueToUserView" sender:self]; // NOPENDING
-    }
 }
 
+- (void)goToGame:(NSNotification *)notification
+{
+    self.goToGameId = [[NSString alloc] init];
+    // pass goToGameId to next page and segue
+    NSDictionary *data = [notification userInfo];
+    if (data !=nil)
+    {
+        if ([data objectForKey:@"goToGameId"])
+        {
+            NSString *idForGame = [data objectForKey:@"goToGameId"];
+            self.goToGameId = idForGame;
+            [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
+        }
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark- login methods
 - (void)showLogInAndSignUpView
 {
     // Create the log in view controller
