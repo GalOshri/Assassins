@@ -1381,7 +1381,7 @@
         <!--Navigation Controller-->
         <scene sceneID="DLM-k4-WyS">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ohg-Qi-4Te" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="InitialNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="ohg-Qi-4Te" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="2C3-Sa-f23">

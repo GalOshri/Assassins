@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) NSString *goToGameId;
 
+- (void)goToGame:(NSString *) gameId;
+
 @end

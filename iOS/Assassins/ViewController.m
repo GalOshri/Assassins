@@ -96,7 +96,7 @@ CGFloat scale;
 - (void)viewDidLoad
 {
     // listen for notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToGame:) name:@"goToGame" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToGame:) name:@"goToGame" object:nil];
     
     [super viewDidLoad];
     self.hasLoadedCamera = NO;
@@ -144,6 +144,9 @@ CGFloat scale;
     
     // hide view controller
     [[self navigationController] setNavigationBarHidden:YES];
+    
+    if (self.goToGameId)
+        [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -171,21 +174,21 @@ CGFloat scale;
     }
 }
 
-- (void)goToGame:(NSNotification *)notification
+- (void)goToGame:(NSString *) gameId
 {
     self.goToGameId = [[NSString alloc] init];
     // pass goToGameId to next page and segue
-    NSDictionary *data = [notification userInfo];
-    if (data !=nil)
+    //NSDictionary *data = [notification userInfo];
+    if (gameId !=nil)
     {
-        if ([data objectForKey:@"goToGameId"])
-        {
-            NSString *idForGame = [data objectForKey:@"goToGameId"];
-            self.goToGameId = idForGame;
+       // if ([data objectForKey:@"goToGameId"])
+       // {
+            //NSString *idForGame = [data objectForKey:@"goToGameId"];
+            self.goToGameId = gameId;
             [self performSegueWithIdentifier:@"SegueToUserView" sender:self];
-        }
+        //}
     }
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    // [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark- login methods

@@ -45,6 +45,36 @@
                                                          UIRemoteNotificationTypeAlert |
                                                          UIRemoteNotificationTypeSound)];
     }
+
+    
+    
+    // Deal with push notification
+    if (launchOptions != nil) {
+        /*
+         // Launched from push notification
+
+        // Extract the notification data
+        NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+        
+        if ([notificationPayload valueForKey:@"contractId"] != nil) {
+            // someone wants to verify snipe
+            NSString *contractId = [notificationPayload objectForKey:@"contractId"];
+            [self presentSnipeVerificationView:contractId];
+        }
+        
+        else
+        {
+            // game was won
+            NSString *gameId = [notificationPayload objectForKey:@"gameId"];
+            [self presentCameraView:gameId];
+        }
+
+    }
+    
+    // find number of pending snipes
+    // self.numberPendingSnipe = [AssassinsService getNumberOfPendingSnipes];
+    */
+    }
     
     self.isInForeground = YES;
     
@@ -100,8 +130,30 @@
 - (void)presentCameraView:(NSString *)gameId
 {
     //set up notification
-    NSDictionary *gameIdDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:gameId, @"goToGameId", nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"goToGame" object:self userInfo:gameIdDictionary];
+   // NSDictionary *gameIdDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:gameId, @"goToGame", nil];
+   //  [[NSNotificationCenter defaultCenter] postNotificationName:@"goToGame" object:nil userInfo:gameIdDictionary];
+ 
+
+    //UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    //UIStoryboard *mainstoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  //  UINavigationController *topController = [mainstoryboard instantiateInitialViewController];
+   // ViewController *vc = [mainstoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    
+    //self.window.rootViewController = topController;
+    //[self.window makeKeyAndVisible];
+    //vc.goToGameId = gameId;
+    //[self.window.rootViewController presentViewController:vc animated:YES completion:nil];
+    
+    UINavigationController *navigationController = (UINavigationController*) self.window.rootViewController;
+    ViewController *vc = [[navigationController viewControllers] objectAtIndex:0];
+    
+    // post data in nsnotifcation
+    //NSDictionary *gameIdDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:gameId, @"goToGame", nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"goToGame" object:nil userInfo:gameIdDictionary];
+    
+    vc.goToGameId = gameId;
+    [vc performSelector:@selector(goToGame:) withObject:gameId];
+    
     
 
 }
