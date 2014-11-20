@@ -58,6 +58,7 @@
 {
     if ([segue.identifier isEqualToString:@"SegueToGameView"])
     {
+        self.navigationItem.title = @"";
         if ([segue.destinationViewController isKindOfClass:[GameTableViewController class]])
         {
             GameTableViewController *gtvc = (GameTableViewController *)segue.destinationViewController;

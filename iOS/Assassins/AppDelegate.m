@@ -46,8 +46,6 @@
                                                          UIRemoteNotificationTypeSound)];
     }
 
-    
-    
     // Deal with push notification
     if (launchOptions != nil)
     {
@@ -61,6 +59,12 @@
             [self presentCameraView:gameId];
         }
     }
+    
+    
+    // set navigationcontroller work
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"barImage.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    
     return YES;
 }
 

@@ -98,10 +98,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // unhide navigationbar
+    // unhide navigationbar, and set title
     [super viewWillAppear:YES];
     [[self navigationController] setNavigationBarHidden:NO];
-    self.navigationItem.title= self.game.name;
+    
 }
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender {
@@ -181,7 +181,8 @@
             // results of the background processing
             
             // number of assassins
-            self.numAssassinsLabel.text = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
+            NSString *numAssassins = [NSString stringWithFormat:@"%@ players", self.game.numberOfAssassins];
+            NSString *numAssassinsAlive;
             
             // set strings for current target and assassins alive, depending on state of game
             if (!self.game.isComplete)
@@ -235,7 +236,8 @@
                     if(!assassin.isAlive)
                         self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassins intValue] - 1)];
                 }
-                self.numActiveAssassinsLabel.text = [NSString stringWithFormat:@"%@ still in play", self.game.numberOfAssassinsAlive];
+                
+                 numAssassinsAlive = [NSString stringWithFormat:@"%@ alive", self.game.numberOfAssassinsAlive];
             }
             
             else
@@ -244,7 +246,7 @@
                 NSString *firstName = nameArray[0];
                 
                 // self.currentTargetLabel.text = @"Game won by:";
-                self.numActiveAssassinsLabel.text = @"game over";
+                numAssassinsAlive = @"game over";
                 self.currentTargetUsername.text = [NSString stringWithFormat:@"game won by %@", firstName];
                 self.currentTargetProfilePicture.profileID = self.game.winnerFbId;
                 self.currentTargetProfilePicture.pictureCropping = FBProfilePictureCroppingSquare;
@@ -257,6 +259,32 @@
             [self.tableView reloadData];
             [self.activityIndicatorView stopAnimating];
             [self.activityIndicatorView setHidden:YES];
+            
+            // set navigation title
+            UILabel *bigLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5.0, self.view.frame.size.width - 120, 18)];
+            bigLabel.backgroundColor = [UIColor clearColor];
+            bigLabel.font = [UIFont boldSystemFontOfSize: 17.0f];
+            //label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+            bigLabel.textAlignment = NSTextAlignmentCenter;
+            bigLabel.textColor = [UIColor whiteColor];
+            bigLabel.text = [NSString stringWithFormat:@"%@\n%@, %@", self.game.name, numAssassins, numAssassinsAlive];
+            
+            UILabel *smallLabel= [[UILabel alloc] initWithFrame:CGRectMake(0, 23.0, self.view.frame.size.width - 120, 18)];
+            smallLabel.backgroundColor = [UIColor clearColor];
+            smallLabel.font = [UIFont systemFontOfSize:11.0f];
+            smallLabel.textAlignment = NSTextAlignmentCenter;
+            smallLabel.textColor = [UIColor whiteColor];
+            if ([numAssassinsAlive isEqualToString:@"game over"])
+                smallLabel.text = [NSString stringWithFormat:@"%@", numAssassinsAlive];
+            else
+                smallLabel.text = [NSString stringWithFormat:@"%@, %@", numAssassins, numAssassinsAlive];
+            
+            // create view to put these two together
+            UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 120, 44.0)];
+            [titleView addSubview:bigLabel];
+            [titleView addSubview:smallLabel];
+            
+            self.navigationItem.titleView = titleView;
         });
     });
     
