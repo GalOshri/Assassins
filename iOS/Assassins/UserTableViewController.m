@@ -140,6 +140,11 @@
             });
         });
     }
+    
+    // unhide navigationbar
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:NO];
+    self.navigationItem.title = [PFUser currentUser].username;
 }
 
 - (IBAction)segmentControlChanged:(id)sender {

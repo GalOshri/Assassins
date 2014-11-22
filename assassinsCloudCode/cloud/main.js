@@ -182,13 +182,21 @@ Parse.Cloud.define("completedContract", function(request, response) {
 							success: function(gameInQuestion) {
 								console.log("hi?");
 								var players = gameInQuestion.get("players");
-								// console.log("length of players is " + players.length);
-								// console.log("nameOfEliminatedPlayer is " + nameOfEliminatedPlayer);
+								var playersWithoutSender = [];
 
-								// push here
 								var pushQueryToNotify = new Parse.Query(Parse.Installation);
-								pushQueryToNotify.containedIn('user', players);
-								 
+
+								for (var i=0; i<players.length; i++)
+								{
+									if (players[i].id != request.user.id)
+									{
+										playersWithoutSender.push(players[i]);
+									}
+								}
+
+								pushQueryToNotify.containedIn('user', playersWithoutSender);
+								
+								// remove user from sending notification
 								Parse.Push.send({
 								  where: pushQueryToNotify, // Set our Installation query
 								  data: {
@@ -342,9 +350,19 @@ Parse.Cloud.define("createGame", function(request, response) {
 			}
 
 			// send a push notification to all people in game
+			var userObjectPointerListWithoutSender = [];
+
+			for (var i=0; i<userObjectPointerList.length; i++)
+			{
+				if (userObjectPointerList[i].id != request.user.id)
+				{
+					userObjectPointerListWithoutSender.push(userObjectPointerList[i]);
+				}
+			}
+
 			var pushQuery = new Parse.Query(Parse.Installation);
-			pushQuery.containedIn('user', userObjectPointerList);
-			 
+			pushQuery.containedIn('user', userObjectPointerListWithoutSender);
+
 			Parse.Push.send({
 			  where: pushQuery, // Set our Installation query
 			  data: {

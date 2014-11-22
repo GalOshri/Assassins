@@ -95,7 +95,9 @@
     {
         // Create friend picker, and get data loaded into it.
         self.friendPickerController = [[FBFriendPickerViewController alloc] init];
-        self.friendPickerController.title = @"Pick Friends";
+        self.friendPickerController.title = @"Choose friends";
+        
+
         self.friendPickerController.allowsMultipleSelection = YES;
         self.friendPickerController.sortOrdering = FBFriendSortByLastName;
         self.friendPickerController.delegate = self;
@@ -105,11 +107,7 @@
     [self.friendPickerController setSelection: self.selectedFriends];
     [self.friendPickerController loadData];
     
-    UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:self.friendPickerController];
-    //[nc setNavigationBarHidden:YES];
-    [self presentViewController:nc animated:YES completion:nil];
-    //[nc pushViewController:self.friendPickerController animated:YES];
-
+    [self.friendPickerController presentModallyFromViewController:self animated:YES handler:nil];
 }
 
 - (IBAction)createGame:(id)sender
@@ -120,6 +118,7 @@
         UIAlertView *incomplete = [[UIAlertView alloc] initWithTitle:@"choose friends to play with!" message:@"please select at least 1 friend to play an assassins game with" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         
         [incomplete show];
+        return;
     }
 
     else if ([self.gameNameField.text length] <=0)
@@ -127,6 +126,7 @@
         UIAlertView *noGameName = [[UIAlertView alloc] initWithTitle:@"create a game title" message:@"come up with a name for your game!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         
         [noGameName show];
+        return;
     }
     
     else
@@ -147,7 +147,7 @@
             Game *newGame = [AssassinsService createGame:self.gameNameField.text withSafeZones:self.safeZones.text withUserIds:newGameParticipants];
             
             dispatch_async( dispatch_get_main_queue(), ^{
-                //[self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
+                [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
             });
         });
     }

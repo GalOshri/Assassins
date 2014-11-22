@@ -64,6 +64,7 @@
     // set navigationcontroller work
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"barImage.png"] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     
     return YES;
 }
