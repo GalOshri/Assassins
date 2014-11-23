@@ -356,6 +356,13 @@
     PFObject *game = contractObject[@"game"];
     contract.gameId = game.objectId;
     
+    // determine if we know if it has been already pening
+    NSDate *pendingDate = contractObject[@"timePendingStarted"];
+    if (pendingDate)
+        contract.previouslyPendingOrNah = YES;
+    else
+        contract.previouslyPendingOrNah = NO;
+    
     // assign image, or nah
     if (([contract.state isEqualToString:@"Completed"]) || ([contract.state isEqualToString:@"Pending"]))
     {

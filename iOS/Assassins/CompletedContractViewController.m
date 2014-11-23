@@ -106,8 +106,17 @@
 
 - (IBAction)initiateReviewProcess:(id)sender {
     // verify with alert
-    UIAlertView *areYouSure = [[UIAlertView alloc] initWithTitle:@"Mark as invalid snipe?" message:@"By selecting 'OK', this snipe will be marked as invalid and will be voted on by game members to determine its validity." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    UIAlertView *areYouSure;
+    if (!self.contract.previouslyPendingOrNah)
+    {
+         areYouSure = [[UIAlertView alloc] initWithTitle:@"Mark as invalid snipe?" message:@"By selecting 'OK', this snipe will be marked as invalid and will be voted on by game members to determine its validity." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    }
     
+    else
+    {
+         areYouSure = [[UIAlertView alloc] initWithTitle:@"Already Contested" message:@"You have already contested this snipe, and cannot mark this as an invalid snipe again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    }
+                                    
     [areYouSure show];
 }
 
