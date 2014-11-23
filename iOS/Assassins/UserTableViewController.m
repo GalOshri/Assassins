@@ -40,16 +40,22 @@
 
 - (IBAction)unwindToUserPage:(UIStoryboardSegue *)segue
 {
-    if ([segue.identifier isEqualToString:@"UnwindOnCreate"])
+    if ([segue.sourceViewController isKindOfClass:[CreateGameViewController class]])
     {
-        if ([segue.sourceViewController isKindOfClass:[CreateGameViewController class]])
+        CreateGameViewController *cgvc = (CreateGameViewController *)segue.sourceViewController;
+        
+        if (cgvc.createdGame)
         {
-            CreateGameViewController *cgvc = (CreateGameViewController *)segue.sourceViewController;
-            
             self.goToGame = cgvc.createdGame;
             [self.games addObject:self.goToGame];
         }
     }
+ 
+    
+    // unhide navigationbar
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:NO];
+    self.navigationItem.title = [PFUser currentUser].username;
     
     [self.tableView reloadData];
 }
@@ -140,11 +146,6 @@
             });
         });
     }
-    
-    // unhide navigationbar
-    [super viewWillAppear:YES];
-    [[self navigationController] setNavigationBarHidden:NO];
-    self.navigationItem.title = [PFUser currentUser].username;
 }
 
 - (IBAction)segmentControlChanged:(id)sender {

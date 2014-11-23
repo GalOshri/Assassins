@@ -8,6 +8,7 @@
 
 #import "CreateGameViewController.h"
 #import "AssassinsService.h"
+#import "Game.h"
 
 @interface CreateGameViewController ()
 
@@ -18,9 +19,11 @@
 @property (weak, nonatomic) IBOutlet UIView *safeZonesView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeZoneViewBottomConstraint;
 
+@property (strong, nonatomic) Game *game;
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
 @property BOOL keyboardOrNah;
+
 
 @end
 
@@ -37,10 +40,9 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"UnwindOnCreate"])
+    if ([segue.identifier isEqualToString:@"unwindToUserPageSegue"] && self.game)
     {
-        Game *game = (Game *)sender;
-        self.createdGame = game;
+        self.createdGame = self.game;
     }
  
 }
@@ -107,7 +109,13 @@
     [self.friendPickerController setSelection: self.selectedFriends];
     [self.friendPickerController loadData];
     
-    [self.friendPickerController presentModallyFromViewController:self animated:YES handler:nil];
+    UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:self.friendPickerController];
+    nc.navigationController.navigationBarHidden = YES;
+    self.friendPickerController.title = @"";
+    [self presentViewController:nc animated:YES completion:nil];
+    //[nc pushViewController:self.friendPickerController animated:YES];
+    
+    //[self.friendPickerController presentModallyFromViewController:self animated:YES handler:nil];
 }
 
 - (IBAction)createGame:(id)sender
@@ -147,7 +155,8 @@
             Game *newGame = [AssassinsService createGame:self.gameNameField.text withSafeZones:self.safeZones.text withUserIds:newGameParticipants];
             
             dispatch_async( dispatch_get_main_queue(), ^{
-                [self performSegueWithIdentifier:@"UnwindOnCreate" sender:newGame];
+                self.game = newGame;
+                [self performSegueWithIdentifier:@"unwindToUserPageSegue" sender:self];
             });
         });
     }
