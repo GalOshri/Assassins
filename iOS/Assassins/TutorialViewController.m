@@ -61,16 +61,39 @@
     // Update the page when more than 50% of the previous/next page is visible
     CGFloat pageWidth = self.tutorialScrollView.frame.size.width;
     int page = floor((self.tutorialScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    self.pageControl.currentPage = page;
     
-    if (page == 2)
+    if (self.pageControl.currentPage != page)
     {
-        self.endTutorialButton.hidden = NO;
-        NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-        [userData setObject:[NSNumber numberWithBool:YES] forKey:@"isTutorialDone"];
-        [userData synchronize];
+        if (page == 2)
+        {
+            UIApplication *application = [UIApplication sharedApplication];
+            // Register for push notifications
+            if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+                UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                                UIUserNotificationTypeBadge |
+                                                                UIUserNotificationTypeSound);
+                UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                         categories:nil];
+                [application registerUserNotificationSettings:settings];
+                [application registerForRemoteNotifications];
+            }
+            else {
+                // Register for Push Notifications before iOS 8
+                [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                                 UIRemoteNotificationTypeAlert |
+                                                                 UIRemoteNotificationTypeSound)];
+            }
+            
+            
+            self.endTutorialButton.hidden = NO;
+            NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+            [userData setObject:[NSNumber numberWithBool:YES] forKey:@"isTutorialDone"];
+            [userData synchronize];
 
+        }
     }
+    
+    self.pageControl.currentPage = page;
 }
 
 
