@@ -107,47 +107,57 @@
 - (IBAction)submitAssassination:(UIButton *)sender {
     [self.activityIndicator setHidden:NO];
     [self.activityIndicator startAnimating];
+    
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // grab list of related contracts
         if (!self.submitContracts)
             self.submitContracts = [AssassinsService getContractArray];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            if ([self.submitContracts count] == 0) {
-                UIAlertView *noContract = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"You are currently not in a game, and have no target. Create a game with friends to play!" delegate:self cancelButtonTitle:@"ok, shya breh!" otherButtonTitles:nil];
-                
-                [noContract show];
-            }
-            
-            else if ([self.submitContracts count] > 1)
-            {
-                UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
-               
-                //show alert to pick which contract to submit snipe to
-                for (Contract *contract in self.submitContracts)
-                {
-                    NSArray *nameArray = [contract.targetName componentsSeparatedByString:@" "];
-                    NSString *firstName = nameArray[0];
-                    
-                    [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in game: %@", firstName, contract.gameName]];
-                }
-                
-                [pickContract show];
-            }
-            
-            else
-            {
-                // only 1 contract!
-                Contract *selectedContract = self.submitContracts[0];
-                [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
-                
-                [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
-            }
-            
-            [self.activityIndicator setHidden:YES];
-            [self.activityIndicator stopAnimating];
+            [self presentGameSubmissionOptions];
         });
     });
+}
+
+- (void)presentGameSubmissionOptions
+{
+    if ([self.submitContracts count] == 0) {
+        UIAlertView *noContract = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"You are currently not in a game, and cannot snipe snipe a target. Create a game with friends to play!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [noContract show];
+    }
+    
+    else if ([self.submitContracts count] > 1)
+    {
+        UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
+       
+        //show alert to pick which contract to submit snipe to
+        for (Contract *contract in self.submitContracts)
+        {
+            NSArray *nameArray = [contract.targetName componentsSeparatedByString:@" "];
+            NSString *firstName = nameArray[0];
+            
+            [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in game: %@", firstName, contract.gameName]];
+        }
+        
+        [pickContract show];
+    }
+    
+    else
+    {
+        // only 1 contract!
+        Contract *selectedContract = self.submitContracts[0];
+        
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
+        });
+        
+        [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
+    }
+    
+    [self.activityIndicator setHidden:YES];
+    [self.activityIndicator stopAnimating];
+
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -161,7 +171,10 @@
             // grab correct contract id and selected game Id
             Contract *selectedContract = self.submitContracts[buttonIndex-1];
             self.selectedGameId = selectedContract.gameId;
-            [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
+            
+            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [AssassinsService submitAssassination:self.snipeImage withMode:YES withComment:self.commentField.text withCommentLocation:self.commentField.frame.origin.y withContract:selectedContract];
+            });
             
             
             [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];

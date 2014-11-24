@@ -559,16 +559,22 @@ If you have any questions regarding privacy while using the Application, or have
                                                 <action selector="segmentControlChanged:" destination="ReM-Ox-LBW" eventType="valueChanged" id="PPu-Y6-1wd"/>
                                             </connections>
                                         </segmentedControl>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="t6g-33-kth">
-                                            <rect key="frame" x="150" y="159" width="20" height="20"/>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="t6g-33-kth">
+                                            <rect key="frame" x="150" y="157" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="ASQ-yn-NB3"/>
+                                                <constraint firstAttribute="height" constant="20" id="aaN-zo-XA2"/>
+                                            </constraints>
                                         </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.96267139670000001" green="0.96267139670000001" blue="0.96267139670000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="wkF-Ov-wc5" firstAttribute="leading" secondItem="fqu-b9-9Fk" secondAttribute="leading" id="4dB-2J-Jx7"/>
+                                        <constraint firstAttribute="bottom" secondItem="t6g-33-kth" secondAttribute="bottom" constant="38" id="4tc-yR-Oa8"/>
                                         <constraint firstAttribute="bottom" secondItem="O0w-IQ-SDg" secondAttribute="bottom" constant="4" id="DIG-Dt-yIX"/>
                                         <constraint firstAttribute="centerX" secondItem="wkF-Ov-wc5" secondAttribute="centerX" id="GJZ-3F-rva"/>
                                         <constraint firstAttribute="centerX" secondItem="O0w-IQ-SDg" secondAttribute="centerX" id="LAp-Jt-I99"/>
+                                        <constraint firstAttribute="centerX" secondItem="t6g-33-kth" secondAttribute="centerX" id="NC9-Jx-Xel"/>
                                         <constraint firstAttribute="trailing" secondItem="wkF-Ov-wc5" secondAttribute="trailing" id="vFQ-Hq-ATf"/>
                                         <constraint firstItem="wkF-Ov-wc5" firstAttribute="top" secondItem="fqu-b9-9Fk" secondAttribute="top" id="vIK-yF-jDJ"/>
                                     </constraints>
@@ -886,10 +892,10 @@ If you have any questions regarding privacy while using the Application, or have
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHl-jZ-P39">
-                                <rect key="frame" x="16" y="516" width="35" height="37"/>
+                                <rect key="frame" x="16" y="511" width="40" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="48r-uD-OWu"/>
-                                    <constraint firstAttribute="height" constant="37" id="hgq-uc-9ee"/>
+                                    <constraint firstAttribute="height" constant="42" id="Wyp-63-lnk"/>
+                                    <constraint firstAttribute="width" constant="40" id="jGt-WY-39V"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="backArrow.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -908,11 +914,11 @@ If you have any questions regarding privacy while using the Application, or have
                                     <action selector="dragCommentField:forEvent:" destination="LuB-hi-AS8" eventType="touchDragInside" id="3Zj-7Q-ge3"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-xB-0Vl">
-                                <rect key="frame" x="250" y="519" width="54" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-xB-0Vl">
+                                <rect key="frame" x="235" y="513" width="69" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="54" id="EdU-Gz-fYH"/>
-                                    <constraint firstAttribute="height" constant="30" id="IXI-hD-FeW"/>
+                                    <constraint firstAttribute="height" constant="38" id="XwG-aL-Mgm"/>
+                                    <constraint firstAttribute="width" constant="69" id="gfq-f1-OiX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Submit">
@@ -932,11 +938,11 @@ If you have any questions regarding privacy while using the Application, or have
                             <constraint firstItem="mVZ-Ld-7MD" firstAttribute="leading" secondItem="des-dZ-hki" secondAttribute="leading" id="4Wa-A0-eSo"/>
                             <constraint firstAttribute="centerX" secondItem="Egx-2Z-5CT" secondAttribute="centerX" id="8ug-ed-xGk"/>
                             <constraint firstItem="ea6-Ko-us0" firstAttribute="top" secondItem="mVZ-Ld-7MD" secondAttribute="bottom" id="FDW-vQ-Fx3"/>
-                            <constraint firstItem="ea6-Ko-us0" firstAttribute="top" secondItem="Xab-xB-0Vl" secondAttribute="bottom" constant="19" id="H4u-Uk-aff"/>
                             <constraint firstItem="iHl-jZ-P39" firstAttribute="leading" secondItem="des-dZ-hki" secondAttribute="leadingMargin" id="PcM-2M-FKA"/>
                             <constraint firstAttribute="centerY" secondItem="Egx-2Z-5CT" secondAttribute="centerY" id="QGY-WZ-3vY"/>
                             <constraint firstItem="Xab-xB-0Vl" firstAttribute="trailing" secondItem="des-dZ-hki" secondAttribute="trailingMargin" id="SGb-dT-bn9"/>
                             <constraint firstItem="ea6-Ko-us0" firstAttribute="top" secondItem="iHl-jZ-P39" secondAttribute="bottom" constant="15" id="VaL-R1-ewl"/>
+                            <constraint firstItem="ea6-Ko-us0" firstAttribute="top" secondItem="Xab-xB-0Vl" secondAttribute="bottom" constant="17" id="Vct-cG-80h"/>
                             <constraint firstItem="mVZ-Ld-7MD" firstAttribute="top" secondItem="des-dZ-hki" secondAttribute="top" id="bg5-fC-cMy"/>
                             <constraint firstAttribute="trailing" secondItem="mVZ-Ld-7MD" secondAttribute="trailing" id="iJx-XJ-Bu2"/>
                         </constraints>

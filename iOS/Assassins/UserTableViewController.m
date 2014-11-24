@@ -31,9 +31,6 @@
 @property (strong, nonatomic) NSMutableDictionary *cellContracts;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
-// @property (strong, nonatomic) NSCache *cellCache;
-// @property (weak, nonatomic) IBOutlet UIButton *pendingContractsButton;
-
 @end
 
 @implementation UserTableViewController

@@ -42,12 +42,14 @@
                 contractObject[@"comment"] = comment;
             }
             
-            [contractObject save];
+            [contractObject saveInBackground];
             
             // NOPENDING --------------------------------------------*************************************
             NSDictionary *completedContractDict = [[NSDictionary alloc] initWithObjectsAndKeys:contractObject.objectId, @"contractId", nil];
-            NSString *responseString = [PFCloud callFunction:@"completedContract" withParameters:completedContractDict];
-            NSLog(@"%@", responseString);
+           [PFCloud callFunctionInBackground:@"completedContract" withParameters:completedContractDict block:^(id object, NSError *error) {
+            }];
+                                        
+            
         }];
     }
 }
@@ -248,6 +250,7 @@
     
     if (getCurrentGamesOrNah)
         [query whereKey:@"state" equalTo:@"Active"];
+        //[query whereKey:<#(NSString *)#> containedIn:<#(NSArray *)#>]
     else
         [query whereKey:@"state" equalTo:@"Completed"];
 

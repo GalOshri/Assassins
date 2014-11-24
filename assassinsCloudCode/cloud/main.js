@@ -151,10 +151,10 @@ Parse.Cloud.define("completedContract", function(request, response) {
 						contract.save(null, {
 					    	success: function(contract) {
 					    		alert('New contract created');
-					    		response.success("New contract created!");
+					    		console.log("New contract created!");
 					    	},
 					    	error: function(contract, error) {
-					    		response.error('contract creation failed with error: ' + error.message);
+					    		console.log('contract creation failed with error: ' + error.message);
 					    	}
 					    });
 
