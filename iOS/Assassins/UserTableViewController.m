@@ -288,9 +288,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames" forIndexPath:indexPath];
+    GameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userGames"];
     cell.targetProfilePic.profileID = nil;
-    //[cell.targetProfilePic setHidden:YES];
+    [cell.noTargetPic setHidden:YES];
+    [cell.targetProfilePic setHidden:YES];
+
     
     if (self.segmentControl.selectedSegmentIndex == 0)
     {
@@ -305,14 +307,9 @@
         if([cell.game.numberPendingContracts integerValue] > 0)
         {
             // set image to pending img
-            for (NSObject *obj in [cell.targetProfilePic subviews]) {
-                if ([obj isMemberOfClass:[UIImageView class]]) {
-                    UIImageView *objImg = (UIImageView *)obj;
-                    objImg.image = [UIImage imageNamed:@"userSilhouettePending.png"];
-                    break;
-                }
-            }
-
+            cell.noTargetPic.image = [UIImage imageNamed:@"userSilhouettePending.png"];
+            [cell.noTargetPic setHidden:NO];
+            
             // if the pending snipe is of you snipe
             if([cell.currentContract.state isEqualToString:@"Pending"])
                 cell.detailLabel.text = [NSString stringWithFormat:@"there is a pending snipe of you"];
@@ -331,35 +328,7 @@
             
             cell.targetProfilePic.profileID = cell.currentContract.targetFbId;
             cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
-            
-            // see if picture is in Cache
-            //NSString *photoId = [NSString stringWithFormat:@"%@", cell.currentContract.targetFbId];
-           // NSData *fbProfilePic = [self.cellCache objectForKey:photoId];
-
-            /*if (currentGame.currentTargetPic != nil)
-            {
-                for (NSObject *obj in [cell.targetProfilePic subviews]) {
-                    if ([obj isMemberOfClass:[UIImageView class]]) {
-                        UIImageView *objImg = (UIImageView *)obj;
-                        objImg.image = [ UIImage imageWithData:cell.game.currentTargetPic];
-                        break;
-                    }
-                }
-            }
-            
-                // Attempt at storing as cache...FAILED
-                 for (NSObject *obj in [cell.targetProfilePic subviews]) {
-                    if ([obj isMemberOfClass:[UIImageView class]]) {
-                        UIImageView *objImg = (UIImageView *)obj;
-                        
-                         NSData *imgData = UIImagePNGRepresentation(objImg.image);
-                        // [self.cellCache setObject:imgData forKey:[NSString stringWithFormat:@"%@", cell.currentContract.targetFbId]];
-                        currentGame.currentTargetPic = imgData;
-                        
-                        break;
-                    }
-                }
-                */
+            [cell.targetProfilePic setHidden:NO];
         }
         
         //  you have been eliminated
@@ -368,13 +337,9 @@
             cell.detailLabel.text = [NSString stringWithFormat:@"You have been elimintated"];
             
             // set image to pending img
-            for (NSObject *obj in [cell.targetProfilePic subviews]) {
-                if ([obj isMemberOfClass:[UIImageView class]]) {
-                    UIImageView *objImg = (UIImageView *)obj;
-                    objImg.image = [UIImage imageNamed:@"userSilhouetteDead.png"];
-                    break;
-                }
-            }
+            cell.noTargetPic.image = [UIImage imageNamed:@"userSilhouetteDead.png"];
+            [cell.noTargetPic setHidden:NO];
+            
         }
     }
     
@@ -395,17 +360,21 @@
             
             cell.targetProfilePic.profileID = cell.game.winnerFbId;
             cell.targetProfilePic.pictureCropping = FBProfilePictureCroppingSquare;
+            [cell.targetProfilePic setHidden:NO];
         }
     }
     
     // style and unhie target prof pic; hidden by defailt.
     [[cell.targetProfilePic layer] setCornerRadius:cell.targetProfilePic.frame.size.width/2];
     [[cell.targetProfilePic layer] setMasksToBounds:YES];
-    [cell.targetProfilePic setHidden:NO];
+    
+    [[cell.noTargetPic layer] setMasksToBounds:YES];
+    [[cell.noTargetPic layer] setCornerRadius:(cell.targetProfilePic.frame.size.height)/2];
+
+    
 
     return cell;
 }
-
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

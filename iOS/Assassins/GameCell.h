@@ -16,9 +16,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *targetProfilePic;
-@property (weak, nonatomic) IBOutlet UILabel *gameProgressLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *noTargetPic;
+
 
 @property (nonatomic, strong) Game *game;
 @property (strong, nonatomic) Contract *currentContract;
+
+// @property (weak, nonatomic) IBOutlet UILabel *gameProgressLabel;
 
 @end

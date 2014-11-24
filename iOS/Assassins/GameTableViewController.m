@@ -237,7 +237,7 @@
                         self.game.numberOfAssassinsAlive = [NSNumber numberWithInt:([self.game.numberOfAssassins intValue] - 1)];
                 }
                 
-                 numAssassinsAlive = [NSString stringWithFormat:@"%@ alive", self.game.numberOfAssassinsAlive];
+                 numAssassinsAlive = [NSString stringWithFormat:@"%@ still alive", self.game.numberOfAssassinsAlive];
             }
             
             else
@@ -271,11 +271,16 @@
             
             UILabel *smallLabel= [[UILabel alloc] initWithFrame:CGRectMake(0, 23.0, self.view.frame.size.width - 120, 18)];
             smallLabel.backgroundColor = [UIColor clearColor];
-            smallLabel.font = [UIFont systemFontOfSize:11.0f];
+            smallLabel.font = [UIFont systemFontOfSize:10.0f];
             smallLabel.textAlignment = NSTextAlignmentCenter;
             smallLabel.textColor = [UIColor whiteColor];
+            
             if ([numAssassinsAlive isEqualToString:@"game over"])
                 smallLabel.text = [NSString stringWithFormat:@"%@", numAssassinsAlive];
+            
+            else if (self.game.numberOfAssassins == self.game.numberOfAssassinsAlive)
+                smallLabel.text = [NSString stringWithFormat:@"%@", numAssassins];
+            
             else
                 smallLabel.text = [NSString stringWithFormat:@"%@, %@", numAssassins, numAssassinsAlive];
             
