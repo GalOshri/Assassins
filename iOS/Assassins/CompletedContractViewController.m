@@ -109,12 +109,12 @@
     UIAlertView *areYouSure;
     if (!self.contract.previouslyPendingOrNah)
     {
-         areYouSure = [[UIAlertView alloc] initWithTitle:@"Mark as invalid snipe?" message:@"By selecting 'OK', this snipe will be marked as invalid and will be voted on by game members to determine its validity." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+         areYouSure = [[UIAlertView alloc] initWithTitle:@"Challenge snipe?" message:@"This snipe will be marked as invalid and sent to game players to determine if it counts or not." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     }
     
     else
     {
-         areYouSure = [[UIAlertView alloc] initWithTitle:@"Already Contested" message:@"You have already contested this snipe, and cannot mark this as an invalid snipe again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+         areYouSure = [[UIAlertView alloc] initWithTitle:@"Already Contested" message:@"You have already challenged this snipe!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     }
                                     
     [areYouSure show];

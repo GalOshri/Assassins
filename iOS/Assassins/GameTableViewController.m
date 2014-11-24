@@ -181,7 +181,7 @@
             // results of the background processing
             
             // number of assassins
-            NSString *numAssassins = [NSString stringWithFormat:@"%@ players", self.game.numberOfAssassins];
+            NSString *numAssassins = [NSString stringWithFormat:@"%@ assassins", self.game.numberOfAssassins];
             NSString *numAssassinsAlive;
             
             // set strings for current target and assassins alive, depending on state of game
@@ -495,7 +495,7 @@
             
             else
             {
-                cell.isAliveLabel.text = @"Neutralized";
+                cell.isAliveLabel.text = @"Eliminated";
                 
                 [cell.username setAlpha:0.5];
                 [cell.profilePicture setAlpha:0.5];

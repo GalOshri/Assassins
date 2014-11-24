@@ -152,14 +152,86 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="You agree to everything" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZM-NY-QwN">
-                                <rect key="frame" x="16" y="0.0" width="288" height="568"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZM-NY-QwN">
+                                <rect key="frame" x="8" y="0.0" width="304" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">ASSASSINS TERMS OF USE
+These Terms and Conditions (the “Terms”) are a contract between you and KEFI LABS LLC. This document explains how you are permitted to use the Assassins mobile application and services and any content found on it (the “Services”). Unless otherwise specified, all references to the “Services” include the services available through the Assassins mobile application as well as any software that KEFI LABS LLC provides to you that allows you to access the Services from a mobile device. By using the Services, you are agreeing to all of the Terms; if you do not agree with any of these Terms, do not access or otherwise use the Services.
+
+KEFI LABS LLC may make changes to the content and Services at any time. KEFI LABS LLC can change, update, add or remove provisions of these Terms, at any time by posting the updated Terms on the Services or by notifying you via the App. By using the Services after KEFI LABS LLC has updated the Terms, you are agreeing to all the updated Terms; if you do not agree with any of the updated Terms, you must stop using Services.
+
+
+GENERAL USE
+The Services may not be available in all locations, and we may block access to the Services from certain locations based on your device’s geolocation data; we also may add or remove areas in which the Services are not available at any time, without any notice.
+By using the services, you acknowledge and agree that you are at least 18 years of age or an emancipated minor (“Minor”), or possess legal parental or guardian consent, and are fully able and competent to enter into the terms, conditions, obligations, affirmations, and warranties set forth in these Terms. If you are a parent or legal guardian of a Minor, you hereby agree to bind the Minor to these Terms and to fully indemnify and hold harmless KEFI LABS LLC if the Minor breaches any of these Terms. 
+You are responsible for your uses of the Services, or any Content you post to the Services, and for any consequences thereof. The Content you submit, post, or otherwise create will be able to be viewed by other uses of the Services. Thus, only provide Content that you are comfortable sharing with others under the Terms. 
+
+CONTENT
+The Services consist of features that allow users to create, post, and spread Content. You are responsible for any information, opinions, messages, comments, photos, videos, graphics, sounds and other Content or material that you submit, post, or otherwise make available on or through the Services (each a “Submission”) and through the Services available in connection with the Services. We reserve the right to retain your Submissions, even after they have expired from view within the App or even after you have deleted them. However, you agree that we have no obligation to retain any Submission for any period of time, nor shall we be responsible or liable to you or any third party for any lost Content or losses related to the expiration or deletion of a Submission.
+You may not upload, post or otherwise make available on the Services any material protected by copyright, trademark, or any other proprietary right without the express permission of the owner of such copyright, trademark or other proprietary right owned by a third-party, and the burden of determining whether any material is protected by any such right is on you. You shall be solely liable for any damage resulting from any infringement of copyrights, trademarks, proprietary rights, violation of contract, privacy or publicity rights or any other harm resulting from any Submission that you make. You have full responsibility for each Submission you make, including its legality, reliability and appropriateness. Under no circumstances will KEFI LABS LLC be liable in any way for any Content, including, but not limited to, any errors or omissions in any Content, or any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted, or otherwise made available the Services. 
+Unless otherwise explicitly stated herein, you agree that any Submission provided by you in connection with the Services is provided on a non-proprietary and non-confidential basis. You hereby grant to KEFI LABS LLC a non-exclusive, perpetual, irrevocable, royalty-free, fully paid-up, worldwide license (including the right to sublicense through multiple tiers) to use, reproduce, process, adapt, publicly perform, publicly display, modify, prepare derivative works, publish, transmit and distribute each of your Submissions, or any portion thereof, in any form, medium or distribution method now known or hereafter existing, known or developed, and authorize others to use the Submissions. We may change or modify Submissions in order to transmit, display or distribute them over computer networks and in various media and/or make changes to the Submissions as necessary to conform and adapt them to any requirements or limitations of any networks, devices, services or media.
+You agree to pay for all royalties, fees, damages and any other monies owing any person by reason of any Submissions posted by you to or through the Services. When you provide Submissions you agree that those Submissions shall not be in violation of the “Unauthorized Activities” paragraph below. Those prohibitions do not require KEFI LABS LLC to monitor, police or remove any Submissions or other information submitted by you or any other user.
+
+
+UNAUTHORIZED ACTIVITIES
+When using the Services and/or the services, you agree not to:
+-Defame, abuse, harass, threaten, or otherwise violate the legal rights (such as rights of privacy and publicity) of others users and their affiliated institutions.
+-Use racially or ethnically offensive language.
+-Discuss or incite illegal activity.
+-Post anything that exploits children or minors (including pornography that depicts minors) or that depicts cruelty to animals.
+-Post any copyrighted or trademarked materials without the express permission from the owner.
+-Disseminate any unsolicited or unauthorized advertising, promotional materials, ‘junk mail’, ‘spam’, ‘chain letters’, ‘pyramid schemes’, or any other form of such solicitation.
+-Use any robot, spider, scraper or other automated means to access the Services.
+-Take any action that imposes an unreasonable or disproportionately large load on our server infrastructure.
+-Alter the opinions or comments posted by others on the Services.
+-Post anything contrary to our public image, goodwill or reputation.
+This list of prohibitions provides examples and is not complete or exclusive. KEFI LABS LLC reserves the right to terminate access to your account, your ability to post to the Services (or use the Services) as well as refuse, delete or remove any Submissions; with or without cause and with or without notice, for any reason or no reason, or for any action that KEFI LABS LLC determines is inappropriate or disruptive to the Services or users of the Services. KEFI LABS LLC may report to law enforcement authorities any actions that may be illegal, and any reports it receives of such conduct. When legally required or at KEFI LABS LLC’s discretion, KEFI LABS LLC will cooperate with law enforcement agencies in any investigation of alleged illegal activity on the Services or on the Internet.
+Unauthorized use of any Materials or Third-Party Content contained in the Services may violate certain laws and regulations. You agree to indemnify and hold KEFI LABS LLC and its officers, directors, employees, affiliates, agents, licensors, and business partners harmless from and against any and all costs, damages, liabilities, and expenses (including attorneys’ fees and costs of defense) KEFI LABS LLC or any other indemnified party suffers in relation to, arising from, or for the purpose of avoiding, any claim or demand from a third-party that your use of the Services or the use of the Services by any person using your user name and/or password (including without limitation, your participation in the posting areas or, your Submissions) violates any applicable law or regulation, or the copyrights, trademark rights or other rights of any third-party.
+
+
+COPYRIGHT POLICY
+KEFI LABS LLC respects intellectual property rights of others and expects users of the Services to do so as well. KEFI LABS LLC will respond to notices of copyright infringement that comply with applicable law and are properly provided to the firm. If appropriate, KEFI LABS LLC will restrict access or delete such Content that infringes a third party’s copyright and, in KEFI LABS LLC’s sole discretion and without notice, terminate a user’s account if there are repeated instances of infringement. 
+if you become aware of content on these services of the Assassins application that infringe on copyrights that you own or control, you may file a notice of infringement, in compliance with the requirements of 17 U.S.C § 512(c)(3) to kefiapp@gmail.com
+
+
+DISCLAIMER OF WARRANTIES
+Your use of the Services and/or the Services is at your own risk. The Materials have not been verified or authenticated in whole or in part by KEFI LABS LLC, and they may include inaccuracies or typographical or other errors. KEFI LABS LLC does not warrant the accuracy of timeliness of the Materials contained on the Services. KEFI LABS LLC has no liability for any loss of, or errors or omissions in Submissions, or for any errors or omissions in the Materials, whether provided by KEFI LABS LLC, our licensors or suppliers or other users.
+KEFI LABS LLC, FOR ITSELF AND ITS LICENSORS, MAKES NO EXPRESS, IMPLIED OR STATUTORY REPRESENTATIONS, WARRANTIES, OR GUARANTEES IN CONNECTION WITH THE SERVICES, THE SERVICES, OR ANY MATERIALS RELATING TO THE QUALITY, SUITABILITY, TRUTH, ACCURACY OR COMPLETENESS OF ANY INFORMATION OR MATERIAL CONTAINED OR PRESENTED ON THE SERVICES, INCLUDING WITHOUT LIMITATION THE MATERIALS. UNLESS OTHERWISE EXPLICITLY STATED, TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SERVICES, THE SERVICES, AND MATERIALS AND ANY INFORMATION OR MATERIAL CONTAINED OR PRESENTED ON THE SERVICES IS PROVIDED TO YOU ON AN “AS IS,” “AS AVAILABLE” AND “WHERE-IS” BASIS WITH NO WARRANTY OF IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT OF THIRD-PARTY RIGHTS. KEFI LABS LLC DOES NOT PROVIDE ANY WARRANTIES AGAINST VIRUSES, SPYWARE OR MALWARE THAT MAY BE INSTALLED ON YOUR COMPUTER.
+
+
+LIMITATION OF LIABILITY
+KEFI LABS LLC SHALL NOT BE LIABLE TO YOU FOR ANY DAMAGES RESULTING FROM YOUR DISPLAYING, COPYING, OR DOWNLOADING ANY MATERIALS TO OR FROM THE SERVICES. IN NO EVENT SHALL KEFI LABS LLC BE LIABLE TO YOU FOR ANY INDIRECT, EXTRAORDINARY, EXEMPLARY, PUNITIVE, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES (INCLUDING LOSS OF DATA, REVENUE, PROFITS, USE OR OTHER ECONOMIC ADVANTAGE) HOWEVER ARISING, EVEN IF KEFI LABS LLC KNOWS THERE IS A POSSIBILITY OF SUCH DAMAGE.
+
+
+LOCAL LAWS
+KEFI LABS LLC controls and operates the Services from its headquarters in the United States of America and the Materials may not be appropriate or available for use in other locations. If you use the Services outside the United States of America, you are responsible for following applicable local laws.
+
+
+DISPUTE RESOLUTION AND ARBITRATION
+By agreeing to these Terms, you agree to indemnify, defend, and hold harmless KEFI LABS LLC from and against any and all complaints, charges, claims, damages, losses, costs, liabilities, and expenses (including attorneys’ fees) due to, arising out of, or relating in any way to (a) your use of the Services, (b) any Content you post, use, spread, distribute, store through the services, (c)your violation of these terms, or (d) your violation of the rights of another. 
+You and KEFI LABS LLC agree to arbitrate any dispute arising from these Terms or your use of the Services, except that you and KEFI LABS LLC are not required to arbitrate any dispute in which either party seeks equitable and other relief for the alleged unlawful use of the copyrights, trademarks, trade names, logos, trade secrets, or patents. ARBITRATION PREVENTS YOU FROM SUING IN COURT OR FROM HAVING A JURY TRIAL. You and KEFI LABS LLC agree that (a) any arbitration will occur in King County Court, Washington, (b) that arbitration will be administered by the American Arbitration Association in accordance with its Commercial Arbitration Rules, and (c) that the state or federal courts of King County Court, Washington have exclusive jurisdiction over any suit, if any, between parties not subject to arbitration.
+
+
+SEVERABILITY
+If any clause within this Provision (other than the Class Action Waiver clause above) is found to be illegal or unenforceable, that clause will be severed from this Provision to in the minimum extent necessary, and the remainder of this Provision will be given full force and effect.
+
+
+Contact Us.
+If you have any questions about these Terms or otherwise need to contact KEFI LABS LLC for any reason, you can reach us at kefiapp@gmail.com
+
+
+</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gZM-NY-QwN" firstAttribute="leading" secondItem="Jq9-Of-LOa" secondAttribute="leading" constant="8" id="EmL-JT-api"/>
+                            <constraint firstItem="tET-PY-CEg" firstAttribute="top" secondItem="gZM-NY-QwN" secondAttribute="bottom" id="Poc-kW-E9E"/>
+                            <constraint firstItem="gZM-NY-QwN" firstAttribute="top" secondItem="Jq9-Of-LOa" secondAttribute="top" id="Qlz-QD-GRV"/>
+                            <constraint firstAttribute="trailing" secondItem="gZM-NY-QwN" secondAttribute="trailing" constant="8" id="g3D-tn-vNC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Terms of Service" id="rke-3v-K1x">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="VIW-NB-xrL">
@@ -172,7 +244,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLK-eN-8p1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6m7-bM-mgi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="348" y="-2566"/>
+            <point key="canvasLocation" x="471" y="-1830"/>
         </scene>
         <!--Privacy Policy-->
         <scene sceneID="9pw-0y-qfO">
@@ -186,14 +258,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Nothing is private.  Nothing." translatesAutoresizingMaskIntoConstraints="NO" id="Zz4-NR-T5X">
-                                <rect key="frame" x="16" y="0.0" width="288" height="568"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zz4-NR-T5X">
+                                <rect key="frame" x="8" y="0.0" width="304" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">ASSASINS PRIVACY STATEMENT
+
+This privacy policy governs your use of the software application Assassins (“Application”) for mobile devices that was created by KEFI LABS LLC. The Application allows users to engage in a game of Assassins in a digital manner using mobile phones. 
+
+USER PROVIDED INFORMATION
+The Application obtains the information you provide when you download and register the Application. Registration with us is optional. However, please keep in mind that you will not be able to use core functionality of the Application. 
+When you register with KEFI LABS  LLC and use the Application, you provide (a)  your name and Facebook ID; and (b) game-related information, such as when you create a game, post a comment, or take a picture of someone in the Application. Take note that the Application requires your access to your Facebook account, which you provide to (a) provide your name, (b) your friends who have also installed the application, and (c) your profile picture.
+In addition, the Application may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile devices unique device ID, the Application version, and information about the way you use the Application.  
+We may also use the information you provided us to contact you from time to time to provide you with important information, required notices and marketing promotions.
+This Application does not collect precise information about the location of your mobile device. 
+
+THIRD PARTY INFORMATION ACCESS
+Only aggregated, anonymized data is periodically transmitted to external services to help us improve the Application and our service. We will share your information with third parties only in the ways that are described in this privacy statement.
+We may disclose User Provided and Automatically Collected Information:
+-as required by law, such as to comply with a subpoena, or similar legal process;
+-when we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;
+-with our trusted services providers who work on our behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.
+-if KEFI LABS LLC is involved in a merger, acquisition, or sale of all or a portion of its assets, you will be notified via email and/or a prominent notice on our Web site of any change in ownership or uses of this information, as well as any choices you may have regarding this information.
+
+OPT-OUT RIGHTS
+You can stop all collection of information by the Application easily by uninstalling the Application. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network. 
+
+MANAGING YOUR INFORMATION
+We will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. We will retain Automatically Collected information for up to 48 months and thereafter may store it in aggregate. If you’d like us to delete User Provided Data that you have provided via the Application, please contact us at kefiapp@gmail.com and we will respond in a reasonable time. Please note that some or all of the User Provided Data may be required in order for the Application to function properly.
+
+CHILDREN
+We do not use the Application to knowingly solicit data from or market to children under the age of 13. If a parent or guardian becomes aware that his or her child has provided us with information without their consent, he or she should contact us at kefiapp@gmail.com. We will delete such information from our files within a reasonable time.
+
+SECURITY
+We are concerned about safeguarding the confidentiality of your information. We provide physical, electronic, and procedural safeguards to protect information we process and maintain. For example, we limit access to this information to authorized employees and contractors who need to know that information in order to operate, develop or improve our Application. Please be aware that, although we endeavor provide reasonable security for information we process and maintain, no security system can prevent all potential security breaches.
+ 
+CHANGES
+This Privacy Policy may be updated from time to time for any reason. We will notify you of any changes to our Privacy Policy by updating this policy and informing you via email and other social media outlets. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.
+
+YOUR CONSENT
+By using the Application, you are consenting to our processing of your information as set forth in this Privacy Policy now and as amended by us. "Processing,” means using cookies on a computer/hand held device or using or touching information in any way, including, but not limited to, collecting, storing, deleting, using, combining and disclosing information, all of which activities will take place in the United States. If you reside outside the United States your information will be transferred, processed and stored there under United States privacy standards. 
+ 
+CONTACT US
+If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact us via email at kefiapp@gmail.com</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" address="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zz4-NR-T5X" firstAttribute="leading" secondItem="lFF-Jx-dCz" secondAttribute="leading" constant="8" id="EOJ-EY-gmf"/>
+                            <constraint firstAttribute="trailing" secondItem="Zz4-NR-T5X" secondAttribute="trailing" constant="8" id="HaA-Uc-QPe"/>
+                            <constraint firstItem="V87-bY-Mba" firstAttribute="top" secondItem="Zz4-NR-T5X" secondAttribute="bottom" id="P1o-4N-roW"/>
+                            <constraint firstItem="Zz4-NR-T5X" firstAttribute="top" secondItem="lFF-Jx-dCz" secondAttribute="top" id="p6z-6H-x6w"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Privacy Policy" id="wdB-q5-M2a">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="fge-wc-fZl">
@@ -206,7 +324,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pIF-pL-PBT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="CRA-AH-CNb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1544" y="-2606"/>
+            <point key="canvasLocation" x="2072" y="-1830"/>
         </scene>
         <!--Create Game View Controller-->
         <scene sceneID="g85-Rp-4Ad">
@@ -348,7 +466,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="477" y="-1904"/>
+            <point key="canvasLocation" x="1009" y="-1830"/>
         </scene>
         <!--User Table View Controller-->
         <scene sceneID="pgR-4R-yDP">
@@ -488,31 +606,31 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-fK-VEq" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="11" y="46" width="60" height="60"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="rgf-uK-hMp"/>
-                                                        <constraint firstAttribute="height" constant="60" id="vZy-L6-yo7"/>
-                                                    </constraints>
-                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSN-VG-z3Y">
-                                                    <rect key="frame" x="79" y="62" width="240" height="28"/>
+                                                    <rect key="frame" x="81" y="57" width="190" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="240" id="B5F-8s-t1D"/>
-                                                        <constraint firstAttribute="height" constant="28" id="yoH-2x-2ep"/>
+                                                        <constraint firstAttribute="width" constant="190" id="I64-QY-X2C"/>
+                                                        <constraint firstAttribute="height" constant="28" id="h0G-Db-fmF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-fK-VEq" customClass="FBProfilePictureView">
+                                                    <rect key="frame" x="11" y="41" width="60" height="60"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="HhY-Vw-D4s"/>
+                                                        <constraint firstAttribute="height" constant="60" id="ms3-BX-X7O"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="V6L-fK-VEq" firstAttribute="top" secondItem="3Fj-oX-7yZ" secondAttribute="bottom" constant="14" id="DwM-Qz-xcK"/>
-                                                <constraint firstItem="V6L-fK-VEq" firstAttribute="leading" secondItem="Dio-n9-f9q" secondAttribute="leadingMargin" constant="3" id="HnC-Bh-oOE"/>
-                                                <constraint firstItem="rSN-VG-z3Y" firstAttribute="top" secondItem="3Fj-oX-7yZ" secondAttribute="bottom" constant="30" id="O4Z-nC-7MY"/>
+                                                <constraint firstItem="rSN-VG-z3Y" firstAttribute="leading" secondItem="V6L-fK-VEq" secondAttribute="trailing" constant="10" id="9Wk-dW-xvy"/>
+                                                <constraint firstItem="rSN-VG-z3Y" firstAttribute="top" secondItem="3Fj-oX-7yZ" secondAttribute="bottom" constant="25" id="Irm-tV-eNy"/>
                                                 <constraint firstItem="3Fj-oX-7yZ" firstAttribute="leading" secondItem="Dio-n9-f9q" secondAttribute="leadingMargin" id="Otc-xX-CjI"/>
-                                                <constraint firstItem="rSN-VG-z3Y" firstAttribute="leading" secondItem="V6L-fK-VEq" secondAttribute="trailing" constant="8" id="UjJ-l2-KCO"/>
+                                                <constraint firstItem="V6L-fK-VEq" firstAttribute="top" secondItem="3Fj-oX-7yZ" secondAttribute="bottom" constant="9" id="g2J-oB-dRh"/>
+                                                <constraint firstItem="V6L-fK-VEq" firstAttribute="leading" secondItem="Dio-n9-f9q" secondAttribute="leading" constant="11" id="lqX-tS-yaS"/>
                                                 <constraint firstItem="3Fj-oX-7yZ" firstAttribute="top" secondItem="Dio-n9-f9q" secondAttribute="topMargin" constant="3" id="my4-vs-9bx"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -757,7 +875,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZe-YN-B2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="en8-k3-hke" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2077" y="-773"/>
+            <point key="canvasLocation" x="1641" y="-353"/>
         </scene>
         <!--Snipe Submit View-->
         <scene sceneID="jpJ-Dg-kLF">
@@ -1059,7 +1177,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfQ-z4-bBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9xW-Vj-wXb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2077" y="-1468"/>
+            <point key="canvasLocation" x="2072" y="-1099"/>
         </scene>
         <!--Game Table View Controller-->
         <scene sceneID="eS9-KP-hOX">
@@ -1151,7 +1269,7 @@
                                             </constraints>
                                             <segments>
                                                 <segment title="Events"/>
-                                                <segment title="Players"/>
+                                                <segment title="Assassins"/>
                                                 <segment title="Safe Zones"/>
                                             </segments>
                                             <connections>
@@ -1345,7 +1463,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTm-ny-6uu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-184" y="-2566"/>
+            <point key="canvasLocation" x="-73" y="-1830"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Js-4d-qfs">
@@ -1363,7 +1481,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htk-4d-plj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="-2606"/>
+            <point key="canvasLocation" x="1641" y="-1830"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DLM-k4-WyS">

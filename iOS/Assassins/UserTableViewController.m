@@ -236,6 +236,40 @@
     [self.view layoutIfNeeded];
 }
 
+-(IBAction)showActionSheet:(id)sender {
+    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Feedback", @"Terms of service", @"Privacy policy", nil];
+    popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [popupQuery showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+        {
+            NSString *urlString = @"mailto:kefiapp@gmail.com?subject=Feedback%20On%20Assassins";
+            NSURL *url = [NSURL URLWithString:urlString];
+            [[UIApplication sharedApplication] openURL:url];
+            break;
+        }
+        case 1:
+            [self performSegueWithIdentifier:@"SegueToTermsOfService" sender:self];
+            break;
+        case 2:
+            [self performSegueWithIdentifier:@"SegueToPrivacyPolicy" sender:self];
+            break;
+        case 3:
+            NSLog(@"Cancel");
+        default:
+            break;
+            // terms of service, feedback, privacy policy,
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -378,40 +412,10 @@
     return 110.0;
 }
 
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
--(IBAction)showActionSheet:(id)sender {
-    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Feedback", @"Terms of service", @"Privacy policy", nil];
-    popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-    [popupQuery showInView:self.view];
-}
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    switch (buttonIndex) {
-        case 0:
-        {
-            NSString *urlString = @"mailto:kefiapp@gmail.com?subject=Feedback%20On%20Assassins";
-            NSURL *url = [NSURL URLWithString:urlString];
-            [[UIApplication sharedApplication] openURL:url];
-            break;
-        }
-        case 1:
-            [self performSegueWithIdentifier:@"SegueToTermsOfService" sender:self];
-            break;
-        case 2:
-            [self performSegueWithIdentifier:@"SegueToPrivacyPolicy" sender:self];
-            break;
-        case 3:
-            NSLog(@"Cancel");
-        default:
-            break;
-            // terms of service, feedback, privacy policy,
-    }
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // deselect the row
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
