@@ -67,6 +67,7 @@
         if (page == 2)
         {
             UIApplication *application = [UIApplication sharedApplication];
+            
             // Register for push notifications
             if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
                 UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |

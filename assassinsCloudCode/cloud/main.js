@@ -205,7 +205,7 @@ Parse.Cloud.define("completedContract", function(request, response) {
 								  	}
 								  },{
 								  success: function() {
-								    console.log("pushed to users about assassination");
+								   response.success("pusehd update, created new contracts as well");
 								  },
 								  error: function(error) {
 								    console.log("push error: " + error.message);
@@ -217,8 +217,8 @@ Parse.Cloud.define("completedContract", function(request, response) {
 								console.log("didn't push");
 							}
 						});
-						
 					}
+
 			    },
 			    error: function(error) {
 			    	response.error("Couldn't find target contract: " + error.message);

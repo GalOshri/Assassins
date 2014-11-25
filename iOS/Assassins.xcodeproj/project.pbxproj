@@ -324,13 +324,13 @@
 			isa = PBXGroup;
 			children = (
 				0D52C4AC197E284A00E5E5B9 /* Main.storyboard */,
-				0DB855C91A1807A0008C824F /* TermsOfServiceView.h */,
-				0DB855CA1A1807A0008C824F /* TermsOfServiceView.m */,
-				0DB855CC1A1807B2008C824F /* PrivacyPolicyView.h */,
-				0DB855CD1A1807B2008C824F /* PrivacyPolicyView.m */,
 				0D8B2C4F19B5236100552D11 /* Camera Page */,
 				0D8B2C5019B5237600552D11 /* Snipe Submit Page */,
 				DAD0DD84199359450075E69D /* User Page */,
+				DA42AB6E19A6060E00356E7A /* Create Game */,
+				DAD0DD6E198F78420075E69D /* Game Page */,
+				DA47DE491A23EE24009AA829 /* Legal */,
+				DA47DE481A23EE1E009AA829 /* Tutorial Page */,
 				0D277D0C198EE32E002362C6 /* Service */,
 				0DBF67101992100200AFF5F8 /* Models */,
 				0D277D0B198EE318002362C6 /* Images */,
@@ -377,8 +377,6 @@
 			children = (
 				0D52C4AF197E284A00E5E5B9 /* ViewController.h */,
 				0D52C4B0197E284A00E5E5B9 /* ViewController.m */,
-				0DB855C01A107644008C824F /* TutorialViewController.h */,
-				0DB855C11A107644008C824F /* TutorialViewController.m */,
 				0DBF670C198EFD7700AFF5F8 /* Log In and Sign Up */,
 				0DBF670B198EFD5C00AFF5F8 /* Image Helpers */,
 			);
@@ -443,6 +441,26 @@
 			name = "Create Game";
 			sourceTree = "<group>";
 		};
+		DA47DE481A23EE1E009AA829 /* Tutorial Page */ = {
+			isa = PBXGroup;
+			children = (
+				0DB855C01A107644008C824F /* TutorialViewController.h */,
+				0DB855C11A107644008C824F /* TutorialViewController.m */,
+			);
+			name = "Tutorial Page";
+			sourceTree = "<group>";
+		};
+		DA47DE491A23EE24009AA829 /* Legal */ = {
+			isa = PBXGroup;
+			children = (
+				0DB855C91A1807A0008C824F /* TermsOfServiceView.h */,
+				0DB855CA1A1807A0008C824F /* TermsOfServiceView.m */,
+				0DB855CC1A1807B2008C824F /* PrivacyPolicyView.h */,
+				0DB855CD1A1807B2008C824F /* PrivacyPolicyView.m */,
+			);
+			name = Legal;
+			sourceTree = "<group>";
+		};
 		DAA7D030199892C400656414 /* Pending Contracts */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,8 +515,6 @@
 				DAD0DD82199359360075E69D /* UserTableViewController.m */,
 				0DBF67141998542C00AFF5F8 /* GameCell.h */,
 				0DBF67151998542C00AFF5F8 /* GameCell.m */,
-				DAD0DD6E198F78420075E69D /* Game Page */,
-				DA42AB6E19A6060E00356E7A /* Create Game */,
 			);
 			name = "User Page";
 			sourceTree = "<group>";

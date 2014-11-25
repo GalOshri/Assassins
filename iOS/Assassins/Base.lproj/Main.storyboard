@@ -114,7 +114,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-iy-piV">
-                                <rect key="frame" x="0.0" y="37" width="320" height="499"/>
+                                <rect key="frame" x="0.0" y="37" width="320" height="500"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -122,7 +122,7 @@
                             <constraint firstAttribute="trailing" secondItem="OaT-iy-piV" secondAttribute="trailing" id="0QM-DW-gUf"/>
                             <constraint firstItem="OaT-iy-piV" firstAttribute="top" secondItem="6Qd-co-ZfI" secondAttribute="bottom" constant="17" id="HkA-df-ehO"/>
                             <constraint firstAttribute="centerX" secondItem="9hN-Dh-xaE" secondAttribute="centerX" constant="-0.5" id="IMV-b0-6B8"/>
-                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="OaT-iy-piV" secondAttribute="bottom" constant="32" id="Ldg-0K-mrh"/>
+                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="OaT-iy-piV" secondAttribute="bottom" constant="31" id="Lti-KK-iOO"/>
                             <constraint firstItem="OaT-iy-piV" firstAttribute="leading" secondItem="Bba-fy-sP1" secondAttribute="leading" id="QZS-22-rBy"/>
                             <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="FUL-jS-AaR" secondAttribute="bottom" constant="2" id="Tfr-kX-6Xq"/>
                             <constraint firstItem="9hN-Dh-xaE" firstAttribute="top" secondItem="6Qd-co-ZfI" secondAttribute="bottom" constant="-10" id="b11-ft-25c"/>
@@ -690,7 +690,9 @@ If you have any questions regarding privacy while using the Application, or have
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DIr-KF-nSc"/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DIr-KF-nSc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            </imageView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type to comment" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OwV-Jl-oph">
                                 <rect key="frame" x="0.0" y="68" width="320" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
@@ -698,6 +700,19 @@ If you have any questions regarding privacy while using the Application, or have
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9j-YwT">
+                                <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="7kE-Ft-SAv"/>
+                                    <constraint firstAttribute="height" constant="40" id="aTc-q3-w9x"/>
+                                </constraints>
+                                <state key="normal" image="backArrow.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToGameView:" id="foW-uh-Rsx"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uII-Fl-Spg">
                                 <rect key="frame" x="0.0" y="407" width="320" height="97"/>
                                 <subviews>
@@ -830,36 +845,28 @@ If you have any questions regarding privacy while using the Application, or have
                                     <constraint firstAttribute="height" constant="379" id="iCL-Ch-9lf"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9j-YwT">
-                                <rect key="frame" x="8" y="8" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="7kE-Ft-SAv"/>
-                                    <constraint firstAttribute="height" constant="40" id="aTc-q3-w9x"/>
-                                </constraints>
-                                <state key="normal" image="backArrow.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToGameView:" id="foW-uh-Rsx"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cjn-9j-YwT" firstAttribute="top" secondItem="wTw-FN-wx1" secondAttribute="topMargin" constant="8" id="2j5-m5-3bR"/>
-                            <constraint firstItem="zDs-Oy-QfE" firstAttribute="leading" secondItem="wTw-FN-wx1" secondAttribute="leadingMargin" constant="-8" id="3pn-JS-ldR"/>
                             <constraint firstItem="cjn-9j-YwT" firstAttribute="leading" secondItem="wTw-FN-wx1" secondAttribute="leadingMargin" constant="-8" id="BT4-qN-sED"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zDs-Oy-QfE" secondAttribute="trailing" constant="-8" id="UXn-j7-gZF"/>
+                            <constraint firstAttribute="trailing" secondItem="DIr-KF-nSc" secondAttribute="trailing" id="II6-A0-JDw"/>
+                            <constraint firstItem="DIr-KF-nSc" firstAttribute="leading" secondItem="wTw-FN-wx1" secondAttribute="leading" id="P2B-er-rMv"/>
+                            <constraint firstItem="DIr-KF-nSc" firstAttribute="top" secondItem="RRM-3J-j5H" secondAttribute="bottom" id="TrI-Xa-87t"/>
+                            <constraint firstItem="Fve-cv-Qj4" firstAttribute="top" secondItem="DIr-KF-nSc" secondAttribute="bottom" id="WWr-NN-ApL"/>
                             <constraint firstItem="uII-Fl-Spg" firstAttribute="leading" secondItem="wTw-FN-wx1" secondAttribute="leadingMargin" constant="-16" id="bfQ-o1-YlX"/>
                             <constraint firstItem="uII-Fl-Spg" firstAttribute="top" secondItem="zDs-Oy-QfE" secondAttribute="bottom" constant="8" id="gCe-A8-FvZ"/>
                             <constraint firstItem="Fve-cv-Qj4" firstAttribute="top" secondItem="uII-Fl-Spg" secondAttribute="bottom" id="m9T-8o-N6K"/>
+                            <constraint firstItem="zDs-Oy-QfE" firstAttribute="leading" secondItem="wTw-FN-wx1" secondAttribute="leading" constant="8" id="rvl-8N-VoF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uII-Fl-Spg" secondAttribute="trailing" constant="-16" id="tub-JB-XRR"/>
+                            <constraint firstAttribute="trailing" secondItem="zDs-Oy-QfE" secondAttribute="trailing" constant="8" id="uSR-EV-jx1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oPv-f7-b2b"/>
                     <connections>
                         <outlet property="addCommentField" destination="SyR-Zw-7iB" id="Tkv-6b-mUk"/>
                         <outlet property="commentView" destination="zDs-Oy-QfE" id="VjY-tO-qif"/>
+                        <outlet property="commentViewBottomConstraint" destination="gCe-A8-FvZ" id="ZI7-NK-Bsh"/>
                         <outlet property="commentViewTable" destination="hPQ-Nz-XUt" id="Xhx-DB-ZvA"/>
                         <outlet property="commentsButton" destination="LxH-Jt-82s" id="3Hp-yB-Wyu"/>
                         <outlet property="confirmSnipeButton" destination="ex5-tB-3pA" id="nwL-EA-DSA"/>
@@ -974,6 +981,19 @@ If you have any questions regarding privacy while using the Application, or have
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nzP-cj-N98">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtJ-mA-sKB">
+                                <rect key="frame" x="8" y="8" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="aJf-TJ-Rfe"/>
+                                    <constraint firstAttribute="height" constant="60" id="diw-5e-2bH"/>
+                                </constraints>
+                                <state key="normal" image="backArrow.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9xW-Vj-wXb" kind="unwind" unwindAction="unwindToGameView:" id="VP6-sJ-F4e"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvD-DM-NpW">
                                 <rect key="frame" x="0.0" y="463" width="320" height="41"/>
                                 <subviews>
@@ -1035,7 +1055,7 @@ If you have any questions regarding privacy while using the Application, or have
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mie-vY-UNg">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mie-vY-UNg">
                                         <rect key="frame" x="237" y="7" width="67" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="5LS-3h-ZTC"/>
@@ -1095,9 +1115,8 @@ If you have any questions regarding privacy while using the Application, or have
                                 <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="mie-vY-UNg" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="top" constant="7" id="3sf-6c-jht"/>
-                                    <constraint firstAttribute="height" constant="379" id="5Ug-72-Bjp"/>
                                     <constraint firstAttribute="trailing" secondItem="r8h-ta-3Ij" secondAttribute="trailing" constant="4" id="AyO-zW-qGV"/>
-                                    <constraint firstAttribute="width" constant="304" id="HkI-Bk-BkG"/>
+                                    <constraint firstAttribute="height" constant="379" id="L69-HY-VzN"/>
                                     <constraint firstAttribute="trailing" secondItem="oa4-Lc-dHG" secondAttribute="trailing" constant="47" id="OBQ-Ec-I1j"/>
                                     <constraint firstAttribute="bottom" secondItem="FdB-FY-kte" secondAttribute="bottom" constant="4" id="ScQ-3A-k9V"/>
                                     <constraint firstItem="oa4-Lc-dHG" firstAttribute="leading" secondItem="3Zs-86-teq" secondAttribute="leading" constant="7" id="TwG-Ew-Z2h"/>
@@ -1106,7 +1125,6 @@ If you have any questions regarding privacy while using the Application, or have
                                     <constraint firstAttribute="bottom" secondItem="r8h-ta-3Ij" secondAttribute="bottom" constant="38" id="fAa-y3-0dj"/>
                                     <constraint firstItem="r8h-ta-3Ij" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="top" constant="33" id="jAh-hi-eAN"/>
                                     <constraint firstAttribute="bottom" secondItem="oa4-Lc-dHG" secondAttribute="bottom" constant="4" id="jXd-2d-bWk"/>
-                                    <constraint firstAttribute="trailing" secondItem="mie-vY-UNg" secondAttribute="trailing" id="mMN-np-rEi"/>
                                     <constraint firstItem="uq6-VC-kAD" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="top" constant="9" id="ucP-Z7-HpC"/>
                                     <constraint firstAttribute="trailing" secondItem="FdB-FY-kte" secondAttribute="trailing" constant="-1" id="xcN-bI-Cx6"/>
                                 </constraints>
@@ -1125,25 +1143,13 @@ If you have any questions regarding privacy while using the Application, or have
                                     <action selector="initiateReviewProcess:" destination="Tsj-uF-E4u" eventType="touchUpInside" id="yQh-Jw-PBM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtJ-mA-sKB">
-                                <rect key="frame" x="8" y="8" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="aJf-TJ-Rfe"/>
-                                    <constraint firstAttribute="height" constant="60" id="diw-5e-2bH"/>
-                                </constraints>
-                                <state key="normal" image="backArrow.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="9xW-Vj-wXb" kind="unwind" unwindAction="unwindToGameView:" id="VP6-sJ-F4e"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="gvD-DM-NpW" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leadingMargin" constant="-16" id="8uo-X0-Qvk"/>
                             <constraint firstItem="nzP-cj-N98" firstAttribute="top" secondItem="ghN-kX-Bdu" secondAttribute="top" id="8xZ-gT-yRP"/>
+                            <constraint firstItem="3Zs-86-teq" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leading" constant="8" id="Cf6-mY-ehz"/>
                             <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="nzP-cj-N98" secondAttribute="bottom" id="FSI-Ae-hzZ"/>
                             <constraint firstItem="nzP-cj-N98" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leading" id="Hfr-aB-3Eb"/>
                             <constraint firstItem="gvD-DM-NpW" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="bottom" constant="8" id="IzY-El-AvJ"/>
@@ -1151,6 +1157,7 @@ If you have any questions regarding privacy while using the Application, or have
                             <constraint firstAttribute="trailingMargin" secondItem="gvD-DM-NpW" secondAttribute="trailing" constant="-16" id="Oho-so-MxZ"/>
                             <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="wJK-OE-P5l" secondAttribute="bottom" constant="1" id="QmH-ZP-01j"/>
                             <constraint firstItem="wJK-OE-P5l" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leading" constant="8" id="UYa-lT-df4"/>
+                            <constraint firstAttribute="trailing" secondItem="3Zs-86-teq" secondAttribute="trailing" constant="8" id="Xjf-3X-eQs"/>
                             <constraint firstItem="rtJ-mA-sKB" firstAttribute="leading" secondItem="ghN-kX-Bdu" secondAttribute="leadingMargin" constant="-8" id="apU-2N-Lel"/>
                             <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="gvD-DM-NpW" secondAttribute="bottom" id="ee3-RA-mfY"/>
                             <constraint firstItem="oWS-UN-mJD" firstAttribute="top" secondItem="nzP-cj-N98" secondAttribute="bottom" id="jW6-54-6Gy"/>
