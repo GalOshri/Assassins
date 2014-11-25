@@ -295,7 +295,7 @@
     {
         cell.game = [self.games objectAtIndex:indexPath.row];
         cell.gameNameLabel.text = cell.game.name;
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         // grab current contract to fill in data
         cell.currentContract = [self.cellContracts objectForKey:cell.game.gameId];
@@ -309,11 +309,11 @@
             
             // if the pending snipe is of you snipe
             if([cell.currentContract.state isEqualToString:@"Pending"])
-                cell.detailLabel.text = [NSString stringWithFormat:@"there is a pending snipe of you"];
+                cell.detailLabel.text = [NSString stringWithFormat:@"Your status is pending"];
             
             // pending snipe is someone else's
             else
-                cell.detailLabel.text = [NSString stringWithFormat:@"help validate pending snipes"];
+                cell.detailLabel.text = [NSString stringWithFormat:@"Validate pending snipes"];
         }
         
         // if current contract exists

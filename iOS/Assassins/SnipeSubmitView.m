@@ -100,7 +100,9 @@
 - (IBAction)dragCommentField:(UITextField *)textField forEvent:(UIEvent *)event {
     
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.snipeImageView];
-    textField.center = CGPointMake(textField.center.x, point.y);
+    
+    if(point.y >= 40.0 && point.y <= self.view.frame.size.height - 140.0)
+        textField.center = CGPointMake(textField.center.x, point.y);
 }
 
 #pragma mark - Submit Assassination

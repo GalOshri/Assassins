@@ -168,7 +168,12 @@
                 // reset table, empty text box, incrmeent number of comment button
                 self.addCommentField.text = @"";
                 [self.commentsArray addObject:newComment];
-                [self.commentsButton setTitle:[NSString stringWithFormat:@"%lu comments", (unsigned long)[self.commentsArray count]] forState:UIControlStateNormal];
+                
+                if ([self.commentsArray count] == 1)
+                    [self.commentsButton setTitle:[NSString stringWithFormat:@"%d comment", (int)[self.commentsArray count]] forState:UIControlStateNormal];
+                else
+                    [self.commentsButton setTitle:[NSString stringWithFormat:@"%d comments", (int)[self.commentsArray count]] forState:UIControlStateNormal];
+                
                 [self.commentViewTable reloadData];
                 
             }

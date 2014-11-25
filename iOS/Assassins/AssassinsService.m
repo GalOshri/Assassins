@@ -221,16 +221,33 @@
     
     for (NSString *gameId in gameIds)
         [arrayOfGames addObject:[PFObject objectWithoutDataWithClassName:@"Game" objectId:gameId]];
-         
+    
+    // query to find your targets for games
     PFQuery *query = [PFQuery queryWithClassName:@"Contract"];
     [query whereKey:@"assassin" equalTo:[PFUser currentUser]];
     [query whereKey:@"state" equalTo:@"Active"];
     [query whereKey:@"game" containedIn:arrayOfGames];
     
     // fetch, and order in the same order as gameIds
-    NSArray *contracts = [query findObjects];
+    NSArray *targetContracts = [query findObjects];
     
-    for (PFObject *contractObject in contracts)
+    for (PFObject *contractObject in targetContracts)
+    {
+        Contract *contract = [self getContractFromContractObject:contractObject];
+        [cellContracts setObject:contract forKey:contract.gameId];
+    }
+    
+    
+    // query to find all your pening snipes
+    PFQuery *pendingQuery = [PFQuery queryWithClassName:@"Contract"];
+    [pendingQuery whereKey:@"target" equalTo:[PFUser currentUser]];
+    [pendingQuery whereKey:@"state" equalTo:@"Pending"];
+    [pendingQuery whereKey:@"game" containedIn:arrayOfGames];
+    
+    // fetch, and order in the same order as gameIds
+    NSArray *pendingContracts = [pendingQuery findObjects];
+    
+    for (PFObject *contractObject in pendingContracts)
     {
         Contract *contract = [self getContractFromContractObject:contractObject];
         [cellContracts setObject:contract forKey:contract.gameId];

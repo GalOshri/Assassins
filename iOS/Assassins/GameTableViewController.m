@@ -216,7 +216,6 @@
                 
                 else
                 {
-                    // self.currentTargetLabel.text = @"you were eliminated";
                     [self.currentTargetProfilePicture setHidden:YES];
                     self.currentTargetUsername.text = @"you were eliminated";
                     
