@@ -45,6 +45,10 @@
 		DA28DE9E19C5061C0015BE4C /* backArrowNoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DA28DE9D19C5061C0015BE4C /* backArrowNoBackground.png */; };
 		DA28DEA019C509A50015BE4C /* menuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DA28DE9F19C509A50015BE4C /* menuBackground.png */; };
 		DA42AB6D19A605F100356E7A /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42AB6C19A605F100356E7A /* CreateGameViewController.m */; };
+		DA47DE4E1A240D54009AA829 /* tutorialPage2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA47DE4A1A240D54009AA829 /* tutorialPage2.png */; };
+		DA47DE4F1A240D54009AA829 /* tutorialPage3.png in Resources */ = {isa = PBXBuildFile; fileRef = DA47DE4B1A240D54009AA829 /* tutorialPage3.png */; };
+		DA47DE501A240D54009AA829 /* tutorialPage4.png in Resources */ = {isa = PBXBuildFile; fileRef = DA47DE4C1A240D54009AA829 /* tutorialPage4.png */; };
+		DA47DE511A240D54009AA829 /* tutorialPage5.png in Resources */ = {isa = PBXBuildFile; fileRef = DA47DE4D1A240D54009AA829 /* tutorialPage5.png */; };
 		DA50B8E41A1DCA8E00D87A16 /* barImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DA50B8E31A1DCA8E00D87A16 /* barImage.png */; };
 		DA8DF85B19D78639000F9412 /* scopeBckgnd.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8DF85A19D78639000F9412 /* scopeBckgnd.png */; };
 		DA8DF85D19D78B4E000F9412 /* spyBckgnd.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8DF85C19D78B4E000F9412 /* spyBckgnd.png */; };
@@ -147,6 +151,10 @@
 		DA28DE9F19C509A50015BE4C /* menuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBackground.png; sourceTree = "<group>"; };
 		DA42AB6B19A605F100356E7A /* CreateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
 		DA42AB6C19A605F100356E7A /* CreateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
+		DA47DE4A1A240D54009AA829 /* tutorialPage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialPage2.png; sourceTree = "<group>"; };
+		DA47DE4B1A240D54009AA829 /* tutorialPage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialPage3.png; sourceTree = "<group>"; };
+		DA47DE4C1A240D54009AA829 /* tutorialPage4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialPage4.png; sourceTree = "<group>"; };
+		DA47DE4D1A240D54009AA829 /* tutorialPage5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialPage5.png; sourceTree = "<group>"; };
 		DA50B8E31A1DCA8E00D87A16 /* barImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barImage.png; sourceTree = "<group>"; };
 		DA8DF85A19D78639000F9412 /* scopeBckgnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scopeBckgnd.png; sourceTree = "<group>"; };
 		DA8DF85C19D78B4E000F9412 /* spyBckgnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spyBckgnd.png; sourceTree = "<group>"; };
@@ -242,6 +250,10 @@
 		0D277D0B198EE318002362C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA47DE4A1A240D54009AA829 /* tutorialPage2.png */,
+				DA47DE4B1A240D54009AA829 /* tutorialPage3.png */,
+				DA47DE4C1A240D54009AA829 /* tutorialPage4.png */,
+				DA47DE4D1A240D54009AA829 /* tutorialPage5.png */,
 				DA50B8E31A1DCA8E00D87A16 /* barImage.png */,
 				DAADCE1E1A16EA7A008177EE /* tutorialPage1.jpg */,
 				DAAD9C3B1A0014F1006DF466 /* userSilhouettePending.png */,
@@ -330,11 +342,11 @@
 				DA42AB6E19A6060E00356E7A /* Create Game */,
 				DAD0DD6E198F78420075E69D /* Game Page */,
 				DA47DE491A23EE24009AA829 /* Legal */,
-				DA47DE481A23EE1E009AA829 /* Tutorial Page */,
 				0D277D0C198EE32E002362C6 /* Service */,
+				DA47DE481A23EE1E009AA829 /* Tutorial Page */,
+				DAADCE0A1A141B6A008177EE /* Local Notifications */,
 				0DBF67101992100200AFF5F8 /* Models */,
 				0D277D0B198EE318002362C6 /* Images */,
-				DAADCE0A1A141B6A008177EE /* Local Notifications */,
 				0D52C4B2197E284A00E5E5B9 /* Images.xcassets */,
 				0D52C4A1197E284A00E5E5B9 /* Supporting Files */,
 			);
@@ -601,14 +613,17 @@
 				DAD0DD331988DC840075E69D /* cameraButton.png in Resources */,
 				DAA08C4019E58784007B089E /* assassinsSignIn.png in Resources */,
 				DAD0DD61198F00270075E69D /* flipCamera.png in Resources */,
+				DA47DE501A240D54009AA829 /* tutorialPage4.png in Resources */,
 				DA8DF85B19D78639000F9412 /* scopeBckgnd.png in Resources */,
 				DA8DF86119D79071000F9412 /* mysteryManBckgnd.png in Resources */,
 				DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */,
 				DAAD9C3C1A0014F1006DF466 /* userSilhouettePending.png in Resources */,
 				DAD0DD3D198B74BF0075E69D /* flash.png in Resources */,
+				DA47DE4E1A240D54009AA829 /* tutorialPage2.png in Resources */,
 				DAD0DD63198F38710075E69D /* cameraIcon.png in Resources */,
 				0D52C4B3197E284A00E5E5B9 /* Images.xcassets in Resources */,
 				DA28DE9E19C5061C0015BE4C /* backArrowNoBackground.png in Resources */,
+				DA47DE4F1A240D54009AA829 /* tutorialPage3.png in Resources */,
 				DAAD9C3819FF1D67006DF466 /* userSilhouetteDead.png in Resources */,
 				DAD0DD3B198A1F7C0075E69D /* backArrow.png in Resources */,
 				DA8DF85D19D78B4E000F9412 /* spyBckgnd.png in Resources */,
@@ -621,6 +636,7 @@
 				DAADCE1F1A16EA7A008177EE /* tutorialPage1.jpg in Resources */,
 				DAA08C4419E594B6007B089E /* assassinsLogoSignIn.png in Resources */,
 				0D52C4A5197E284A00E5E5B9 /* InfoPlist.strings in Resources */,
+				DA47DE511A240D54009AA829 /* tutorialPage5.png in Resources */,
 				0D52C4AE197E284A00E5E5B9 /* Main.storyboard in Resources */,
 				DABFCC671A1A6D95000A5BD3 /* users.png in Resources */,
 				DA28DEA019C509A50015BE4C /* menuBackground.png in Resources */,

@@ -95,11 +95,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="9hN-Dh-xaE">
-                                <rect key="frame" x="141" y="10" width="39" height="37"/>
-                                <color key="pageIndicatorTintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </pageControl>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUL-jS-AaR">
                                 <rect key="frame" x="137" y="536" width="46" height="30"/>
                                 <constraints>
@@ -114,19 +109,27 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-iy-piV">
-                                <rect key="frame" x="0.0" y="37" width="320" height="500"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="500"/>
                             </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="9hN-Dh-xaE">
+                                <rect key="frame" x="120" y="509" width="80" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="cce-jk-mI4"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="OaT-iy-piV" secondAttribute="trailing" id="0QM-DW-gUf"/>
-                            <constraint firstItem="OaT-iy-piV" firstAttribute="top" secondItem="6Qd-co-ZfI" secondAttribute="bottom" constant="17" id="HkA-df-ehO"/>
-                            <constraint firstAttribute="centerX" secondItem="9hN-Dh-xaE" secondAttribute="centerX" constant="-0.5" id="IMV-b0-6B8"/>
-                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="OaT-iy-piV" secondAttribute="bottom" constant="31" id="Lti-KK-iOO"/>
-                            <constraint firstItem="OaT-iy-piV" firstAttribute="leading" secondItem="Bba-fy-sP1" secondAttribute="leading" id="QZS-22-rBy"/>
+                            <constraint firstItem="OaT-iy-piV" firstAttribute="top" secondItem="6Qd-co-ZfI" secondAttribute="bottom" id="JRP-I2-vo5"/>
+                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="9hN-Dh-xaE" secondAttribute="bottom" constant="22" id="TWG-XL-r1N"/>
                             <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="FUL-jS-AaR" secondAttribute="bottom" constant="2" id="Tfr-kX-6Xq"/>
-                            <constraint firstItem="9hN-Dh-xaE" firstAttribute="top" secondItem="6Qd-co-ZfI" secondAttribute="bottom" constant="-10" id="b11-ft-25c"/>
                             <constraint firstAttribute="centerX" secondItem="FUL-jS-AaR" secondAttribute="centerX" id="fEC-aw-fJv"/>
+                            <constraint firstAttribute="centerX" secondItem="9hN-Dh-xaE" secondAttribute="centerX" id="gi4-Mx-FI1"/>
+                            <constraint firstItem="OaT-iy-piV" firstAttribute="leading" secondItem="Bba-fy-sP1" secondAttribute="leading" id="lE1-rM-iME"/>
+                            <constraint firstAttribute="trailing" secondItem="OaT-iy-piV" secondAttribute="trailing" id="ott-tx-IfI"/>
+                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="OaT-iy-piV" secondAttribute="bottom" constant="48" id="tep-6a-YPO"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1055,7 +1058,7 @@ If you have any questions regarding privacy while using the Application, or have
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mie-vY-UNg">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mie-vY-UNg">
                                         <rect key="frame" x="237" y="7" width="67" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="5LS-3h-ZTC"/>
@@ -1125,6 +1128,7 @@ If you have any questions regarding privacy while using the Application, or have
                                     <constraint firstAttribute="bottom" secondItem="r8h-ta-3Ij" secondAttribute="bottom" constant="38" id="fAa-y3-0dj"/>
                                     <constraint firstItem="r8h-ta-3Ij" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="top" constant="33" id="jAh-hi-eAN"/>
                                     <constraint firstAttribute="bottom" secondItem="oa4-Lc-dHG" secondAttribute="bottom" constant="4" id="jXd-2d-bWk"/>
+                                    <constraint firstAttribute="trailing" secondItem="mie-vY-UNg" secondAttribute="trailing" id="l5C-LB-EzT"/>
                                     <constraint firstItem="uq6-VC-kAD" firstAttribute="top" secondItem="3Zs-86-teq" secondAttribute="top" constant="9" id="ucP-Z7-HpC"/>
                                     <constraint firstAttribute="trailing" secondItem="FdB-FY-kte" secondAttribute="trailing" constant="-1" id="xcN-bI-Cx6"/>
                                 </constraints>

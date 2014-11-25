@@ -24,7 +24,7 @@
     
     self.tutorialScrollView.delegate = self;
     
-    self.images = @[@"tutorialPage1.jpg", @"spyBckgnd.png", @"spyBckgnd.png"];
+    self.images = @[@"tutorialPage1.jpg", @"tutorialPage2.png", @"tutorialPage3.png", @"tutorialPage4.png", @"tutorialPage5.png"];
     
     self.numTutorialImages = [self.images count];
     self.currentTutorialImage = 0;
@@ -39,19 +39,7 @@
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[self.images objectAtIndex:i]]];
         imgView.frame = frame;
         [self.tutorialScrollView addSubview:imgView];
-        
-        
-        /*
-         //  [spotlightSpinner stopAnimating];
-         //[spotlightSpinner removeFromSuperview];
-         UILabel *imgLabel = [[UILabel alloc] init];
-         imgLabel.frame = CGRectMake(frame.origin.x + 12, frame.origin.y + 122, frame.size.width, 23);
-         imgLabel.text = [spotlightStrings objectAtIndex:i];
-         imgLabel.textColor = [UIColor whiteColor];
-         [self.spotlightView addSubview:imgLabel];
-         if (i == 0)
-         [self.kefiSpotlight removeFromSuperview];
-         */
+
     }
     
     self.tutorialScrollView.contentSize = CGSizeMake(self.tutorialScrollView.frame.size.width * self.images.count, self.tutorialScrollView.frame.size.height);
@@ -64,7 +52,7 @@
     
     if (self.pageControl.currentPage != page)
     {
-        if (page == 2)
+        if (page == 4)
         {
             UIApplication *application = [UIApplication sharedApplication];
             
