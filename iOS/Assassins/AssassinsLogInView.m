@@ -32,7 +32,7 @@
     // Do any additional setup after loading the view.
     
     [self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"assassinsSignIn.png"]]];
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"assassinsLogoSignIn.png"]]];
+    [self.logInView.logo setHidden:YES];
     CGPoint currentCenter = CGPointMake(self.logInView.logo.center.x-30 , self.logInView.logo.center.y);
     self.logInView.logo.frame = CGRectMake(self.logInView.logo.frame.origin.x, self.logInView.logo.frame.origin.y, 80,80);
     self.logInView.logo.center = currentCenter;
@@ -83,19 +83,19 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    [self.logInView.facebookButton setFrame:CGRectMake(35.0f+130.0f, 287.0f, 120.0f, 40.0f)];
-    [self.logInView.facebookButton setCenter:CGPointMake(self.view.center.x, self.view.center.y + 75)];
+    [self.logInView.facebookButton setFrame:CGRectMake(self.view.center.x - 60,self.logInView.logo.frame.origin.y + self.logInView.logo.frame.size.height + 30, 120.0, 40.0f)];
     
     // create text to show people
     UITextView *fbLabel = [[UITextView alloc]init];
-    [fbLabel setText:@"Assassins uses facebook so that you can create games with your friends. We use your name, profile picture, and friend list for an enjoyable experience."];
-    
-    [fbLabel setFont:[UIFont systemFontOfSize:11.0]];
+    [fbLabel setText:@"Assassins uses facebook so that you can create games with your friends. We use your name, profile picture, and friend list."];
+    [fbLabel setScrollEnabled:NO];
+    [fbLabel setSelectable:NO];
+    [fbLabel setFont:[UIFont systemFontOfSize:14.0]];
     [fbLabel setTextColor: [UIColor whiteColor]];
     [fbLabel setBackgroundColor:[UIColor clearColor]];
-    fbLabel.textAlignment = NSTextAlignmentCenter;
+    fbLabel.textAlignment = NSTextAlignmentLeft;
     
-    [fbLabel setFrame:CGRectMake(8, self.view.center.y, self.view.frame.size.width - 16, 40)];
+    [fbLabel setFrame:CGRectMake(8, self.logInView.logo.frame.origin.y + 10, self.view.frame.size.width - 16, 600)];
     [self.logInView addSubview:fbLabel];
     
     /*

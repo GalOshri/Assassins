@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "SnipeSubmitView.h"
 #import "AssassinsLogInView.h"
-#import "AssassinsSignUpView.h"
 #import "UIImage+Resize.h"
 #import "VerifySnipeViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
@@ -184,13 +183,6 @@ CGFloat scale;
     //[logInViewController setFields: PFLogInFieldsDefault | PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsDismissButton];
     [logInViewController setFields: PFLogInFieldsFacebook];
     
-    // Create the sign up view controller
-    AssassinsSignUpView *signUpViewController = [[AssassinsSignUpView alloc] init];
-    [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-    
-    // Assign our sign up controller to be displayed from the login controller
-    [logInViewController setSignUpController:signUpViewController];
-    
     // Present the log in view controller
     [self presentViewController:logInViewController animated:YES completion:NULL];
 }
@@ -302,14 +294,6 @@ CGFloat scale;
 // Sent to the delegate when the log in screen is dismissed.
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

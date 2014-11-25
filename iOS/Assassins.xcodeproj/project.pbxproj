@@ -85,7 +85,6 @@
 		DAD0DD83199359360075E69D /* UserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD82199359360075E69D /* UserTableViewController.m */; };
 		DAD0DD8719935D020075E69D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD0DD8619935D020075E69D /* Game.m */; };
 		DAE13D571A0D3C53005D59DE /* AssassinsLogInView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE13D561A0D3C53005D59DE /* AssassinsLogInView.m */; };
-		DAE13D5B1A0D3C79005D59DE /* AssassinsSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE13D5A1A0D3C79005D59DE /* AssassinsSignUpView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,8 +205,6 @@
 		DAD0DD8619935D020075E69D /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Assassins/Game.m; sourceTree = "<group>"; };
 		DAE13D561A0D3C53005D59DE /* AssassinsLogInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssassinsLogInView.m; sourceTree = "<group>"; };
 		DAE13D581A0D3C69005D59DE /* AssassinsLogInView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssassinsLogInView.h; sourceTree = "<group>"; };
-		DAE13D591A0D3C79005D59DE /* AssassinsSignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssassinsSignUpView.h; sourceTree = "<group>"; };
-		DAE13D5A1A0D3C79005D59DE /* AssassinsSignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssassinsSignUpView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,8 +419,6 @@
 			children = (
 				DAE13D581A0D3C69005D59DE /* AssassinsLogInView.h */,
 				DAE13D561A0D3C53005D59DE /* AssassinsLogInView.m */,
-				DAE13D591A0D3C79005D59DE /* AssassinsSignUpView.h */,
-				DAE13D5A1A0D3C79005D59DE /* AssassinsSignUpView.m */,
 			);
 			name = "Log In and Sign Up";
 			sourceTree = "<group>";
@@ -685,7 +680,6 @@
 				DAAB9A4519EB65EB00FC4A14 /* ContractComment.m in Sources */,
 				0D52C4A7197E284A00E5E5B9 /* main.m in Sources */,
 				DA25AA591A098F04006BE177 /* ParticipantTableViewCell.m in Sources */,
-				DAE13D5B1A0D3C79005D59DE /* AssassinsSignUpView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
