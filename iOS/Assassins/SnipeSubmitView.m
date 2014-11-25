@@ -131,18 +131,18 @@
     
     else if ([self.submitContracts count] > 1)
     {
-        UIAlertView *pickContract = [[UIAlertView alloc] initWithTitle:@"Whom did you snipe?" message:@"" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
+        UIActionSheet *pickContract = [[UIActionSheet alloc] initWithTitle:@"Whom did you snipe?" delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
        
         //show alert to pick which contract to submit snipe to
         for (Contract *contract in self.submitContracts)
         {
             NSArray *nameArray = [contract.targetName componentsSeparatedByString:@" "];
             NSString *firstName = nameArray[0];
-            
             [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in game: %@", firstName, contract.gameName]];
         }
         
-        [pickContract show];
+        // make scrollable
+        [pickContract showInView:self.view];
     }
     
     else
@@ -162,11 +162,13 @@
 
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([alertView.title isEqualToString:@"Oops!"])
+# pragma mark - action sheet
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([actionSheet.title isEqualToString:@"Oops!"])
         [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
     
-    else if ([alertView.title isEqualToString:@"Whom did you snipe?"])
+    else if ([actionSheet.title isEqualToString:@"Whom did you snipe?"])
     {
         if (buttonIndex - 1 >= 0)
         {

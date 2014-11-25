@@ -260,19 +260,40 @@
 + (NSArray *)getGameList:(BOOL)getCurrentGamesOrNah
 {
     NSMutableArray *gameList = [[NSMutableArray alloc] init];
+    NSArray *gameObjects = [[NSArray alloc] init];
+    
     PFUser *currentUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Game"];
     
     [query whereKey:@"players" equalTo:currentUser];
     
     if (getCurrentGamesOrNah)
+    {
+        // pending snipes first, then active games
         [query whereKey:@"state" equalTo:@"Active"];
-        //[query whereKey:<#(NSString *)#> containedIn:<#(NSArray *)#>]
+        [query whereKey:@"numberPendingSnipes" equalTo:@0];
+        
+        PFQuery *pendingGames = [PFQuery queryWithClassName:@"Game"];
+        [pendingGames whereKey:@"players" equalTo:currentUser];
+        [pendingGames whereKey:@"numberPendingSnipes" greaterThan:@0];
+        
+        
+        // make queries
+        PFQuery *orQuery = [PFQuery orQueryWithSubqueries:@[pendingGames, query]];
+        [orQuery orderByDescending:@"state"];
+        [orQuery addDescendingOrder:@"createdAt"];
+        gameObjects = [orQuery findObjects];
+    }
+    
     else
+    {
         [query whereKey:@"state" equalTo:@"Completed"];
+        [query whereKey:@"numberPendingSnipes" equalTo:@0];
+        [query orderByDescending:@"createdAt"];
+        gameObjects = [query findObjects];
 
-    [query orderByDescending:@"createdAt"];
-    NSArray *gameObjects = [query findObjects];
+    }
+    
     
     for (PFObject *gameObject in gameObjects)
     {

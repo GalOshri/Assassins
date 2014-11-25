@@ -10,7 +10,7 @@
 #import "Game.h"
 
 
-@interface SnipeSubmitView : UIViewController <UIGestureRecognizerDelegate, UITextFieldDelegate>
+@interface SnipeSubmitView : UIViewController <UIGestureRecognizerDelegate, UITextFieldDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *snipeImageView;
 @property (strong, nonatomic) UIImage *snipeImage;
