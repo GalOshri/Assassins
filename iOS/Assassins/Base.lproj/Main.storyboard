@@ -108,7 +108,7 @@
                                     <segue destination="Ceg-EU-L1a" kind="unwind" unwindAction="unwindToCamera:" id="6Lq-AF-Z3R"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-iy-piV">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-iy-piV">
                                 <rect key="frame" x="0.0" y="20" width="320" height="500"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="9hN-Dh-xaE">
