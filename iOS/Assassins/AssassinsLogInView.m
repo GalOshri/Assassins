@@ -88,7 +88,7 @@
     
     // create text to show people
     UITextView *fbLabel = [[UITextView alloc]init];
-    [fbLabel setText:@"Assassins uses facebook for your name, picture, and friends' list so that you can create games with them."];
+    [fbLabel setText:@"Assassins uses facebook so that you can create games with your friends. We use your name, profile picture, and friend list for an enjoyable experience."];
     
     [fbLabel setFont:[UIFont systemFontOfSize:11.0]];
     [fbLabel setTextColor: [UIColor whiteColor]];

@@ -121,7 +121,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([alertView.title isEqualToString:@"Mark as invalid snipe?"])
+    if ([alertView.title isEqualToString:@"Challenge snipe?"])
     {
         if (buttonIndex == 1) {
             // call AssassinsService method

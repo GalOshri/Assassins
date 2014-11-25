@@ -719,14 +719,22 @@ If you have any questions regarding privacy while using the Application, or have
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uII-Fl-Spg">
                                 <rect key="frame" x="0.0" y="407" width="320" height="97"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Is this a valid snipe of NAME?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXl-Vm-CV0">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is this a valid snipe of NAME?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXl-Vm-CV0">
                                         <rect key="frame" x="8" y="38" width="304" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="304" id="4nL-p4-NYT"/>
+                                            <constraint firstAttribute="height" constant="21" id="JbY-aC-oUl"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ex5-tB-3pA">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ex5-tB-3pA">
                                         <rect key="frame" x="43" y="59" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="iqM-NC-YB6"/>
+                                            <constraint firstAttribute="width" constant="30" id="ms0-u2-F93"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Yes">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -736,8 +744,12 @@ If you have any questions regarding privacy while using the Application, or have
                                             <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToGameView:" id="cTr-de-Csj"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-8Q-I0f">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-8Q-I0f">
                                         <rect key="frame" x="245" y="59" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="NqP-hb-TBg"/>
+                                            <constraint firstAttribute="height" constant="30" id="P7p-2p-GVG"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="No">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -747,8 +759,12 @@ If you have any questions regarding privacy while using the Application, or have
                                             <segue destination="en8-k3-hke" kind="unwind" unwindAction="unwindToGameView:" id="Jay-ms-UHJ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxH-Jt-82s">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxH-Jt-82s">
                                         <rect key="frame" x="202" y="0.0" width="110" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Mkz-Sn-J4t"/>
+                                            <constraint firstAttribute="width" constant="110" id="cYy-ac-ha7"/>
+                                        </constraints>
                                         <state key="normal" title="Comments">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -759,14 +775,26 @@ If you have any questions regarding privacy while using the Application, or have
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="LxH-Jt-82s" secondAttribute="trailing" constant="8" id="2kS-cZ-13c"/>
+                                    <constraint firstAttribute="bottom" secondItem="ex5-tB-3pA" secondAttribute="bottom" constant="8" id="50R-U4-eYR"/>
+                                    <constraint firstItem="LxH-Jt-82s" firstAttribute="top" secondItem="uII-Fl-Spg" secondAttribute="top" id="Gjy-h1-2Zs"/>
+                                    <constraint firstItem="ex5-tB-3pA" firstAttribute="leading" secondItem="uII-Fl-Spg" secondAttribute="leading" constant="43" id="GmG-mK-P84"/>
+                                    <constraint firstItem="wXl-Vm-CV0" firstAttribute="top" secondItem="uII-Fl-Spg" secondAttribute="top" constant="38" id="HqP-Sx-7Ab"/>
                                     <constraint firstAttribute="height" constant="97" id="YGn-Lo-AbT"/>
+                                    <constraint firstAttribute="centerX" secondItem="wXl-Vm-CV0" secondAttribute="centerX" id="g6D-ao-iU0"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cdg-8Q-I0f" secondAttribute="trailing" constant="45" id="jBu-Vx-Mgs"/>
+                                    <constraint firstAttribute="bottom" secondItem="Cdg-8Q-I0f" secondAttribute="bottom" constant="8" id="s5w-F0-vKk"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDs-Oy-QfE">
                                 <rect key="frame" x="8" y="20" width="304" height="379"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHB-RP-f3c">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHB-RP-f3c">
                                         <rect key="frame" x="261" y="345" width="44" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="LG1-xw-RC3"/>
+                                            <constraint firstAttribute="height" constant="30" id="icj-JE-kPi"/>
+                                        </constraints>
                                         <state key="normal" title="Post">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -774,8 +802,12 @@ If you have any questions regarding privacy while using the Application, or have
                                             <action selector="postComment:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="sWP-r6-ZjY"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lht-Ba-foy">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lht-Ba-foy">
                                         <rect key="frame" x="110" y="9" width="85" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="14A-h9-sgF"/>
+                                            <constraint firstAttribute="width" constant="85" id="8Q5-iB-Eqv"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -793,8 +825,11 @@ If you have any questions regarding privacy while using the Application, or have
                                             <action selector="dismissCommentsView:" destination="rDc-Xy-AAS" eventType="touchUpInside" id="ZPv-cK-S9K"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type your comment here..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SyR-Zw-7iB">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type your comment here..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SyR-Zw-7iB">
                                         <rect key="frame" x="7" y="344" width="250" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="InO-FX-1Wh"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -839,13 +874,20 @@ If you have any questions regarding privacy while using the Application, or have
                                 </subviews>
                                 <color key="backgroundColor" red="0.1337890625" green="0.1337890625" blue="0.1337890625" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="Lht-Ba-foy" secondAttribute="centerX" id="50c-m3-qbE"/>
+                                    <constraint firstItem="Lht-Ba-foy" firstAttribute="top" secondItem="zDs-Oy-QfE" secondAttribute="top" constant="9" id="79X-9L-83r"/>
                                     <constraint firstItem="hPQ-Nz-XUt" firstAttribute="top" secondItem="Nbz-dx-Pum" secondAttribute="bottom" constant="1" id="8d8-Ka-3JW"/>
                                     <constraint firstAttribute="bottom" secondItem="hPQ-Nz-XUt" secondAttribute="bottom" constant="43" id="9dL-sd-0E4"/>
                                     <constraint firstAttribute="trailing" secondItem="hPQ-Nz-XUt" secondAttribute="trailing" constant="6" id="HDj-YG-ptP"/>
                                     <constraint firstItem="hPQ-Nz-XUt" firstAttribute="top" secondItem="zDs-Oy-QfE" secondAttribute="top" constant="33" id="M3b-bv-KXh"/>
+                                    <constraint firstItem="RHB-RP-f3c" firstAttribute="leading" secondItem="SyR-Zw-7iB" secondAttribute="trailing" constant="4" id="USV-wO-bXS"/>
                                     <constraint firstAttribute="trailing" secondItem="Nbz-dx-Pum" secondAttribute="trailing" id="eLe-qQ-hgi"/>
                                     <constraint firstItem="hPQ-Nz-XUt" firstAttribute="leading" secondItem="zDs-Oy-QfE" secondAttribute="leading" constant="6" id="iBr-Mk-p5S"/>
                                     <constraint firstAttribute="height" constant="379" id="iCL-Ch-9lf"/>
+                                    <constraint firstAttribute="trailing" secondItem="RHB-RP-f3c" secondAttribute="trailing" constant="-1" id="kHS-lA-BbY"/>
+                                    <constraint firstItem="SyR-Zw-7iB" firstAttribute="leading" secondItem="zDs-Oy-QfE" secondAttribute="leading" constant="7" id="oUm-PJ-qgI"/>
+                                    <constraint firstItem="SyR-Zw-7iB" firstAttribute="top" secondItem="hPQ-Nz-XUt" secondAttribute="bottom" constant="8" id="pbN-O8-qlZ"/>
+                                    <constraint firstItem="RHB-RP-f3c" firstAttribute="top" secondItem="hPQ-Nz-XUt" secondAttribute="bottom" constant="9" id="r0D-y6-eGM"/>
                                 </constraints>
                             </view>
                         </subviews>
