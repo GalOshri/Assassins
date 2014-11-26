@@ -131,14 +131,14 @@
     
     else if ([self.submitContracts count] > 1)
     {
-        UIActionSheet *pickContract = [[UIActionSheet alloc] initWithTitle:@"Whom did you snipe?" delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
+        UIActionSheet *pickContract = [[UIActionSheet alloc] initWithTitle:@"This is a snipe of:" delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
        
         //show alert to pick which contract to submit snipe to
         for (Contract *contract in self.submitContracts)
         {
             NSArray *nameArray = [contract.targetName componentsSeparatedByString:@" "];
             NSString *firstName = nameArray[0];
-            [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in game: %@", firstName, contract.gameName]];
+            [pickContract addButtonWithTitle:[NSString stringWithFormat:@"%@ in \"%@\"", firstName, contract.gameName]];
         }
         
         // make scrollable
