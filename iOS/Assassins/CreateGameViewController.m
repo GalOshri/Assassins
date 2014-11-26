@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *gameNameField;
 @property (weak, nonatomic) IBOutlet UITextView *selectedPlayersTextView;
+@property (weak, nonatomic) IBOutlet UIButton *selectPlayersButton;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UITextView *safeZones;
 @property (weak, nonatomic) IBOutlet UIView *safeZonesView;
@@ -278,10 +279,12 @@
     NSDictionary* info = [notification userInfo];
     CGRect kKeyBoardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    
+    // logic for moving safe zone portion up and down based on keyboard
     if (self.keyboardOrNah && [self.safeZones isFirstResponder])
     {
         self.safeZoneViewBottomConstraint.constant = 18;
+        [self.selectPlayersButton setHidden:NO];
+        [self.selectedPlayersTextView setHidden:NO];
         [UIView animateWithDuration:0.5 animations:^{
             [self.view layoutIfNeeded];
         }];
@@ -292,6 +295,8 @@
         self.safeZoneViewBottomConstraint.constant = kKeyBoardFrame.size.height;
         [UIView animateWithDuration:0.5 animations:^{
             [self.view layoutIfNeeded];
+            [self.selectedPlayersTextView setHidden:YES];
+            [self.selectPlayersButton setHidden:YES];
         }];
     }
     

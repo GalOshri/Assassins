@@ -29,12 +29,13 @@
     self.numTutorialImages = [self.images count];
     self.currentTutorialImage = 0;
     
+    // size images properly, and add img to scorllerview
     for (int i = 0; i < self.images.count; i++)
     {
         CGRect frame;
-        frame.origin.x = self.tutorialScrollView.frame.size.width * i;
+        frame.origin.x = self.view.frame.size.width * i;
         frame.origin.y = 0;
-        frame.size = self.tutorialScrollView.frame.size;
+        frame.size = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height - 48.0);
         
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[self.images objectAtIndex:i]]];
         imgView.frame = frame;
@@ -42,7 +43,7 @@
 
     }
     
-    self.tutorialScrollView.contentSize = CGSizeMake(self.tutorialScrollView.frame.size.width * self.images.count, self.tutorialScrollView.frame.size.height);
+    self.tutorialScrollView.contentSize = CGSizeMake(self.view.frame.size.width * self.images.count, self.tutorialScrollView.frame.size.height);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {

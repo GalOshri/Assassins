@@ -42,7 +42,7 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="fYU-sh-i6n">
-                    <rect key="frame" x="310" y="508" width="39" height="32"/>
+                    <rect key="frame" x="294" y="508" width="39" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="cn5-UR-vs4"/>
                         <constraint firstAttribute="width" constant="39" id="xoZ-So-R47"/>
@@ -53,10 +53,10 @@
             <constraints>
                 <constraint firstItem="Yjf-ol-u4p" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0cx-9n-Lb1"/>
                 <constraint firstItem="Yjf-ol-u4p" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2ZI-VM-HZ9"/>
-                <constraint firstAttribute="trailing" secondItem="fYU-sh-i6n" secondAttribute="trailing" constant="21" id="73u-uW-yaX"/>
                 <constraint firstAttribute="trailing" secondItem="ngC-nf-DvW" secondAttribute="trailing" constant="20" id="Aaq-Js-Nb3"/>
                 <constraint firstAttribute="bottom" secondItem="AdI-Wn-biT" secondAttribute="bottom" constant="11" id="BjG-m0-Eaw"/>
                 <constraint firstAttribute="bottom" secondItem="fYU-sh-i6n" secondAttribute="bottom" constant="28" id="MI8-ti-E7H"/>
+                <constraint firstAttribute="trailing" secondItem="fYU-sh-i6n" secondAttribute="trailing" constant="37" id="P0Y-Tf-DvX"/>
                 <constraint firstAttribute="bottom" secondItem="Yjf-ol-u4p" secondAttribute="bottom" id="Phj-Zm-dbh"/>
                 <constraint firstAttribute="trailing" secondItem="Yjf-ol-u4p" secondAttribute="trailing" id="UMV-dj-v1d"/>
                 <constraint firstItem="eHM-H1-UtR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="caZ-aP-7uq"/>

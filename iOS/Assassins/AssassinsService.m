@@ -501,7 +501,7 @@
         ContractComment *newComment = [[ContractComment alloc] init];
         newComment.commentCreator = comment[@"creatorName"];
         newComment.commentText = comment[@"text"];
-        newComment.dateCreated = comment[@"createdAt"];
+        newComment.dateCreated = comment.createdAt;
         
         // add to array
         [commentObjects addObject:newComment];
