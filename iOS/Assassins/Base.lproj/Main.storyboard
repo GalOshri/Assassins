@@ -31,8 +31,12 @@
                                     <action selector="takePicture:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Mev-0j-4Zv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud0-LW-3p8">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud0-LW-3p8">
                                 <rect key="frame" x="20" y="32" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="3Rb-Yb-BVM"/>
+                                    <constraint firstAttribute="height" constant="30" id="Txo-Ga-I5k"/>
+                                </constraints>
                                 <state key="normal" image="noFlash.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -40,8 +44,12 @@
                                     <action selector="toggleFlash:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0YW-Sc-eDL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b41-ba-wSA">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b41-ba-wSA">
                                 <rect key="frame" x="260" y="27" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="LB0-t2-0cC"/>
+                                    <constraint firstAttribute="height" constant="40" id="MCr-QR-V1M"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="flipCamera.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -68,7 +76,11 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pPb-yx-dXl" secondAttribute="bottom" constant="11" id="Gs3-B9-hOh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="BIK-59-BWW" secondAttribute="bottom" constant="28" id="JIg-tN-cMw"/>
                             <constraint firstAttribute="centerX" secondItem="pPb-yx-dXl" secondAttribute="centerX" id="TY3-ge-Uek"/>
+                            <constraint firstItem="b41-ba-wSA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="27" id="eFE-lX-Moo"/>
                             <constraint firstAttribute="trailing" secondItem="BIK-59-BWW" secondAttribute="trailing" constant="37" id="frP-ha-EBV"/>
+                            <constraint firstItem="Ud0-LW-3p8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="32" id="msK-YT-E5d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="b41-ba-wSA" secondAttribute="trailing" constant="4" id="qLa-I1-Q5D"/>
+                            <constraint firstItem="Ud0-LW-3p8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="4" id="zCL-Ja-xFz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="a8L-V6-9zT"/>

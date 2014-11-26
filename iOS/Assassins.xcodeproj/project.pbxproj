@@ -48,6 +48,7 @@
 		DA47DE4F1A240D54009AA829 /* tutorialPage3.png in Resources */ = {isa = PBXBuildFile; fileRef = DA47DE4B1A240D54009AA829 /* tutorialPage3.png */; };
 		DA47DE501A240D54009AA829 /* tutorialPage4.png in Resources */ = {isa = PBXBuildFile; fileRef = DA47DE4C1A240D54009AA829 /* tutorialPage4.png */; };
 		DA47DE511A240D54009AA829 /* tutorialPage5.png in Resources */ = {isa = PBXBuildFile; fileRef = DA47DE4D1A240D54009AA829 /* tutorialPage5.png */; };
+		DA47DE571A257D07009AA829 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA47DE561A257D07009AA829 /* LaunchScreen.xib */; };
 		DA50B8E41A1DCA8E00D87A16 /* barImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DA50B8E31A1DCA8E00D87A16 /* barImage.png */; };
 		DA8DF85B19D78639000F9412 /* scopeBckgnd.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8DF85A19D78639000F9412 /* scopeBckgnd.png */; };
 		DA8DF85D19D78B4E000F9412 /* spyBckgnd.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8DF85C19D78B4E000F9412 /* spyBckgnd.png */; };
@@ -146,6 +147,7 @@
 		DA47DE4B1A240D54009AA829 /* tutorialPage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialPage3.png; sourceTree = "<group>"; };
 		DA47DE4C1A240D54009AA829 /* tutorialPage4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialPage4.png; sourceTree = "<group>"; };
 		DA47DE4D1A240D54009AA829 /* tutorialPage5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialPage5.png; sourceTree = "<group>"; };
+		DA47DE561A257D07009AA829 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../LaunchScreen.xib; sourceTree = "<group>"; };
 		DA50B8E31A1DCA8E00D87A16 /* barImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barImage.png; sourceTree = "<group>"; };
 		DA8DF85A19D78639000F9412 /* scopeBckgnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scopeBckgnd.png; sourceTree = "<group>"; };
 		DA8DF85C19D78B4E000F9412 /* spyBckgnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spyBckgnd.png; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				0D52C4AC197E284A00E5E5B9 /* Main.storyboard */,
+				DA47DE561A257D07009AA829 /* LaunchScreen.xib */,
 				0D8B2C4F19B5236100552D11 /* Camera Page */,
 				0D8B2C5019B5237600552D11 /* Snipe Submit Page */,
 				DAD0DD84199359450075E69D /* User Page */,
@@ -593,6 +596,7 @@
 				DAD0DD371988E0BF0075E69D /* noFlash.png in Resources */,
 				DAAD9C3C1A0014F1006DF466 /* userSilhouettePending.png in Resources */,
 				DAD0DD3D198B74BF0075E69D /* flash.png in Resources */,
+				DA47DE571A257D07009AA829 /* LaunchScreen.xib in Resources */,
 				DA47DE4E1A240D54009AA829 /* tutorialPage2.png in Resources */,
 				0D52C4B3197E284A00E5E5B9 /* Images.xcassets in Resources */,
 				DA47DE4F1A240D54009AA829 /* tutorialPage3.png in Resources */,
