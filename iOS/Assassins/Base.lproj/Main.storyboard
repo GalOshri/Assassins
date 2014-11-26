@@ -494,7 +494,7 @@ If you have any questions regarding privacy while using the Application, or have
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 total hits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQc-jW-vnl">
-                                                    <rect key="frame" x="70" y="126" width="180" height="20"/>
+                                                    <rect key="frame" x="70" y="123" width="180" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="jfF-5G-p7a"/>
                                                         <constraint firstAttribute="width" constant="180" id="zMd-VP-TJE"/>
@@ -504,7 +504,7 @@ If you have any questions regarding privacy while using the Application, or have
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 total games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kH8-wR-SFR">
-                                                    <rect key="frame" x="70" y="139" width="180" height="22"/>
+                                                    <rect key="frame" x="70" y="136" width="180" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="af1-ol-DOQ"/>
                                                         <constraint firstAttribute="width" constant="180" id="vJz-AO-MID"/>
@@ -514,7 +514,7 @@ If you have any questions regarding privacy while using the Application, or have
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-EG-r3w" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="110" y="26" width="100" height="100"/>
+                                                    <rect key="frame" x="110" y="23" width="100" height="100"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="0lS-d7-gx0"/>
@@ -538,7 +538,7 @@ If you have any questions regarding privacy while using the Application, or have
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="2KE-lm-hfV" secondAttribute="trailing" id="1PG-5L-LgT"/>
-                                                <constraint firstItem="hTB-EG-r3w" firstAttribute="top" secondItem="wkF-Ov-wc5" secondAttribute="top" constant="26" id="QK4-KY-31m"/>
+                                                <constraint firstItem="hTB-EG-r3w" firstAttribute="top" secondItem="wkF-Ov-wc5" secondAttribute="top" constant="23" id="QK4-KY-31m"/>
                                                 <constraint firstAttribute="centerX" secondItem="RQc-jW-vnl" secondAttribute="centerX" id="SCc-dz-2eh"/>
                                                 <constraint firstAttribute="height" constant="180" id="Wvk-Oc-SlU"/>
                                                 <constraint firstAttribute="bottom" secondItem="2KE-lm-hfV" secondAttribute="bottom" id="m8j-ch-7Qn"/>
@@ -563,21 +563,21 @@ If you have any questions regarding privacy while using the Application, or have
                                             </connections>
                                         </segmentedControl>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="t6g-33-kth">
-                                            <rect key="frame" x="150" y="157" width="20" height="20"/>
+                                            <rect key="frame" x="150" y="155" width="20" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="ASQ-yn-NB3"/>
-                                                <constraint firstAttribute="height" constant="20" id="aaN-zo-XA2"/>
+                                                <constraint firstAttribute="width" constant="20" id="bLo-qN-Vyn"/>
+                                                <constraint firstAttribute="height" constant="20" id="h8U-fq-lwz"/>
                                             </constraints>
                                         </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.96267139670000001" green="0.96267139670000001" blue="0.96267139670000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="wkF-Ov-wc5" firstAttribute="leading" secondItem="fqu-b9-9Fk" secondAttribute="leading" id="4dB-2J-Jx7"/>
-                                        <constraint firstAttribute="bottom" secondItem="t6g-33-kth" secondAttribute="bottom" constant="38" id="4tc-yR-Oa8"/>
                                         <constraint firstAttribute="bottom" secondItem="O0w-IQ-SDg" secondAttribute="bottom" constant="4" id="DIG-Dt-yIX"/>
                                         <constraint firstAttribute="centerX" secondItem="wkF-Ov-wc5" secondAttribute="centerX" id="GJZ-3F-rva"/>
+                                        <constraint firstAttribute="centerX" secondItem="t6g-33-kth" secondAttribute="centerX" id="HV1-GB-HrQ"/>
+                                        <constraint firstItem="O0w-IQ-SDg" firstAttribute="top" secondItem="t6g-33-kth" secondAttribute="bottom" constant="8" id="Iz4-7X-2lx"/>
                                         <constraint firstAttribute="centerX" secondItem="O0w-IQ-SDg" secondAttribute="centerX" id="LAp-Jt-I99"/>
-                                        <constraint firstAttribute="centerX" secondItem="t6g-33-kth" secondAttribute="centerX" id="NC9-Jx-Xel"/>
                                         <constraint firstAttribute="trailing" secondItem="wkF-Ov-wc5" secondAttribute="trailing" id="vFQ-Hq-ATf"/>
                                         <constraint firstItem="wkF-Ov-wc5" firstAttribute="top" secondItem="fqu-b9-9Fk" secondAttribute="top" id="vIK-yF-jDJ"/>
                                     </constraints>
