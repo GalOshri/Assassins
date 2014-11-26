@@ -35,10 +35,10 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cameraButton.png" translatesAutoresizingMaskIntoConstraints="NO" id="AdI-Wn-biT">
-                    <rect key="frame" x="152" y="491" width="66" height="66"/>
+                    <rect key="frame" x="145" y="477" width="80" height="80"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="66" id="9NH-TL-9YV"/>
-                        <constraint firstAttribute="width" constant="66" id="XTJ-ER-nOh"/>
+                        <constraint firstAttribute="width" constant="80" id="DTR-oX-Bj0"/>
+                        <constraint firstAttribute="height" constant="80" id="bnv-es-cnB"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="fYU-sh-i6n">
@@ -71,7 +71,7 @@
     </objects>
     <resources>
         <image name="assassinsSignIn.png" width="493" height="700"/>
-        <image name="cameraButton.png" width="120" height="120"/>
+        <image name="cameraButton.png" width="250" height="250"/>
         <image name="flipCamera.png" width="300" height="300"/>
         <image name="menuBackground.png" width="400" height="400"/>
         <image name="noFlash.png" width="300" height="300"/>

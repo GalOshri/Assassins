@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPb-yx-dXl">
-                                <rect key="frame" x="127" y="427" width="66" height="66"/>
+                                <rect key="frame" x="120" y="413" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="66" id="5HB-Xm-xJe"/>
-                                    <constraint firstAttribute="height" constant="66" id="War-Xh-gYv"/>
+                                    <constraint firstAttribute="width" constant="80" id="P8o-D1-CUO"/>
+                                    <constraint firstAttribute="height" constant="80" id="TdS-Sp-SnK"/>
                                 </constraints>
                                 <state key="normal" image="cameraButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1569,7 +1569,7 @@ If you have any questions regarding privacy while using the Application, or have
     </scenes>
     <resources>
         <image name="backArrow.png" width="700" height="700"/>
-        <image name="cameraButton.png" width="120" height="120"/>
+        <image name="cameraButton.png" width="250" height="250"/>
         <image name="flipCamera.png" width="300" height="300"/>
         <image name="menuBackground.png" width="400" height="400"/>
         <image name="noFlash.png" width="300" height="300"/>
