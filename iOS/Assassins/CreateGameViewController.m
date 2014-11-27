@@ -94,29 +94,24 @@
         return;
     }
     
-    if ([self.selectedFriends count] <= 0)
-    {
         // Create friend picker, and get data loaded into it.
         self.friendPickerController = [[FBFriendPickerViewController alloc] init];
         self.friendPickerController.title = @"Choose friends";
-        
-
         self.friendPickerController.allowsMultipleSelection = YES;
         self.friendPickerController.sortOrdering = FBFriendSortByLastName;
         self.friendPickerController.delegate = self;
-    }
+        self.friendPickerController.doneButton.title = @"Done";
+        self.friendPickerController.cancelButton.title= @"Cancel";
     
     // else, keep previous selection
     [self.friendPickerController setSelection: self.selectedFriends];
     [self.friendPickerController loadData];
     
     UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:self.friendPickerController];
-    nc.navigationController.navigationBarHidden = YES;
     self.friendPickerController.title = @"";
+    nc.navigationItem.leftBarButtonItem = nil;
+    nc.navigationItem.rightBarButtonItem =nil;
     [self presentViewController:nc animated:YES completion:nil];
-    //[nc pushViewController:self.friendPickerController animated:YES];
-    
-    //[self.friendPickerController presentModallyFromViewController:self animated:YES handler:nil];
 }
 
 - (IBAction)createGame:(id)sender

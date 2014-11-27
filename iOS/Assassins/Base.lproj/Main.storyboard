@@ -356,8 +356,12 @@ If you have any questions regarding privacy while using the Application, or have
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="led-3f-Arb">
                                 <rect key="frame" x="0.0" y="20" width="320" height="180"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f81-tr-oF7">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f81-tr-oF7">
                                         <rect key="frame" x="99" y="77" width="122" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="Dub-er-uwf"/>
+                                            <constraint firstAttribute="width" constant="122" id="K5t-Nk-w8M"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -406,8 +410,10 @@ If you have any questions regarding privacy while using the Application, or have
                                     <constraint firstAttribute="trailing" secondItem="ScG-S2-B4V" secondAttribute="trailing" constant="20" id="3Fv-99-lCQ"/>
                                     <constraint firstItem="zcV-qe-eu2" firstAttribute="leading" secondItem="led-3f-Arb" secondAttribute="leading" constant="20" id="H5j-LE-bQk"/>
                                     <constraint firstAttribute="trailing" secondItem="o19-MX-w76" secondAttribute="trailing" constant="20" id="KXE-wV-NB9"/>
+                                    <constraint firstItem="f81-tr-oF7" firstAttribute="top" secondItem="led-3f-Arb" secondAttribute="top" constant="77" id="WbL-Tc-0X1"/>
                                     <constraint firstAttribute="centerX" secondItem="ScG-S2-B4V" secondAttribute="centerX" id="aGN-kV-R7t"/>
                                     <constraint firstItem="ScG-S2-B4V" firstAttribute="leading" secondItem="led-3f-Arb" secondAttribute="leading" constant="20" id="ik7-Kl-NGa"/>
+                                    <constraint firstAttribute="centerX" secondItem="f81-tr-oF7" secondAttribute="centerX" id="ouP-jp-htE"/>
                                     <constraint firstItem="o19-MX-w76" firstAttribute="top" secondItem="led-3f-Arb" secondAttribute="top" constant="28" id="qCu-DF-AI6"/>
                                     <constraint firstItem="zcV-qe-eu2" firstAttribute="top" secondItem="led-3f-Arb" secondAttribute="top" constant="28" id="tNy-dI-m49"/>
                                     <constraint firstAttribute="height" constant="180" id="uYN-5h-nxt"/>
