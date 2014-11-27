@@ -91,7 +91,7 @@ CGFloat scale;
     // hide view controller
     [[self navigationController] setNavigationBarHidden:YES];
     
-    /*if (!self.hasLoadedCamera)
+    if (!self.hasLoadedCamera)
     {
         self.hasLoadedCamera = YES;
         
@@ -125,7 +125,7 @@ CGFloat scale;
             [self.view addSubview:picker.view];
             [self.view sendSubviewToBack:picker.view];
         }
-    }*/
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
