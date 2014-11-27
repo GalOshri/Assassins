@@ -112,6 +112,21 @@
     nc.navigationItem.leftBarButtonItem = nil;
     nc.navigationItem.rightBarButtonItem =nil;
     [self presentViewController:nc animated:YES completion:nil];
+    
+    // first-run experience; tell them on FB friends w/ app show up
+    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+    NSNumber *showedFriendPickerNote = [userData objectForKey:@"showedFriendPickerNote"];
+    if (![showedFriendPickerNote boolValue])
+    {
+        UIAlertView *friendPickerNote = [[UIAlertView alloc] initWithTitle:@"Play with your friends" message:@"You can only create games of Assassins with your Facebook friends who also have this app." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [friendPickerNote show];
+        
+        // bool false
+        showedFriendPickerNote = [NSNumber numberWithBool:YES];
+        [userData setObject:showedFriendPickerNote forKey:@"showedFriendPickerNote"];
+        [userData synchronize];
+    }
 }
 
 - (IBAction)createGame:(id)sender
