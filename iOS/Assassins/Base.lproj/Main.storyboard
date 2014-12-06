@@ -107,12 +107,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUL-jS-AaR">
-                                <rect key="frame" x="137" y="536" width="46" height="30"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-iy-piV">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="9hN-Dh-xaE">
+                                <rect key="frame" x="120" y="539" width="80" height="37"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="fGl-fP-620"/>
-                                    <constraint firstAttribute="width" constant="46" id="yau-Nk-0Ty"/>
+                                    <constraint firstAttribute="height" constant="37" id="miz-vY-TVC"/>
+                                    <constraint firstAttribute="width" constant="80" id="zCG-cp-TEV"/>
                                 </constraints>
+                                <color key="pageIndicatorTintColor" red="0.18072089947089942" green="0.18072089947089942" blue="0.18072089947089942" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.71901868386243384" green="0.71901868386243384" blue="0.71901868386243384" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUL-jS-AaR">
+                                <rect key="frame" x="137" y="518" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ELP-Kt-oYD"/>
+                                    <constraint firstAttribute="width" constant="46" id="h1s-8T-Xkq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -120,28 +133,17 @@
                                     <segue destination="Ceg-EU-L1a" kind="unwind" unwindAction="unwindToCamera:" id="6Lq-AF-Z3R"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-iy-piV">
-                                <rect key="frame" x="0.0" y="20" width="320" height="500"/>
-                            </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="9hN-Dh-xaE">
-                                <rect key="frame" x="120" y="509" width="80" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="cce-jk-mI4"/>
-                                </constraints>
-                                <color key="pageIndicatorTintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OaT-iy-piV" firstAttribute="leading" secondItem="Bba-fy-sP1" secondAttribute="leading" id="Hum-Cw-aDu"/>
-                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="9hN-Dh-xaE" secondAttribute="bottom" constant="22" id="TWG-XL-r1N"/>
-                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="FUL-jS-AaR" secondAttribute="bottom" constant="2" id="Tfr-kX-6Xq"/>
-                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="OaT-iy-piV" secondAttribute="bottom" constant="48" id="Vg4-75-tYF"/>
-                            <constraint firstItem="OaT-iy-piV" firstAttribute="top" secondItem="6Qd-co-ZfI" secondAttribute="bottom" id="aFd-ur-ygF"/>
-                            <constraint firstAttribute="centerX" secondItem="FUL-jS-AaR" secondAttribute="centerX" id="fEC-aw-fJv"/>
-                            <constraint firstAttribute="centerX" secondItem="9hN-Dh-xaE" secondAttribute="centerX" id="gi4-Mx-FI1"/>
-                            <constraint firstAttribute="trailing" secondItem="OaT-iy-piV" secondAttribute="trailing" id="i0G-Sg-ymR"/>
+                            <constraint firstItem="OaT-iy-piV" firstAttribute="leading" secondItem="Bba-fy-sP1" secondAttribute="leading" id="2dL-yq-vAy"/>
+                            <constraint firstAttribute="trailing" secondItem="OaT-iy-piV" secondAttribute="trailing" id="5Jx-mt-uQs"/>
+                            <constraint firstAttribute="centerX" secondItem="9hN-Dh-xaE" secondAttribute="centerX" id="GgV-wk-a7t"/>
+                            <constraint firstAttribute="centerX" secondItem="FUL-jS-AaR" secondAttribute="centerX" id="NMs-2j-ddR"/>
+                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="FUL-jS-AaR" secondAttribute="bottom" constant="20" id="XiA-q9-yqc"/>
+                            <constraint firstItem="OaT-iy-piV" firstAttribute="top" secondItem="Bba-fy-sP1" secondAttribute="top" id="e32-qP-lfI"/>
+                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="9hN-Dh-xaE" secondAttribute="bottom" constant="-8" id="gzs-pB-2pu"/>
+                            <constraint firstItem="fgg-C7-W4f" firstAttribute="top" secondItem="OaT-iy-piV" secondAttribute="bottom" id="zxn-T0-jqJ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -458,7 +460,7 @@ If you have any questions regarding privacy while using the Application, or have
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="List Safe Zones separated by commas" translatesAutoresizingMaskIntoConstraints="NO" id="ACC-Zh-QdE">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Safe Zones are areas where players cannot be sniped" translatesAutoresizingMaskIntoConstraints="NO" id="ACC-Zh-QdE">
                                         <rect key="frame" x="20" y="29" width="280" height="72"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -665,8 +667,12 @@ If you have any questions regarding privacy while using the Application, or have
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJr-sA-oIR">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SJr-sA-oIR">
                                                     <rect key="frame" x="11" y="41" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="5Lr-eH-oVX"/>
+                                                        <constraint firstAttribute="height" constant="60" id="fJD-Ya-biR"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-fK-VEq" customClass="FBProfilePictureView">
                                                     <rect key="frame" x="11" y="41" width="60" height="60"/>
@@ -678,6 +684,8 @@ If you have any questions regarding privacy while using the Application, or have
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="SJr-sA-oIR" firstAttribute="top" secondItem="3Fj-oX-7yZ" secondAttribute="bottom" constant="9" id="21z-vM-NjJ"/>
+                                                <constraint firstItem="SJr-sA-oIR" firstAttribute="leading" secondItem="Dio-n9-f9q" secondAttribute="leading" constant="11" id="5MH-nM-5Li"/>
                                                 <constraint firstItem="rSN-VG-z3Y" firstAttribute="leading" secondItem="V6L-fK-VEq" secondAttribute="trailing" constant="10" id="9Wk-dW-xvy"/>
                                                 <constraint firstItem="rSN-VG-z3Y" firstAttribute="top" secondItem="3Fj-oX-7yZ" secondAttribute="bottom" constant="25" id="Irm-tV-eNy"/>
                                                 <constraint firstItem="3Fj-oX-7yZ" firstAttribute="leading" secondItem="Dio-n9-f9q" secondAttribute="leadingMargin" id="Otc-xX-CjI"/>
@@ -697,13 +705,40 @@ If you have any questions regarding privacy while using the Application, or have
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No current games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nx-rC-eMB">
+                                <rect key="frame" x="0.0" y="300" width="320" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="2ww-sK-aK5"/>
+                                    <constraint firstAttribute="width" constant="320" id="Oco-zE-Hdb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEc-Pc-VKP">
+                                <rect key="frame" x="113" y="335" width="94" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="e3q-8p-Pc3"/>
+                                    <constraint firstAttribute="width" constant="94" id="m3d-wv-rGT"/>
+                                </constraints>
+                                <state key="normal" title="start one now">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="TbO-PD-dIe" kind="modal" id="BON-Qe-jNR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="6fc-Ls-zJF" secondAttribute="centerX" id="3hN-x2-QE5"/>
+                            <constraint firstAttribute="centerX" secondItem="MEc-Pc-VKP" secondAttribute="centerX" id="Cn0-kP-JOX"/>
+                            <constraint firstItem="MEc-Pc-VKP" firstAttribute="top" secondItem="3nx-rC-eMB" secondAttribute="bottom" constant="1" id="N3z-Ah-QU6"/>
                             <constraint firstAttribute="trailing" secondItem="6fc-Ls-zJF" secondAttribute="trailing" id="Nqo-XZ-Njj"/>
                             <constraint firstItem="6fc-Ls-zJF" firstAttribute="top" secondItem="ecj-es-ktv" secondAttribute="bottom" id="Sga-On-Xdc"/>
                             <constraint firstItem="6fc-Ls-zJF" firstAttribute="leading" secondItem="rEZ-zC-r7K" secondAttribute="leading" id="Y0h-uZ-tNX"/>
+                            <constraint firstItem="3nx-rC-eMB" firstAttribute="top" secondItem="ecj-es-ktv" secondAttribute="bottom" constant="300" id="hYT-FP-4aS"/>
+                            <constraint firstAttribute="centerX" secondItem="3nx-rC-eMB" secondAttribute="centerX" id="iNe-cW-INO"/>
                             <constraint firstItem="GeJ-Rf-UR0" firstAttribute="top" secondItem="6fc-Ls-zJF" secondAttribute="bottom" id="rAA-43-bWt"/>
                         </constraints>
                     </view>
@@ -725,6 +760,8 @@ If you have any questions regarding privacy while using the Application, or have
                         <outlet property="backgroundHeaderView" destination="wkF-Ov-wc5" id="bNr-ZK-C8m"/>
                         <outlet property="lifetimeGamesLabel" destination="kH8-wR-SFR" id="y5c-b9-3pJ"/>
                         <outlet property="lifetimeSnipesLabel" destination="RQc-jW-vnl" id="MZJ-V9-DvP"/>
+                        <outlet property="noGameButton" destination="MEc-Pc-VKP" id="m1y-6a-BPy"/>
+                        <outlet property="noGameLabel" destination="3nx-rC-eMB" id="fhU-K9-q9O"/>
                         <outlet property="profilePicture" destination="hTB-EG-r3w" id="kTD-hV-JYL"/>
                         <outlet property="segmentControl" destination="O0w-IQ-SDg" id="vsx-A1-pgn"/>
                         <outlet property="tableView" destination="6fc-Ls-zJF" id="gj8-NK-Zn7"/>
@@ -735,7 +772,7 @@ If you have any questions regarding privacy while using the Application, or have
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYE-n5-alF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="tV1-aE-yf0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="-1099"/>
+            <point key="canvasLocation" x="1009" y="-1101"/>
         </scene>
         <!--h-->
         <scene sceneID="yJZ-4X-pgf">
@@ -1258,7 +1295,7 @@ If you have any questions regarding privacy while using the Application, or have
                                     <constraint firstAttribute="height" constant="39" id="yOm-ea-ufZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Mark as Invalid">
+                                <state key="normal" title="Challenge Snipe">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1635,6 +1672,16 @@ If you have any questions regarding privacy while using the Application, or have
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No game events just yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN4-9S-RWE">
+                                <rect key="frame" x="0.0" y="300" width="320" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Pjm-1Y-aNb"/>
+                                    <constraint firstAttribute="height" constant="34" id="oVL-Nl-1wp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1642,6 +1689,9 @@ If you have any questions regarding privacy while using the Application, or have
                             <constraint firstItem="mzz-EB-Sdn" firstAttribute="top" secondItem="89I-70-2QA" secondAttribute="bottom" id="HY1-qk-0f1"/>
                             <constraint firstAttribute="trailing" secondItem="mzz-EB-Sdn" secondAttribute="trailing" id="Lzc-0T-ynI"/>
                             <constraint firstItem="mzz-EB-Sdn" firstAttribute="leading" secondItem="uoo-PT-rp1" secondAttribute="leading" id="SEP-rJ-QZz"/>
+                            <constraint firstAttribute="trailing" secondItem="LN4-9S-RWE" secondAttribute="trailing" id="TsT-CE-BDg"/>
+                            <constraint firstItem="LN4-9S-RWE" firstAttribute="leading" secondItem="uoo-PT-rp1" secondAttribute="leading" id="say-ir-KD2"/>
+                            <constraint firstItem="LN4-9S-RWE" firstAttribute="top" secondItem="89I-70-2QA" secondAttribute="bottom" constant="300" id="uuz-lS-APc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kcr-U4-cuk">
@@ -1652,6 +1702,7 @@ If you have any questions regarding privacy while using the Application, or have
                         <outlet property="currentTargetProfilePicture" destination="m19-xX-jge" id="Wzy-Cd-Hwk"/>
                         <outlet property="currentTargetUsername" destination="VLG-tc-GXa" id="Qr2-fk-i7t"/>
                         <outlet property="headerView" destination="sKh-jz-5tg" id="p0V-r8-HLX"/>
+                        <outlet property="noEventsLabel" destination="LN4-9S-RWE" id="Mhg-Rq-0kH"/>
                         <outlet property="numActiveAssassinsLabel" destination="dfP-2S-b8V" id="yF6-9w-xku"/>
                         <outlet property="numAssassinsLabel" destination="6Ra-Zj-BWv" id="zdB-f5-HNn"/>
                         <outlet property="segmentControl" destination="irm-Qo-I9m" id="f6C-dr-oRS"/>
@@ -1732,4 +1783,7 @@ If you have any questions regarding privacy while using the Application, or have
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="BON-Qe-jNR"/>
+    </inferredMetricsTieBreakers>
 </document>

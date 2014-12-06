@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeSnipesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lifetimeGamesLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+@property (weak, nonatomic) IBOutlet UILabel *noGameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *noGameButton;
 
 @property (strong, nonatomic) NSMutableArray *games;
 @property (strong, nonatomic) NSMutableArray *pastGames;
@@ -120,6 +122,7 @@
     [super viewWillAppear:YES];
     [[self navigationController] setNavigationBarHidden:NO];
     self.navigationItem.title = [PFUser currentUser].username;
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -160,13 +163,26 @@
             [self.activityIndicatorView startAnimating];
             
           
-                // reload data stop spinner
-                [self.tableView reloadData];
-                [self.activityIndicatorView stopAnimating];
-                [self.activityIndicatorView setHidden:YES];
+            // reload data stop spinner
+            [self.tableView reloadData];
+            [self.activityIndicatorView stopAnimating];
+            [self.activityIndicatorView setHidden:YES];
             
             [self.activityIndicatorView stopAnimating];
             
+            
+            if ([self.pastGames count] > 0)
+            {
+                [self.noGameLabel setHidden:YES];
+                [self.noGameButton setHidden:YES];
+            }
+            
+            else
+            {
+                [self.noGameLabel setHidden:NO];
+                [self.noGameButton setHidden:YES];
+                self.noGameLabel.text = @"You don't have any past games";
+            }
             break;
             
         default:
@@ -191,6 +207,7 @@
         
         self.cellContracts = [AssassinsService getContractsForGames:gameIdsForCurrentGames];
         
+        
         dispatch_async( dispatch_get_main_queue(), ^{
             // Add code here to update the UI/send notifications based on the
             // results of the background processing
@@ -203,6 +220,24 @@
                     break;
                 }
             }
+            
+            // set segment to 0 to avoid confusion
+            self.segmentControl.selectedSegmentIndex = 0;
+            
+            // determine if you show no game label/button
+            if ([self.games count] > 0)
+            {
+                [self.noGameLabel setHidden:YES];
+                [self.noGameButton setHidden:YES];
+            }
+            
+            else
+            {
+                [self.noGameButton setHidden:NO];
+                [self.noGameButton setHidden:NO];
+                self.noGameLabel.text = @"You don't have any current games";
+            }
+            
             
             // reload data stop spinner
             [self.tableView reloadData];

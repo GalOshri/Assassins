@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numAssassinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numActiveAssassinsLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *noEventsLabel;
 
 @property (strong, nonatomic) NSMutableArray *completedContracts;
 @property (strong, nonatomic) NSMutableArray *pendingContracts;
@@ -111,6 +112,12 @@
         case 0:
             // data
             [self.tableView reloadData];
+            
+            if ([self.completedContracts count] == 0 && [self.pendingContracts count] == 0)
+                [self.noEventsLabel setHidden:NO];
+            else
+                [self.noEventsLabel setHidden:YES];
+            
             break;
         
         // players
@@ -146,9 +153,14 @@
                 [self.activityIndicatorView setHidden:YES];
             }
             
+            [self.noEventsLabel setHidden:YES];
+            
             break;
             
         case 2:
+
+            [self.noEventsLabel setHidden:YES];
+            
             // set activity indicator
             [self.activityIndicatorView setHidden:NO];
             [self.activityIndicatorView startAnimating];
@@ -289,6 +301,12 @@
             [titleView addSubview:smallLabel];
             
             self.navigationItem.titleView = titleView;
+            
+            // check if there are any game events
+            if ([self.completedContracts count] == 0 && [self.pendingContracts count] == 0 && self.segmentControl.selectedSegmentIndex == 0)
+                [self.noEventsLabel setHidden:NO];
+            else
+                [self.noEventsLabel setHidden:YES];
         });
     });
     

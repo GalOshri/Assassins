@@ -70,7 +70,7 @@
         </view>
     </objects>
     <resources>
-        <image name="assassinsSignIn.png" width="493" height="700"/>
+        <image name="assassinsSignIn.png" width="563" height="800"/>
         <image name="cameraButton.png" width="250" height="250"/>
         <image name="flipCamera.png" width="300" height="300"/>
         <image name="menuBackground.png" width="400" height="400"/>

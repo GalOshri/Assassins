@@ -134,7 +134,7 @@
 
     if ([self.selectedFriends count] <= 0)
     {
-        UIAlertView *incomplete = [[UIAlertView alloc] initWithTitle:@"choose friends to play with!" message:@"please select at least 1 friend to play an assassins game with" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *incomplete = [[UIAlertView alloc] initWithTitle:@"choose friends to play with!" message:@"select at least one friend to play an assassins game with" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         
         [incomplete show];
         return;
@@ -159,7 +159,7 @@
         for(int i=0; i< [self.selectedFriends count]; i++)
             [newGameParticipants addObject:[self.friendPickerController.selection[i] objectForKey:@"id"]];
         
-        if([self.safeZones.text isEqualToString:@"List Safe Zones separated by commas"])
+        if([self.safeZones.text isEqualToString:@"Safe Zones are areas where players cannot be sniped"])
             self.safeZones.text = @"";
         
         dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -231,7 +231,7 @@
     self.keyboardOrNah = YES;
     
     // get rid of text
-    if ([self.safeZones.text isEqualToString:@"List Safe Zones separated by commas"])
+    if ([self.safeZones.text isEqualToString:@"Safe Zones are areas where players cannot be sniped"])
     {    self.safeZones.text = @"";
         self.safeZones.textColor = [UIColor blackColor];
     }
@@ -253,7 +253,7 @@
         
         if ([self.safeZones.text isEqualToString:@""] || [self.safeZones.text isEqualToString:@" "])
         {
-            self.safeZones.text = @"List Safe Zones separated by commas";
+            self.safeZones.text = @"Safe Zones are areas where players cannot be sniped";
             self.safeZones.textColor = [UIColor grayColor];
         }
         
@@ -276,7 +276,7 @@
     
     if ([self.safeZones.text isEqualToString:@""] || [self.safeZones.text isEqualToString:@" "])
     {
-        self.safeZones.text = @"List Safe Zones separated by commas";
+        self.safeZones.text = @"Safe Zones are areas where players cannot be sniped";
         self.safeZones.textColor = [UIColor grayColor];
     }
     

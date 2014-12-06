@@ -35,7 +35,7 @@
         CGRect frame;
         frame.origin.x = self.view.frame.size.width * i;
         frame.origin.y = 0;
-        frame.size = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height - 48.0);
+        frame.size = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
         
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[self.images objectAtIndex:i]]];
         imgView.frame = frame;
@@ -43,7 +43,9 @@
 
     }
     
-    self.tutorialScrollView.contentSize = CGSizeMake(self.view.frame.size.width * self.images.count, self.tutorialScrollView.frame.size.height);
+    
+    // size tutorial frame
+    self.tutorialScrollView.contentSize = CGSizeMake(self.view.frame.size.width * self.images.count, self.view.frame.size.height);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
