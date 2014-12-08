@@ -279,7 +279,7 @@
     switch (buttonIndex) {
         case 0:
         {
-            NSString *urlString = @"mailto:kefiapp@gmail.com?subject=Feedback%20On%20Assassins";
+            NSString *urlString = @"mailto:assassinsSnipe@gmail.com?subject=Feedback%20On%20Snipe";
             NSURL *url = [NSURL URLWithString:urlString];
             [[UIApplication sharedApplication] openURL:url];
             break;

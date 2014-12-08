@@ -172,8 +172,8 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZM-NY-QwN">
                                 <rect key="frame" x="8" y="0.0" width="304" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">ASSASSINS TERMS OF USE
-These Terms and Conditions (the “Terms”) are a contract between you and KEFI LABS LLC. This document explains how you are permitted to use the Assassins mobile application and services and any content found on it (the “Services”). Unless otherwise specified, all references to the “Services” include the services available through the Assassins mobile application as well as any software that KEFI LABS LLC provides to you that allows you to access the Services from a mobile device. By using the Services, you are agreeing to all of the Terms; if you do not agree with any of these Terms, do not access or otherwise use the Services.
+                                <mutableString key="text">SNIPE TERMS OF USE
+These Terms and Conditions (the “Terms”) are a contract between you and KEFI LABS LLC. This document explains how you are permitted to use the Snipe mobile application and services and any content found on it (the “Services”). Unless otherwise specified, all references to the “Services” include the services available through the Snipe mobile application as well as any software that KEFI LABS LLC provides to you that allows you to access the Services from a mobile device. By using the Services, you are agreeing to all of the Terms; if you do not agree with any of these Terms, do not access or otherwise use the Services.
 
 KEFI LABS LLC may make changes to the content and Services at any time. KEFI LABS LLC can change, update, add or remove provisions of these Terms, at any time by posting the updated Terms on the Services or by notifying you via the App. By using the Services after KEFI LABS LLC has updated the Terms, you are agreeing to all the updated Terms; if you do not agree with any of the updated Terms, you must stop using Services.
 
@@ -208,7 +208,7 @@ Unauthorized use of any Materials or Third-Party Content contained in the Servic
 
 COPYRIGHT POLICY
 KEFI LABS LLC respects intellectual property rights of others and expects users of the Services to do so as well. KEFI LABS LLC will respond to notices of copyright infringement that comply with applicable law and are properly provided to the firm. If appropriate, KEFI LABS LLC will restrict access or delete such Content that infringes a third party’s copyright and, in KEFI LABS LLC’s sole discretion and without notice, terminate a user’s account if there are repeated instances of infringement. 
-if you become aware of content on these services of the Assassins application that infringe on copyrights that you own or control, you may file a notice of infringement, in compliance with the requirements of 17 U.S.C § 512(c)(3) to kefiapp@gmail.com
+if you become aware of content on these services of the Snipe application that infringe on copyrights that you own or control, you may file a notice of infringement, in compliance with the requirements of 17 U.S.C § 512(c)(3) to kefiapp@gmail.com
 
 
 DISCLAIMER OF WARRANTIES
@@ -234,8 +234,7 @@ If any clause within this Provision (other than the Class Action Waiver clause a
 
 
 CONTACT US
-If you have any questions about these Terms or otherwise need to contact KEFI LABS LLC for any reason, you can reach us at kefiapp@gmail.com
-
+If you have any questions about these Terms or otherwise need to contact KEFI LABS LLC for any reason, you can reach us at assassinsSnipe@gmail.com
 
 </mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
