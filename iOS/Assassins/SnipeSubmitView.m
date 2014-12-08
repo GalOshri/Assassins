@@ -168,7 +168,7 @@
     if ([actionSheet.title isEqualToString:@"Oops!"])
         [self performSegueWithIdentifier:@"UnwindToCameraAfterSnipe" sender:self];
     
-    else if ([actionSheet.title isEqualToString:@"Whom did you snipe?"])
+    else if ([actionSheet.title isEqualToString:@"This is a snipe of:"])
     {
         if (buttonIndex - 1 >= 0)
         {
