@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ohg-Qi-4Te">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -171,7 +172,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZM-NY-QwN">
                                 <rect key="frame" x="8" y="0.0" width="304" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">ASSASSINS TERMS OF USE
+                                <mutableString key="text">ASSASSINS TERMS OF USE
 These Terms and Conditions (the “Terms”) are a contract between you and KEFI LABS LLC. This document explains how you are permitted to use the Assassins mobile application and services and any content found on it (the “Services”). Unless otherwise specified, all references to the “Services” include the services available through the Assassins mobile application as well as any software that KEFI LABS LLC provides to you that allows you to access the Services from a mobile device. By using the Services, you are agreeing to all of the Terms; if you do not agree with any of these Terms, do not access or otherwise use the Services.
 
 KEFI LABS LLC may make changes to the content and Services at any time. KEFI LABS LLC can change, update, add or remove provisions of these Terms, at any time by posting the updated Terms on the Services or by notifying you via the App. By using the Services after KEFI LABS LLC has updated the Terms, you are agreeing to all the updated Terms; if you do not agree with any of the updated Terms, you must stop using Services.
@@ -232,11 +233,11 @@ SEVERABILITY
 If any clause within this Provision (other than the Class Action Waiver clause above) is found to be illegal or unenforceable, that clause will be severed from this Provision to in the minimum extent necessary, and the remainder of this Provision will be given full force and effect.
 
 
-Contact Us.
+CONTACT US
 If you have any questions about these Terms or otherwise need to contact KEFI LABS LLC for any reason, you can reach us at kefiapp@gmail.com
 
 
-</string>
+</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -277,9 +278,10 @@ If you have any questions about these Terms or otherwise need to contact KEFI LA
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zz4-NR-T5X">
                                 <rect key="frame" x="8" y="0.0" width="304" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">ASSASINS PRIVACY STATEMENT
+                                <mutableString key="text">SNIPE PRIVACY STATEMENT
 
-This privacy policy governs your use of the software application Assassins (“Application”) for mobile devices that was created by KEFI LABS LLC. The Application allows users to engage in a game of Assassins in a digital manner using mobile phones. 
+This privacy policy governs your use of the software application Snipe (“Application”) for mobile devices that was created by KEFI LABS LLC. The Application allows users to engage in a game of Assassins in a digital manner using mobile phones. 
+
 
 USER PROVIDED INFORMATION
 The Application obtains the information you provide when you download and register the Application. Registration with us is optional. However, please keep in mind that you will not be able to use core functionality of the Application. 
@@ -287,6 +289,7 @@ When you register with KEFI LABS  LLC and use the Application, you provide (a)  
 In addition, the Application may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile devices unique device ID, the Application version, and information about the way you use the Application.  
 We may also use the information you provided us to contact you from time to time to provide you with important information, required notices and marketing promotions.
 This Application does not collect precise information about the location of your mobile device. 
+
 
 THIRD PARTY INFORMATION ACCESS
 Only aggregated, anonymized data is periodically transmitted to external services to help us improve the Application and our service. We will share your information with third parties only in the ways that are described in this privacy statement.
@@ -296,26 +299,33 @@ We may disclose User Provided and Automatically Collected Information:
 -with our trusted services providers who work on our behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.
 -if KEFI LABS LLC is involved in a merger, acquisition, or sale of all or a portion of its assets, you will be notified via email and/or a prominent notice on our Web site of any change in ownership or uses of this information, as well as any choices you may have regarding this information.
 
+
 OPT-OUT RIGHTS
 You can stop all collection of information by the Application easily by uninstalling the Application. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network. 
 
 MANAGING YOUR INFORMATION
-We will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. We will retain Automatically Collected information for up to 48 months and thereafter may store it in aggregate. If you’d like us to delete User Provided Data that you have provided via the Application, please contact us at kefiapp@gmail.com and we will respond in a reasonable time. Please note that some or all of the User Provided Data may be required in order for the Application to function properly.
+We will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. We will retain Automatically Collected information for up to 48 months and thereafter may store it in aggregate. If you’d like us to delete User Provided Data that you have provided via the Application, please contact us at assassinsSnipe@gmail.com and we will respond in a reasonable time. Please note that some or all of the User Provided Data may be required in order for the Application to function properly.
+
 
 CHILDREN
-We do not use the Application to knowingly solicit data from or market to children under the age of 13. If a parent or guardian becomes aware that his or her child has provided us with information without their consent, he or she should contact us at kefiapp@gmail.com. We will delete such information from our files within a reasonable time.
+We do not use the Application to knowingly solicit data from or market to children under the age of 13. If a parent or guardian becomes aware that his or her child has provided us with information without their consent, he or she should contact us at assassinsSnipe@gmail.com. We will delete such information from our files within a reasonable time.
+
 
 SECURITY
 We are concerned about safeguarding the confidentiality of your information. We provide physical, electronic, and procedural safeguards to protect information we process and maintain. For example, we limit access to this information to authorized employees and contractors who need to know that information in order to operate, develop or improve our Application. Please be aware that, although we endeavor provide reasonable security for information we process and maintain, no security system can prevent all potential security breaches.
  
+
 CHANGES
 This Privacy Policy may be updated from time to time for any reason. We will notify you of any changes to our Privacy Policy by updating this policy and informing you via email and other social media outlets. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.
+ 
 
 YOUR CONSENT
 By using the Application, you are consenting to our processing of your information as set forth in this Privacy Policy now and as amended by us. "Processing,” means using cookies on a computer/hand held device or using or touching information in any way, including, but not limited to, collecting, storing, deleting, using, combining and disclosing information, all of which activities will take place in the United States. If you reside outside the United States your information will be transferred, processed and stored there under United States privacy standards. 
  
+
 CONTACT US
-If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact us via email at kefiapp@gmail.com</string>
+If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact us via email at assassinsSnipe@gmail.com
+</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" address="YES"/>
