@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-               BuildableName = "Assassins.app"
-               BlueprintName = "Assassins"
-               ReferencedContainer = "container:Assassins.xcodeproj">
+               BuildableName = "Snipe.app"
+               BlueprintName = "Snipe"
+               ReferencedContainer = "container:Snipe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0D52C4B7197E284A00E5E5B9"
-               BuildableName = "AssassinsTests.xctest"
-               BlueprintName = "AssassinsTests"
-               ReferencedContainer = "container:Assassins.xcodeproj">
+               BuildableName = "SnipeTests.xctest"
+               BlueprintName = "SnipeTests"
+               ReferencedContainer = "container:Snipe.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-            BuildableName = "Assassins.app"
-            BlueprintName = "Assassins"
-            ReferencedContainer = "container:Assassins.xcodeproj">
+            BuildableName = "Snipe.app"
+            BlueprintName = "Snipe"
+            ReferencedContainer = "container:Snipe.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-            BuildableName = "Assassins.app"
-            BlueprintName = "Assassins"
-            ReferencedContainer = "container:Assassins.xcodeproj">
+            BuildableName = "Snipe.app"
+            BlueprintName = "Snipe"
+            ReferencedContainer = "container:Snipe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-            BuildableName = "Assassins.app"
-            BlueprintName = "Assassins"
-            ReferencedContainer = "container:Assassins.xcodeproj">
+            BuildableName = "Snipe.app"
+            BlueprintName = "Snipe"
+            ReferencedContainer = "container:Snipe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DE9B7919-5C36-4814-ACBE-5FCF59710E99</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Snipe</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3</key>
+		<string>https://github.com/GalOshri/Ripple.git</string>
+		<key>EDCF55C4AEB94A715B43550A29159AC8286408DD</key>
+		<string>https://github.com/GalOshri/Assassins.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iOS/Snipe.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3</key>
+		<string>../../../../Ripple</string>
+		<key>EDCF55C4AEB94A715B43550A29159AC8286408DD</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/GalOshri/Assassins.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EDCF55C4AEB94A715B43550A29159AC8286408DD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EDCF55C4AEB94A715B43550A29159AC8286408DD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Assassins</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Ripple</string>
+		</dict>
+	</array>
+</dict>
+</plist>
