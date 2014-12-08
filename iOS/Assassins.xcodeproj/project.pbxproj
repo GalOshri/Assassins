@@ -107,7 +107,7 @@
 		0D277D16198EF23B002362C6 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		0D277D18198EF246002362C6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0D277D1A198EF325002362C6 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		0D52C497197E284A00E5E5B9 /* Snipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D52C497197E284A00E5E5B9 /* Assassins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assassins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D52C49A197E284A00E5E5B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0D52C49C197E284A00E5E5B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0D52C49E197E284A00E5E5B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -280,7 +280,7 @@
 		0D52C498197E284A00E5E5B9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0D52C497197E284A00E5E5B9 /* Snipe.app */,
+				0D52C497197E284A00E5E5B9 /* Assassins.app */,
 				0D52C4B8197E284A00E5E5B9 /* AssassinsTests.xctest */,
 			);
 			name = Products;
@@ -525,7 +525,7 @@
 			);
 			name = Assassins;
 			productName = Assassins;
-			productReference = 0D52C497197E284A00E5E5B9 /* Snipe.app */;
+			productReference = 0D52C497197E284A00E5E5B9 /* Assassins.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0D52C4B7197E284A00E5E5B9 /* AssassinsTests */ = {
@@ -792,8 +792,7 @@
 				GCC_PREFIX_HEADER = "Assassins/Assassins-Prefix.pch";
 				INFOPLIST_FILE = "Assassins/Assassins-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_MODULE_NAME = Snipe;
-				PRODUCT_NAME = Snipe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -814,8 +813,7 @@
 				GCC_PREFIX_HEADER = "Assassins/Assassins-Prefix.pch";
 				INFOPLIST_FILE = "Assassins/Assassins-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_MODULE_NAME = Snipe;
-				PRODUCT_NAME = Snipe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
