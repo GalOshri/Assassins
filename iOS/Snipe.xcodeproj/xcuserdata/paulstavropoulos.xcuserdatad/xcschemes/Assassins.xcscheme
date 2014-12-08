@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-               BuildableName = "Snipe.app"
+               BuildableName = "Assassins.app"
                BlueprintName = "Snipe"
                ReferencedContainer = "container:Snipe.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0D52C4B7197E284A00E5E5B9"
-               BuildableName = "SnipeTests.xctest"
+               BuildableName = "AssassinsTests.xctest"
                BlueprintName = "SnipeTests"
                ReferencedContainer = "container:Snipe.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-            BuildableName = "Snipe.app"
+            BuildableName = "Assassins.app"
             BlueprintName = "Snipe"
             ReferencedContainer = "container:Snipe.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-            BuildableName = "Snipe.app"
+            BuildableName = "Assassins.app"
             BlueprintName = "Snipe"
             ReferencedContainer = "container:Snipe.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D52C496197E284A00E5E5B9"
-            BuildableName = "Snipe.app"
+            BuildableName = "Assassins.app"
             BlueprintName = "Snipe"
             ReferencedContainer = "container:Snipe.xcodeproj">
          </BuildableReference>
