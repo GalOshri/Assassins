@@ -172,7 +172,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZM-NY-QwN">
                                 <rect key="frame" x="8" y="0.0" width="304" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">SNIPE TERMS OF USE
+                                <string key="text">SNIPE TERMS OF USE
 These Terms and Conditions (the “Terms”) are a contract between you and KEFI LABS LLC. This document explains how you are permitted to use the Snipe mobile application and services and any content found on it (the “Services”). Unless otherwise specified, all references to the “Services” include the services available through the Snipe mobile application as well as any software that KEFI LABS LLC provides to you that allows you to access the Services from a mobile device. By using the Services, you are agreeing to all of the Terms; if you do not agree with any of these Terms, do not access or otherwise use the Services.
 
 KEFI LABS LLC may make changes to the content and Services at any time. KEFI LABS LLC can change, update, add or remove provisions of these Terms, at any time by posting the updated Terms on the Services or by notifying you via the App. By using the Services after KEFI LABS LLC has updated the Terms, you are agreeing to all the updated Terms; if you do not agree with any of the updated Terms, you must stop using Services.
@@ -236,7 +236,7 @@ If any clause within this Provision (other than the Class Action Waiver clause a
 CONTACT US
 If you have any questions about these Terms or otherwise need to contact KEFI LABS LLC for any reason, you can reach us at assassinsSnipe@gmail.com
 
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -277,7 +277,7 @@ If you have any questions about these Terms or otherwise need to contact KEFI LA
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zz4-NR-T5X">
                                 <rect key="frame" x="8" y="0.0" width="304" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">SNIPE PRIVACY STATEMENT
+                                <string key="text">SNIPE PRIVACY STATEMENT
 
 This privacy policy governs your use of the software application Snipe (“Application”) for mobile devices that was created by KEFI LABS LLC. The Application allows users to engage in a game of Assassins in a digital manner using mobile phones. 
 
@@ -324,7 +324,7 @@ By using the Application, you are consenting to our processing of your informati
 
 CONTACT US
 If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact us via email at assassinsSnipe@gmail.com
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" address="YES"/>
