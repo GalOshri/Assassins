@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "EDCF55C4AEB94A715B43550A29159AC8286408DD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3" : 0,
+    "EDCF55C4AEB94A715B43550A29159AC8286408DD" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DE9B7919-5C36-4814-ACBE-5FCF59710E99",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3" : "Ripple",
+    "EDCF55C4AEB94A715B43550A29159AC8286408DD" : "Assassins"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Snipe",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iOS\/Snipe.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/GalOshri\/Ripple.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7E6EE23A97D80F9F224940BD5A4FABA198A6CAD3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/GalOshri\/Assassins.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EDCF55C4AEB94A715B43550A29159AC8286408DD"
+    }
+  ]
+}
